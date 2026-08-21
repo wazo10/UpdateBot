@@ -333,24 +333,20 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia Semantic Query - Guaranteed Direct Matches)
+# 3. Esports Bot (Liquipedia Match Ticker Parser with Strict Same-Day Check)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
+    today_utc_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
     for wiki in wikis:
         api_url = f"https://liquipedia.net/{wiki}/api.php"
-
-        # Semantic MediaWiki query retrieving finished match cards
         params = {
-            "action": "ask",
-            "query": (
-                "[[Has match date::+]] [[Has winner::+]]|?Has team1|?Has"
-                " team2|?Has team1 score|?Has team2 score|?Has tournament"
-                " stage|?Has tournament name"
-            ),
+            "action": "parse",
+            "page": "Liquipedia:Matches",
             "format": "json",
+            "prop": "text",
         }
 
         try:
@@ -359,60 +355,60 @@ def fetch_esports_updates():
             )
             if resp.status_code == 200:
                 data = resp.json()
-                query_results = data.get("query", {}).get("results", {})
+                html_content = (
+                    data.get("parse", {}).get("text", {}).get("*", "")
+                )
+                if not html_content:
+                    continue
 
-                for match_key, match_data in query_results.items():
-                    printouts = match_data.get("printouts", {})
+                soup = BeautifulSoup(html_content, "html.parser")
+                match_rows = soup.find_all("table", class_="match-filler")
 
-                    tournament = (
-                        printouts.get("Has tournament name", [""])[0]
-                        if printouts.get("Has tournament name")
-                        else ""
-                    )
-                    stage = (
-                        printouts.get("Has tournament stage", [""])[0]
-                        if printouts.get("Has tournament stage")
-                        else "Playoffs"
-                    )
+                for row in match_rows:
+                    # Enforce Strict Same-Day UTC Date Check via data-timestamp
+                    timer_elem = row.find("span", class_="timer-object")
+                    if timer_elem and timer_elem.has_attr("data-timestamp"):
+                        try:
+                            epoch = int(timer_elem["data-timestamp"])
+                            match_date = datetime.fromtimestamp(
+                                epoch, tz=timezone.utc
+                            ).strftime("%Y-%m-%d")
+                            if match_date != today_utc_str:
+                                continue  # Skip if match date isn't today
+                        except ValueError:
+                            pass
 
-                    clean_context = (
-                        f"{match_key} {tournament} {stage}".lower().replace(
-                            "_", " "
-                        )
-                    )
+                    row_text = row.get_text(separator=" ").lower()
 
-                    # Filters strictly for whitelisted events
                     is_cs_major = wiki == "counterstrike" and (
-                        "major" in clean_context
-                        or "pgl" in clean_context
-                        or "blast" in clean_context
+                        "major" in row_text
+                        or "pgl" in row_text
+                        or "blast" in row_text
                     )
                     is_grand_slam = (
-                        wiki == "counterstrike"
-                        and "grand slam" in clean_context
+                        wiki == "counterstrike" and "grand slam" in row_text
                     )
                     is_rlcs = wiki == "rocketleague" and (
-                        "rlcs" in clean_context
-                        or "championship" in clean_context
+                        "rlcs" in row_text or "championship" in row_text
                     )
                     is_vct = wiki == "valorant" and (
-                        "vct" in clean_context
-                        or "masters" in clean_context
-                        or "champions" in clean_context
+                        "vct" in row_text
+                        or "masters" in row_text
+                        or "champions" in row_text
                     )
                     is_lol = wiki == "leagueoflegends" and (
-                        "worlds" in clean_context
-                        or "msi" in clean_context
-                        or "first stand" in clean_context
+                        "worlds" in row_text
+                        or "msi" in row_text
+                        or "first stand" in row_text
                     )
                     is_ewc_enc = (
-                        "esports world cup" in clean_context
-                        or "ewc" in clean_context
-                        or "nations cup" in clean_context
-                        or "enc" in clean_context
+                        "esports world cup" in row_text
+                        or "ewc" in row_text
+                        or "nations cup" in row_text
+                        or "enc" in row_text
                     )
 
-                    if (
+                    if not (
                         is_cs_major
                         or is_grand_slam
                         or is_rlcs
@@ -420,46 +416,49 @@ def fetch_esports_updates():
                         or is_lol
                         or is_ewc_enc
                     ):
-                        team1 = (
-                            printouts.get("Has team1", ["Team A"])[0]
-                            if printouts.get("Has team1")
-                            else "Team A"
+                        continue
+
+                    team_left = row.find("td", class_="team-left")
+                    team_right = row.find("td", class_="team-right")
+                    score_cell = row.find("td", class_="versus")
+
+                    if team_left and team_right and score_cell:
+                        t1 = team_left.get_text(strip=True).lower()
+                        t2 = team_right.get_text(strip=True).lower()
+                        score = score_cell.get_text(strip=True)
+
+                        tournament_elem = row.find(
+                            "div", class_="match-filler-tournament"
                         )
-                        team2 = (
-                            printouts.get("Has team2", ["Team B"])[0]
-                            if printouts.get("Has team2")
-                            else "Team B"
-                        )
-                        score1 = (
-                            printouts.get("Has team1 score", [0])[0]
-                            if printouts.get("Has team1 score")
-                            else 0
-                        )
-                        score2 = (
-                            printouts.get("Has team2 score", [0])[0]
-                            if printouts.get("Has team2 score")
-                            else 0
+                        stage_elem = row.find(
+                            "span", class_="match-filler-stage"
                         )
 
-                        match_url = (
-                            f"https://liquipedia.net/{wiki}/{match_key}"
+                        tournament_name = (
+                            tournament_elem.get_text(strip=True).lower()
+                            if tournament_elem
+                            else "ewc"
                         )
+                        stage_name = (
+                            stage_elem.get_text(strip=True).lower()
+                            if stage_elem
+                            else "playoffs"
+                        )
+
+                        match_link = row.find("a", href=True)
+                        href = (
+                            match_link["href"] if match_link else f"/{wiki}/EWC"
+                        )
+                        match_url = f"https://liquipedia.net{href}"
 
                         matches.append({
-                            "title": (
-                                f"🎮 {str(team1).lower()} {score1} - {score2}"
-                                f" {str(team2).lower()}"
-                            ),
-                            "description": (
-                                f"{str(stage).lower()}\n{str(tournament).lower()}"
-                            ),
+                            "title": f"🎮 {t1} {score} {t2}",
+                            "description": f"{stage_name}\n{tournament_name}",
                             "url": match_url,
                             "color": 10181046,
                         })
         except Exception as e:
-            print(
-                f"[EsportsBot] Error querying Liquipedia API for {wiki}: {e}"
-            )
+            print(f"[EsportsBot] Error parsing match ticker for {wiki}: {e}")
 
     return matches
 
