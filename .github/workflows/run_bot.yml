@@ -1,0 +1,35 @@
+name: 24/7 Multi-Bot Automation
+
+on:
+  schedule:
+    # Runs every 5 minutes 24/7
+    - cron: '*/5 * * * *'
+  workflow_dispatch: # Allows manual trigger button
+
+jobs:
+  run-notifier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Execute Master Script
+        env:
+          WEBHOOK_TECH: ${{ secrets.WEBHOOK_TECH }}
+          WEBHOOK_SPORTS: ${{ secrets.WEBHOOK_SPORTS }}
+          WEBHOOK_ESPORTS: ${{ secrets.WEBHOOK_ESPORTS }}
+          WEBHOOK_AVIATION: ${{ secrets.WEBHOOK_AVIATION }}
+          WEBHOOK_RESEARCH: ${{ secrets.WEBHOOK_RESEARCH }}
+          WEBHOOK_SPACE: ${{ secrets.WEBHOOK_SPACE }}
+        run: python update_bot.py
