@@ -90,7 +90,8 @@ def is_consumer_hardware(title, summary):
         "ryzen",
         "radeon",
         "snapdragon",
-        "geforce",
+        "geforce rtx",
+        "geforce gtx",
         "rtx",
         "blade",
         "book",
@@ -129,6 +130,8 @@ def is_consumer_hardware(title, summary):
         "nitro",
         "framework",
         "laptop",
+        "robot",
+        "robotics",
     ]
 
     # Strictly excluded content
@@ -145,6 +148,14 @@ def is_consumer_hardware(title, summary):
         "hands-on",
         "opinion",
         "preview",
+        "driver",
+        "drivers",
+        "game ready",
+        "browser support",
+        "patch",
+        "update",
+        "beta",
+        "podcast",
     ]
 
     if any(term in text for term in exclude_terms):
