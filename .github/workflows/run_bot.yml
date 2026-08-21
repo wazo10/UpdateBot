@@ -2,14 +2,14 @@ name: 24/7 Multi-Bot Automation
 
 on:
   schedule:
-    # Runs every 5 minutes 24/7
     - cron: '*/5 * * * *'
-  workflow_dispatch: # Allows manual trigger button
+  workflow_dispatch:
 
 jobs:
   run-notifier:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write  # Gives workflow permission to commit changes back to repo
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install feedparser requests beautifulsoup4
 
-      - name: Execute Master Script
+      - name: Execute Script
         env:
           WEBHOOK_TECH: ${{ secrets.WEBHOOK_TECH }}
           WEBHOOK_SPORTS: ${{ secrets.WEBHOOK_SPORTS }}
@@ -33,3 +33,10 @@ jobs:
           WEBHOOK_RESEARCH: ${{ secrets.WEBHOOK_RESEARCH }}
           WEBHOOK_SPACE: ${{ secrets.WEBHOOK_SPACE }}
         run: python update_bot.py
+
+      - name: Save Deduplication State
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add seen_posts.txt
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update seen_posts.txt [skip ci]" && git push)
