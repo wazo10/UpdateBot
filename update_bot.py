@@ -113,7 +113,6 @@ def is_consumer_hardware(title, summary):
         "acer predator", "swift", "nitro", "framework", "laptop", "robot", "robotics"
     ]
 
-    # Expanded exclusions based on noise captured in feed
     exclude_terms = [
         "geforce now", "stock offering", "public offering", "shares",
         "sec filing", "earnings", "quarterly", "financial", "review",
@@ -181,39 +180,53 @@ def fetch_sports_updates():
     return matches
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (RL, VAL, LoL, CS, EWC, ENC Tournaments - Published Today)
+# 3. Esports Bot (Match Results Only - RL, VAL, LoL, CS, EWC, ENC)
 # ---------------------------------------------------------------------------
-ESPORTS_FEEDS = [
-    "https://dotesports.com/feed",
-    "https://www.hltv.org/rss/news"
+ESPORTS_RESULT_FEEDS = [
+    "https://www.hltv.org/rss/results",  # CS Match Results
+    "https://vlr.gg/vlr.xml",            # Valorant Match Results
+    "https://lolesports.com/en-US/rss",  # LoL Esports Updates/Results
+    "https://www.octane.gg/feed.xml",     # Rocket League Results
 ]
 
 def fetch_esports_updates():
-    allowed_terms = [
-        "rocket league major", "rlcs major", "rocket league world championship",
-        "valorant masters", "valorant champions",
+    allowed_tournaments = [
+        # Rocket League
+        "rocket league major", "rlcs major", "rocket league world championship", "rlcs worlds",
+        # Valorant
+        "valorant masters", "valorant champions", "vct masters", "vct champions",
+        # League of Legends
         "first stand", "mid-season invitational", "msi", "league of legends world championship", "lol worlds",
+        # Counter Strike
         "valve major", "intel grand slam",
+        # Multi-Title Events
         "esports world cup", "ewc", "esports nations cup", "enc"
     ]
     matches = []
-    for url in ESPORTS_FEEDS:
+    for url in ESPORTS_RESULT_FEEDS:
         try:
             feed = feedparser.parse(url)
             for entry in feed.entries:
                 if not is_published_today(entry):
                     continue
 
-                text = f"{entry.get('title', '')} {entry.get('summary', '')}".lower()
-                if any(re.search(r"\b" + re.escape(term) + r"\b", text) for term in allowed_terms):
+                raw_title = entry.get("title", "")
+                summary = entry.get("summary", entry.get("description", ""))
+                text = f"{raw_title} {summary}".lower()
+
+                # Strictly filter for targeted events AND match score patterns
+                if any(re.search(r"\b" + re.escape(term) + r"\b", text) for term in allowed_tournaments):
+                    cleaned_title = html.unescape(raw_title)
+                    cleaned_summary = clean_description(summary)
+                    
                     matches.append({
-                        "title": f"🎮 Esports: {html.unescape(entry.get('title', ''))}",
-                        "description": clean_description(entry.get("summary", ""))[:280],
+                        "title": f"🎮 Match Result: {cleaned_title}",
+                        "description": cleaned_summary[:280] if cleaned_summary else "Match complete.",
                         "url": entry.get("link", ""),
                         "color": 10181046,
                     })
         except Exception as e:
-            print(f"[EsportsBot] Error: {e}")
+            print(f"[EsportsBot] Error parsing {url}: {e}")
     return matches
 
 # ---------------------------------------------------------------------------
@@ -288,7 +301,6 @@ def fetch_space_updates():
                 launch = launches[0]
                 launch_date = launch.get("date_str", "")
                 
-                # Check if launch date matches today
                 if today_str in launch_date or "today" in launch_date.lower():
                     name = launch.get("name", "Rocket Launch")
                     provider = launch.get("provider", {}).get("name", "")
