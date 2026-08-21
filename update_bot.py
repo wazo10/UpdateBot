@@ -20,7 +20,6 @@ WEBHOOKS = {
 
 SEEN_FILE = "seen_posts.txt"
 
-# Standard User-Agent compliant with Liquipedia API guidelines
 LIQUIPEDIA_HEADERS = {
     "User-Agent": (
         "MultiBotAutomation/1.0 (https://github.com/wazo10; bot@example.com)"
@@ -30,9 +29,10 @@ LIQUIPEDIA_HEADERS = {
 
 
 # ---------------------------------------------------------------------------
-# Deduplication & Year-Based Auto-Pruning Functions
+# Deduplication & Year-Based Auto-Pruning
 # ---------------------------------------------------------------------------
 def load_seen_urls():
+    """Loads seen URLs and automatically purges any entries from prior years."""
     current_year = datetime.now(timezone.utc).strftime("%Y")
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     valid_urls = set()
@@ -122,7 +122,7 @@ def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls):
 
 
 # ---------------------------------------------------------------------------
-# 1. Tech Bot (Consumer Hardware Drops Only - Published Today)
+# 1. Tech Bot
 # ---------------------------------------------------------------------------
 TECH_FEEDS = [
     "https://newsroom.apple.com/rss-feed.rss",
@@ -272,7 +272,7 @@ def process_tech_feeds():
 
 
 # ---------------------------------------------------------------------------
-# 2. Sports Bot (ESPN Scoreboard API - Today's Playoff Scores)
+# 2. Sports Bot (ESPN Scoreboard API)
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     matches = []
@@ -333,23 +333,23 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia LPDB Engine - Pure Scores & 3-Line Formatting)
+# 3. Esports Bot (Liquipedia Semantic Query - Guaranteed Direct Matches)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
-    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-
     wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
     for wiki in wikis:
         api_url = f"https://liquipedia.net/{wiki}/api.php"
 
+        # Semantic MediaWiki query retrieving finished match cards
         params = {
-            "action": "lpdb",
-            "only": "match",
-            "limit": "50",
-            "order": "date desc",
-            "conditions": f"[[date::>{today_str} 00:00:00]] AND [[finished::1]]",
+            "action": "ask",
+            "query": (
+                "[[Has match date::+]] [[Has winner::+]]|?Has team1|?Has"
+                " team2|?Has team1 score|?Has team2 score|?Has tournament"
+                " stage|?Has tournament name"
+            ),
             "format": "json",
         }
 
@@ -359,43 +359,57 @@ def fetch_esports_updates():
             )
             if resp.status_code == 200:
                 data = resp.json()
+                query_results = data.get("query", {}).get("results", {})
 
-                for item in data:
-                    page_path = item.get("page", "").lower()
-                    tournament_name = item.get("tournament", "").lower()
-                    series_name = item.get("series", "").lower()
+                for match_key, match_data in query_results.items():
+                    printouts = match_data.get("printouts", {})
 
-                    full_context = (
-                        f"{page_path} {tournament_name} {series_name}"
+                    tournament = (
+                        printouts.get("Has tournament name", [""])[0]
+                        if printouts.get("Has tournament name")
+                        else ""
+                    )
+                    stage = (
+                        printouts.get("Has tournament stage", [""])[0]
+                        if printouts.get("Has tournament stage")
+                        else "Playoffs"
                     )
 
+                    clean_context = (
+                        f"{match_key} {tournament} {stage}".lower().replace(
+                            "_", " "
+                        )
+                    )
+
+                    # Filters strictly for whitelisted events
                     is_cs_major = wiki == "counterstrike" and (
-                        "major" in full_context
-                        or "pgl" in full_context
-                        or "blast" in full_context
+                        "major" in clean_context
+                        or "pgl" in clean_context
+                        or "blast" in clean_context
                     )
                     is_grand_slam = (
-                        wiki == "counterstrike" and "grand slam" in full_context
+                        wiki == "counterstrike"
+                        and "grand slam" in clean_context
                     )
                     is_rlcs = wiki == "rocketleague" and (
-                        "rlcs" in full_context
-                        or "championship" in full_context
+                        "rlcs" in clean_context
+                        or "championship" in clean_context
                     )
                     is_vct = wiki == "valorant" and (
-                        "vct" in full_context
-                        or "masters" in full_context
-                        or "champions" in full_context
+                        "vct" in clean_context
+                        or "masters" in clean_context
+                        or "champions" in clean_context
                     )
                     is_lol = wiki == "leagueoflegends" and (
-                        "worlds" in full_context
-                        or "msi" in full_context
-                        or "first stand" in full_context
+                        "worlds" in clean_context
+                        or "msi" in clean_context
+                        or "first stand" in clean_context
                     )
                     is_ewc_enc = (
-                        "esports world cup" in full_context
-                        or "ewc" in full_context
-                        or "nations cup" in full_context
-                        or "enc" in full_context
+                        "esports world cup" in clean_context
+                        or "ewc" in clean_context
+                        or "nations cup" in clean_context
+                        or "enc" in clean_context
                     )
 
                     if (
@@ -406,46 +420,52 @@ def fetch_esports_updates():
                         or is_lol
                         or is_ewc_enc
                     ):
-                        team_a = item.get("opponent1", "Team A")
-                        score_a = item.get("opponent1score", "0")
-                        team_b = item.get("opponent2", "Team B")
-                        score_b = item.get("opponent2score", "0")
-
-                        stage = (
-                            item.get("matchgroup", "Playoffs")
-                            .replace("_", " ")
-                            .title()
+                        team1 = (
+                            printouts.get("Has team1", ["Team A"])[0]
+                            if printouts.get("Has team1")
+                            else "Team A"
                         )
-                        tournament = item.get(
-                            "tournament", "Tournament"
-                        ).replace("_", " ")
+                        team2 = (
+                            printouts.get("Has team2", ["Team B"])[0]
+                            if printouts.get("Has team2")
+                            else "Team B"
+                        )
+                        score1 = (
+                            printouts.get("Has team1 score", [0])[0]
+                            if printouts.get("Has team1 score")
+                            else 0
+                        )
+                        score2 = (
+                            printouts.get("Has team2 score", [0])[0]
+                            if printouts.get("Has team2 score")
+                            else 0
+                        )
 
-                        match_id = item.get("matchid", f"{team_a}-{team_b}")
                         match_url = (
-                            f"https://liquipedia.net/{wiki}/{item.get('page')}"
+                            f"https://liquipedia.net/{wiki}/{match_key}"
                         )
 
                         matches.append({
                             "title": (
-                                f"🎮 {team_a.lower()} {score_a} - {score_b}"
-                                f" {team_b.lower()}"
+                                f"🎮 {str(team1).lower()} {score1} - {score2}"
+                                f" {str(team2).lower()}"
                             ),
                             "description": (
-                                f"{stage.lower()}\n{tournament.lower()}"
+                                f"{str(stage).lower()}\n{str(tournament).lower()}"
                             ),
-                            "url": f"{match_url}#{match_id}",
+                            "url": match_url,
                             "color": 10181046,
                         })
         except Exception as e:
             print(
-                f"[EsportsBot] Error querying Liquipedia LPDB for {wiki}: {e}"
+                f"[EsportsBot] Error querying Liquipedia API for {wiki}: {e}"
             )
 
     return matches
 
 
 # ---------------------------------------------------------------------------
-# 4. Aviation Bot (Airfleets New Deliveries Scraper)
+# 4. Aviation Bot
 # ---------------------------------------------------------------------------
 def fetch_aviation_updates():
     url = "https://www.airfleets.net/divers/delivery.htm"
@@ -482,7 +502,7 @@ def fetch_aviation_updates():
 
 
 # ---------------------------------------------------------------------------
-# 5. Research Bot (University Feeds - Published Today Only)
+# 5. Research Bot
 # ---------------------------------------------------------------------------
 UNI_FEEDS = [
     "https://news.stanford.edu/feed/",
@@ -516,7 +536,7 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot (Rocket Launch API - Today's Launches Only)
+# 6. Space Bot
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
