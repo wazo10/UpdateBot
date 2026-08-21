@@ -1,3 +1,4 @@
+import html
 import os
 import re
 from bs4 import BeautifulSoup
@@ -16,21 +17,42 @@ WEBHOOKS = {
     "space": os.getenv("WEBHOOK_SPACE"),
 }
 
+# ---------------------------------------------------------------------------
+# Official PR Newsroom RSS Feeds
+# ---------------------------------------------------------------------------
+TECH_FEEDS = [
+    "https://newsroom.apple.com/rss-feed.rss",
+    "https://nvidianews.nvidia.com/rss.xml",
+    "https://newsroom.intel.com/feed/",
+    "https://www.qualcomm.com/news/rss",
+    "https://ir.amd.com/rss/news-releases.xml",
+    "https://press.razer.com/feed/",
+    "https://press.asus.com/feed/",
+    "https://news.lenovo.com/feed/",
+    "https://www.dell.com/en-us/blog/feed/",
+    "https://press.hp.com/us/en/news.rss",
+    "https://news.microsoft.com/feed/",
+    "https://news.samsung.com/global/feed",
+    "https://news.acer.com/rss.xml",
+    "https://frame.work/blog.rss",
+]
+
 
 # ---------------------------------------------------------------------------
 # Helper Functions
 # ---------------------------------------------------------------------------
 def clean_description(raw_html):
-    """Strips raw HTML tags (<p>, <a>) leaving clean text."""
+    """Strips raw HTML tags and decodes entities like &#8217; to clean text."""
     if not raw_html:
         return ""
     soup = BeautifulSoup(raw_html, "html.parser")
     text = soup.get_text(separator=" ").strip()
+    text = html.unescape(text)
     return re.sub(r"\s+", " ", text)
 
 
 def send_discord_webhook(webhook_url, payload, bot_name):
-    """Sends a payload to a Discord webhook if a valid URL exists."""
+    """Sends payload to a Discord webhook."""
     if not webhook_url:
         print(f"[{bot_name}] No webhook URL configured. Skipping.")
         return
@@ -55,13 +77,13 @@ def send_discord_webhook(webhook_url, payload, bot_name):
 
 
 # ---------------------------------------------------------------------------
-# Tech Bot Logic
+# Tech Bot Filtering Logic
 # ---------------------------------------------------------------------------
 def is_consumer_hardware(title, summary):
-    """Filters strictly for consumer hardware terms while blocking financials/reviews."""
-    text = f"{title} {summary}".lower()
+    """Matches exact consumer hardware brands using word boundaries (\b)."""
+    text = html.unescape(f"{title} {summary}").lower()
 
-    # Your complete list of hardware target keywords
+    # Exact brand terms matched with word boundaries
     hardware_targets = [
         "macbook",
         "core ultra",
@@ -71,6 +93,7 @@ def is_consumer_hardware(title, summary):
         "geforce",
         "rtx",
         "blade",
+        "book",
         "titan",
         "stealth",
         "raider",
@@ -108,7 +131,7 @@ def is_consumer_hardware(title, summary):
         "laptop",
     ]
 
-    # Explicit exclusions (financials, stocks, reviews, previews)
+    # Strictly excluded content
     exclude_terms = [
         "stock offering",
         "public offering",
@@ -124,38 +147,47 @@ def is_consumer_hardware(title, summary):
         "preview",
     ]
 
-    # Block financial and review noise
     if any(term in text for term in exclude_terms):
         return False
 
-    # Match if any targeted hardware brand/term is present
-    return any(hw in text for hw in hardware_targets)
+    # Word-boundary check ensuring exact phrase matches
+    for hw in hardware_targets:
+        pattern = r"\b" + re.escape(hw) + r"\b"
+        if re.search(pattern, text):
+            return True
+
+    return False
 
 
-def process_tech_feed(feed_url):
-    """Parses an RSS feed and returns the first matching consumer hardware item."""
-    feed = feedparser.parse(feed_url)
-    for entry in feed.entries:
-        title = entry.get("title", "")
-        summary = entry.get("summary", entry.get("description", ""))
+def process_tech_feeds(feed_urls):
+    """Iterates through newsroom feeds and returns the first matching hardware drop."""
+    for url in feed_urls:
+        try:
+            feed = feedparser.parse(url)
+            for entry in feed.entries:
+                raw_title = entry.get("title", "")
+                summary = entry.get("summary", entry.get("description", ""))
 
-        if is_consumer_hardware(title, summary):
-            cleaned_summary = clean_description(summary)
-            return {
-                "title": f"💻 Tech: {title}",
-                "description": (
-                    cleaned_summary[:280] + "..."
-                    if len(cleaned_summary) > 280
-                    else cleaned_summary
-                ),
-                "url": entry.get("link", ""),
-                "color": 3447003,
-            }
+                if is_consumer_hardware(raw_title, summary):
+                    cleaned_title = html.unescape(raw_title)
+                    cleaned_summary = clean_description(summary)
+                    return {
+                        "title": f"💻 Tech: {cleaned_title}",
+                        "description": (
+                            cleaned_summary[:280] + "..."
+                            if len(cleaned_summary) > 280
+                            else cleaned_summary
+                        ),
+                        "url": entry.get("link", ""),
+                        "color": 3447003,
+                    }
+        except Exception as e:
+            print(f"[TechBot] Error parsing feed {url}: {e}")
     return None
 
 
 # ---------------------------------------------------------------------------
-# Placeholders for Other Categories (Use your existing logic if added)
+# Additional Category Handlers
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     return None
@@ -178,28 +210,29 @@ def fetch_space_updates():
 
 
 # ---------------------------------------------------------------------------
-# Main Runner
+# Main Execution Flow
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
-    # Example RSS feed source for tech updates (e.g., Verge / Ars Technica / Framework)
-    TECH_RSS_URL = "https://www.theverge.com/rss/index.xml"
-
-    # Process & Send Updates
-    tech_payload = process_tech_feed(TECH_RSS_URL)
+    # Tech Bot
+    tech_payload = process_tech_feeds(TECH_FEEDS)
     send_discord_webhook(WEBHOOKS["tech"], tech_payload, "TechBot")
 
-    send_discord_webhook(
-        WEBHOOKS["sports"], fetch_sports_updates(), "SportsBot"
-    )
-    send_discord_webhook(
-        WEBHOOKS["esports"], fetch_esports_updates(), "EsportsBot"
-    )
-    send_discord_webhook(
-        WEBHOOKS["aviation"], fetch_aviation_updates(), "AeroBot"
-    )
-    send_discord_webhook(
-        WEBHOOKS["research"], fetch_research_updates(), "ResearchBot"
-    )
-    send_discord_webhook(
-        WEBHOOKS["space"], fetch_space_updates(), "SpaceBot"
-    )
+    # Sports Bot
+    sports_payload = fetch_sports_updates()
+    send_discord_webhook(WEBHOOKS["sports"], sports_payload, "SportsBot")
+
+    # Esports Bot
+    esports_payload = fetch_esports_updates()
+    send_discord_webhook(WEBHOOKS["esports"], esports_payload, "EsportsBot")
+
+    # Aviation Bot
+    aviation_payload = fetch_aviation_updates()
+    send_discord_webhook(WEBHOOKS["aviation"], aviation_payload, "AeroBot")
+
+    # Research Bot
+    research_payload = fetch_research_updates()
+    send_discord_webhook(WEBHOOKS["research"], research_payload, "ResearchBot")
+
+    # Space Bot
+    space_payload = fetch_space_updates()
+    send_discord_webhook(WEBHOOKS["space"], space_payload, "SpaceBot")
