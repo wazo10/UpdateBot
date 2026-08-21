@@ -215,7 +215,7 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (LIQUIPEDIA API PARSER - CS2, Val, LoL, RL)
+# 3. Esports Bot (Liquipedia Clean Match Results Parser)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
@@ -224,43 +224,79 @@ def fetch_esports_updates():
     wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
     allowed_tournaments = [
-        "major", "world championship", "worlds", "masters",
-        "champions", "vct", "first stand", "msi", "intel grand slam",
-        "esports world cup", "ewc", "esports nations cup", "enc"
+        "major",
+        "world championship",
+        "worlds",
+        "masters",
+        "champions",
+        "vct",
+        "first stand",
+        "msi",
+        "intel grand slam",
+        "esports world cup",
+        "ewc",
+        "esports nations cup",
+        "enc",
     ]
 
     for wiki in wikis:
-        # Queries Liquipedia's MediaWiki API for recent match edits / completed cards
+        # Queries Liquipedia API for match completion data
         api_url = f"https://liquipedia.net/{wiki}/api.php"
         params = {
-            "action": "query",
-            "list": "recentchanges",
-            "rcnamespace": "0",
-            "rclimit": "25",
+            "action": "ask",
+            "query": (
+                "[[Has match date::"
+                f"{today_str}]]|?Has team1|?Has team2|?Has team1 score|?Has"
+                " team2 score|?Has tournament stage|?Has tournament name"
+            ),
             "format": "json",
         }
 
         try:
-            resp = requests.get(api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10)
+            resp = requests.get(
+                api_url,
+                params=params,
+                headers=LIQUIPEDIA_HEADERS,
+                timeout=10,
+            )
             if resp.status_code == 200:
                 data = resp.json()
-                changes = data.get("query", {}).get("recentchanges", [])
+                results = data.get("query", {}).get("results", {})
 
-                for item in changes:
-                    title = item.get("title", "")
-                    title_lower = title.lower()
+                for match_key, match_info in results.items():
+                    print_vars = match_info.get("printouts", {})
 
-                    # Filters edits to match target tournaments
-                    if any(term in title_lower for term in allowed_tournaments):
-                        page_id = item.get("pageid")
-                        match_url = f"https://liquipedia.net/{wiki}/{title.replace(' ', '_')}"
+                    event_name = (
+                        print_vars.get("Has tournament name", [""])[0]
+                        if print_vars.get("Has tournament name")
+                        else ""
+                    )
+                    stage_name = (
+                        print_vars.get("Has tournament stage", [""])[0]
+                        if print_vars.get("Has tournament stage")
+                        else "Match"
+                    )
 
-                        matches.append({
-                            "title": f"🎮 Liquipedia Result: {title}",
-                            "description": f"Match update recorded on Liquipedia ({wiki.capitalize()}).",
-                            "url": f"{match_url}#{page_id}",
-                            "color": 10181046,
-                        })
+                    # Verify event matches whitelist
+                    event_lower = f"{event_name} {stage_name}".lower()
+                    if not any(
+                        term in event_lower for term in allowed_tournaments
+                    ):
+                        continue
+
+                    team1 = print_vars.get("Has team1", ["Team A"])[0]
+                    team2 = print_vars.get("Has team2", ["Team B"])[0]
+                    score1 = print_vars.get("Has team1 score", [0])[0]
+                    score2 = print_vars.get("Has team2 score", [0])[0]
+
+                    match_url = f"https://liquipedia.net/{wiki}/{match_key}"
+
+                    matches.append({
+                        "title": f"🎮 {team1} {score1} - {score2} {team2}",
+                        "description": f"{stage_name}\n{event_name}",
+                        "url": match_url,
+                        "color": 10181046,
+                    })
         except Exception as e:
             print(f"[EsportsBot] Error querying Liquipedia {wiki}: {e}")
 
