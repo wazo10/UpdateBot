@@ -47,6 +47,7 @@ def clean_description(raw_html):
 
 
 def is_published_today(entry):
+    """Strictly verifies if an RSS entry was published today (UTC)."""
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     pub_date = entry.get("published_parsed") or entry.get("updated_parsed")
     if pub_date:
@@ -88,7 +89,7 @@ def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls):
 
 
 # ---------------------------------------------------------------------------
-# 1. Tech Bot (Consumer Hardware Drops Only)
+# 1. Tech Bot (Consumer Hardware Drops Only - Published Today)
 # ---------------------------------------------------------------------------
 TECH_FEEDS = [
     "https://newsroom.apple.com/rss-feed.rss",
@@ -238,13 +239,12 @@ def process_tech_feeds():
 
 
 # ---------------------------------------------------------------------------
-# 2. Sports Bot (DIRECT SCOREBOARD API - Today's Playoff Scores Only)
+# 2. Sports Bot (ESPN Scoreboard API - Today's Completed Playoff Games)
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     matches = []
     today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
 
-    # ESPN Public Scoreboard endpoints across major leagues
     leagues = [
         ("basketball", "nba"),
         ("hockey", "nhl"),
@@ -259,13 +259,11 @@ def fetch_sports_updates():
             if resp.status_code == 200:
                 data = resp.json()
                 for event in data.get("events", []):
-                    # Check if the game is a playoff game
                     season_type = event.get("season", {}).get("type", 0)
                     is_playoff = season_type == 3 or "playoff" in event.get(
                         "name", ""
                     ).lower()
 
-                    # Check status: only completed games
                     status = (
                         event.get("status", {})
                         .get("type", {})
@@ -303,36 +301,31 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (DIRECT MATCH SCORE PARSER - Major Events Only)
+# 3. Esports Bot (Match Scores - CS, Valorant, LoL, Rocket League)
 # ---------------------------------------------------------------------------
+ESPORTS_RESULT_FEEDS = [
+    "https://www.hltv.org/rss/results",   # Counter-Strike
+    "https://vlr.gg/vlr.xml",             # Valorant
+    "https://lolesports.com/en-US/rss",   # League of Legends
+    "https://www.octane.gg/feed.xml",     # Rocket League
+]
+
 def fetch_esports_updates():
     matches = []
     allowed_tournaments = [
-        "rocket league major",
-        "rlcs major",
-        "rocket league world championship",
-        "rlcs worlds",
-        "valorant masters",
-        "valorant champions",
-        "vct masters",
-        "vct champions",
-        "first stand",
-        "mid-season invitational",
-        "msi",
-        "league of legends world championship",
-        "lol worlds",
-        "valve major",
-        "intel grand slam",
-        "esports world cup",
-        "ewc",
-        "esports nations cup",
-        "enc",
+        # Rocket League
+        "rocket league major", "rlcs major", "rocket league world championship", "rlcs worlds",
+        # Valorant
+        "valorant masters", "valorant champions", "vct masters", "vct champions",
+        # League of Legends
+        "first stand", "mid-season invitational", "msi", "league of legends world championship", "lol worlds",
+        # Counter-Strike
+        "valve major", "intel grand slam",
+        # Multi-Title Events
+        "esports world cup", "ewc", "esports nations cup", "enc"
     ]
 
-    # Liquipedia/HLTV Public Scraper API Endpoints for Match Results
-    esports_sources = ["https://www.hltv.org/rss/results"]
-
-    for url in esports_sources:
+    for url in ESPORTS_RESULT_FEEDS:
         try:
             feed = feedparser.parse(url)
             for entry in feed.entries:
@@ -343,23 +336,24 @@ def fetch_esports_updates():
                 summary = entry.get("summary", entry.get("description", ""))
                 text = f"{raw_title} {summary}".lower()
 
-                # Strictly match title patterns that contain game scores like "Team A (2) vs (0) Team B"
-                has_score_pattern = re.search(
-                    r"\(\d+\)\s*vs\s*\(\d+\)", raw_title, re.IGNORECASE
-                ) or re.search(r"\d+\s*-\s*\d+", raw_title)
+                # Score line verification (e.g. "Team A (2) vs (0) Team B", "Team A 2 - 0 Team B")
+                has_score_pattern = (
+                    re.search(r"\(\d+\)\s*vs\s*\(\d+\)", raw_title, re.IGNORECASE) or 
+                    re.search(r"\b\d+\s*-\s*\d+\b", raw_title) or
+                    " vs " in raw_title.lower()
+                )
 
-                if (
-                    any(
-                        re.search(r"\b" + re.escape(term) + r"\b", text)
-                        for term in allowed_tournaments
-                    )
-                    and has_score_pattern
-                ):
-
+                if any(re.search(r"\b" + re.escape(term) + r"\b", text) for term in allowed_tournaments) or has_score_pattern:
                     cleaned_title = html.unescape(raw_title)
+                    cleaned_summary = clean_description(summary)
+
                     matches.append({
-                        "title": f"🎮 Score: {cleaned_title}",
-                        "description": clean_description(summary)[:280],
+                        "title": f"🎮 Match Result: {cleaned_title}",
+                        "description": (
+                            cleaned_summary[:280]
+                            if cleaned_summary
+                            else "Match complete."
+                        ),
                         "url": entry.get("link", ""),
                         "color": 10181046,
                     })
