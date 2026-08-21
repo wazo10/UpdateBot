@@ -20,6 +20,7 @@ WEBHOOKS = {
 
 SEEN_FILE = "seen_posts.txt"
 
+
 # ---------------------------------------------------------------------------
 # Helper & Deduplication Functions
 # ---------------------------------------------------------------------------
@@ -29,13 +30,14 @@ def load_seen_urls():
             return set(line.strip() for line in f if line.strip())
     return set()
 
+
 def save_seen_url(url):
     if url:
         with open(SEEN_FILE, "a", encoding="utf-8") as f:
             f.write(f"{url}\n")
 
+
 def clean_description(raw_html):
-    """Strips raw HTML tags and decodes entities like &#8217; to clean text."""
     if not raw_html:
         return ""
     soup = BeautifulSoup(raw_html, "html.parser")
@@ -43,17 +45,19 @@ def clean_description(raw_html):
     text = html.unescape(text)
     return re.sub(r"\s+", " ", text)
 
+
 def is_published_today(entry):
-    """Strictly verifies if an RSS entry was published today (UTC)."""
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     pub_date = entry.get("published_parsed") or entry.get("updated_parsed")
     if pub_date:
-        entry_date = datetime(*pub_date[:6], tzinfo=timezone.utc).strftime("%Y-%m-%d")
+        entry_date = datetime(*pub_date[:6], tzinfo=timezone.utc).strftime(
+            "%Y-%m-%d"
+        )
         return entry_date == today_str
     return False
 
+
 def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls):
-    """Sends all valid payloads to a Discord webhook and updates seen history."""
     if not webhook_url:
         print(f"[{bot_name}] No webhook URL configured. Skipping.")
         return
@@ -76,12 +80,15 @@ def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls):
                 save_seen_url(url)
                 seen_urls.add(url)
             else:
-                print(f"[{bot_name}] Webhook error: {response.status_code} - {response.text}")
+                print(
+                    f"[{bot_name}] Webhook error: {response.status_code} - {response.text}"
+                )
         except Exception as e:
             print(f"[{bot_name}] Error sending webhook: {e}")
 
+
 # ---------------------------------------------------------------------------
-# 1. Tech Bot (Consumer Hardware Drops Only - Published Today Only)
+# 1. Tech Bot (Consumer Hardware Drops Only)
 # ---------------------------------------------------------------------------
 TECH_FEEDS = [
     "https://newsroom.apple.com/rss-feed.rss",
@@ -100,27 +107,96 @@ TECH_FEEDS = [
     "https://frame.work/blog.rss",
 ]
 
+
 def is_consumer_hardware(title, summary):
     text = html.unescape(f"{title} {summary}").lower()
     hardware_targets = [
-        "macbook", "core ultra", "ryzen", "radeon", "snapdragon",
-        "geforce rtx", "geforce gtx", "rtx", "razer blade", "titan",
-        "stealth", "raider", "crosshair", "cyborg", "vector", "pulse",
-        "katana", "prestige", "rog", "zephyrus", "strix", "tuf",
-        "zenbook", "vivobook", "proart", "legion", "loq", "thinkpad",
-        "yoga", "alienware", "xps", "inspiron", "latitude", "omen",
-        "omnibook", "victus", "envy", "surface", "galaxy book",
-        "acer predator", "swift", "nitro", "framework", "laptop", "robot", "robotics"
+        "macbook",
+        "core ultra",
+        "ryzen",
+        "radeon",
+        "snapdragon",
+        "geforce rtx",
+        "geforce gtx",
+        "rtx",
+        "razer blade",
+        "titan",
+        "stealth",
+        "raider",
+        "crosshair",
+        "cyborg",
+        "vector",
+        "pulse",
+        "katana",
+        "prestige",
+        "rog",
+        "zephyrus",
+        "strix",
+        "tuf",
+        "zenbook",
+        "vivobook",
+        "proart",
+        "legion",
+        "loq",
+        "thinkpad",
+        "yoga",
+        "alienware",
+        "xps",
+        "inspiron",
+        "latitude",
+        "omen",
+        "omnibook",
+        "victus",
+        "envy",
+        "surface",
+        "galaxy book",
+        "acer predator",
+        "swift",
+        "nitro",
+        "framework",
+        "laptop",
+        "robot",
+        "robotics",
     ]
 
     exclude_terms = [
-        "geforce now", "stock offering", "public offering", "shares",
-        "sec filing", "earnings", "quarterly", "financial", "review",
-        "reviews", "hands-on", "opinion", "preview", "driver", "drivers",
-        "game ready", "browser support", "patch", "update", "beta", "podcast",
-        "leaders", "survey", "daas", "truscale", "certification", "calm tech",
-        "sustainability", "partner", "red dot", "award", "awards", "deep dive",
-        "repairable", "services", "growth", "ecosystem"
+        "geforce now",
+        "stock offering",
+        "public offering",
+        "shares",
+        "sec filing",
+        "earnings",
+        "quarterly",
+        "financial",
+        "review",
+        "reviews",
+        "hands-on",
+        "opinion",
+        "preview",
+        "driver",
+        "drivers",
+        "game ready",
+        "browser support",
+        "patch",
+        "update",
+        "beta",
+        "podcast",
+        "leaders",
+        "survey",
+        "daas",
+        "truscale",
+        "certification",
+        "calm tech",
+        "sustainability",
+        "partner",
+        "red dot",
+        "award",
+        "awards",
+        "deep dive",
+        "repairable",
+        "services",
+        "growth",
+        "ecosystem",
     ]
 
     if any(term in text for term in exclude_terms):
@@ -130,6 +206,7 @@ def is_consumer_hardware(title, summary):
         if re.search(r"\b" + re.escape(hw) + r"\b", text):
             return True
     return False
+
 
 def process_tech_feeds():
     matches = []
@@ -147,7 +224,11 @@ def process_tech_feeds():
                     cleaned_summary = clean_description(summary)
                     matches.append({
                         "title": f"💻 Tech: {cleaned_title}",
-                        "description": cleaned_summary[:280] + "..." if len(cleaned_summary) > 280 else cleaned_summary,
+                        "description": (
+                            cleaned_summary[:280] + "..."
+                            if len(cleaned_summary) > 280
+                            else cleaned_summary
+                        ),
                         "url": entry.get("link", ""),
                         "color": 3447003,
                     })
@@ -155,55 +236,103 @@ def process_tech_feeds():
             print(f"[TechBot] Error parsing {url}: {e}")
     return matches
 
+
 # ---------------------------------------------------------------------------
-# 2. Sports Bot (Today's Playoff Games)
+# 2. Sports Bot (DIRECT SCOREBOARD API - Today's Playoff Scores Only)
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
-    feed_url = "https://www.espn.com/espn/rss/news"
     matches = []
-    try:
-        feed = feedparser.parse(feed_url)
-        for entry in feed.entries:
-            if not is_published_today(entry):
-                continue
+    today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
 
-            text = f"{entry.get('title', '')} {entry.get('summary', '')}".lower()
-            if "playoff" in text or "playoffs" in text:
-                matches.append({
-                    "title": f"⚽ Sports: {html.unescape(entry.get('title', ''))}",
-                    "description": clean_description(entry.get("summary", ""))[:280],
-                    "url": entry.get("link", ""),
-                    "color": 15105570,
-                })
-    except Exception as e:
-        print(f"[SportsBot] Error: {e}")
+    # ESPN Public Scoreboard endpoints across major leagues
+    leagues = [
+        ("basketball", "nba"),
+        ("hockey", "nhl"),
+        ("baseball", "mlb"),
+        ("football", "nfl"),
+    ]
+
+    for sport, league in leagues:
+        url = f"https://site.api.espn.com/apis/site/v2/sports/{sport}/{league}/scoreboard?dates={today_str}"
+        try:
+            resp = requests.get(url, timeout=10)
+            if resp.status_code == 200:
+                data = resp.json()
+                for event in data.get("events", []):
+                    # Check if the game is a playoff game
+                    season_type = event.get("season", {}).get("type", 0)
+                    is_playoff = season_type == 3 or "playoff" in event.get(
+                        "name", ""
+                    ).lower()
+
+                    # Check status: only completed games
+                    status = (
+                        event.get("status", {})
+                        .get("type", {})
+                        .get("state", "")
+                    )
+
+                    if is_playoff and status == "post":
+                        competitors = event["competitions"][0]["competitors"]
+                        team_a = competitors[0]["team"]["displayName"]
+                        score_a = competitors[0]["score"]
+                        team_b = competitors[1]["team"]["displayName"]
+                        score_b = competitors[1]["score"]
+
+                        game_id = event.get("id")
+                        game_link = (
+                            event.get("links", [{}])[0].get("href", "")
+                            or f"https://espn.com/game?gameId={game_id}"
+                        )
+
+                        matches.append({
+                            "title": (
+                                f"⚽ Score: {team_a} {score_a} - {score_b}"
+                                f" {team_b}"
+                            ),
+                            "description": (
+                                f"Playoff Result | {league.upper()} Final Score"
+                            ),
+                            "url": game_link,
+                            "color": 15105570,
+                        })
+        except Exception as e:
+            print(f"[SportsBot] Error fetching {league} scores: {e}")
+
     return matches
 
-# ---------------------------------------------------------------------------
-# 3. Esports Bot (Match Results Only - RL, VAL, LoL, CS, EWC, ENC)
-# ---------------------------------------------------------------------------
-ESPORTS_RESULT_FEEDS = [
-    "https://www.hltv.org/rss/results",  # CS Match Results
-    "https://vlr.gg/vlr.xml",            # Valorant Match Results
-    "https://lolesports.com/en-US/rss",  # LoL Esports Updates/Results
-    "https://www.octane.gg/feed.xml",     # Rocket League Results
-]
 
+# ---------------------------------------------------------------------------
+# 3. Esports Bot (DIRECT MATCH SCORE PARSER - Major Events Only)
+# ---------------------------------------------------------------------------
 def fetch_esports_updates():
-    allowed_tournaments = [
-        # Rocket League
-        "rocket league major", "rlcs major", "rocket league world championship", "rlcs worlds",
-        # Valorant
-        "valorant masters", "valorant champions", "vct masters", "vct champions",
-        # League of Legends
-        "first stand", "mid-season invitational", "msi", "league of legends world championship", "lol worlds",
-        # Counter Strike
-        "valve major", "intel grand slam",
-        # Multi-Title Events
-        "esports world cup", "ewc", "esports nations cup", "enc"
-    ]
     matches = []
-    for url in ESPORTS_RESULT_FEEDS:
+    allowed_tournaments = [
+        "rocket league major",
+        "rlcs major",
+        "rocket league world championship",
+        "rlcs worlds",
+        "valorant masters",
+        "valorant champions",
+        "vct masters",
+        "vct champions",
+        "first stand",
+        "mid-season invitational",
+        "msi",
+        "league of legends world championship",
+        "lol worlds",
+        "valve major",
+        "intel grand slam",
+        "esports world cup",
+        "ewc",
+        "esports nations cup",
+        "enc",
+    ]
+
+    # Liquipedia/HLTV Public Scraper API Endpoints for Match Results
+    esports_sources = ["https://www.hltv.org/rss/results"]
+
+    for url in esports_sources:
         try:
             feed = feedparser.parse(url)
             for entry in feed.entries:
@@ -214,23 +343,34 @@ def fetch_esports_updates():
                 summary = entry.get("summary", entry.get("description", ""))
                 text = f"{raw_title} {summary}".lower()
 
-                # Strictly filter for targeted events AND match score patterns
-                if any(re.search(r"\b" + re.escape(term) + r"\b", text) for term in allowed_tournaments):
+                # Strictly match title patterns that contain game scores like "Team A (2) vs (0) Team B"
+                has_score_pattern = re.search(
+                    r"\(\d+\)\s*vs\s*\(\d+\)", raw_title, re.IGNORECASE
+                ) or re.search(r"\d+\s*-\s*\d+", raw_title)
+
+                if (
+                    any(
+                        re.search(r"\b" + re.escape(term) + r"\b", text)
+                        for term in allowed_tournaments
+                    )
+                    and has_score_pattern
+                ):
+
                     cleaned_title = html.unescape(raw_title)
-                    cleaned_summary = clean_description(summary)
-                    
                     matches.append({
-                        "title": f"🎮 Match Result: {cleaned_title}",
-                        "description": cleaned_summary[:280] if cleaned_summary else "Match complete.",
+                        "title": f"🎮 Score: {cleaned_title}",
+                        "description": clean_description(summary)[:280],
                         "url": entry.get("link", ""),
                         "color": 10181046,
                     })
         except Exception as e:
             print(f"[EsportsBot] Error parsing {url}: {e}")
+
     return matches
 
+
 # ---------------------------------------------------------------------------
-# 4. Aviation Bot (Airfleets New Deliveries Scraper - Today's Updates)
+# 4. Aviation Bot (Airfleets New Deliveries Scraper)
 # ---------------------------------------------------------------------------
 def fetch_aviation_updates():
     url = "https://www.airfleets.net/divers/delivery.htm"
@@ -245,11 +385,18 @@ def fetch_aviation_updates():
             for row in rows:
                 cols = row.find_all("td")
                 if len(cols) >= 4:
-                    text_content = " ".join([c.get_text(strip=True) for c in cols])
-                    if today_str in text_content and "delivery" not in text_content.lower():
+                    text_content = " ".join(
+                        [c.get_text(strip=True) for c in cols]
+                    )
+                    if (
+                        today_str in text_content
+                        and "delivery" not in text_content.lower()
+                    ):
                         matches.append({
                             "title": "✈️ Aviation: New Plane Delivery",
-                            "description": f"Latest delivery: {text_content[:250]}",
+                            "description": (
+                                f"Latest delivery: {text_content[:250]}"
+                            ),
                             "url": f"{url}#{hash(text_content)}",
                             "color": 3066993,
                         })
@@ -258,14 +405,16 @@ def fetch_aviation_updates():
         print(f"[AeroBot] Error: {e}")
     return matches
 
+
 # ---------------------------------------------------------------------------
 # 5. Research Bot (University Feeds - Published Today Only)
 # ---------------------------------------------------------------------------
 UNI_FEEDS = [
     "https://news.stanford.edu/feed/",
     "https://news.mit.edu/rss/feed",
-    "https://news.berkeley.edu/feed/"
+    "https://news.berkeley.edu/feed/",
 ]
+
 
 def fetch_research_updates():
     matches = []
@@ -277,14 +426,19 @@ def fetch_research_updates():
                     continue
 
                 matches.append({
-                    "title": f"🔬 Research: {html.unescape(entry.get('title', ''))}",
-                    "description": clean_description(entry.get("summary", ""))[:280],
+                    "title": (
+                        f"🔬 Research: {html.unescape(entry.get('title', ''))}"
+                    ),
+                    "description": clean_description(
+                        entry.get("summary", "")
+                    )[:280],
                     "url": entry.get("link", ""),
                     "color": 15844367,
                 })
         except Exception as e:
             print(f"[ResearchBot] Error: {e}")
     return matches
+
 
 # ---------------------------------------------------------------------------
 # 6. Space Bot (Rocket Launch API - Today's Launches Only)
@@ -293,28 +447,37 @@ def fetch_space_updates():
     matches = []
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     try:
-        resp = requests.get("https://fwd.rocketlaunch.live/json/launches/next/1", timeout=10)
+        resp = requests.get(
+            "https://fwd.rocketlaunch.live/json/launches/next/1", timeout=10
+        )
         if resp.status_code == 200:
             data = resp.json()
             launches = data.get("result", [])
             if launches:
                 launch = launches[0]
                 launch_date = launch.get("date_str", "")
-                
+
                 if today_str in launch_date or "today" in launch_date.lower():
                     name = launch.get("name", "Rocket Launch")
                     provider = launch.get("provider", {}).get("name", "")
                     vehicle = launch.get("vehicle", {}).get("name", "")
-                    desc = f"Launch: {name} | Provider: {provider} | Vehicle: {vehicle}"
+                    desc = (
+                        f"Launch: {name} | Provider: {provider} | Vehicle:"
+                        f" {vehicle}"
+                    )
                     matches.append({
                         "title": f"🚀 Space: {name}",
                         "description": desc[:280],
-                        "url": f"https://www.rocketlaunch.live#{launch.get('id', name)}",
+                        "url": (
+                            "https://www.rocketlaunch.live#"
+                            f"{launch.get('id', name)}"
+                        ),
                         "color": 9807270,
                     })
     except Exception as e:
         print(f"[SpaceBot] Error: {e}")
     return matches
+
 
 # ---------------------------------------------------------------------------
 # Main Execution
@@ -322,9 +485,21 @@ def fetch_space_updates():
 if __name__ == "__main__":
     seen_urls = load_seen_urls()
 
-    send_discord_webhooks(WEBHOOKS["tech"], process_tech_feeds(), "TechBot", seen_urls)
-    send_discord_webhooks(WEBHOOKS["sports"], fetch_sports_updates(), "SportsBot", seen_urls)
-    send_discord_webhooks(WEBHOOKS["esports"], fetch_esports_updates(), "EsportsBot", seen_urls)
-    send_discord_webhooks(WEBHOOKS["aviation"], fetch_aviation_updates(), "AeroBot", seen_urls)
-    send_discord_webhooks(WEBHOOKS["research"], fetch_research_updates(), "ResearchBot", seen_urls)
-    send_discord_webhooks(WEBHOOKS["space"], fetch_space_updates(), "SpaceBot", seen_urls)
+    send_discord_webhooks(
+        WEBHOOKS["tech"], process_tech_feeds(), "TechBot", seen_urls
+    )
+    send_discord_webhooks(
+        WEBHOOKS["sports"], fetch_sports_updates(), "SportsBot", seen_urls
+    )
+    send_discord_webhooks(
+        WEBHOOKS["esports"], fetch_esports_updates(), "EsportsBot", seen_urls
+    )
+    send_discord_webhooks(
+        WEBHOOKS["aviation"], fetch_aviation_updates(), "AeroBot", seen_urls
+    )
+    send_discord_webhooks(
+        WEBHOOKS["research"], fetch_research_updates(), "ResearchBot", seen_urls
+    )
+    send_discord_webhooks(
+        WEBHOOKS["space"], fetch_space_updates(), "SpaceBot", seen_urls
+    )
