@@ -215,7 +215,7 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia LPDB Engine - Exact Title URL Path Matching)
+# 3. Esports Bot (Liquipedia LPDB Engine - Resolves Hub Pages & Sub-Tournaments)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
@@ -223,25 +223,10 @@ def fetch_esports_updates():
 
     wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
-    allowed_patterns = [
-        # Rocket League
-        r"rocket_league_championship_series",
-        r"esports_world_cup",
-        r"esports_nations_cup",
-        # Valorant
-        r"vct/.*(?:\d{4})/champions",
-        r"vct/.*(?:\d{4})/stage_\d/masters",
-        # League of Legends
-        r"world_championship",
-        r"mid-season_invitational",
-        r"first_stand_tournament",
-        # Counter-Strike
-        r"majors",
-        r"esl/grand_slam",
-    ]
-
     for wiki in wikis:
         api_url = f"https://liquipedia.net/{wiki}/api.php"
+        
+        # LPDB query that looks for finished matches today across major tier events
         params = {
             "action": "lpdb",
             "only": "match",
@@ -258,9 +243,21 @@ def fetch_esports_updates():
 
                 for item in data:
                     page_path = item.get("page", "").lower()
+                    tournament_name = item.get("tournament", "").lower()
+                    series_name = item.get("series", "").lower()
 
-                    # Strictly match against whitelist URL structures
-                    if any(re.search(pattern, page_path, re.IGNORECASE) for pattern in allowed_patterns):
+                    full_context = f"{page_path} {tournament_name} {series_name}"
+
+                    # Explicit match filters for CS Majors, Grand Slams, and other major events
+                    is_cs_major = wiki == "counterstrike" and ("major" in full_context or "pgl" in full_context or "blast" in full_context or "iem" in full_context)
+                    is_grand_slam = wiki == "counterstrike" and ("grand slam" in full_context or "esl" in full_context or "iem" in full_context)
+                    
+                    is_rlcs = wiki == "rocketleague" and ("rlcs" in full_context or "championship" in full_context)
+                    is_vct = wiki == "valorant" and ("vct" in full_context or "masters" in full_context or "champions" in full_context)
+                    is_lol = wiki == "leagueoflegends" and ("worlds" in full_context or "msi" in full_context or "first stand" in full_context)
+                    is_ewc_enc = "esports world cup" in full_context or "ewc" in full_context or "nations cup" in full_context or "enc" in full_context
+
+                    if is_cs_major or is_grand_slam or is_rlcs or is_vct or is_lol or is_ewc_enc:
                         team_a = item.get("opponent1", "Team A")
                         score_a = item.get("opponent1score", "0")
                         team_b = item.get("opponent2", "Team B")
