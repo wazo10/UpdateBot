@@ -22,7 +22,9 @@ SEEN_FILE = "seen_posts.txt"
 
 # Standard User-Agent compliant with Liquipedia API guidelines
 LIQUIPEDIA_HEADERS = {
-    "User-Agent": "MultiBotAutomation/1.0 (https://github.com/wazo10; bot@example.com)",
+    "User-Agent": (
+        "MultiBotAutomation/1.0 (https://github.com/wazo10; bot@example.com)"
+    ),
     "Accept-Encoding": "gzip",
 }
 
@@ -56,7 +58,9 @@ def is_published_today(entry):
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     pub_date = entry.get("published_parsed") or entry.get("updated_parsed")
     if pub_date:
-        entry_date = datetime(*pub_date[:6], tzinfo=timezone.utc).strftime("%Y-%m-%d")
+        entry_date = datetime(*pub_date[:6], tzinfo=timezone.utc).strftime(
+            "%Y-%m-%d"
+        )
         return entry_date == today_str
     return False
 
@@ -84,13 +88,16 @@ def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls):
                 save_seen_url(url)
                 seen_urls.add(url)
             else:
-                print(f"[{bot_name}] Webhook error: {response.status_code} - {response.text}")
+                print(
+                    f"[{bot_name}] Webhook error: {response.status_code} -"
+                    f" {response.text}"
+                )
         except Exception as e:
             print(f"[{bot_name}] Error sending webhook: {e}")
 
 
 # ---------------------------------------------------------------------------
-# 1. Tech Bot (Consumer Hardware Drops Only)
+# 1. Tech Bot (Consumer Hardware Drops Only - Published Today)
 # ---------------------------------------------------------------------------
 TECH_FEEDS = [
     "https://newsroom.apple.com/rss-feed.rss",
@@ -113,24 +120,92 @@ TECH_FEEDS = [
 def is_consumer_hardware(title, summary):
     text = html.unescape(f"{title} {summary}").lower()
     hardware_targets = [
-        "macbook", "core ultra", "ryzen", "radeon", "snapdragon",
-        "geforce rtx", "geforce gtx", "rtx", "razer blade", "titan",
-        "stealth", "raider", "crosshair", "cyborg", "vector", "pulse",
-        "katana", "prestige", "rog", "zephyrus", "strix", "tuf",
-        "zenbook", "vivobook", "proart", "legion", "loq", "thinkpad",
-        "yoga", "alienware", "xps", "inspiron", "latitude", "omen",
-        "omnibook", "victus", "envy", "surface", "galaxy book",
-        "acer predator", "swift", "nitro", "framework", "laptop", "robot", "robotics"
+        "macbook",
+        "core ultra",
+        "ryzen",
+        "radeon",
+        "snapdragon",
+        "geforce rtx",
+        "geforce gtx",
+        "rtx",
+        "razer blade",
+        "titan",
+        "stealth",
+        "raider",
+        "crosshair",
+        "cyborg",
+        "vector",
+        "pulse",
+        "katana",
+        "prestige",
+        "rog",
+        "zephyrus",
+        "strix",
+        "tuf",
+        "zenbook",
+        "vivobook",
+        "proart",
+        "legion",
+        "loq",
+        "thinkpad",
+        "yoga",
+        "alienware",
+        "xps",
+        "inspiron",
+        "latitude",
+        "omen",
+        "omnibook",
+        "victus",
+        "envy",
+        "surface",
+        "galaxy book",
+        "acer predator",
+        "swift",
+        "nitro",
+        "framework",
+        "laptop",
+        "robot",
+        "robotics",
     ]
 
     exclude_terms = [
-        "geforce now", "stock offering", "public offering", "shares",
-        "sec filing", "earnings", "quarterly", "financial", "review",
-        "reviews", "hands-on", "opinion", "preview", "driver", "drivers",
-        "game ready", "browser support", "patch", "update", "beta", "podcast",
-        "leaders", "survey", "daas", "truscale", "certification", "calm tech",
-        "sustainability", "partner", "red dot", "award", "awards", "deep dive",
-        "repairable", "services", "growth", "ecosystem"
+        "geforce now",
+        "stock offering",
+        "public offering",
+        "shares",
+        "sec filing",
+        "earnings",
+        "quarterly",
+        "financial",
+        "review",
+        "reviews",
+        "hands-on",
+        "opinion",
+        "preview",
+        "driver",
+        "drivers",
+        "game ready",
+        "browser support",
+        "patch",
+        "update",
+        "beta",
+        "podcast",
+        "leaders",
+        "survey",
+        "daas",
+        "truscale",
+        "certification",
+        "calm tech",
+        "sustainability",
+        "partner",
+        "red dot",
+        "award",
+        "awards",
+        "deep dive",
+        "repairable",
+        "services",
+        "growth",
+        "ecosystem",
     ]
 
     if any(term in text for term in exclude_terms):
@@ -158,7 +233,11 @@ def process_tech_feeds():
                     cleaned_summary = clean_description(summary)
                     matches.append({
                         "title": f"💻 Tech: {cleaned_title}",
-                        "description": cleaned_summary[:280] + "..." if len(cleaned_summary) > 280 else cleaned_summary,
+                        "description": (
+                            cleaned_summary[:280] + "..."
+                            if len(cleaned_summary) > 280
+                            else cleaned_summary
+                        ),
                         "url": entry.get("link", ""),
                         "color": 3447003,
                     })
@@ -189,8 +268,14 @@ def fetch_sports_updates():
                 data = resp.json()
                 for event in data.get("events", []):
                     season_type = event.get("season", {}).get("type", 0)
-                    is_playoff = season_type == 3 or "playoff" in event.get("name", "").lower()
-                    status = event.get("status", {}).get("type", {}).get("state", "")
+                    is_playoff = season_type == 3 or "playoff" in event.get(
+                        "name", ""
+                    ).lower()
+                    status = (
+                        event.get("status", {})
+                        .get("type", {})
+                        .get("state", "")
+                    )
 
                     if is_playoff and status == "post":
                         competitors = event["competitions"][0]["competitors"]
@@ -200,11 +285,19 @@ def fetch_sports_updates():
                         score_b = competitors[1]["score"]
 
                         game_id = event.get("id")
-                        game_link = event.get("links", [{}])[0].get("href", "") or f"https://espn.com/game?gameId={game_id}"
+                        game_link = (
+                            event.get("links", [{}])[0].get("href", "")
+                            or f"https://espn.com/game?gameId={game_id}"
+                        )
 
                         matches.append({
-                            "title": f"⚽ Score: {team_a} {score_a} - {score_b} {team_b}",
-                            "description": f"Playoff Result | {league.upper()} Final Score",
+                            "title": (
+                                f"⚽ Score: {team_a} {score_a} - {score_b}"
+                                f" {team_b}"
+                            ),
+                            "description": (
+                                f"Playoff Result | {league.upper()} Final Score"
+                            ),
                             "url": game_link,
                             "color": 15105570,
                         })
@@ -215,7 +308,7 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia LPDB Engine - Resolves Hub Pages & Sub-Tournaments)
+# 3. Esports Bot (Liquipedia LPDB Engine - Broadened Grand Slam Filter)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
@@ -225,8 +318,7 @@ def fetch_esports_updates():
 
     for wiki in wikis:
         api_url = f"https://liquipedia.net/{wiki}/api.php"
-        
-        # LPDB query that looks for finished matches today across major tier events
+
         params = {
             "action": "lpdb",
             "only": "match",
@@ -237,7 +329,9 @@ def fetch_esports_updates():
         }
 
         try:
-            resp = requests.get(api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10)
+            resp = requests.get(
+                api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10
+            )
             if resp.status_code == 200:
                 data = resp.json()
 
@@ -246,37 +340,83 @@ def fetch_esports_updates():
                     tournament_name = item.get("tournament", "").lower()
                     series_name = item.get("series", "").lower()
 
-                    full_context = f"{page_path} {tournament_name} {series_name}"
+                    full_context = (
+                        f"{page_path} {tournament_name} {series_name}"
+                    )
 
-                    # Explicit match filters for CS Majors, Grand Slams, and other major events
-                    is_cs_major = wiki == "counterstrike" and ("major" in full_context or "pgl" in full_context or "blast" in full_context or "iem" in full_context)
-                    is_grand_slam = wiki == "counterstrike" and ("grand slam" in full_context or "esl" in full_context or "iem" in full_context)
-                    
-                    is_rlcs = wiki == "rocketleague" and ("rlcs" in full_context or "championship" in full_context)
-                    is_vct = wiki == "valorant" and ("vct" in full_context or "masters" in full_context or "champions" in full_context)
-                    is_lol = wiki == "leagueoflegends" and ("worlds" in full_context or "msi" in full_context or "first stand" in full_context)
-                    is_ewc_enc = "esports world cup" in full_context or "ewc" in full_context or "nations cup" in full_context or "enc" in full_context
+                    # Broadened Grand Slam filter catches both Intel & ESL Grand Slams across any season
+                    is_cs_major = wiki == "counterstrike" and (
+                        "major" in full_context
+                        or "pgl" in full_context
+                        or "blast" in full_context
+                    )
+                    is_grand_slam = (
+                        wiki == "counterstrike" and "grand slam" in full_context
+                    )
 
-                    if is_cs_major or is_grand_slam or is_rlcs or is_vct or is_lol or is_ewc_enc:
+                    is_rlcs = wiki == "rocketleague" and (
+                        "rlcs" in full_context
+                        or "championship" in full_context
+                    )
+                    is_vct = wiki == "valorant" and (
+                        "vct" in full_context
+                        or "masters" in full_context
+                        or "champions" in full_context
+                    )
+                    is_lol = wiki == "leagueoflegends" and (
+                        "worlds" in full_context
+                        or "msi" in full_context
+                        or "first stand" in full_context
+                    )
+                    is_ewc_enc = (
+                        "esports world cup" in full_context
+                        or "ewc" in full_context
+                        or "nations cup" in full_context
+                        or "enc" in full_context
+                    )
+
+                    if (
+                        is_cs_major
+                        or is_grand_slam
+                        or is_rlcs
+                        or is_vct
+                        or is_lol
+                        or is_ewc_enc
+                    ):
                         team_a = item.get("opponent1", "Team A")
                         score_a = item.get("opponent1score", "0")
                         team_b = item.get("opponent2", "Team B")
                         score_b = item.get("opponent2score", "0")
 
-                        stage = item.get("matchgroup", "Playoffs").replace("_", " ").title()
-                        tournament = item.get("tournament", "Tournament").replace("_", " ")
+                        stage = (
+                            item.get("matchgroup", "Playoffs")
+                            .replace("_", " ")
+                            .title()
+                        )
+                        tournament = item.get(
+                            "tournament", "Tournament"
+                        ).replace("_", " ")
 
                         match_id = item.get("matchid", f"{team_a}-{team_b}")
-                        match_url = f"https://liquipedia.net/{wiki}/{item.get('page')}"
+                        match_url = (
+                            f"https://liquipedia.net/{wiki}/{item.get('page')}"
+                        )
 
                         matches.append({
-                            "title": f"🎮 {team_a.lower()} {score_a} - {score_b} {team_b.lower()}",
-                            "description": f"{stage.lower()}\n{tournament.lower()}",
+                            "title": (
+                                f"🎮 {team_a.lower()} {score_a} - {score_b}"
+                                f" {team_b.lower()}"
+                            ),
+                            "description": (
+                                f"{stage.lower()}\n{tournament.lower()}"
+                            ),
                             "url": f"{match_url}#{match_id}",
                             "color": 10181046,
                         })
         except Exception as e:
-            print(f"[EsportsBot] Error querying Liquipedia LPDB for {wiki}: {e}")
+            print(
+                f"[EsportsBot] Error querying Liquipedia LPDB for {wiki}: {e}"
+            )
 
     return matches
 
@@ -297,11 +437,18 @@ def fetch_aviation_updates():
             for row in rows:
                 cols = row.find_all("td")
                 if len(cols) >= 4:
-                    text_content = " ".join([c.get_text(strip=True) for c in cols])
-                    if today_str in text_content and "delivery" not in text_content.lower():
+                    text_content = " ".join(
+                        [c.get_text(strip=True) for c in cols]
+                    )
+                    if (
+                        today_str in text_content
+                        and "delivery" not in text_content.lower()
+                    ):
                         matches.append({
                             "title": "✈️ Aviation: New Plane Delivery",
-                            "description": f"Latest delivery: {text_content[:250]}",
+                            "description": (
+                                f"Latest delivery: {text_content[:250]}"
+                            ),
                             "url": f"{url}#{hash(text_content)}",
                             "color": 3066993,
                         })
@@ -331,8 +478,12 @@ def fetch_research_updates():
                     continue
 
                 matches.append({
-                    "title": f"🔬 Research: {html.unescape(entry.get('title', ''))}",
-                    "description": clean_description(entry.get("summary", ""))[:280],
+                    "title": (
+                        f"🔬 Research: {html.unescape(entry.get('title', ''))}"
+                    ),
+                    "description": clean_description(
+                        entry.get("summary", "")
+                    )[:280],
                     "url": entry.get("link", ""),
                     "color": 15844367,
                 })
@@ -348,7 +499,9 @@ def fetch_space_updates():
     matches = []
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     try:
-        resp = requests.get("https://fwd.rocketlaunch.live/json/launches/next/1", timeout=10)
+        resp = requests.get(
+            "https://fwd.rocketlaunch.live/json/launches/next/1", timeout=10
+        )
         if resp.status_code == 200:
             data = resp.json()
             launches = data.get("result", [])
@@ -360,11 +513,17 @@ def fetch_space_updates():
                     name = launch.get("name", "Rocket Launch")
                     provider = launch.get("provider", {}).get("name", "")
                     vehicle = launch.get("vehicle", {}).get("name", "")
-                    desc = f"Launch: {name} | Provider: {provider} | Vehicle: {vehicle}"
+                    desc = (
+                        f"Launch: {name} | Provider: {provider} | Vehicle:"
+                        f" {vehicle}"
+                    )
                     matches.append({
                         "title": f"🚀 Space: {name}",
                         "description": desc[:280],
-                        "url": f"https://www.rocketlaunch.live#{launch.get('id', name)}",
+                        "url": (
+                            "https://www.rocketlaunch.live#"
+                            f"{launch.get('id', name)}"
+                        ),
                         "color": 9807270,
                     })
     except Exception as e:
@@ -378,9 +537,21 @@ def fetch_space_updates():
 if __name__ == "__main__":
     seen_urls = load_seen_urls()
 
-    send_discord_webhooks(WEBHOOKS["tech"], process_tech_feeds(), "TechBot", seen_urls)
-    send_discord_webhooks(WEBHOOKS["sports"], fetch_sports_updates(), "SportsBot", seen_urls)
-    send_discord_webhooks(WEBHOOKS["esports"], fetch_esports_updates(), "EsportsBot", seen_urls)
-    send_discord_webhooks(WEBHOOKS["aviation"], fetch_aviation_updates(), "AeroBot", seen_urls)
-    send_discord_webhooks(WEBHOOKS["research"], fetch_research_updates(), "ResearchBot", seen_urls)
-    send_discord_webhooks(WEBHOOKS["space"], fetch_space_updates(), "SpaceBot", seen_urls)
+    send_discord_webhooks(
+        WEBHOOKS["tech"], process_tech_feeds(), "TechBot", seen_urls
+    )
+    send_discord_webhooks(
+        WEBHOOKS["sports"], fetch_sports_updates(), "SportsBot", seen_urls
+    )
+    send_discord_webhooks(
+        WEBHOOKS["esports"], fetch_esports_updates(), "EsportsBot", seen_urls
+    )
+    send_discord_webhooks(
+        WEBHOOKS["aviation"], fetch_aviation_updates(), "AeroBot", seen_urls
+    )
+    send_discord_webhooks(
+        WEBHOOKS["research"], fetch_research_updates(), "ResearchBot", seen_urls
+    )
+    send_discord_webhooks(
+        WEBHOOKS["space"], fetch_space_updates(), "SpaceBot", seen_urls
+    )
