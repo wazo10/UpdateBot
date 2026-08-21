@@ -21,7 +21,7 @@ WEBHOOKS = {
 SEEN_FILE = "seen_posts.txt"
 
 # ---------------------------------------------------------------------------
-# Deduplication Tracking
+# Helper & Deduplication Functions
 # ---------------------------------------------------------------------------
 def load_seen_urls():
     if os.path.exists(SEEN_FILE):
@@ -34,9 +34,6 @@ def save_seen_url(url):
         with open(SEEN_FILE, "a", encoding="utf-8") as f:
             f.write(f"{url}\n")
 
-# ---------------------------------------------------------------------------
-# Helper Functions
-# ---------------------------------------------------------------------------
 def clean_description(raw_html):
     """Strips raw HTML tags and decodes entities like &#8217; to clean text."""
     if not raw_html:
@@ -45,6 +42,15 @@ def clean_description(raw_html):
     text = soup.get_text(separator=" ").strip()
     text = html.unescape(text)
     return re.sub(r"\s+", " ", text)
+
+def is_published_today(entry):
+    """Strictly verifies if an RSS entry was published today (UTC)."""
+    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    pub_date = entry.get("published_parsed") or entry.get("updated_parsed")
+    if pub_date:
+        entry_date = datetime(*pub_date[:6], tzinfo=timezone.utc).strftime("%Y-%m-%d")
+        return entry_date == today_str
+    return False
 
 def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls):
     """Sends all valid payloads to a Discord webhook and updates seen history."""
@@ -75,7 +81,7 @@ def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls):
             print(f"[{bot_name}] Error sending webhook: {e}")
 
 # ---------------------------------------------------------------------------
-# 1. Tech Bot (Consumer Hardware Drops Only - Multi-Feed)
+# 1. Tech Bot (Consumer Hardware Drops Only - Published Today Only)
 # ---------------------------------------------------------------------------
 TECH_FEEDS = [
     "https://newsroom.apple.com/rss-feed.rss",
@@ -106,11 +112,16 @@ def is_consumer_hardware(title, summary):
         "omnibook", "victus", "envy", "surface", "galaxy book",
         "acer predator", "swift", "nitro", "framework", "laptop", "robot", "robotics"
     ]
+
+    # Expanded exclusions based on noise captured in feed
     exclude_terms = [
         "geforce now", "stock offering", "public offering", "shares",
         "sec filing", "earnings", "quarterly", "financial", "review",
         "reviews", "hands-on", "opinion", "preview", "driver", "drivers",
-        "game ready", "browser support", "patch", "update", "beta", "podcast"
+        "game ready", "browser support", "patch", "update", "beta", "podcast",
+        "leaders", "survey", "daas", "truscale", "certification", "calm tech",
+        "sustainability", "partner", "red dot", "award", "awards", "deep dive",
+        "repairable", "services", "growth", "ecosystem"
     ]
 
     if any(term in text for term in exclude_terms):
@@ -127,6 +138,9 @@ def process_tech_feeds():
         try:
             feed = feedparser.parse(url)
             for entry in feed.entries:
+                if not is_published_today(entry):
+                    continue
+
                 raw_title = entry.get("title", "")
                 summary = entry.get("summary", entry.get("description", ""))
                 if is_consumer_hardware(raw_title, summary):
@@ -147,18 +161,15 @@ def process_tech_feeds():
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     feed_url = "https://www.espn.com/espn/rss/news"
-    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     matches = []
     try:
         feed = feedparser.parse(feed_url)
         for entry in feed.entries:
+            if not is_published_today(entry):
+                continue
+
             text = f"{entry.get('title', '')} {entry.get('summary', '')}".lower()
             if "playoff" in text or "playoffs" in text:
-                pub_date = entry.get("published_parsed")
-                if pub_date:
-                    entry_date = datetime(*pub_date[:6], tzinfo=timezone.utc).strftime("%Y-%m-%d")
-                    if entry_date != today_str:
-                        continue
                 matches.append({
                     "title": f"⚽ Sports: {html.unescape(entry.get('title', ''))}",
                     "description": clean_description(entry.get("summary", ""))[:280],
@@ -170,7 +181,7 @@ def fetch_sports_updates():
     return matches
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (RL, VAL, LoL, CS, EWC, ENC Specific Tournaments)
+# 3. Esports Bot (RL, VAL, LoL, CS, EWC, ENC Tournaments - Published Today)
 # ---------------------------------------------------------------------------
 ESPORTS_FEEDS = [
     "https://dotesports.com/feed",
@@ -190,6 +201,9 @@ def fetch_esports_updates():
         try:
             feed = feedparser.parse(url)
             for entry in feed.entries:
+                if not is_published_today(entry):
+                    continue
+
                 text = f"{entry.get('title', '')} {entry.get('summary', '')}".lower()
                 if any(re.search(r"\b" + re.escape(term) + r"\b", text) for term in allowed_terms):
                     matches.append({
@@ -203,11 +217,12 @@ def fetch_esports_updates():
     return matches
 
 # ---------------------------------------------------------------------------
-# 4. Aviation Bot (Airfleets New Deliveries Scraper)
+# 4. Aviation Bot (Airfleets New Deliveries Scraper - Today's Updates)
 # ---------------------------------------------------------------------------
 def fetch_aviation_updates():
     url = "https://www.airfleets.net/divers/delivery.htm"
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    today_str = datetime.now(timezone.utc).strftime("%d/%m/%Y")
     matches = []
     try:
         resp = requests.get(url, headers=headers, timeout=10)
@@ -218,11 +233,11 @@ def fetch_aviation_updates():
                 cols = row.find_all("td")
                 if len(cols) >= 4:
                     text_content = " ".join([c.get_text(strip=True) for c in cols])
-                    if text_content and "delivery" not in text_content.lower():
+                    if today_str in text_content and "delivery" not in text_content.lower():
                         matches.append({
                             "title": "✈️ Aviation: New Plane Delivery",
                             "description": f"Latest delivery: {text_content[:250]}",
-                            "url": f"{url}#{hash(text_content)}",  # Unique anchor per delivery entry
+                            "url": f"{url}#{hash(text_content)}",
                             "color": 3066993,
                         })
                         break
@@ -240,31 +255,30 @@ UNI_FEEDS = [
 ]
 
 def fetch_research_updates():
-    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     matches = []
     for url in UNI_FEEDS:
         try:
             feed = feedparser.parse(url)
             for entry in feed.entries:
-                pub_date = entry.get("published_parsed")
-                if pub_date:
-                    entry_date = datetime(*pub_date[:6], tzinfo=timezone.utc).strftime("%Y-%m-%d")
-                    if entry_date == today_str:
-                        matches.append({
-                            "title": f"🔬 Research: {html.unescape(entry.get('title', ''))}",
-                            "description": clean_description(entry.get("summary", ""))[:280],
-                            "url": entry.get("link", ""),
-                            "color": 15844367,
-                        })
+                if not is_published_today(entry):
+                    continue
+
+                matches.append({
+                    "title": f"🔬 Research: {html.unescape(entry.get('title', ''))}",
+                    "description": clean_description(entry.get("summary", ""))[:280],
+                    "url": entry.get("link", ""),
+                    "color": 15844367,
+                })
         except Exception as e:
             print(f"[ResearchBot] Error: {e}")
     return matches
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot (Rocket Launch API)
+# 6. Space Bot (Rocket Launch API - Today's Launches Only)
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
+    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     try:
         resp = requests.get("https://fwd.rocketlaunch.live/json/launches/next/1", timeout=10)
         if resp.status_code == 200:
@@ -272,16 +286,20 @@ def fetch_space_updates():
             launches = data.get("result", [])
             if launches:
                 launch = launches[0]
-                name = launch.get("name", "Rocket Launch")
-                provider = launch.get("provider", {}).get("name", "")
-                vehicle = launch.get("vehicle", {}).get("name", "")
-                desc = f"Launch: {name} | Provider: {provider} | Vehicle: {vehicle}"
-                matches.append({
-                    "title": f"🚀 Space: {name}",
-                    "description": desc[:280],
-                    "url": f"https://www.rocketlaunch.live#{launch.get('id', name)}",
-                    "color": 9807270,
-                })
+                launch_date = launch.get("date_str", "")
+                
+                # Check if launch date matches today
+                if today_str in launch_date or "today" in launch_date.lower():
+                    name = launch.get("name", "Rocket Launch")
+                    provider = launch.get("provider", {}).get("name", "")
+                    vehicle = launch.get("vehicle", {}).get("name", "")
+                    desc = f"Launch: {name} | Provider: {provider} | Vehicle: {vehicle}"
+                    matches.append({
+                        "title": f"🚀 Space: {name}",
+                        "description": desc[:280],
+                        "url": f"https://www.rocketlaunch.live#{launch.get('id', name)}",
+                        "color": 9807270,
+                    })
     except Exception as e:
         print(f"[SpaceBot] Error: {e}")
     return matches
