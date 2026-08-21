@@ -30,19 +30,43 @@ LIQUIPEDIA_HEADERS = {
 
 
 # ---------------------------------------------------------------------------
-# Helper & Deduplication Functions
+# Deduplication & Year-Based Auto-Pruning Functions
 # ---------------------------------------------------------------------------
 def load_seen_urls():
+    """Loads seen URLs and automatically purges any entries from prior years."""
+    current_year = datetime.now(timezone.utc).strftime("%Y")
+    valid_urls = set()
+    updated_lines = []
+
     if os.path.exists(SEEN_FILE):
         with open(SEEN_FILE, "r", encoding="utf-8") as f:
-            return set(line.strip() for line in f if line.strip())
-    return set()
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+
+                if "|" in line:
+                    entry_date, url = line.split("|", 1)
+                    entry_year = entry_date.split("-")[0]
+                    if entry_year == current_year:
+                        valid_urls.add(url)
+                        updated_lines.append(f"{entry_date}|{url}\n")
+                else:
+                    valid_urls.add(line)
+                    updated_lines.append(f"{current_year}-01-01|{line}\n")
+
+        with open(SEEN_FILE, "w", encoding="utf-8") as f:
+            f.writelines(updated_lines)
+
+    return valid_urls
 
 
 def save_seen_url(url):
+    """Saves a new URL prefixed with today's UTC date timestamp."""
     if url:
+        today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         with open(SEEN_FILE, "a", encoding="utf-8") as f:
-            f.write(f"{url}\n")
+            f.write(f"{today_str}|{url}\n")
 
 
 def clean_description(raw_html):
@@ -55,6 +79,7 @@ def clean_description(raw_html):
 
 
 def is_published_today(entry):
+    """Strictly verifies if an RSS entry was published today (UTC)."""
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     pub_date = entry.get("published_parsed") or entry.get("updated_parsed")
     if pub_date:
@@ -308,7 +333,7 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia LPDB Engine - Broadened Grand Slam Filter)
+# 3. Esports Bot (Liquipedia LPDB Engine - Pure Scores & 3-Line Formatting)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
@@ -344,7 +369,6 @@ def fetch_esports_updates():
                         f"{page_path} {tournament_name} {series_name}"
                     )
 
-                    # Broadened Grand Slam filter catches both Intel & ESL Grand Slams across any season
                     is_cs_major = wiki == "counterstrike" and (
                         "major" in full_context
                         or "pgl" in full_context
@@ -353,7 +377,6 @@ def fetch_esports_updates():
                     is_grand_slam = (
                         wiki == "counterstrike" and "grand slam" in full_context
                     )
-
                     is_rlcs = wiki == "rocketleague" and (
                         "rlcs" in full_context
                         or "championship" in full_context
