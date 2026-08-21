@@ -33,8 +33,8 @@ LIQUIPEDIA_HEADERS = {
 # Deduplication & Year-Based Auto-Pruning Functions
 # ---------------------------------------------------------------------------
 def load_seen_urls():
-    """Loads seen URLs and automatically purges any entries from prior years."""
     current_year = datetime.now(timezone.utc).strftime("%Y")
+    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     valid_urls = set()
     updated_lines = []
 
@@ -53,7 +53,7 @@ def load_seen_urls():
                         updated_lines.append(f"{entry_date}|{url}\n")
                 else:
                     valid_urls.add(line)
-                    updated_lines.append(f"{current_year}-01-01|{line}\n")
+                    updated_lines.append(f"{today_str}|{line}\n")
 
         with open(SEEN_FILE, "w", encoding="utf-8") as f:
             f.writelines(updated_lines)
