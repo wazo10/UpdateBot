@@ -28,12 +28,19 @@ LIQUIPEDIA_HEADERS = {
     "Accept-Encoding": "gzip",
 }
 
+SCRAPER_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,"
+        " like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    )
+}
+
 
 # ---------------------------------------------------------------------------
 # General Bot Heartbeat & Deduplication Functions
 # ---------------------------------------------------------------------------
 def send_general_heartbeat():
-    """Sends a heartbeat notification or updates a persistent live status message."""
+    """Sends a heartbeat notification using standard BLUE embed color."""
     webhook_url = WEBHOOKS["general"]
     message_id = os.getenv("WEBHOOK_MESSAGE_ID")
 
@@ -50,14 +57,13 @@ def send_general_heartbeat():
                 "GitHub Actions execution active.\n"
                 f"**Last Run Timestamp:** `{now_utc}`"
             ),
-            "color": 3066993,
+            "color": 3447003,  # Standard Blue Color
         }],
     }
     headers = {"Content-Type": "application/json"}
 
     try:
         if message_id:
-            # Edits existing message if WEBHOOK_MESSAGE_ID secret is provided
             edit_url = f"{webhook_url}/messages/{message_id}"
             resp = requests.patch(
                 edit_url, json=payload, headers=headers, timeout=10
@@ -67,7 +73,6 @@ def send_general_heartbeat():
             else:
                 print(f"[GeneralBot] Status update error: {resp.status_code}")
         else:
-            # Fallback to posting new message
             requests.post(webhook_url, json=payload, headers=headers, timeout=10)
             print("[GeneralBot] Heartbeat posted successfully.")
     except Exception as e:
@@ -75,7 +80,6 @@ def send_general_heartbeat():
 
 
 def load_seen_urls():
-    """Loads seen URLs and automatically purges entries from prior years."""
     current_year = datetime.now(timezone.utc).strftime("%Y")
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     valid_urls = set()
@@ -105,7 +109,6 @@ def load_seen_urls():
 
 
 def save_seen_url(url):
-    """Saves a new URL prefixed with today's UTC timestamp."""
     if url:
         today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         with open(SEEN_FILE, "a", encoding="utf-8") as f:
@@ -122,7 +125,6 @@ def clean_description(raw_html):
 
 
 def is_published_today(entry):
-    """Strictly verifies if an RSS entry was published today (UTC)."""
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     pub_date = entry.get("published_parsed") or entry.get("updated_parsed")
     if pub_date:
@@ -165,7 +167,7 @@ def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls):
 
 
 # ---------------------------------------------------------------------------
-# 1. Tech Bot (Consumer Hardware Drops Only - Published Today)
+# 1. Tech Bot
 # ---------------------------------------------------------------------------
 TECH_FEEDS = [
     "https://newsroom.apple.com/rss-feed.rss",
@@ -315,13 +317,12 @@ def process_tech_feeds():
 
 
 # ---------------------------------------------------------------------------
-# 2. Sports Bot (ESPN Playoffs/F1/WBC/Olympics + FotMob Cups & Final Days)
+# 2. Sports Bot
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     matches = []
     today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
 
-    # ESPN - North American Sports (STRICTLY PLAYOFFS ONLY)
     espn_playoff_leagues = [
         ("basketball", "nba"),
         ("hockey", "nhl"),
@@ -378,7 +379,6 @@ def fetch_sports_updates():
         except Exception as e:
             print(f"[SportsBot] Error fetching {league} scores: {e}")
 
-    # ESPN - WBC & Olympics
     espn_special_events = [
         ("baseball", "world-baseball-classic"),
         ("soccer", "olympics-mens"),
@@ -415,7 +415,6 @@ def fetch_sports_updates():
         except Exception as e:
             print(f"[SportsBot] Error fetching {league}: {e}")
 
-    # ESPN - Formula 1 (Races & Sprints Only)
     f1_url = f"https://site.api.espn.com/apis/site/v2/sports/racing/f1/scoreboard?dates={today_str}"
     try:
         f1_resp = requests.get(f1_url, timeout=10)
@@ -470,7 +469,6 @@ def fetch_sports_updates():
     except Exception as e:
         print(f"[SportsBot] Error fetching F1 scores: {e}")
 
-    # FotMob - European Leagues (Final Day Only) + All Cups/Tournaments
     domestic_leagues_final_day_only = [
         "premier league",
         "la liga",
@@ -577,7 +575,7 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia Cargo Query - Direct Match Tables)
+# 3. Esports Bot
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
@@ -688,15 +686,14 @@ def fetch_esports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 4. Aviation Bot (Airfleets New Deliveries Scraper)
+# 4. Aviation Bot
 # ---------------------------------------------------------------------------
 def fetch_aviation_updates():
     url = "https://www.airfleets.net/divers/delivery.htm"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
     today_str = datetime.now(timezone.utc).strftime("%d/%m/%Y")
     matches = []
     try:
-        resp = requests.get(url, headers=headers, timeout=10)
+        resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=10)
         if resp.status_code == 200:
             soup = BeautifulSoup(resp.text, "html.parser")
             rows = soup.find_all("tr")
@@ -725,7 +722,7 @@ def fetch_aviation_updates():
 
 
 # ---------------------------------------------------------------------------
-# 5. Research Bot (University Feeds - Published Today Only)
+# 5. Research Bot
 # ---------------------------------------------------------------------------
 UNI_FEEDS = [
     "https://news.stanford.edu/feed/",
@@ -759,61 +756,58 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot (RocketLaunch.live API - Multi-Window Guarantee)
+# 6. Space Bot (Web Scraper - Space Launch Schedule Direct Parser)
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
     now_utc = datetime.now(timezone.utc)
-    today_str = now_utc.strftime("%Y-%m-%d")
+    # Target HTML formatted dates (e.g., "Aug 22" or "August 22")
+    month_short = now_utc.strftime("%b")
+    month_full = now_utc.strftime("%B")
+    day_num = str(now_utc.day)
 
-    url = "https://fwd.rocketlaunch.live/json/launches?limit=50"
+    url = "https://www.spacelaunchschedule.com/"
 
     try:
-        resp = requests.get(url, timeout=10)
+        resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=10)
         if resp.status_code == 200:
-            data = resp.json()
-            launches = data.get("result", [])
+            soup = BeautifulSoup(resp.text, "html.parser")
+            # Parses launch blocks directly from the site DOM
+            launch_blocks = soup.find_all("div", class_=re.compile("launch-card|card"))
 
-            for launch in launches:
-                date_str = str(launch.get("date_str", ""))
-                win_open = str(launch.get("win_open", ""))
-                win_close = str(launch.get("win_close", ""))
+            for block in launch_blocks:
+                text = block.get_text(separator=" ")
 
-                is_today_launch = (
-                    today_str in date_str
-                    or win_open.startswith(today_str)
-                    or win_close.startswith(today_str)
-                    or "today" in date_str.lower()
+                # Match if today's date appears in the launch card header
+                is_today = (
+                    f"{month_short} {day_num}" in text
+                    or f"{month_full} {day_num}" in text
+                    or f"{month_short} {now_utc.day:02d}" in text
                 )
 
-                if is_today_launch:
-                    launch_id = launch.get("id", "")
-                    name = launch.get("name", "Rocket Launch")
-                    provider = (
-                        launch.get("provider", {}).get("name", "Unknown")
-                    )
-                    vehicle = (
-                        launch.get("vehicle", {}).get("name", "Unknown Rocket")
+                if is_today:
+                    title_elem = block.find(["h2", "h3", "h4", "a"])
+                    title = (
+                        title_elem.get_text(strip=True)
+                        if title_elem
+                        else "Rocket Launch"
                     )
 
-                    desc = (
-                        f"Launch: {name} | Provider: {provider} | Vehicle:"
-                        f" {vehicle}"
-                    )
+                    link_elem = block.find("a", href=True)
                     launch_url = (
-                        f"https://www.rocketlaunch.live/launch/{launch_id}"
-                        if launch_id
-                        else f"https://www.rocketlaunch.live#{hash(name)}"
+                        link_elem["href"]
+                        if link_elem and link_elem["href"].startswith("http")
+                        else f"https://www.spacelaunchschedule.com#{hash(title)}"
                     )
 
                     matches.append({
-                        "title": f"🚀 Space: {name}",
-                        "description": desc[:280],
+                        "title": f"🚀 Space: {title}",
+                        "description": f"Scheduled Space Launch | {month_short} {day_num}",
                         "url": launch_url,
                         "color": 9807270,
                     })
     except Exception as e:
-        print(f"[SpaceBot] Error fetching launches: {e}")
+        print(f"[SpaceBot] Error scraping space launches: {e}")
 
     return matches
 
