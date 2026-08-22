@@ -2,14 +2,14 @@ name: 24/7 Multi-Bot Automation
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/7 * * * *'
   workflow_dispatch:
 
 jobs:
   run-notifier:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Gives workflow permission to commit changes back to repo
+      contents: write
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
