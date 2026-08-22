@@ -26,6 +26,7 @@ jobs:
 
       - name: Execute Script
         env:
+          WEBHOOK_GENERAL: ${{ secrets.WEBHOOK_GENERAL }}
           WEBHOOK_TECH: ${{ secrets.WEBHOOK_TECH }}
           WEBHOOK_SPORTS: ${{ secrets.WEBHOOK_SPORTS }}
           WEBHOOK_ESPORTS: ${{ secrets.WEBHOOK_ESPORTS }}
