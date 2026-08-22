@@ -294,21 +294,26 @@ def process_tech_feeds():
 
 
 # ---------------------------------------------------------------------------
-# 2. Sports Bot (ESPN Scoreboard API - Playoffs & F1 Races/Sprints)
+# 2. Sports Bot (ESPN Playoffs/F1/WBC/Olympics + FotMob Cups & Final Matchdays)
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     matches = []
     today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
 
-    # Standard Team Sports (NBA, NHL, MLB, NFL)
-    leagues = [
+    # 1. ESPN - North American Sports (STRICTLY PLAYOFFS ONLY)
+    espn_playoff_leagues = [
         ("basketball", "nba"),
         ("hockey", "nhl"),
         ("baseball", "mlb"),
         ("football", "nfl"),
+        ("basketball", "mens-college-basketball"),
+        ("hockey", "mens-college-hockey"),
+        ("football", "college-football"),
+        ("baseball", "college-baseball"),
+        ("soccer", "usa.1"),  # MLS Cup Playoffs
     ]
 
-    for sport, league in leagues:
+    for sport, league in espn_playoff_leagues:
         url = f"https://site.api.espn.com/apis/site/v2/sports/{sport}/{league}/scoreboard?dates={today_str}"
         try:
             resp = requests.get(url, timeout=10)
@@ -352,7 +357,42 @@ def fetch_sports_updates():
         except Exception as e:
             print(f"[SportsBot] Error fetching {league} scores: {e}")
 
-    # Formula 1 Handling (Races & Sprints)
+    # 2. ESPN - World Baseball Classic & Olympics (All Completed Events)
+    espn_special_events = [
+        ("baseball", "world-baseball-classic"),
+        ("soccer", "olympics-mens"),
+        ("soccer", "olympics-womens"),
+    ]
+
+    for sport, league in espn_special_events:
+        url = f"https://site.api.espn.com/apis/site/v2/sports/{sport}/{league}/scoreboard?dates={today_str}"
+        try:
+            resp = requests.get(url, timeout=10)
+            if resp.status_code == 200:
+                data = resp.json()
+                for event in data.get("events", []):
+                    status = (
+                        event.get("status", {})
+                        .get("type", {})
+                        .get("state", "")
+                    )
+                    if status == "post":
+                        competitors = event["competitions"][0]["competitors"]
+                        team_a = competitors[0]["team"]["displayName"]
+                        score_a = competitors[0]["score"]
+                        team_b = competitors[1]["team"]["displayName"]
+                        score_b = competitors[1]["score"]
+
+                        matches.append({
+                            "title": f"🏆 {team_a} {score_a} - {score_b} {team_b}",
+                            "description": f"{event.get('name', 'Tournament')}\nFinal Score",
+                            "url": event.get("links", [{}])[0].get("href", ""),
+                            "color": 15105570,
+                        })
+        except Exception as e:
+            print(f"[SportsBot] Error fetching {league}: {e}")
+
+    # 3. ESPN - Formula 1 (GRAND PRIX & SPRINTS ONLY - NO QUALIFYING)
     f1_url = f"https://site.api.espn.com/apis/site/v2/sports/racing/f1/scoreboard?dates={today_str}"
     try:
         f1_resp = requests.get(f1_url, timeout=10)
@@ -366,18 +406,16 @@ def fetch_sports_updates():
                         comp.get("status", {}).get("type", {}).get("state", "")
                     )
 
-                    # Only process completed Main Races or Sprint Races
+                    # Strictly filter for Completed Sprint or Grand Prix Races ONLY
                     if status == "post" and (
                         "race" in comp_type or "sprint" in comp_type
-                    ):
+                    ) and "qualifying" not in comp_type and "practice" not in comp_type:
                         session_title = (
                             "Sprint Race"
                             if "sprint" in comp_type
                             else "Grand Prix"
                         )
                         competitors = comp.get("competitors", [])
-
-                        # Sort drivers by final placement
                         drivers = sorted(
                             competitors,
                             key=lambda x: int(x.get("order", 99)),
@@ -399,13 +437,81 @@ def fetch_sports_updates():
                                     f" {p2} | 3. {p3}"
                                 ),
                                 "description": (
-                                    f"{event_name}"
+                                    f"{event_name}\nPodium Finishers"
                                 ),
                                 "url": f1_link,
                                 "color": 15105570,
                             })
     except Exception as e:
         print(f"[SportsBot] Error fetching F1 scores: {e}")
+
+    # 4. FotMob - European Domestic Leagues (FINAL MATCHDAY ONLY) + All Knockout Cups
+    domestic_leagues_final_day_only = [
+        "premier league", "la liga", "laliga", "serie a", "bundesliga",
+        "ligue 1", "liga portugal", "eredivisie"
+    ]
+
+    knockout_cups_and_tournaments = [
+        "fa cup", "copa del rey", "coppa italia", "dfb pokal", "coupe de france",
+        "taça de portugal", "knvb cup", "community shield", "supercopa de españa",
+        "supercoppa italiana", "dfl-supercup", "trophee des champions", "supertaça",
+        "johan cruijff schaal", "uefa champions league", "champions league",
+        "uefa super cup", "fifa club world cup", "fifa intercontinental cup",
+        "world cup", "euros", "euro", "copa america", "gold cup", "asian cup",
+        "africa cup of nations"
+    ]
+
+    fotmob_url = f"https://www.fotmob.com/api/matches?date={today_str}"
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+
+    try:
+        fotmob_resp = requests.get(fotmob_url, headers=headers, timeout=10)
+        if fotmob_resp.status_code == 200:
+            fotmob_data = fotmob_resp.json()
+            leagues = fotmob_data.get("leagues", [])
+
+            for league in leagues:
+                league_name = league.get("name", "").lower()
+
+                is_domestic_league = any(d in league_name for d in domestic_leagues_final_day_only)
+                is_knockout_cup = any(k in league_name for k in knockout_cups_and_tournaments)
+
+                if is_domestic_league or is_knockout_cup:
+                    for match in league.get("matches", []):
+                        status = match.get("status", {})
+                        is_finished = status.get("finished") or "ft" in status.get("reason", {}).get("short", "").lower()
+
+                        if not is_finished:
+                            continue
+
+                        # For domestic leagues, enforce FINAL MATCHDAY ONLY
+                        if is_domestic_league:
+                            round_name = str(match.get("round", "")).lower()
+                            # Checks if round is the final fixture week (Round 38 for 20-team leagues, Round 34 for Bundesliga/Eredivisie)
+                            is_final_day = "38" in round_name or "34" in round_name or match.get("isFinalMatchday", False)
+                            if not is_final_day:
+                                continue
+
+                        home_team = match.get("home", {}).get("name", "Home")
+                        away_team = match.get("away", {}).get("name", "Away")
+
+                        score_str = status.get("scoreStr", "")
+                        if not score_str:
+                            home_score = match.get("home", {}).get("score", 0)
+                            away_score = match.get("away", {}).get("score", 0)
+                            score_str = f"{home_score} - {away_score}"
+
+                        match_id = match.get("id")
+                        match_url = f"https://www.fotmob.com/matches/{match_id}"
+
+                        matches.append({
+                            "title": f"⚽ {home_team} {score_str} {away_team}",
+                            "description": f"{league.get('name')}\nFinal Score",
+                            "url": match_url,
+                            "color": 15105570,
+                        })
+    except Exception as e:
+        print(f"[SportsBot] Error fetching FotMob soccer scores: {e}")
 
     return matches
 
