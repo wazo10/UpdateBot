@@ -575,121 +575,85 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia Match2 Cargo Engine)
+# 3. Esports Bot (Liquipedia Match Feed Parser)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
-    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
     for wiki in wikis:
-        api_url = f"https://liquipedia.net/{wiki}/api.php"
-
-        # Query Match2 table (modern Liquipedia bracket architecture)
-        params = {
-            "action": "cargoquery",
-            "tables": "Match2",
-            "fields": (
-                "opponent1, opponent2, opponent1score, opponent2score,"
-                " tournament, matchgroup, date, page, finished, winner"
-            ),
-            "where": f"date LIKE '{today_str}%'",
-            "order_by": "date DESC",
-            "limit": "50",
-            "format": "json",
-        }
+        # Public Atom Feed tracking live match updates and result revisions
+        feed_url = f"https://liquipedia.net/{wiki}/index.php?title=Special:RecentChanges&feed=atom"
 
         try:
-            resp = requests.get(
-                api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10
-            )
-            if resp.status_code == 200:
-                data = resp.json()
-                results = data.get("cargoquery", [])
+            feed = feedparser.parse(feed_url, request_headers=LIQUIPEDIA_HEADERS)
 
-                for entry in results:
-                    item = entry.get("title", {})
+            for entry in feed.entries:
+                title = entry.get("title", "").lower()
+                summary = clean_description(entry.get("summary", "")).lower()
+                link = entry.get("link", "")
 
-                    # Verify completion (handles string '1', boolean, or non-zero winner)
-                    is_finished = (
-                        str(item.get("finished", "")).lower() in ["1", "true"]
-                        or str(item.get("winner", "")).strip() not in ["", "0"]
-                    )
-                    if not is_finished:
-                        continue
+                full_text = f"{title} {summary}"
 
-                    page_path = str(item.get("page", "")).lower()
-                    tournament_name = str(item.get("tournament", "")).lower()
-                    clean_context = f"{page_path} {tournament_name}".replace(
-                        "_", " "
-                    )
+                # Strict event filters
+                is_cs_major = wiki == "counterstrike" and (
+                    "major" in full_text
+                    or "pgl" in full_text
+                    or "blast" in full_text
+                )
+                is_grand_slam = (
+                    wiki == "counterstrike" and "grand slam" in full_text
+                )
+                is_rlcs = wiki == "rocketleague" and (
+                    "rlcs" in full_text or "championship" in full_text
+                )
+                is_vct = wiki == "valorant" and (
+                    "vct" in full_text
+                    or "masters" in full_text
+                    or "champions" in full_text
+                )
+                is_lol = wiki == "leagueoflegends" and (
+                    "worlds" in full_text
+                    or "msi" in full_text
+                    or "first stand" in full_text
+                )
+                is_ewc_enc = (
+                    "esports world cup" in full_text
+                    or "ewc" in full_text
+                    or "nations cup" in full_text
+                    or "enc" in full_text
+                )
 
-                    is_cs_major = wiki == "counterstrike" and (
-                        "major" in clean_context
-                        or "pgl" in clean_context
-                        or "blast" in clean_context
-                    )
-                    is_grand_slam = (
-                        wiki == "counterstrike"
-                        and "grand slam" in clean_context
-                    )
-                    is_rlcs = wiki == "rocketleague" and (
-                        "rlcs" in clean_context
-                        or "championship" in clean_context
-                    )
-                    is_vct = wiki == "valorant" and (
-                        "vct" in clean_context
-                        or "masters" in clean_context
-                        or "champions" in clean_context
-                    )
-                    is_lol = wiki == "leagueoflegends" and (
-                        "worlds" in clean_context
-                        or "msi" in clean_context
-                        or "first stand" in clean_context
-                    )
-                    is_ewc_enc = (
-                        "esports world cup" in clean_context
-                        or "ewc" in clean_context
-                        or "nations cup" in clean_context
-                        or "enc" in clean_context
-                    )
+                if not (
+                    is_cs_major
+                    or is_grand_slam
+                    or is_rlcs
+                    or is_vct
+                    or is_lol
+                    or is_ewc_enc
+                ):
+                    continue
 
-                    if (
-                        is_cs_major
-                        or is_grand_slam
-                        or is_rlcs
-                        or is_vct
-                        or is_lol
-                        or is_ewc_enc
-                    ):
-                        team_a = item.get("opponent1", "Team A")
-                        score_a = item.get("opponent1score", "0")
-                        team_b = item.get("opponent2", "Team B")
-                        score_b = item.get("opponent2score", "0")
+                # Regex to extract score patterns (e.g. "fut esports 2 - 1 furia" or "fut 2-1 furia")
+                match_score = re.search(
+                    r"([a-z0-9\s]+)\s+(\d+)\s*[-:]\s*(\d+)\s+([a-z0-9\s]+)",
+                    full_text,
+                )
 
-                        stage = item.get("matchgroup", "Playoffs").replace(
-                            "_", " "
-                        )
-                        tournament = item.get("tournament", "Tournament")
+                if match_score:
+                    team_a = match_score.group(1).strip()
+                    score_a = match_score.group(2)
+                    score_b = match_score.group(3)
+                    team_b = match_score.group(4).strip()
 
-                        page_clean = item.get("page", "")
-                        match_url = f"https://liquipedia.net/{wiki}/{page_clean}#{team_a}-{team_b}"
-
-                        matches.append({
-                            "title": (
-                                f"🎮 {str(team_a).lower()} {score_a} - {score_b}"
-                                f" {str(team_b).lower()}"
-                            ),
-                            "description": (
-                                f"{str(stage).lower()}\n{str(tournament).lower()}"
-                            ),
-                            "url": match_url,
-                            "color": 10181046,
-                        })
+                    matches.append({
+                        "title": f"🎮 {team_a} {score_a} - {score_b} {team_b}",
+                        "description": f"Esports World Cup\nFinal Score",
+                        "url": link,
+                        "color": 10181046,
+                    })
         except Exception as e:
-            print(
-                f"[EsportsBot] Error querying Liquipedia Cargo for {wiki}: {e}"
-            )
+            print(f"[EsportsBot] Error reading feed for {wiki}: {e}")
 
     return matches
 
