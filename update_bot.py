@@ -21,7 +21,6 @@ WEBHOOKS = {
 
 SEEN_FILE = "seen_posts.txt"
 
-# Compliant User-Agent for Liquipedia API Guidelines
 LIQUIPEDIA_HEADERS = {
     "User-Agent": (
         "MultiBotAutomation/1.0 (https://github.com/wazo10; bot@example.com)"
@@ -31,15 +30,15 @@ LIQUIPEDIA_HEADERS = {
 
 
 # ---------------------------------------------------------------------------
-# Heartbeat & Deduplication Functions (Auto-Prunes Prior Years)
+# General Bot Heartbeat & Deduplication Functions
 # ---------------------------------------------------------------------------
 def send_general_heartbeat():
-    """Updates a single status message or sends an execution heartbeat ping."""
+    """Sends a heartbeat notification or updates a persistent live status message."""
     webhook_url = WEBHOOKS["general"]
     message_id = os.getenv("WEBHOOK_MESSAGE_ID")
 
     if not webhook_url:
-        print("[GeneralBot] No WEBHOOK_GENERAL configured. Skipping.")
+        print("[GeneralBot] No WEBHOOK_GENERAL configured. Skipping heartbeat.")
         return
 
     now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
@@ -48,38 +47,35 @@ def send_general_heartbeat():
         "embeds": [{
             "title": "⚙️ Workflow Live Status",
             "description": (
-                "GitHub Actions is active.\n"
-                f"**Last Successful Run:** `{now_utc}`"
+                "GitHub Actions execution active.\n"
+                f"**Last Run Timestamp:** `{now_utc}`"
             ),
             "color": 3066993,
         }],
     }
-
     headers = {"Content-Type": "application/json"}
 
-    # If MESSAGE_ID exists, edit existing status post; otherwise send new ping
-    if message_id:
-        edit_url = f"{webhook_url}/messages/{message_id}"
-        try:
+    try:
+        if message_id:
+            # Edits existing message if WEBHOOK_MESSAGE_ID secret is provided
+            edit_url = f"{webhook_url}/messages/{message_id}"
             resp = requests.patch(
                 edit_url, json=payload, headers=headers, timeout=10
             )
             if resp.status_code == 200:
-                print("[GeneralBot] Dashboard status updated successfully.")
+                print("[GeneralBot] Live status updated successfully.")
             else:
                 print(f"[GeneralBot] Status update error: {resp.status_code}")
-        except Exception as e:
-            print(f"[GeneralBot] Error updating status message: {e}")
-    else:
-        try:
+        else:
+            # Fallback to posting new message
             requests.post(webhook_url, json=payload, headers=headers, timeout=10)
-            print("[GeneralBot] Heartbeat ping sent successfully.")
-        except Exception as e:
-            print(f"[GeneralBot] Error sending heartbeat ping: {e}")
+            print("[GeneralBot] Heartbeat posted successfully.")
+    except Exception as e:
+        print(f"[GeneralBot] Error sending heartbeat: {e}")
 
 
 def load_seen_urls():
-    """Loads seen URLs and automatically purges any entries from prior years."""
+    """Loads seen URLs and automatically purges entries from prior years."""
     current_year = datetime.now(timezone.utc).strftime("%Y")
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     valid_urls = set()
@@ -169,7 +165,7 @@ def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls):
 
 
 # ---------------------------------------------------------------------------
-# 1. Tech Bot (Consumer Hardware Drops Only)
+# 1. Tech Bot (Consumer Hardware Drops Only - Published Today)
 # ---------------------------------------------------------------------------
 TECH_FEEDS = [
     "https://newsroom.apple.com/rss-feed.rss",
@@ -319,13 +315,13 @@ def process_tech_feeds():
 
 
 # ---------------------------------------------------------------------------
-# 2. Sports Bot (ESPN Playoffs/F1/WBC/Olympics + FotMob Final Matchdays)
+# 2. Sports Bot (ESPN Playoffs/F1/WBC/Olympics + FotMob Cups & Final Days)
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     matches = []
     today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
 
-    # 1. ESPN - North American Sports (Playoffs Only)
+    # ESPN - North American Sports (STRICTLY PLAYOFFS ONLY)
     espn_playoff_leagues = [
         ("basketball", "nba"),
         ("hockey", "nhl"),
@@ -382,7 +378,7 @@ def fetch_sports_updates():
         except Exception as e:
             print(f"[SportsBot] Error fetching {league} scores: {e}")
 
-    # 2. ESPN - World Baseball Classic & Olympics
+    # ESPN - WBC & Olympics
     espn_special_events = [
         ("baseball", "world-baseball-classic"),
         ("soccer", "olympics-mens"),
@@ -409,9 +405,7 @@ def fetch_sports_updates():
                         score_b = competitors[1]["score"]
 
                         matches.append({
-                            "title": (
-                                f"🏆 {team_a} {score_a} - {score_b} {team_b}"
-                            ),
+                            "title": f"🏆 {team_a} {score_a} - {score_b} {team_b}",
                             "description": (
                                 f"{event.get('name', 'Tournament')}\nFinal Score"
                             ),
@@ -421,7 +415,7 @@ def fetch_sports_updates():
         except Exception as e:
             print(f"[SportsBot] Error fetching {league}: {e}")
 
-    # 3. ESPN - Formula 1 (GP & Sprints Only)
+    # ESPN - Formula 1 (Races & Sprints Only)
     f1_url = f"https://site.api.espn.com/apis/site/v2/sports/racing/f1/scoreboard?dates={today_str}"
     try:
         f1_resp = requests.get(f1_url, timeout=10)
@@ -453,15 +447,9 @@ def fetch_sports_updates():
                         )
 
                         if len(drivers) >= 3:
-                            p1 = drivers[0].get("athlete", {}).get(
-                                "displayName", "P1"
-                            )
-                            p2 = drivers[1].get("athlete", {}).get(
-                                "displayName", "P2"
-                            )
-                            p3 = drivers[2].get("athlete", {}).get(
-                                "displayName", "P3"
-                            )
+                            p1 = drivers[0].get("athlete", {}).get("displayName", "P1")
+                            p2 = drivers[1].get("athlete", {}).get("displayName", "P2")
+                            p3 = drivers[2].get("athlete", {}).get("displayName", "P3")
 
                             f1_link = (
                                 event.get("links", [{}])[0].get("href", "")
@@ -482,7 +470,7 @@ def fetch_sports_updates():
     except Exception as e:
         print(f"[SportsBot] Error fetching F1 scores: {e}")
 
-    # 4. FotMob - European Domestic Leagues (Final Day Only) + Knockout Cups
+    # FotMob - European Leagues (Final Day Only) + All Cups/Tournaments
     domestic_leagues_final_day_only = [
         "premier league",
         "la liga",
@@ -506,6 +494,8 @@ def fetch_sports_updates():
         "supercopa de españa",
         "supercoppa italiana",
         "dfl-supercup",
+        "dfl supercup",
+        "supercup",
         "trophee des champions",
         "supertaça",
         "johan cruijff schaal",
@@ -587,7 +577,7 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia Cargo SQL Engine)
+# 3. Esports Bot (Liquipedia Cargo Query - Direct Match Tables)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
@@ -698,7 +688,7 @@ def fetch_esports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 4. Aviation Bot
+# 4. Aviation Bot (Airfleets New Deliveries Scraper)
 # ---------------------------------------------------------------------------
 def fetch_aviation_updates():
     url = "https://www.airfleets.net/divers/delivery.htm"
@@ -735,7 +725,7 @@ def fetch_aviation_updates():
 
 
 # ---------------------------------------------------------------------------
-# 5. Research Bot
+# 5. Research Bot (University Feeds - Published Today Only)
 # ---------------------------------------------------------------------------
 UNI_FEEDS = [
     "https://news.stanford.edu/feed/",
@@ -769,7 +759,7 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot (Multi-Window Guarantee)
+# 6. Space Bot (RocketLaunch.live API - Multi-Window Guarantee)
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
@@ -829,10 +819,9 @@ def fetch_space_updates():
 
 
 # ---------------------------------------------------------------------------
-# Main Execution
+# Main Execution Loop
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
-    # Send status heartbeat or edit dashboard message
     send_general_heartbeat()
 
     seen_urls = load_seen_urls()
