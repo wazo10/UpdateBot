@@ -481,14 +481,36 @@ def fetch_sports_updates():
     ]
 
     knockout_cups_and_tournaments = [
-    "fa cup", "copa del rey", "coppa italia", "dfb pokal", "coupe de france",
-    "taça de portugal", "knvb cup", "community shield", "supercopa de españa",
-    "supercoppa italiana", "dfl-supercup", "dfl supercup", "supercup",
-    "beckenbauer", "franz beckenbauer", "trophee des champions", "supertaça",
-    "johan cruijff schaal", "uefa champions league", "champions league",
-    "uefa super cup", "fifa club world cup", "fifa intercontinental cup",
-    "world cup", "euros", "euro", "copa america", "gold cup", "asian cup",
-    "africa cup of nations"
+        "fa cup",
+        "copa del rey",
+        "coppa italia",
+        "dfb pokal",
+        "coupe de france",
+        "taça de portugal",
+        "knvb cup",
+        "community shield",
+        "supercopa de españa",
+        "supercoppa italiana",
+        "dfl-supercup",
+        "dfl supercup",
+        "supercup",
+        "beckenbauer",
+        "franz beckenbauer",
+        "trophee des champions",
+        "supertaça",
+        "johan cruijff schaal",
+        "uefa champions league",
+        "champions league",
+        "uefa super cup",
+        "fifa club world cup",
+        "fifa intercontinental cup",
+        "world cup",
+        "euros",
+        "euro",
+        "copa america",
+        "gold cup",
+        "asian cup",
+        "africa cup of nations",
     ]
 
     fotmob_url = f"https://www.fotmob.com/api/matches?date={today_str}"
@@ -501,7 +523,7 @@ def fetch_sports_updates():
             leagues = fotmob_data.get("leagues", [])
 
             for league in leagues:
-                league_name = league.get("name", "").lower()
+                league_name = str(league.get("name", "")).lower()
 
                 is_domestic_league = any(
                     d in league_name for d in domestic_leagues_final_day_only
@@ -511,12 +533,17 @@ def fetch_sports_updates():
                 )
 
                 if is_domestic_league or is_knockout_cup:
-                    for match in league.get("matches", []):
+                    match_list = league.get("matches", []) + league.get(
+                        "primaryMatches", []
+                    )
+                    for match in match_list:
                         status = match.get("status", {})
-                        is_finished = status.get("finished") or "ft" in status.get(
-                            "reason", {}
-                        ).get("short", "").lower()
+                        if not isinstance(status, dict):
+                            status = {}
 
+                        is_finished = status.get("finished", False) or (
+                            status.get("type") == "finished"
+                        )
                         if not is_finished:
                             continue
 
@@ -533,7 +560,7 @@ def fetch_sports_updates():
                         home_team = match.get("home", {}).get("name", "Home")
                         away_team = match.get("away", {}).get("name", "Away")
 
-                        score_str = status.get("scoreStr", "")
+                        score_str = status.get("scoreStr")
                         if not score_str:
                             home_score = match.get("home", {}).get("score", 0)
                             away_score = match.get("away", {}).get("score", 0)
@@ -555,27 +582,42 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia Live Match Ticker Scraper)
+# 3. Esports Bot (Liquipedia Wikitext Parser - Absolute Direct Parser)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
     wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
     for wiki in wikis:
-        url = f"https://liquipedia.net/{wiki}/Liquipedia:Matches"
+        api_url = f"https://liquipedia.net/{wiki}/api.php"
+        params = {
+            "action": "parse",
+            "page": "Liquipedia:Matches",
+            "prop": "text",
+            "format": "json",
+        }
 
         try:
-            resp = requests.get(url, headers=LIQUIPEDIA_HEADERS, timeout=10)
+            resp = requests.get(
+                api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10
+            )
             if resp.status_code == 200:
-                soup = BeautifulSoup(resp.text, "html.parser")
+                data = resp.json()
+                raw_html = (
+                    data.get("parse", {}).get("text", {}).get("*", "")
+                )
+                if not raw_html:
+                    continue
 
-                # Parse all completed match rows in the matches table
-                match_cells = soup.find_all("table", class_="wikitable")
+                soup = BeautifulSoup(raw_html, "html.parser")
+                rows = soup.find_all(
+                    ["tr", "div"],
+                    class_=re.compile("match-filler|match-row|infobox_matches_content|wikitable"),
+                )
 
-                for cell in match_cells:
-                    text_content = cell.get_text(separator=" ").lower()
+                for row in rows:
+                    text_content = row.get_text(separator=" ").lower()
 
-                    # Apply event filters
                     is_cs_major = wiki == "counterstrike" and (
                         "major" in text_content
                         or "pgl" in text_content
@@ -616,44 +658,44 @@ def fetch_esports_updates():
                     ):
                         continue
 
-                    # Extract team names and scores directly from match blocks
-                    team_left = cell.find("td", class_="team-left")
-                    team_right = cell.find("td", class_="team-right")
-                    score_elem = cell.find("td", class_="versus")
+                    team1_elem = row.find(
+                        ["td", "div"], class_=re.compile("team-left|team-1")
+                    )
+                    team2_elem = row.find(
+                        ["td", "div"], class_=re.compile("team-right|team-2")
+                    )
+                    score_elem = row.find(
+                        ["td", "div"], class_=re.compile("versus|score")
+                    )
 
-                    if team_left and team_right and score_elem:
-                        t1 = team_left.get_text(strip=True).lower()
-                        t2 = team_right.get_text(strip=True).lower()
-                        score_text = score_elem.get_text(strip=True)
+                    if team1_elem and team2_elem and score_elem:
+                        t1 = team1_elem.get_text(strip=True).lower()
+                        t2 = team2_elem.get_text(strip=True).lower()
+                        score = (
+                            score_elem.get_text(strip=True)
+                            .replace(":", " - ")
+                            .replace("(", "")
+                            .replace(")", "")
+                        )
 
-                        # Match canonical score patterns (e.g. "2:1" or "2-1")
-                        if (
-                            ":" in score_text or "-" in score_text
-                        ) and "vs" not in score_text:
-                            score_clean = (
-                                score_text.replace(":", " - ")
-                                .replace("(", "")
-                                .replace(")", "")
-                            )
+                        if "vs" in score.lower():
+                            continue
 
-                            # Direct link to match page
-                            link_elem = cell.find("a", href=True)
-                            match_url = (
-                                f"https://liquipedia.net{link_elem['href']}"
-                                if link_elem
-                                else f"https://liquipedia.net/{wiki}/#{t1}-{t2}"
-                            )
+                        link_elem = row.find("a", href=True)
+                        match_url = (
+                            f"https://liquipedia.net{link_elem['href']}"
+                            if link_elem
+                            else f"https://liquipedia.net/{wiki}/#{t1}-{t2}"
+                        )
 
-                            matches.append({
-                                "title": f"🎮 {t1} {score_clean} {t2}",
-                                "description": (
-                                    f"Esports World Cup\nFinal Score"
-                                ),
-                                "url": match_url,
-                                "color": 10181046,
-                            })
+                        matches.append({
+                            "title": f"🎮 {t1} {score} {t2}",
+                            "description": "Esports World Cup\nFinal Score",
+                            "url": match_url,
+                            "color": 10181046,
+                        })
         except Exception as e:
-            print(f"[EsportsBot] Error scraping ticker for {wiki}: {e}")
+            print(f"[EsportsBot] Error parsing Wikitext for {wiki}: {e}")
 
     return matches
 
@@ -729,12 +771,11 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot (Web Scraper - Space Launch Schedule Direct Parser)
+# 6. Space Bot
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
     now_utc = datetime.now(timezone.utc)
-    # Target HTML formatted dates (e.g., "Aug 22" or "August 22")
     month_short = now_utc.strftime("%b")
     month_full = now_utc.strftime("%B")
     day_num = str(now_utc.day)
@@ -745,13 +786,11 @@ def fetch_space_updates():
         resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=10)
         if resp.status_code == 200:
             soup = BeautifulSoup(resp.text, "html.parser")
-            # Parses launch blocks directly from the site DOM
             launch_blocks = soup.find_all("div", class_=re.compile("launch-card|card"))
 
             for block in launch_blocks:
                 text = block.get_text(separator=" ")
 
-                # Match if today's date appears in the launch card header
                 is_today = (
                     f"{month_short} {day_num}" in text
                     or f"{month_full} {day_num}" in text
