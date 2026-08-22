@@ -575,7 +575,7 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot
+# 3. Esports Bot (Liquipedia Match2 Cargo Engine)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
@@ -585,14 +585,15 @@ def fetch_esports_updates():
     for wiki in wikis:
         api_url = f"https://liquipedia.net/{wiki}/api.php"
 
+        # Query Match2 table (modern Liquipedia bracket architecture)
         params = {
             "action": "cargoquery",
-            "tables": "Matches",
+            "tables": "Match2",
             "fields": (
-                "opponent1, opponent2, opponent1score, opponent2score, tournament,"
-                " matchgroup, date, page"
+                "opponent1, opponent2, opponent1score, opponent2score,"
+                " tournament, matchgroup, date, page, finished, winner"
             ),
-            "where": f"date LIKE '{today_str}%' AND finished = 1",
+            "where": f"date LIKE '{today_str}%'",
             "order_by": "date DESC",
             "limit": "50",
             "format": "json",
@@ -608,9 +609,17 @@ def fetch_esports_updates():
 
                 for entry in results:
                     item = entry.get("title", {})
+
+                    # Verify completion (handles string '1', boolean, or non-zero winner)
+                    is_finished = (
+                        str(item.get("finished", "")).lower() in ["1", "true"]
+                        or str(item.get("winner", "")).strip() not in ["", "0"]
+                    )
+                    if not is_finished:
+                        continue
+
                     page_path = str(item.get("page", "")).lower()
                     tournament_name = str(item.get("tournament", "")).lower()
-
                     clean_context = f"{page_path} {tournament_name}".replace(
                         "_", " "
                     )
