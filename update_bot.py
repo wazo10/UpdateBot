@@ -7,7 +7,7 @@ import feedparser
 import requests
 
 # ---------------------------------------------------------------------------
-# Discord Webhook Environment Variables
+# Environment Variables & Configurations
 # ---------------------------------------------------------------------------
 WEBHOOKS = {
     "general": os.getenv("WEBHOOK_GENERAL"),
@@ -21,13 +21,6 @@ WEBHOOKS = {
 
 SEEN_FILE = "seen_posts.txt"
 
-LIQUIPEDIA_HEADERS = {
-    "User-Agent": (
-        "MultiBotAutomation/1.0 (https://github.com/wazo10; bot@example.com)"
-    ),
-    "Accept-Encoding": "gzip",
-}
-
 SCRAPER_HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,"
@@ -37,7 +30,7 @@ SCRAPER_HEADERS = {
 
 
 # ---------------------------------------------------------------------------
-# Helper Functions
+# General Bot & Utility Logic
 # ---------------------------------------------------------------------------
 def send_general_heartbeat():
     webhook_url = WEBHOOKS["general"]
@@ -123,13 +116,12 @@ def clean_description(raw_html):
     return re.sub(r"\s+", " ", text)
 
 
-def is_within_72_hours(entry):
-    """Checks if entry falls within a 72-hour window (-24h to +24h)."""
+def is_recent(entry):
     now = datetime.now(timezone.utc)
     pub_date = entry.get("published_parsed") or entry.get("updated_parsed")
     if pub_date:
         entry_dt = datetime(*pub_date[:6], tzinfo=timezone.utc)
-        return (now - timedelta(hours=36)) <= entry_dt <= (now + timedelta(hours=36))
+        return (now - entry_dt) <= timedelta(hours=72)
     return True
 
 
@@ -291,7 +283,7 @@ def process_tech_feeds():
         try:
             feed = feedparser.parse(url)
             for entry in feed.entries:
-                if not is_within_72_hours(entry):
+                if not is_recent(entry):
                     continue
 
                 raw_title = entry.get("title", "")
@@ -315,7 +307,7 @@ def process_tech_feeds():
 
 
 # ---------------------------------------------------------------------------
-# 2. Sports Bot (72-Hour Sliding Window: Yesterday, Today, Tomorrow)
+# 2. Sports Bot (Universal Multi-League ESPN API Engine)
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     matches = []
@@ -326,269 +318,133 @@ def fetch_sports_updates():
         (now_utc + timedelta(days=1)).strftime("%Y%m%d"),
     ]
 
-    espn_playoff_leagues = [
+    # Target Sports/Leagues on ESPN Scoreboard Endpoint
+    espn_endpoints = [
         ("basketball", "nba"),
         ("hockey", "nhl"),
         ("baseball", "mlb"),
         ("football", "nfl"),
-        ("basketball", "mens-college-basketball"),
-        ("hockey", "mens-college-hockey"),
-        ("football", "college-football"),
-        ("baseball", "college-baseball"),
-        ("soccer", "usa.1"),
+        ("racing", "f1"),
+        ("soccer", "ger.1"),
+        ("soccer", "eng.1"),
+        ("soccer", "esp.1"),
+        ("soccer", "ita.1"),
+        ("soccer", "fra.1"),
+        ("soccer", "ger.super_cup"),
+        ("soccer", "eng.charity"),
+        ("soccer", "esp.super_cup"),
+        ("soccer", "ita.super_cup"),
+        ("soccer", "uefa.champions"),
+        ("soccer", "uefa.super_cup"),
     ]
 
     for date_str in dates_to_check:
-        for sport, league in espn_playoff_leagues:
+        for sport, league in espn_endpoints:
             url = f"https://site.api.espn.com/apis/site/v2/sports/{sport}/{league}/scoreboard?dates={date_str}"
             try:
                 resp = requests.get(url, timeout=10)
                 if resp.status_code == 200:
                     data = resp.json()
                     for event in data.get("events", []):
-                        season_type = event.get("season", {}).get("type", 0)
-                        is_playoff = (
-                            season_type == 3
-                            or "playoff" in event.get("name", "").lower()
-                        )
                         status = (
                             event.get("status", {})
                             .get("type", {})
                             .get("state", "")
                         )
+                        if status == "post":
+                            comp = event["competitions"][0]
+                            competitors = comp.get("competitors", [])
 
-                        if is_playoff and status == "post":
-                            competitors = event["competitions"][0][
-                                "competitors"
-                            ]
-                            team_a = competitors[0]["team"]["displayName"]
-                            score_a = competitors[0]["score"]
-                            team_b = competitors[1]["team"]["displayName"]
-                            score_b = competitors[1]["score"]
+                            if sport == "racing":
+                                # F1 Podium Finishers
+                                drivers = sorted(
+                                    competitors,
+                                    key=lambda x: int(x.get("order", 99)),
+                                )
+                                if len(drivers) >= 3:
+                                    p1 = drivers[0].get("athlete", {}).get("displayName", "P1")
+                                    p2 = drivers[1].get("athlete", {}).get("displayName", "P2")
+                                    p3 = drivers[2].get("athlete", {}).get("displayName", "P3")
 
-                            game_id = event.get("id")
-                            game_link = (
-                                event.get("links", [{}])[0].get("href", "")
-                                or f"https://espn.com/game?gameId={game_id}"
-                            )
+                                    matches.append({
+                                        "title": f"🏎️ F1: 1. {p1} | 2. {p2} | 3. {p3}",
+                                        "description": f"{event.get('name')}\nFinal Podium",
+                                        "url": event.get("links", [{}])[0].get("href", "https://espn.com/f1/"),
+                                        "color": 15105570,
+                                    })
+                            elif len(competitors) >= 2:
+                                team_a = competitors[0]["team"]["displayName"]
+                                score_a = competitors[0].get("score", "0")
+                                team_b = competitors[1]["team"]["displayName"]
+                                score_b = competitors[1].get("score", "0")
 
-                            matches.append({
-                                "title": (
-                                    f"⚽ Score: {team_a} {score_a} - {score_b}"
-                                    f" {team_b}"
-                                ),
-                                "description": (
-                                    f"Playoff Result | {league.upper()} Final"
-                                    " Score"
-                                ),
-                                "url": game_link,
-                                "color": 15105570,
-                            })
+                                game_id = event.get("id")
+                                game_link = (
+                                    event.get("links", [{}])[0].get("href", "")
+                                    or f"https://espn.com/game?gameId={game_id}"
+                                )
+
+                                matches.append({
+                                    "title": f"⚽ {team_a} {score_a} - {score_b} {team_b}",
+                                    "description": f"{event.get('name', league.upper())}\nFinal Score",
+                                    "url": game_link,
+                                    "color": 15105570,
+                                })
             except Exception as e:
                 print(f"[SportsBot] Error fetching {league}: {e}")
-
-        # FotMob Soccer Parsing
-        fotmob_url = f"https://www.fotmob.com/api/matches?date={date_str}"
-        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-
-        try:
-            fotmob_resp = requests.get(fotmob_url, headers=headers, timeout=10)
-            if fotmob_resp.status_code == 200:
-                fotmob_data = fotmob_resp.json()
-                leagues = fotmob_data.get("leagues", [])
-
-                for league in leagues:
-                    league_name = str(league.get("name", "")).lower()
-
-                    is_cup = any(
-                        k in league_name
-                        for k in [
-                            "supercup",
-                            "beckenbauer",
-                            "pokal",
-                            "cup",
-                            "shield",
-                            "copa",
-                            "trophy",
-                        ]
-                    )
-
-                    if is_cup:
-                        match_list = league.get("matches", []) + league.get(
-                            "primaryMatches", []
-                        )
-                        for match in match_list:
-                            status = match.get("status", {})
-                            if not isinstance(status, dict):
-                                status = {}
-
-                            is_finished = status.get(
-                                "finished", False
-                            ) or "ft" in str(status.get("reason", "")).lower()
-                            if not is_finished:
-                                continue
-
-                            home_team = match.get("home", {}).get(
-                                "name", "Home"
-                            )
-                            away_team = match.get("away", {}).get(
-                                "name", "Away"
-                            )
-
-                            score_str = status.get("scoreStr")
-                            if not score_str:
-                                home_score = match.get("home", {}).get(
-                                    "score", 0
-                                )
-                                away_score = match.get("away", {}).get(
-                                    "score", 0
-                                )
-                                score_str = f"{home_score} - {away_score}"
-
-                            match_id = match.get("id")
-                            match_url = (
-                                f"https://www.fotmob.com/matches/{match_id}"
-                            )
-
-                            matches.append({
-                                "title": (
-                                    f"⚽ {home_team} {score_str} {away_team}"
-                                ),
-                                "description": (
-                                    f"{league.get('name')}\nFinal Score"
-                                ),
-                                "url": match_url,
-                                "color": 15105570,
-                            })
-        except Exception as e:
-            print(f"[SportsBot] Error fetching FotMob soccer scores: {e}")
 
     return matches
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Wikitext Parser - Full Ticker Match)
+# 3. Esports Bot (PandaScore / Liquipedia High-Reliability Feed)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
     wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
     for wiki in wikis:
-        api_url = f"https://liquipedia.net/{wiki}/api.php"
-        params = {
-            "action": "parse",
-            "page": "Liquipedia:Matches",
-            "prop": "text",
-            "format": "json",
-        }
+        # Public Atom Feed tracking live match updates and revisions
+        feed_url = f"https://liquipedia.net/{wiki}/index.php?title=Special:RecentChanges&feed=atom"
 
         try:
-            resp = requests.get(
-                api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10
-            )
-            if resp.status_code == 200:
-                data = resp.json()
-                raw_html = data.get("parse", {}).get("text", {}).get("*", "")
-                if not raw_html:
+            feed = feedparser.parse(feed_url)
+            for entry in feed.entries:
+                if not is_recent(entry):
                     continue
 
-                soup = BeautifulSoup(raw_html, "html.parser")
-                rows = soup.find_all(
-                    ["tr", "div"],
-                    class_=re.compile(
-                        "match-filler|match-row|infobox_matches_content|wikitable"
-                    ),
+                title = entry.get("title", "").lower()
+                summary = clean_description(entry.get("summary", "")).lower()
+                full_text = f"{title} {summary}"
+
+                # Match patterns for series results
+                match_score = re.search(
+                    r"([a-z0-9\s]+)\s+(\d+)\s*[-:]\s*(\d+)\s+([a-z0-9\s]+)",
+                    full_text,
                 )
 
-                for row in rows:
-                    text_content = row.get_text(separator=" ").lower()
+                if match_score:
+                    team_a = match_score.group(1).strip()
+                    score_a = match_score.group(2)
+                    score_b = match_score.group(3)
+                    team_b = match_score.group(4).strip()
 
-                    is_cs_major = wiki == "counterstrike" and (
-                        "major" in text_content
-                        or "pgl" in text_content
-                        or "blast" in text_content
-                    )
-                    is_grand_slam = (
-                        wiki == "counterstrike"
-                        and "grand slam" in text_content
-                    )
-                    is_rlcs = wiki == "rocketleague" and (
-                        "rlcs" in text_content
-                        or "championship" in text_content
-                    )
-                    is_vct = wiki == "valorant" and (
-                        "vct" in text_content
-                        or "masters" in text_content
-                        or "champions" in text_content
-                    )
-                    is_lol = wiki == "leagueoflegends" and (
-                        "worlds" in text_content
-                        or "msi" in text_content
-                        or "first stand" in text_content
-                    )
-                    is_ewc_enc = (
-                        "esports world cup" in text_content
-                        or "ewc" in text_content
-                        or "nations cup" in text_content
-                        or "enc" in text_content
-                    )
+                    link = entry.get("link", f"https://liquipedia.net/{wiki}/")
 
-                    if not (
-                        is_cs_major
-                        or is_grand_slam
-                        or is_rlcs
-                        or is_vct
-                        or is_lol
-                        or is_ewc_enc
-                    ):
-                        continue
-
-                    team1_elem = row.find(
-                        ["td", "div"], class_=re.compile("team-left|team-1")
-                    )
-                    team2_elem = row.find(
-                        ["td", "div"], class_=re.compile("team-right|team-2")
-                    )
-                    score_elem = row.find(
-                        ["td", "div"], class_=re.compile("versus|score")
-                    )
-
-                    if team1_elem and team2_elem and score_elem:
-                        t1 = team1_elem.get_text(strip=True).lower()
-                        t2 = team2_elem.get_text(strip=True).lower()
-                        score = (
-                            score_elem.get_text(strip=True)
-                            .replace(":", " - ")
-                            .replace("(", "")
-                            .replace(")", "")
-                        )
-
-                        if "vs" in score.lower():
-                            continue
-
-                        link_elem = row.find("a", href=True)
-                        match_url = (
-                            f"https://liquipedia.net{link_elem['href']}"
-                            if link_elem
-                            else (
-                                f"https://liquipedia.net/{wiki}/#{t1}-{t2}-{score}"
-                            )
-                        )
-
-                        matches.append({
-                            "title": f"🎮 {t1} {score} {t2}",
-                            "description": "Esports World Cup\nFinal Score",
-                            "url": match_url,
-                            "color": 10181046,
-                        })
+                    matches.append({
+                        "title": f"🎮 {team_a} {score_a} - {score_b} {team_b}",
+                        "description": f"Liquipedia {wiki.capitalize()} Update",
+                        "url": link,
+                        "color": 10181046,
+                    })
         except Exception as e:
-            print(f"[EsportsBot] Error parsing Wikitext for {wiki}: {e}")
+            print(f"[EsportsBot] Error parsing Liquipedia feed for {wiki}: {e}")
 
     return matches
 
 
 # ---------------------------------------------------------------------------
-# 4. Aviation Bot (72-Hour Sliding Window)
+# 4. Aviation Bot
 # ---------------------------------------------------------------------------
 def fetch_aviation_updates():
     url = "https://www.airfleets.net/divers/delivery.htm"
@@ -616,9 +472,7 @@ def fetch_aviation_updates():
                     ):
                         matches.append({
                             "title": "✈️ Aviation: New Plane Delivery",
-                            "description": (
-                                f"Latest delivery: {text_content[:250]}"
-                            ),
+                            "description": f"Latest delivery: {text_content[:250]}",
                             "url": f"{url}#{hash(text_content)}",
                             "color": 3066993,
                         })
@@ -644,16 +498,12 @@ def fetch_research_updates():
         try:
             feed = feedparser.parse(url)
             for entry in feed.entries:
-                if not is_within_72_hours(entry):
+                if not is_recent(entry):
                     continue
 
                 matches.append({
-                    "title": (
-                        f"🔬 Research: {html.unescape(entry.get('title', ''))}"
-                    ),
-                    "description": clean_description(
-                        entry.get("summary", "")
-                    )[:280],
+                    "title": f"🔬 Research: {html.unescape(entry.get('title', ''))}",
+                    "description": clean_description(entry.get("summary", ""))[:280],
                     "url": entry.get("link", ""),
                     "color": 15844367,
                 })
@@ -663,57 +513,40 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot (72-Hour Sliding Window)
+# 6. Space Bot (Launch Library 2 Indestructible REST API Engine)
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
-    now_utc = datetime.now(timezone.utc)
-    dates_to_check = [
-        (now_utc - timedelta(days=1)).strftime("%b %d"),
-        now_utc.strftime("%b %d"),
-        (now_utc + timedelta(days=1)).strftime("%b %d"),
-    ]
-
-    url = "https://www.spacelaunchschedule.com/"
+    url = "https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=5"
 
     try:
         resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=10)
         if resp.status_code == 200:
-            soup = BeautifulSoup(resp.text, "html.parser")
-            launch_blocks = soup.find_all("div", class_=re.compile("launch-card|card"))
+            data = resp.json()
+            launches = data.get("results", [])
 
-            for block in launch_blocks:
-                text = block.get_text(separator=" ")
+            for launch in launches:
+                name = launch.get("name", "Space Launch")
+                net_time = launch.get("net", "")
+                mission = launch.get("mission", {}) or {}
+                description = mission.get("description", "Orbital rocket launch payload mission.")
 
-                if any(d in text for d in dates_to_check):
-                    title_elem = block.find(["h2", "h3", "h4", "a"])
-                    title = (
-                        title_elem.get_text(strip=True)
-                        if title_elem
-                        else "Rocket Launch"
-                    )
+                launch_url = launch.get("url") or "https://thespacedevs.com/"
 
-                    link_elem = block.find("a", href=True)
-                    launch_url = (
-                        link_elem["href"]
-                        if link_elem and link_elem["href"].startswith("http")
-                        else f"https://www.spacelaunchschedule.com#{hash(title)}"
-                    )
-
-                    matches.append({
-                        "title": f"🚀 Space: {title}",
-                        "description": f"Scheduled Space Launch | {title}",
-                        "url": launch_url,
-                        "color": 9807270,
-                    })
+                matches.append({
+                    "title": f"🚀 Space: {name}",
+                    "description": f"NET Launch Window: {net_time}\n{description[:250]}",
+                    "url": launch_url,
+                    "color": 9807270,
+                })
     except Exception as e:
-        print(f"[SpaceBot] Error scraping space launches: {e}")
+        print(f"[SpaceBot] Error querying Launch Library API: {e}")
 
     return matches
 
 
 # ---------------------------------------------------------------------------
-# Main Execution Loop
+# Main Workflow Execution Loop
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
     send_general_heartbeat()
@@ -738,15 +571,3 @@ if __name__ == "__main__":
     send_discord_webhooks(
         WEBHOOKS["space"], fetch_space_updates(), "SpaceBot", seen_urls
     )
-    print("--- TESTING DIRECT ENDPOINTS ---")
-    try:
-        space = requests.get("https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=5", timeout=10).json()
-        print(f"[TEST] Space Devs Launches Found: {len(space.get('results', []))}")
-    except Exception as e:
-        print(f"[TEST] Space API Error: {e}")
-
-    try:
-        soccer = requests.get("https://site.api.espn.com/apis/site/v2/sports/soccer/ger.1/scoreboard", timeout=10).json()
-        print(f"[TEST] ESPN Soccer Events Found: {len(soccer.get('events', []))}")
-    except Exception as e:
-        print(f"[TEST] ESPN API Error: {e}")
