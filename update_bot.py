@@ -738,3 +738,15 @@ if __name__ == "__main__":
     send_discord_webhooks(
         WEBHOOKS["space"], fetch_space_updates(), "SpaceBot", seen_urls
     )
+    print("--- TESTING DIRECT ENDPOINTS ---")
+    try:
+        space = requests.get("https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=5", timeout=10).json()
+        print(f"[TEST] Space Devs Launches Found: {len(space.get('results', []))}")
+    except Exception as e:
+        print(f"[TEST] Space API Error: {e}")
+
+    try:
+        soccer = requests.get("https://site.api.espn.com/apis/site/v2/sports/soccer/ger.1/scoreboard", timeout=10).json()
+        print(f"[TEST] ESPN Soccer Events Found: {len(soccer.get('events', []))}")
+    except Exception as e:
+        print(f"[TEST] ESPN API Error: {e}")
