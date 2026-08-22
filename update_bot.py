@@ -575,82 +575,58 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia Match2 + Match2opponent JOIN Engine)
+# 3. Esports Bot (Liquipedia Live Match Ticker Scraper)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
-    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
     for wiki in wikis:
-        api_url = f"https://liquipedia.net/{wiki}/api.php"
-
-        # SQL Join joining Match2 metadata with Match2opponent team records
-        params = {
-            "action": "cargoquery",
-            "tables": "Match2=m, Match2opponent=m2o1, Match2opponent=m2o2",
-            "join_on": (
-                "m.match2id=m2o1.match2id AND m2o1.match2opponentid='1',"
-                " m.match2id=m2o2.match2id AND m2o2.match2opponentid='2'"
-            ),
-            "fields": (
-                "m.match2id, m.page, m.tournament, m.matchgroup, m.date, m.winner,"
-                " m2o1.name=team1, m2o1.score=score1, m2o2.name=team2, m2o2.score=score2"
-            ),
-            "where": f"m.date LIKE '{today_str}%' AND (m.finished = 1 OR m.winner != '')",
-            "order_by": "m.date DESC",
-            "limit": "50",
-            "format": "json",
-        }
+        url = f"https://liquipedia.net/{wiki}/Liquipedia:Matches"
 
         try:
-            resp = requests.get(
-                api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10
-            )
+            resp = requests.get(url, headers=LIQUIPEDIA_HEADERS, timeout=10)
             if resp.status_code == 200:
-                data = resp.json()
-                results = data.get("cargoquery", [])
+                soup = BeautifulSoup(resp.text, "html.parser")
 
-                for entry in results:
-                    item = entry.get("title", {})
+                # Parse all completed match rows in the matches table
+                match_cells = soup.find_all("table", class_="wikitable")
 
-                    page_path = str(item.get("page", "")).lower()
-                    tournament_name = str(item.get("tournament", "")).lower()
-                    clean_context = f"{page_path} {tournament_name}".replace(
-                        "_", " "
-                    )
+                for cell in match_cells:
+                    text_content = cell.get_text(separator=" ").lower()
 
+                    # Apply event filters
                     is_cs_major = wiki == "counterstrike" and (
-                        "major" in clean_context
-                        or "pgl" in clean_context
-                        or "blast" in clean_context
+                        "major" in text_content
+                        or "pgl" in text_content
+                        or "blast" in text_content
                     )
                     is_grand_slam = (
                         wiki == "counterstrike"
-                        and "grand slam" in clean_context
+                        and "grand slam" in text_content
                     )
                     is_rlcs = wiki == "rocketleague" and (
-                        "rlcs" in clean_context
-                        or "championship" in clean_context
+                        "rlcs" in text_content
+                        or "championship" in text_content
                     )
                     is_vct = wiki == "valorant" and (
-                        "vct" in clean_context
-                        or "masters" in clean_context
-                        or "champions" in clean_context
+                        "vct" in text_content
+                        or "masters" in text_content
+                        or "champions" in text_content
                     )
                     is_lol = wiki == "leagueoflegends" and (
-                        "worlds" in clean_context
-                        or "msi" in clean_context
-                        or "first stand" in clean_context
+                        "worlds" in text_content
+                        or "msi" in text_content
+                        or "first stand" in text_content
                     )
                     is_ewc_enc = (
-                        "esports world cup" in clean_context
-                        or "ewc" in clean_context
-                        or "nations cup" in clean_context
-                        or "enc" in clean_context
+                        "esports world cup" in text_content
+                        or "ewc" in text_content
+                        or "nations cup" in text_content
+                        or "enc" in text_content
                     )
 
-                    if (
+                    if not (
                         is_cs_major
                         or is_grand_slam
                         or is_rlcs
@@ -658,34 +634,46 @@ def fetch_esports_updates():
                         or is_lol
                         or is_ewc_enc
                     ):
-                        team1 = item.get("team1", "Team 1")
-                        score1 = item.get("score1", "0")
-                        team2 = item.get("team2", "Team 2")
-                        score2 = item.get("score2", "0")
+                        continue
 
-                        stage = item.get("matchgroup", "Playoffs").replace(
-                            "_", " "
-                        )
-                        tournament = item.get("tournament", "Tournament")
+                    # Extract team names and scores directly from match blocks
+                    team_left = cell.find("td", class_="team-left")
+                    team_right = cell.find("td", class_="team-right")
+                    score_elem = cell.find("td", class_="versus")
 
-                        page_clean = item.get("page", "")
-                        match_url = f"https://liquipedia.net/{wiki}/{page_clean}#{team1}-{team2}"
+                    if team_left and team_right and score_elem:
+                        t1 = team_left.get_text(strip=True).lower()
+                        t2 = team_right.get_text(strip=True).lower()
+                        score_text = score_elem.get_text(strip=True)
 
-                        matches.append({
-                            "title": (
-                                f"🎮 {str(team1).lower()} {score1} - {score2}"
-                                f" {str(team2).lower()}"
-                            ),
-                            "description": (
-                                f"{str(stage).lower()}\n{str(tournament).lower()}"
-                            ),
-                            "url": match_url,
-                            "color": 10181046,
-                        })
+                        # Match canonical score patterns (e.g. "2:1" or "2-1")
+                        if (
+                            ":" in score_text or "-" in score_text
+                        ) and "vs" not in score_text:
+                            score_clean = (
+                                score_text.replace(":", " - ")
+                                .replace("(", "")
+                                .replace(")", "")
+                            )
+
+                            # Direct link to match page
+                            link_elem = cell.find("a", href=True)
+                            match_url = (
+                                f"https://liquipedia.net{link_elem['href']}"
+                                if link_elem
+                                else f"https://liquipedia.net/{wiki}/#{t1}-{t2}"
+                            )
+
+                            matches.append({
+                                "title": f"🎮 {t1} {score_clean} {t2}",
+                                "description": (
+                                    f"Esports World Cup\nFinal Score"
+                                ),
+                                "url": match_url,
+                                "color": 10181046,
+                            })
         except Exception as e:
-            print(
-                f"[EsportsBot] Error querying Liquipedia Cargo for {wiki}: {e}"
-            )
+            print(f"[EsportsBot] Error scraping ticker for {wiki}: {e}")
 
     return matches
 
