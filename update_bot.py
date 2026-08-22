@@ -517,7 +517,7 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot
+# 3. Esports Bot (Fail-Safe Cargo + RSS Fallback Engine)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
@@ -527,6 +527,7 @@ def fetch_esports_updates():
     for wiki in wikis:
         api_url = f"https://liquipedia.net/{wiki}/api.php"
 
+        # Primary Method: Liquipedia Cargo SQL Direct Query
         params = {
             "action": "cargoquery",
             "tables": "Matches",
@@ -550,13 +551,12 @@ def fetch_esports_updates():
 
                 for entry in results:
                     item = entry.get("title", {})
-                    page_path = item.get("page", "").lower()
-                    tournament_name = item.get("tournament", "").lower()
+                    page_path = str(item.get("page", "")).lower()
+                    tournament_name = str(item.get("tournament", "")).lower()
 
-                    clean_context = f"{page_path} {tournament_name}".replace(
-                        "_", " "
-                    )
+                    clean_context = f"{page_path} {tournament_name}".replace("_", " ")
 
+                    # Strict event filtering
                     is_cs_major = wiki == "counterstrike" and (
                         "major" in clean_context
                         or "pgl" in clean_context
@@ -600,9 +600,7 @@ def fetch_esports_updates():
                         team_b = item.get("opponent2", "Team B")
                         score_b = item.get("opponent2score", "0")
 
-                        stage = item.get("matchgroup", "Playoffs").replace(
-                            "_", " "
-                        )
+                        stage = item.get("matchgroup", "Playoffs").replace("_", " ")
                         tournament = item.get("tournament", "Tournament")
 
                         page_clean = item.get("page", "")
@@ -610,19 +608,17 @@ def fetch_esports_updates():
 
                         matches.append({
                             "title": (
-                                f"🎮 {team_a.lower()} {score_a} - {score_b}"
-                                f" {team_b.lower()}"
+                                f"🎮 {str(team_a).lower()} {score_a} - {score_b}"
+                                f" {str(team_b).lower()}"
                             ),
                             "description": (
-                                f"{stage.lower()}\n{tournament.lower()}"
+                                f"{str(stage).lower()}\n{str(tournament).lower()}"
                             ),
                             "url": match_url,
                             "color": 10181046,
                         })
         except Exception as e:
-            print(
-                f"[EsportsBot] Error querying Liquipedia Cargo for {wiki}: {e}"
-            )
+            print(f"[EsportsBot] Error querying Liquipedia Cargo for {wiki}: {e}")
 
     return matches
 
