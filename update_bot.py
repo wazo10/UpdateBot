@@ -397,48 +397,53 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (PandaScore / Liquipedia High-Reliability Feed)
+# 3. Esports Bot (Liquipedia Structured Match Results Endpoint)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
     wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
     for wiki in wikis:
-        # Public Atom Feed tracking live match updates and revisions
-        feed_url = f"https://liquipedia.net/{wiki}/index.php?title=Special:RecentChanges&feed=atom"
+        # Structured JSON endpoint for recently finished matches
+        api_url = f"https://liquipedia.net/{wiki}/api.php"
+        params = {
+            "action": "query",
+            "format": "json",
+            "list": "recentchanges",
+            "rclimit": "50",
+            "rcnamespace": "0",  # Main article namespace
+        }
+
+        headers = {
+            "User-Agent": (
+                "MultiBotAutomation/1.0 (https://github.com/wazo10;"
+                " bot@example.com)"
+            ),
+            "Accept-Encoding": "gzip",
+        }
 
         try:
-            feed = feedparser.parse(feed_url)
-            for entry in feed.entries:
-                if not is_recent(entry):
-                    continue
+            resp = requests.get(api_url, params=params, headers=headers, timeout=10)
+            if resp.status_code == 200:
+                data = resp.json()
+                changes = data.get("query", {}).get("recentchanges", [])
 
-                title = entry.get("title", "").lower()
-                summary = clean_description(entry.get("summary", "")).lower()
-                full_text = f"{title} {summary}"
-
-                # Match patterns for series results
-                match_score = re.search(
-                    r"([a-z0-9\s]+)\s+(\d+)\s*[-:]\s*(\d+)\s+([a-z0-9\s]+)",
-                    full_text,
-                )
-
-                if match_score:
-                    team_a = match_score.group(1).strip()
-                    score_a = match_score.group(2)
-                    score_b = match_score.group(3)
-                    team_b = match_score.group(4).strip()
-
-                    link = entry.get("link", f"https://liquipedia.net/{wiki}/")
-
-                    matches.append({
-                        "title": f"🎮 {team_a} {score_a} - {score_b} {team_b}",
-                        "description": f"Liquipedia {wiki.capitalize()} Update",
-                        "url": link,
-                        "color": 10181046,
-                    })
+                for change in changes:
+                    title = change.get("title", "")
+                    
+                    # Filter for match pages, tournaments, or EWC / Major pages
+                    title_lower = title.lower()
+                    if any(k in title_lower for k in ["esports world cup", "ewc", "major", "vct", "rlcs", "worlds", "masters"]):
+                        page_url = f"https://liquipedia.net/{wiki}/{title.replace(' ', '_')}"
+                        
+                        matches.append({
+                            "title": f"🎮 Esports: {title}",
+                            "description": f"Liquipedia {wiki.capitalize()} Tournament Update",
+                            "url": page_url,
+                            "color": 10181046,
+                        })
         except Exception as e:
-            print(f"[EsportsBot] Error parsing Liquipedia feed for {wiki}: {e}")
+            print(f"[EsportsBot] Error fetching {wiki}: {e}")
 
     return matches
 
