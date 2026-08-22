@@ -10,6 +10,7 @@ import requests
 # Discord Webhook Environment Variables
 # ---------------------------------------------------------------------------
 WEBHOOKS = {
+    "general": os.getenv("WEBHOOK_GENERAL"),
     "tech": os.getenv("WEBHOOK_TECH"),
     "sports": os.getenv("WEBHOOK_SPORTS"),
     "esports": os.getenv("WEBHOOK_ESPORTS"),
@@ -29,8 +30,32 @@ LIQUIPEDIA_HEADERS = {
 
 
 # ---------------------------------------------------------------------------
-# Deduplication & Year-Based Auto-Pruning
+# Heartbeat & Deduplication Functions
 # ---------------------------------------------------------------------------
+def send_general_heartbeat():
+    """Sends a heartbeat notification every time GitHub Actions executes."""
+    webhook_url = WEBHOOKS["general"]
+    if not webhook_url:
+        print("[GeneralBot] No WEBHOOK_GENERAL configured. Skipping heartbeat.")
+        return
+
+    now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    payload = {
+        "username": "GeneralBot",
+        "embeds": [{
+            "title": "⚙️ Workflow Execution Heartbeat",
+            "description": f"GitHub Actions successfully triggered and executed at `{now_utc}`.",
+            "color": 3447003,
+        }]
+    }
+    headers = {"Content-Type": "application/json"}
+    try:
+        requests.post(webhook_url, json=payload, headers=headers, timeout=10)
+        print("[GeneralBot] Heartbeat sent successfully.")
+    except Exception as e:
+        print(f"[GeneralBot] Error sending heartbeat: {e}")
+
+
 def load_seen_urls():
     current_year = datetime.now(timezone.utc).strftime("%Y")
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
@@ -269,7 +294,7 @@ def process_tech_feeds():
 
 
 # ---------------------------------------------------------------------------
-# 2. Sports Bot (ESPN Scoreboard API)
+# 2. Sports Bot
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     matches = []
@@ -330,7 +355,7 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia Cargo Query - Database-backed Results)
+# 3. Esports Bot
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
@@ -512,13 +537,12 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot (RocketLaunch.live API - Catches All Launches Today)
+# 6. Space Bot
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     try:
-        # Fetches today's full launch calendar rather than just next upcoming launch
         resp = requests.get(
             "https://fwd.rocketlaunch.live/json/launches", timeout=10
         )
@@ -529,7 +553,6 @@ def fetch_space_updates():
                 launch_date = launch.get("date_str", "")
                 win_open = launch.get("win_open", "")
 
-                # Matches if the launch date or window open date matches UTC today
                 is_today_launch = (
                     today_str in launch_date
                     or (win_open and win_open.startswith(today_str))
@@ -562,6 +585,9 @@ def fetch_space_updates():
 # Main Execution
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
+    # Send execution heartbeat
+    send_general_heartbeat()
+
     seen_urls = load_seen_urls()
 
     send_discord_webhooks(
