@@ -32,7 +32,6 @@ LIQUIPEDIA_HEADERS = {
 # Deduplication & Year-Based Auto-Pruning
 # ---------------------------------------------------------------------------
 def load_seen_urls():
-    """Loads seen URLs and automatically purges any entries from prior years."""
     current_year = datetime.now(timezone.utc).strftime("%Y")
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     valid_urls = set()
@@ -62,7 +61,6 @@ def load_seen_urls():
 
 
 def save_seen_url(url):
-    """Saves a new URL prefixed with today's UTC date timestamp."""
     if url:
         today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         with open(SEEN_FILE, "a", encoding="utf-8") as f:
@@ -79,7 +77,6 @@ def clean_description(raw_html):
 
 
 def is_published_today(entry):
-    """Strictly verifies if an RSS entry was published today (UTC)."""
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     pub_date = entry.get("published_parsed") or entry.get("updated_parsed")
     if pub_date:
@@ -333,20 +330,27 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia Match Ticker Parser with Strict Same-Day Check)
+# 3. Esports Bot (Liquipedia Cargo Query - Database-backed Results)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
-    today_utc_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
     for wiki in wikis:
         api_url = f"https://liquipedia.net/{wiki}/api.php"
+
         params = {
-            "action": "parse",
-            "page": "Liquipedia:Matches",
+            "action": "cargoquery",
+            "tables": "Matches",
+            "fields": (
+                "opponent1, opponent2, opponent1score, opponent2score, tournament,"
+                " matchgroup, date, page"
+            ),
+            "where": f"date LIKE '{today_str}%' AND finished = 1",
+            "order_by": "date DESC",
+            "limit": "50",
             "format": "json",
-            "prop": "text",
         }
 
         try:
@@ -355,60 +359,48 @@ def fetch_esports_updates():
             )
             if resp.status_code == 200:
                 data = resp.json()
-                html_content = (
-                    data.get("parse", {}).get("text", {}).get("*", "")
-                )
-                if not html_content:
-                    continue
+                results = data.get("cargoquery", [])
 
-                soup = BeautifulSoup(html_content, "html.parser")
-                match_rows = soup.find_all("table", class_="match-filler")
+                for entry in results:
+                    item = entry.get("title", {})
+                    page_path = item.get("page", "").lower()
+                    tournament_name = item.get("tournament", "").lower()
 
-                for row in match_rows:
-                    # Enforce Strict Same-Day UTC Date Check via data-timestamp
-                    timer_elem = row.find("span", class_="timer-object")
-                    if timer_elem and timer_elem.has_attr("data-timestamp"):
-                        try:
-                            epoch = int(timer_elem["data-timestamp"])
-                            match_date = datetime.fromtimestamp(
-                                epoch, tz=timezone.utc
-                            ).strftime("%Y-%m-%d")
-                            if match_date != today_utc_str:
-                                continue  # Skip if match date isn't today
-                        except ValueError:
-                            pass
-
-                    row_text = row.get_text(separator=" ").lower()
+                    clean_context = f"{page_path} {tournament_name}".replace(
+                        "_", " "
+                    )
 
                     is_cs_major = wiki == "counterstrike" and (
-                        "major" in row_text
-                        or "pgl" in row_text
-                        or "blast" in row_text
+                        "major" in clean_context
+                        or "pgl" in clean_context
+                        or "blast" in clean_context
                     )
                     is_grand_slam = (
-                        wiki == "counterstrike" and "grand slam" in row_text
+                        wiki == "counterstrike"
+                        and "grand slam" in clean_context
                     )
                     is_rlcs = wiki == "rocketleague" and (
-                        "rlcs" in row_text or "championship" in row_text
+                        "rlcs" in clean_context
+                        or "championship" in clean_context
                     )
                     is_vct = wiki == "valorant" and (
-                        "vct" in row_text
-                        or "masters" in row_text
-                        or "champions" in row_text
+                        "vct" in clean_context
+                        or "masters" in clean_context
+                        or "champions" in clean_context
                     )
                     is_lol = wiki == "leagueoflegends" and (
-                        "worlds" in row_text
-                        or "msi" in row_text
-                        or "first stand" in row_text
+                        "worlds" in clean_context
+                        or "msi" in clean_context
+                        or "first stand" in clean_context
                     )
                     is_ewc_enc = (
-                        "esports world cup" in row_text
-                        or "ewc" in row_text
-                        or "nations cup" in row_text
-                        or "enc" in row_text
+                        "esports world cup" in clean_context
+                        or "ewc" in clean_context
+                        or "nations cup" in clean_context
+                        or "enc" in clean_context
                     )
 
-                    if not (
+                    if (
                         is_cs_major
                         or is_grand_slam
                         or is_rlcs
@@ -416,49 +408,34 @@ def fetch_esports_updates():
                         or is_lol
                         or is_ewc_enc
                     ):
-                        continue
+                        team_a = item.get("opponent1", "Team A")
+                        score_a = item.get("opponent1score", "0")
+                        team_b = item.get("opponent2", "Team B")
+                        score_b = item.get("opponent2score", "0")
 
-                    team_left = row.find("td", class_="team-left")
-                    team_right = row.find("td", class_="team-right")
-                    score_cell = row.find("td", class_="versus")
+                        stage = item.get("matchgroup", "Playoffs").replace(
+                            "_", " "
+                        )
+                        tournament = item.get("tournament", "Tournament")
 
-                    if team_left and team_right and score_cell:
-                        t1 = team_left.get_text(strip=True).lower()
-                        t2 = team_right.get_text(strip=True).lower()
-                        score = score_cell.get_text(strip=True)
-
-                        tournament_elem = row.find(
-                            "div", class_="match-filler-tournament"
-                        )
-                        stage_elem = row.find(
-                            "span", class_="match-filler-stage"
-                        )
-
-                        tournament_name = (
-                            tournament_elem.get_text(strip=True).lower()
-                            if tournament_elem
-                            else "ewc"
-                        )
-                        stage_name = (
-                            stage_elem.get_text(strip=True).lower()
-                            if stage_elem
-                            else "playoffs"
-                        )
-
-                        match_link = row.find("a", href=True)
-                        href = (
-                            match_link["href"] if match_link else f"/{wiki}/EWC"
-                        )
-                        match_url = f"https://liquipedia.net{href}"
+                        page_clean = item.get("page", "")
+                        match_url = f"https://liquipedia.net/{wiki}/{page_clean}#{team_a}-{team_b}"
 
                         matches.append({
-                            "title": f"🎮 {t1} {score} {t2}",
-                            "description": f"{stage_name}\n{tournament_name}",
+                            "title": (
+                                f"🎮 {team_a.lower()} {score_a} - {score_b}"
+                                f" {team_b.lower()}"
+                            ),
+                            "description": (
+                                f"{stage.lower()}\n{tournament.lower()}"
+                            ),
                             "url": match_url,
                             "color": 10181046,
                         })
         except Exception as e:
-            print(f"[EsportsBot] Error parsing match ticker for {wiki}: {e}")
+            print(
+                f"[EsportsBot] Error querying Liquipedia Cargo for {wiki}: {e}"
+            )
 
     return matches
 
@@ -535,23 +512,31 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot
+# 6. Space Bot (RocketLaunch.live API - Catches All Launches Today)
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     try:
+        # Fetches today's full launch calendar rather than just next upcoming launch
         resp = requests.get(
-            "https://fwd.rocketlaunch.live/json/launches/next/1", timeout=10
+            "https://fwd.rocketlaunch.live/json/launches", timeout=10
         )
         if resp.status_code == 200:
             data = resp.json()
             launches = data.get("result", [])
-            if launches:
-                launch = launches[0]
+            for launch in launches:
                 launch_date = launch.get("date_str", "")
+                win_open = launch.get("win_open", "")
 
-                if today_str in launch_date or "today" in launch_date.lower():
+                # Matches if the launch date or window open date matches UTC today
+                is_today_launch = (
+                    today_str in launch_date
+                    or (win_open and win_open.startswith(today_str))
+                    or "today" in launch_date.lower()
+                )
+
+                if is_today_launch:
                     name = launch.get("name", "Rocket Launch")
                     provider = launch.get("provider", {}).get("name", "")
                     vehicle = launch.get("vehicle", {}).get("name", "")
