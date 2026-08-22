@@ -481,34 +481,14 @@ def fetch_sports_updates():
     ]
 
     knockout_cups_and_tournaments = [
-        "fa cup",
-        "copa del rey",
-        "coppa italia",
-        "dfb pokal",
-        "coupe de france",
-        "taça de portugal",
-        "knvb cup",
-        "community shield",
-        "supercopa de españa",
-        "supercoppa italiana",
-        "dfl-supercup",
-        "dfl supercup",
-        "supercup",
-        "trophee des champions",
-        "supertaça",
-        "johan cruijff schaal",
-        "uefa champions league",
-        "champions league",
-        "uefa super cup",
-        "fifa club world cup",
-        "fifa intercontinental cup",
-        "world cup",
-        "euros",
-        "euro",
-        "copa america",
-        "gold cup",
-        "asian cup",
-        "africa cup of nations",
+    "fa cup", "copa del rey", "coppa italia", "dfb pokal", "coupe de france",
+    "taça de portugal", "knvb cup", "community shield", "supercopa de españa",
+    "supercoppa italiana", "dfl-supercup", "dfl supercup", "supercup",
+    "beckenbauer", "franz beckenbauer", "trophee des champions", "supertaça",
+    "johan cruijff schaal", "uefa champions league", "champions league",
+    "uefa super cup", "fifa club world cup", "fifa intercontinental cup",
+    "world cup", "euros", "euro", "copa america", "gold cup", "asian cup",
+    "africa cup of nations"
     ]
 
     fotmob_url = f"https://www.fotmob.com/api/matches?date={today_str}"
