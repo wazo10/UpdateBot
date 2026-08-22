@@ -294,12 +294,13 @@ def process_tech_feeds():
 
 
 # ---------------------------------------------------------------------------
-# 2. Sports Bot
+# 2. Sports Bot (ESPN Scoreboard API - Playoffs & F1 Races/Sprints)
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     matches = []
     today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
 
+    # Standard Team Sports (NBA, NHL, MLB, NFL)
     leagues = [
         ("basketball", "nba"),
         ("hockey", "nhl"),
@@ -350,6 +351,61 @@ def fetch_sports_updates():
                         })
         except Exception as e:
             print(f"[SportsBot] Error fetching {league} scores: {e}")
+
+    # Formula 1 Handling (Races & Sprints)
+    f1_url = f"https://site.api.espn.com/apis/site/v2/sports/racing/f1/scoreboard?dates={today_str}"
+    try:
+        f1_resp = requests.get(f1_url, timeout=10)
+        if f1_resp.status_code == 200:
+            f1_data = f1_resp.json()
+            for event in f1_data.get("events", []):
+                event_name = event.get("name", "Grand Prix")
+                for comp in event.get("competitions", []):
+                    comp_type = comp.get("type", {}).get("text", "").lower()
+                    status = (
+                        comp.get("status", {}).get("type", {}).get("state", "")
+                    )
+
+                    # Only process completed Main Races or Sprint Races
+                    if status == "post" and (
+                        "race" in comp_type or "sprint" in comp_type
+                    ):
+                        session_title = (
+                            "Sprint Race"
+                            if "sprint" in comp_type
+                            else "Grand Prix"
+                        )
+                        competitors = comp.get("competitors", [])
+
+                        # Sort drivers by final placement
+                        drivers = sorted(
+                            competitors,
+                            key=lambda x: int(x.get("order", 99)),
+                        )
+
+                        if len(drivers) >= 3:
+                            p1 = drivers[0].get("athlete", {}).get("displayName", "P1")
+                            p2 = drivers[1].get("athlete", {}).get("displayName", "P2")
+                            p3 = drivers[2].get("athlete", {}).get("displayName", "P3")
+
+                            f1_link = (
+                                event.get("links", [{}])[0].get("href", "")
+                                or "https://espn.com/f1/"
+                            )
+
+                            matches.append({
+                                "title": (
+                                    f"🏎️ F1 {session_title}: 1. {p1} | 2."
+                                    f" {p2} | 3. {p3}"
+                                ),
+                                "description": (
+                                    f"{event_name}"
+                                ),
+                                "url": f1_link,
+                                "color": 15105570,
+                            })
+    except Exception as e:
+        print(f"[SportsBot] Error fetching F1 scores: {e}")
 
     return matches
 
