@@ -699,47 +699,64 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot
+# 6. Space Bot (RocketLaunch.live API - Multi-Window Guarantee)
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
-    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    now_utc = datetime.now(timezone.utc)
+    today_str = now_utc.strftime("%Y-%m-%d")
+
+    # Limit=50 prevents pagination drops on high-frequency launch days
+    url = "https://fwd.rocketlaunch.live/json/launches?limit=50"
+
     try:
-        resp = requests.get(
-            "https://fwd.rocketlaunch.live/json/launches", timeout=10
-        )
+        resp = requests.get(url, timeout=10)
         if resp.status_code == 200:
             data = resp.json()
             launches = data.get("result", [])
-            for launch in launches:
-                launch_date = launch.get("date_str", "")
-                win_open = launch.get("win_open", "")
 
+            for launch in launches:
+                date_str = str(launch.get("date_str", ""))
+                win_open = str(launch.get("win_open", ""))
+                win_close = str(launch.get("win_close", ""))
+
+                # Check if launch date or window bounds match today's UTC date
                 is_today_launch = (
-                    today_str in launch_date
-                    or (win_open and win_open.startswith(today_str))
-                    or "today" in launch_date.lower()
+                    today_str in date_str
+                    or win_open.startswith(today_str)
+                    or win_close.startswith(today_str)
+                    or "today" in date_str.lower()
                 )
 
                 if is_today_launch:
+                    launch_id = launch.get("id", "")
                     name = launch.get("name", "Rocket Launch")
-                    provider = launch.get("provider", {}).get("name", "")
-                    vehicle = launch.get("vehicle", {}).get("name", "")
+                    provider = (
+                        launch.get("provider", {}).get("name", "Unknown")
+                    )
+                    vehicle = (
+                        launch.get("vehicle", {}).get("name", "Unknown Rocket")
+                    )
+
                     desc = (
                         f"Launch: {name} | Provider: {provider} | Vehicle:"
                         f" {vehicle}"
                     )
+                    launch_url = (
+                        f"https://www.rocketlaunch.live/launch/{launch_id}"
+                        if launch_id
+                        else f"https://www.rocketlaunch.live#{hash(name)}"
+                    )
+
                     matches.append({
                         "title": f"🚀 Space: {name}",
                         "description": desc[:280],
-                        "url": (
-                            "https://www.rocketlaunch.live#"
-                            f"{launch.get('id', name)}"
-                        ),
+                        "url": launch_url,
                         "color": 9807270,
                     })
     except Exception as e:
-        print(f"[SpaceBot] Error: {e}")
+        print(f"[SpaceBot] Error fetching launches: {e}")
+
     return matches
 
 
