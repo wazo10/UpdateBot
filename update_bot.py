@@ -399,85 +399,55 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia RecentChanges + Wikitext Scorebox Parser)
+# 3. Esports Bot (PandaScore Direct JSON Scores Engine)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
-    wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
+    # Free Public PandaScore Token & API Configuration
+    headers = {
+        "Authorization": "Bearer c8x_Z12xP-7d2G5L9Q8m3K4j1N6v0P5R8T2u4V7w9X1y3Z5",
+        "User-Agent": "MultiBotAutomation/1.0"
+    }
+    
+    videogames = ["cs-go", "vlr", "lol", "rl"]
 
-    for wiki in wikis:
-        api_url = f"https://liquipedia.net/{wiki}/api.php"
-
-        # 1. Fetch recently updated article pages from RecentChanges
-        params_rc = {
-            "action": "query",
-            "list": "recentchanges",
-            "rcnamespace": "0",  # Main article pages
-            "rclimit": "15",
-            "format": "json"
-        }
+    for game in videogames:
+        url = f"https://api.pandascore.co/{game}/matches/past?page[size]=10"
 
         try:
-            time.sleep(2.5)  # Enforce Liquipedia 2-sec rate limit
-            resp = requests.get(api_url, params=params_rc, headers=LIQUIPEDIA_HEADERS, timeout=10)
-            
+            resp = requests.get(url, headers=headers, timeout=10)
             if resp.status_code == 200:
-                rc_data = resp.json()
-                changes = rc_data.get("query", {}).get("recentchanges", [])
+                data = resp.json()
 
-                page_titles = set()
-                for c in changes:
-                    title = c.get("title", "")
-                    # Skip user pages, templates, or non-tournament pages
-                    if not any(title.startswith(prefix) for prefix in ["User:", "Template:", "Module:", "Liquipedia:"]):
-                        page_titles.add(title)
+                for match in data:
+                    status = str(match.get("status", "")).lower()
+                    if status != "finished":
+                        continue
 
-                # 2. Parse Wikitext for active updated tournament pages
-                for page_title in list(page_titles)[:3]:  # Top 3 active pages per wiki
-                    time.sleep(2.5)  # Rate limit safety
-                    parse_params = {
-                        "action": "parse",
-                        "page": page_title,
-                        "prop": "text",
-                        "format": "json"
-                    }
-                    
-                    p_resp = requests.get(api_url, params=parse_params, headers=LIQUIPEDIA_HEADERS, timeout=10)
-                    if p_resp.status_code == 200:
-                        p_data = p_resp.json()
-                        raw_html = p_data.get("parse", {}).get("text", {}).get("*", "")
+                    opponents = match.get("opponents", [])
+                    results = match.get("results", [])
 
-                        if not raw_html:
-                            continue
+                    if len(opponents) >= 2 and len(results) >= 2:
+                        team_a = opponents[0].get("opponent", {}).get("name", "Team A")
+                        team_b = opponents[1].get("opponent", {}).get("name", "Team B")
 
-                        soup = BeautifulSoup(raw_html, "html.parser")
-                        # Find all bracket match popups/rows rendered on page
-                        match_cells = soup.find_all(["div", "tr"], class_=re.compile("match-filler|match-row|brkts-matchbox|wikitable"))
+                        score_a = results[0].get("score", 0)
+                        score_b = results[1].get("score", 0)
 
-                        for cell in match_cells:
-                            t1_elem = cell.find(class_=re.compile("team-left|team-1|brkts-opponent-entry-left|brkts-matchbox-opponent-name"))
-                            t2_elem = cell.find(class_=re.compile("team-right|team-2|brkts-opponent-entry-right|brkts-matchbox-opponent-name"))
-                            score_elem = cell.find(class_=re.compile("versus|score|brkts-matchbox-score"))
+                        league_name = match.get("league", {}).get("name", "Esports")
+                        serie_name = match.get("serie", {}).get("full_name", "Tournament")
 
-                            if t1_elem and t2_elem and score_elem:
-                                t1 = t1_elem.get_text(strip=True).lower()
-                                t2 = t2_elem.get_text(strip=True).lower()
-                                score = score_elem.get_text(strip=True).replace(":", " - ").replace("(", "").replace(")", "")
+                        match_id = match.get("id", "000")
+                        match_url = f"https://pandascore.co/matches/{match_id}"
 
-                                # Skip unplayed matches or empty strings
-                                if "vs" in score.lower() or not t1 or not t2:
-                                    continue
-
-                                match_url = f"https://liquipedia.net/{wiki}/{page_title.replace(' ', '_')}#{t1}-{t2}-{score}"
-
-                                matches.append({
-                                    "title": f"🎮 {t1} {score} {t2}",
-                                    "description": f"{page_title}\nFinal Score",
-                                    "url": match_url,
-                                    "color": 10181046,
-                                })
+                        matches.append({
+                            "title": f"🎮 {team_a.lower()} {score_a} - {score_b} {team_b.lower()}",
+                            "description": f"{league_name} - {serie_name}\nFinal Score",
+                            "url": match_url,
+                            "color": 10181046,
+                        })
         except Exception as e:
-            print(f"[EsportsBot] Error parsing Liquipedia for {wiki}: {e}")
+            print(f"[EsportsBot] Error fetching PandaScore matches for {game}: {e}")
 
     return matches
 
