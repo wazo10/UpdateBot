@@ -96,3 +96,4 @@
 2026-08-23|https://www.espn.com/soccer/match/_/gameId/401879319/liverpool-newcastle-united
 2026-08-23|https://www.espn.com/soccer/match/_/gameId/401874930/juventus-frosinone
 2026-08-23|https://www.espn.com/soccer/match/_/gameId/401874946/lecce-venezia
+2026-08-23|https://www.espn.com/soccer/match/_/gameId/401882911/racing-santander-getafe
