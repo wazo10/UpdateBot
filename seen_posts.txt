@@ -91,3 +91,5 @@
 2026-08-23|https://www.espn.com/soccer/match/_/gameId/401879297/aston-villa-brighton-hove-albion
 2026-08-23|https://www.espn.com/soccer/match/_/gameId/401879320/afc-bournemouth-manchester-city
 2026-08-23|https://www.espn.com/soccer/match/_/gameId/401876493/lille-angers
+2026-08-23|https://www.espn.com/soccer/match/_/gameId/401882915/villarreal-atletico-madrid
+2026-08-23|https://www.espn.com/soccer/match/_/gameId/401876492/as-monaco-le-havre-ac
