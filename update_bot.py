@@ -397,53 +397,67 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia Structured Match Results Endpoint)
+# 3. Esports Bot (PandaScore Direct Match Results API Engine)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
-    wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
+    # Free/Public Pandascore Videogame Slugs
+    games = ["cs-go", "vlr", "lol", "rl"]
 
-    for wiki in wikis:
-        # Structured JSON endpoint for recently finished matches
-        api_url = f"https://liquipedia.net/{wiki}/api.php"
-        params = {
-            "action": "query",
-            "format": "json",
-            "list": "recentchanges",
-            "rclimit": "50",
-            "rcnamespace": "0",  # Main article namespace
-        }
-
-        headers = {
-            "User-Agent": (
-                "MultiBotAutomation/1.0 (https://github.com/wazo10;"
-                " bot@example.com)"
-            ),
-            "Accept-Encoding": "gzip",
-        }
+    for game in games:
+        # Fetch recently finished matches
+        url = f"https://api.pandascore.co/{game}/matches/past?page[size]=15"
 
         try:
-            resp = requests.get(api_url, params=params, headers=headers, timeout=10)
+            resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=10)
             if resp.status_code == 200:
-                data = resp.json()
-                changes = data.get("query", {}).get("recentchanges", [])
+                results = resp.json()
 
-                for change in changes:
-                    title = change.get("title", "")
-                    
-                    # Filter for match pages, tournaments, or EWC / Major pages
-                    title_lower = title.lower()
-                    if any(k in title_lower for k in ["esports world cup", "ewc", "major", "vct", "rlcs", "worlds", "masters"]):
-                        page_url = f"https://liquipedia.net/{wiki}/{title.replace(' ', '_')}"
-                        
+                for match in results:
+                    status = match.get("status", "").lower()
+                    if status != "finished":
+                        continue
+
+                    opponents = match.get("opponents", [])
+                    results_list = match.get("results", [])
+
+                    if len(opponents) >= 2 and len(results_list) >= 2:
+                        team_a = (
+                            opponents[0]
+                            .get("opponent", {})
+                            .get("name", "Team A")
+                        )
+                        team_b = (
+                            opponents[1]
+                            .get("opponent", {})
+                            .get("name", "Team B")
+                        )
+
+                        score_a = results_list[0].get("score", 0)
+                        score_b = results_list[1].get("score", 0)
+
+                        league_name = match.get("league", {}).get(
+                            "name", "Esports"
+                        )
+                        serie_name = match.get("serie", {}).get(
+                            "full_name", "Tournament"
+                        )
+
+                        # Generate unique match hash link
+                        match_id = match.get("id", "000")
+                        match_url = f"https://pandascore.co/matches/{match_id}"
+
                         matches.append({
-                            "title": f"🎮 Esports: {title}",
-                            "description": f"Liquipedia {wiki.capitalize()} Tournament Update",
-                            "url": page_url,
+                            "title": (
+                                f"🎮 {team_a.lower()} {score_a} - {score_b}"
+                                f" {team_b.lower()}"
+                            ),
+                            "description": f"{league_name} - {serie_name}\nFinal Score",
+                            "url": match_url,
                             "color": 10181046,
                         })
         except Exception as e:
-            print(f"[EsportsBot] Error fetching {wiki}: {e}")
+            print(f"[EsportsBot] Error fetching PandaScore matches for {game}: {e}")
 
     return matches
 
