@@ -97,3 +97,5 @@
 2026-08-23|https://www.espn.com/soccer/match/_/gameId/401874930/juventus-frosinone
 2026-08-23|https://www.espn.com/soccer/match/_/gameId/401874946/lecce-venezia
 2026-08-23|https://www.espn.com/soccer/match/_/gameId/401882911/racing-santander-getafe
+2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816641/cardinals-phillies
+2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816642/rays-orioles
