@@ -397,54 +397,73 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia Cargo Direct Score Query Engine)
+# 3. Esports Bot (Liquipedia Cargo 72-Hour Window + Unique Match IDs)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
-    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    now_utc = datetime.now(timezone.utc)
+
+    # 72-hour window dates for SQL query
+    d_yesterday = (now_utc - timedelta(days=1)).strftime("%Y-%m-%d")
+    d_today = now_utc.strftime("%Y-%m-%d")
+    d_tomorrow = (now_utc + timedelta(days=1)).strftime("%Y-%m-%d")
+
     wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
     for wiki in wikis:
         api_url = f"https://liquipedia.net/{wiki}/api.php"
-        
-        # Cargo SQL Query targeting Match2 schema directly for completed matches
+
         params = {
             "action": "cargoquery",
             "tables": "Match2",
-            "fields": "opponent1, opponent2, opponent1score, opponent2score, tournament, matchgroup, page, winner",
-            "where": f"date LIKE '{today_str}%' AND winner != ''",
+            "fields": (
+                "match2id, opponent1, opponent2, opponent1score,"
+                " opponent2score, tournament, matchgroup, page, winner, date"
+            ),
+            "where": (
+                f"(date LIKE '{d_yesterday}%' OR date LIKE '{d_today}%' OR date"
+                f" LIKE '{d_tomorrow}%') AND (winner != '' OR finished = 1)"
+            ),
             "order_by": "date DESC",
-            "limit": "30",
-            "format": "json"
+            "limit": "50",
+            "format": "json",
         }
 
         try:
-            resp = requests.get(api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10)
+            resp = requests.get(
+                api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10
+            )
             if resp.status_code == 200:
                 data = resp.json()
                 results = data.get("cargoquery", [])
 
                 for entry in results:
                     item = entry.get("title", {})
-                    
-                    team1 = item.get("opponent1", "").lower()
-                    team2 = item.get("opponent2", "").lower()
-                    score1 = item.get("opponent1score", "0")
-                    score2 = item.get("opponent2score", "0")
+
+                    team1 = str(item.get("opponent1", "")).lower().strip()
+                    team2 = str(item.get("opponent2", "")).lower().strip()
+                    score1 = str(item.get("opponent1score", "0"))
+                    score2 = str(item.get("opponent2score", "0"))
                     tournament = item.get("tournament", "Tournament")
                     page_clean = item.get("page", "")
+                    match_id = item.get("match2id", "000")
 
-                    if team1 and team2:
-                        match_url = f"https://liquipedia.net/{wiki}/{page_clean}#{team1}-{team2}"
+                    if team1 and team2 and (score1 != "0" or score2 != "0"):
+                        # Unique Match Hash prevents seen_posts.txt drops across group/playoff stages
+                        match_url = f"https://liquipedia.net/{wiki}/{page_clean}#match-{match_id}"
 
                         matches.append({
-                            "title": f"🎮 {team1} {score1} - {score2} {team2}",
+                            "title": (
+                                f"🎮 {team1} {score1} - {score2} {team2}"
+                            ),
                             "description": f"{tournament}\nFinal Score",
                             "url": match_url,
                             "color": 10181046,
                         })
         except Exception as e:
-            print(f"[EsportsBot] Error querying Liquipedia Cargo for {wiki}: {e}")
+            print(
+                f"[EsportsBot] Error querying Liquipedia Cargo for {wiki}: {e}"
+            )
 
     return matches
 
@@ -519,11 +538,12 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot (Launch Library 2 Indestructible REST API Engine)
+# 6. Space Bot (24-Hour Strict Launch Window + Human Web Links)
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
-    url = "https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=5"
+    url = "https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=10"
+    now_utc = datetime.now(timezone.utc)
 
     try:
         resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=10)
@@ -533,18 +553,39 @@ def fetch_space_updates():
 
             for launch in launches:
                 name = launch.get("name", "Space Launch")
-                net_time = launch.get("net", "")
-                mission = launch.get("mission", {}) or {}
-                description = mission.get("description", "Orbital rocket launch payload mission.")
+                net_str = launch.get("net", "")
 
-                launch_url = launch.get("url") or "https://thespacedevs.com/"
+                if net_str:
+                    # Parse ISO timestamp and calculate time until launch
+                    launch_dt = datetime.fromisoformat(
+                        net_str.replace("Z", "+00:00")
+                    )
+                    time_diff = launch_dt - now_utc
 
-                matches.append({
-                    "title": f"🚀 Space: {name}",
-                    "description": f"NET Launch Window: {net_time}\n{description[:250]}",
-                    "url": launch_url,
-                    "color": 9807270,
-                })
+                    # Strict Filter: Only launches within the next 24 hours (or past 2 hours)
+                    if timedelta(hours=-2) <= time_diff <= timedelta(hours=24):
+                        mission = launch.get("mission", {}) or {}
+                        desc = mission.get(
+                            "description", "Scheduled orbital rocket launch."
+                        )
+
+                        # Clean web link instead of raw API URL
+                        launch_slug = launch.get("slug", "")
+                        web_url = (
+                            f"https://nextspaceflight.com/launches/details/{launch.get('id')}"
+                            if launch.get("id")
+                            else "https://nextspaceflight.com/"
+                        )
+
+                        matches.append({
+                            "title": f"🚀 Space: {name}",
+                            "description": (
+                                f"NET Launch:"
+                                f" {launch_dt.strftime('%b %d, %H:%M UTC')}\n{desc[:250]}"
+                            ),
+                            "url": web_url,
+                            "color": 9807270,
+                        })
     except Exception as e:
         print(f"[SpaceBot] Error querying Launch Library API: {e}")
 
