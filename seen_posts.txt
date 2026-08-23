@@ -109,3 +109,4 @@
 2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816648/tigers-royals
 2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816645/angels-rangers
 2026-08-23|https://www.espn.com/soccer/match/_/gameId/401882913/barcelona-elche
+2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816640/giants-red-sox
