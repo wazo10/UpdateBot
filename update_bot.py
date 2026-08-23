@@ -5,6 +5,7 @@ import re
 from bs4 import BeautifulSoup
 import feedparser
 import requests
+import json
 
 # ---------------------------------------------------------------------------
 # Environment Variables & Configurations
@@ -600,6 +601,79 @@ def fetch_space_updates():
 
     return matches
 
+LIQUIPEDIA_HEADERS = {
+    "User-Agent": (
+        "MultiBotAutomation/1.0 (https://github.com/wazo10; bot@example.com)"
+    ),
+    "Accept-Encoding": "gzip",
+}
+
+def debug_liquipedia():
+    print("=== 1. DEBUGGING CARGO MATCH2 TABLE ===")
+    api_url = "https://liquipedia.net/counterstrike/api.php"
+    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+    # Raw Query on Match2
+    params_cargo = {
+        "action": "cargoquery",
+        "tables": "Match2",
+        "fields": "match2id, opponent1, opponent2, opponent1score, opponent2score, tournament, page, winner, date",
+        "limit": "5",
+        "format": "json"
+    }
+
+    try:
+        r = requests.get(api_url, params=params_cargo, headers=LIQUIPEDIA_HEADERS, timeout=10)
+        print("Cargo Raw Response Status:", r.status_code)
+        if r.status_code == 200:
+            data = r.json()
+            print("Cargo Results Count:", len(data.get("cargoquery", [])))
+            print("Cargo First 2 Sample Entries:")
+            print(json.dumps(data.get("cargoquery", [])[:2], indent=2))
+    except Exception as e:
+        print("Cargo Query Failed:", e)
+
+    print("\n=== 2. DEBUGGING MATCH2OPPONENT JOIN ===")
+    params_join = {
+        "action": "cargoquery",
+        "tables": "Match2=m, Match2opponent=m2o1, Match2opponent=m2o2",
+        "join_on": "m.match2id=m2o1.match2id AND m2o1.match2opponentid='1', m.match2id=m2o2.match2id AND m2o2.match2opponentid='2'",
+        "fields": "m.match2id, m.page, m.tournament, m2o1.name=team1, m2o1.score=score1, m2o2.name=team2, m2o2.score=score2",
+        "limit": "5",
+        "format": "json"
+    }
+
+    try:
+        r = requests.get(api_url, params=params_join, headers=LIQUIPEDIA_HEADERS, timeout=10)
+        print("JOIN Response Status:", r.status_code)
+        if r.status_code == 200:
+            data = r.json()
+            print("JOIN Results Count:", len(data.get("cargoquery", [])))
+            print("JOIN First 2 Sample Entries:")
+            print(json.dumps(data.get("cargoquery", [])[:2], indent=2))
+    except Exception as e:
+        print("JOIN Query Failed:", e)
+
+    print("\n=== 3. DEBUGGING RECENT CHANGES API ===")
+    params_rc = {
+        "action": "query",
+        "list": "recentchanges",
+        "rcnamespace": "0",
+        "rclimit": "10",
+        "format": "json"
+    }
+
+    try:
+        r = requests.get(api_url, params=params_rc, headers=LIQUIPEDIA_HEADERS, timeout=10)
+        print("RecentChanges Response Status:", r.status_code)
+        if r.status_code == 200:
+            data = r.json()
+            changes = data.get("query", {}).get("recentchanges", [])
+            print("RecentChanges Count:", len(changes))
+            for c in changes[:5]:
+                print(f" - Title: {c.get('title')}")
+    except Exception as e:
+        print("RecentChanges Failed:", e)
 
 # ---------------------------------------------------------------------------
 # Main Workflow Execution Loop
@@ -627,3 +701,4 @@ if __name__ == "__main__":
     send_discord_webhooks(
         WEBHOOKS["space"], fetch_space_updates(), "SpaceBot", seen_urls
     )
+    debug_liquipedia()
