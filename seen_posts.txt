@@ -74,3 +74,12 @@
 2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816627/rays-orioles
 2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816630/angels-rangers
 2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816633/tigers-royals
+2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816631/athletics-astros
+2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816634/mets-white-sox
+2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816625/giants-red-sox
+2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816636/cubs-mariners
+2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816639/pirates-dodgers
+2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816635/guardians-rockies
+2026-08-23|https://www.espn.com/nfl/game/_/gameId/401873289/bears-bengals
+2026-08-23|https://www.espn.com/nfl/game/_/gameId/401873293/eagles-patriots
+2026-08-23|https://www.espn.com/nfl/game/_/gameId/401873296/chiefs-buccaneers
