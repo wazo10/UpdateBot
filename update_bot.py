@@ -307,7 +307,7 @@ def process_tech_feeds():
 
 
 # ---------------------------------------------------------------------------
-# 2. Sports Bot (Universal Multi-League ESPN API Engine)
+# 2. Sports Bot (No Title Emojis + Clean League Description)
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     matches = []
@@ -318,7 +318,6 @@ def fetch_sports_updates():
         (now_utc + timedelta(days=1)).strftime("%Y%m%d"),
     ]
 
-    # Target Sports/Leagues on ESPN Scoreboard Endpoint
     espn_endpoints = [
         ("basketball", "nba"),
         ("hockey", "nhl"),
@@ -345,6 +344,8 @@ def fetch_sports_updates():
                 resp = requests.get(url, timeout=10)
                 if resp.status_code == 200:
                     data = resp.json()
+                    league_display_name = data.get("leagues", [{}])[0].get("name", league.upper())
+
                     for event in data.get("events", []):
                         status = (
                             event.get("status", {})
@@ -356,7 +357,6 @@ def fetch_sports_updates():
                             competitors = comp.get("competitors", [])
 
                             if sport == "racing":
-                                # F1 Podium Finishers
                                 drivers = sorted(
                                     competitors,
                                     key=lambda x: int(x.get("order", 99)),
@@ -367,8 +367,8 @@ def fetch_sports_updates():
                                     p3 = drivers[2].get("athlete", {}).get("displayName", "P3")
 
                                     matches.append({
-                                        "title": f"🏎️ F1: 1. {p1} | 2. {p2} | 3. {p3}",
-                                        "description": f"{event.get('name')}\nFinal Podium",
+                                        "title": f"F1: 1. {p1} | 2. {p2} | 3. {p3}",
+                                        "description": league_display_name,
                                         "url": event.get("links", [{}])[0].get("href", "https://espn.com/f1/"),
                                         "color": 15105570,
                                     })
@@ -385,8 +385,8 @@ def fetch_sports_updates():
                                 )
 
                                 matches.append({
-                                    "title": f"⚽ {team_a} {score_a} - {score_b} {team_b}",
-                                    "description": f"{event.get('name', league.upper())}\nFinal Score",
+                                    "title": f"{team_a} {score_a} - {score_b} {team_b}",
+                                    "description": league_display_name,
                                     "url": game_link,
                                     "color": 15105570,
                                 })
@@ -397,67 +397,54 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (PandaScore Direct Match Results API Engine)
+# 3. Esports Bot (Liquipedia Cargo Direct Score Query Engine)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
-    # Free/Public Pandascore Videogame Slugs
-    games = ["cs-go", "vlr", "lol", "rl"]
+    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
-    for game in games:
-        # Fetch recently finished matches
-        url = f"https://api.pandascore.co/{game}/matches/past?page[size]=15"
+    for wiki in wikis:
+        api_url = f"https://liquipedia.net/{wiki}/api.php"
+        
+        # Cargo SQL Query targeting Match2 schema directly for completed matches
+        params = {
+            "action": "cargoquery",
+            "tables": "Match2",
+            "fields": "opponent1, opponent2, opponent1score, opponent2score, tournament, matchgroup, page, winner",
+            "where": f"date LIKE '{today_str}%' AND winner != ''",
+            "order_by": "date DESC",
+            "limit": "30",
+            "format": "json"
+        }
 
         try:
-            resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=10)
+            resp = requests.get(api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10)
             if resp.status_code == 200:
-                results = resp.json()
+                data = resp.json()
+                results = data.get("cargoquery", [])
 
-                for match in results:
-                    status = match.get("status", "").lower()
-                    if status != "finished":
-                        continue
+                for entry in results:
+                    item = entry.get("title", {})
+                    
+                    team1 = item.get("opponent1", "").lower()
+                    team2 = item.get("opponent2", "").lower()
+                    score1 = item.get("opponent1score", "0")
+                    score2 = item.get("opponent2score", "0")
+                    tournament = item.get("tournament", "Tournament")
+                    page_clean = item.get("page", "")
 
-                    opponents = match.get("opponents", [])
-                    results_list = match.get("results", [])
-
-                    if len(opponents) >= 2 and len(results_list) >= 2:
-                        team_a = (
-                            opponents[0]
-                            .get("opponent", {})
-                            .get("name", "Team A")
-                        )
-                        team_b = (
-                            opponents[1]
-                            .get("opponent", {})
-                            .get("name", "Team B")
-                        )
-
-                        score_a = results_list[0].get("score", 0)
-                        score_b = results_list[1].get("score", 0)
-
-                        league_name = match.get("league", {}).get(
-                            "name", "Esports"
-                        )
-                        serie_name = match.get("serie", {}).get(
-                            "full_name", "Tournament"
-                        )
-
-                        # Generate unique match hash link
-                        match_id = match.get("id", "000")
-                        match_url = f"https://pandascore.co/matches/{match_id}"
+                    if team1 and team2:
+                        match_url = f"https://liquipedia.net/{wiki}/{page_clean}#{team1}-{team2}"
 
                         matches.append({
-                            "title": (
-                                f"🎮 {team_a.lower()} {score_a} - {score_b}"
-                                f" {team_b.lower()}"
-                            ),
-                            "description": f"{league_name} - {serie_name}\nFinal Score",
+                            "title": f"🎮 {team1} {score1} - {score2} {team2}",
+                            "description": f"{tournament}\nFinal Score",
                             "url": match_url,
                             "color": 10181046,
                         })
         except Exception as e:
-            print(f"[EsportsBot] Error fetching PandaScore matches for {game}: {e}")
+            print(f"[EsportsBot] Error querying Liquipedia Cargo for {wiki}: {e}")
 
     return matches
 
