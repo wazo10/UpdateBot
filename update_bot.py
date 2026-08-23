@@ -397,73 +397,82 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia Cargo 72-Hour Window + Unique Match IDs)
+# 3. Esports Bot (Liquipedia DOM Scorebox Engine)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
-    now_utc = datetime.now(timezone.utc)
-
-    # 72-hour window dates for SQL query
-    d_yesterday = (now_utc - timedelta(days=1)).strftime("%Y-%m-%d")
-    d_today = now_utc.strftime("%Y-%m-%d")
-    d_tomorrow = (now_utc + timedelta(days=1)).strftime("%Y-%m-%d")
-
     wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
     for wiki in wikis:
+        # Target main event & recent tournament pages on Liquipedia
         api_url = f"https://liquipedia.net/{wiki}/api.php"
-
+        
+        # Query recent page revisions to grab live tournament bracket updates
         params = {
-            "action": "cargoquery",
-            "tables": "Match2",
-            "fields": (
-                "match2id, opponent1, opponent2, opponent1score,"
-                " opponent2score, tournament, matchgroup, page, winner, date"
-            ),
-            "where": (
-                f"(date LIKE '{d_yesterday}%' OR date LIKE '{d_today}%' OR date"
-                f" LIKE '{d_tomorrow}%') AND (winner != '' OR finished = 1)"
-            ),
-            "order_by": "date DESC",
-            "limit": "50",
-            "format": "json",
+            "action": "query",
+            "list": "recentchanges",
+            "rcnamespace": "0",
+            "rclimit": "30",
+            "format": "json"
         }
 
         try:
-            resp = requests.get(
-                api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10
-            )
+            resp = requests.get(api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10)
             if resp.status_code == 200:
                 data = resp.json()
-                results = data.get("cargoquery", [])
+                changes = data.get("query", {}).get("recentchanges", [])
 
-                for entry in results:
-                    item = entry.get("title", {})
+                page_titles = set()
+                for change in changes:
+                    title = change.get("title", "")
+                    title_lower = title.lower()
+                    if any(k in title_lower for k in ["esports_world_cup", "ewc", "major", "vct", "rlcs", "worlds", "masters", "2026"]):
+                        page_titles.add(title)
 
-                    team1 = str(item.get("opponent1", "")).lower().strip()
-                    team2 = str(item.get("opponent2", "")).lower().strip()
-                    score1 = str(item.get("opponent1score", "0"))
-                    score2 = str(item.get("opponent2score", "0"))
-                    tournament = item.get("tournament", "Tournament")
-                    page_clean = item.get("page", "")
-                    match_id = item.get("match2id", "000")
+                # Fetch parsed HTML for active tournament pages
+                for page_title in list(page_titles)[:5]:
+                    parse_params = {
+                        "action": "parse",
+                        "page": page_title,
+                        "prop": "text",
+                        "format": "json"
+                    }
+                    parse_resp = requests.get(api_url, params=parse_params, headers=LIQUIPEDIA_HEADERS, timeout=10)
+                    if parse_resp.status_code == 200:
+                        parse_data = parse_resp.json()
+                        raw_html = parse_data.get("parse", {}).get("text", {}).get("*", "")
+                        
+                        if not raw_html:
+                            continue
 
-                    if team1 and team2 and (score1 != "0" or score2 != "0"):
-                        # Unique Match Hash prevents seen_posts.txt drops across group/playoff stages
-                        match_url = f"https://liquipedia.net/{wiki}/{page_clean}#match-{match_id}"
+                        soup = BeautifulSoup(raw_html, "html.parser")
+                        # Find all completed bracket match popups/cells
+                        match_boxes = soup.find_all(["div", "tr"], class_=re.compile("bracket-game|match-row|brkts-matchbox"))
 
-                        matches.append({
-                            "title": (
-                                f"🎮 {team1} {score1} - {score2} {team2}"
-                            ),
-                            "description": f"{tournament}\nFinal Score",
-                            "url": match_url,
-                            "color": 10181046,
-                        })
+                        for box in match_boxes:
+                            t1_elem = box.find(class_=re.compile("team-left|brkts-opponent-entry-left|brkts-matchbox-opponent-name"))
+                            t2_elem = box.find(class_=re.compile("team-right|brkts-opponent-entry-right|brkts-matchbox-opponent-name"))
+                            score_elem = box.find(class_=re.compile("versus|brkts-matchbox-score|score"))
+
+                            if t1_elem and t2_elem and score_elem:
+                                t1 = t1_elem.get_text(strip=True).lower()
+                                t2 = t2_elem.get_text(strip=True).lower()
+                                score = score_elem.get_text(strip=True).replace(":", " - ")
+
+                                # Ignore unplayed matches ("vs") or incomplete entries
+                                if "vs" in score.lower() or not t1 or not t2:
+                                    continue
+
+                                match_url = f"https://liquipedia.net/{wiki}/{page_title.replace(' ', '_')}#{t1}-{t2}-{score}"
+
+                                matches.append({
+                                    "title": f"🎮 {t1} {score} {t2}",
+                                    "description": f"{page_title}\nFinal Score",
+                                    "url": match_url,
+                                    "color": 10181046,
+                                })
         except Exception as e:
-            print(
-                f"[EsportsBot] Error querying Liquipedia Cargo for {wiki}: {e}"
-            )
+            print(f"[EsportsBot] Error parsing Liquipedia scoreboxes for {wiki}: {e}")
 
     return matches
 
