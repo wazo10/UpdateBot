@@ -88,3 +88,6 @@
 2026-08-23|https://www.espn.com/nfl/game/_/gameId/401874101/cowboys-cardinals
 2026-08-23|https://ll.thespacedevs.com/2.2.0/launch/a57aed97-b94f-42e1-905e-9421dbd96ac8/
 2026-08-23|https://ll.thespacedevs.com/2.2.0/launch/521f3a1c-f977-4306-9b7f-495858719adf/
+2026-08-23|https://www.espn.com/soccer/match/_/gameId/401879297/aston-villa-brighton-hove-albion
+2026-08-23|https://www.espn.com/soccer/match/_/gameId/401879320/afc-bournemouth-manchester-city
+2026-08-23|https://www.espn.com/soccer/match/_/gameId/401876493/lille-angers
