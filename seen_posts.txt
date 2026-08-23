@@ -93,3 +93,4 @@
 2026-08-23|https://www.espn.com/soccer/match/_/gameId/401876493/lille-angers
 2026-08-23|https://www.espn.com/soccer/match/_/gameId/401882915/villarreal-atletico-madrid
 2026-08-23|https://www.espn.com/soccer/match/_/gameId/401876492/as-monaco-le-havre-ac
+2026-08-23|https://www.espn.com/soccer/match/_/gameId/401879319/liverpool-newcastle-united
