@@ -594,6 +594,165 @@ def fetch_space_updates():
     return matches
 
 
+LIQUIPEDIA_HEADERS = {
+    "User-Agent": (
+        "MultiBotAutomation/1.0 (https://github.com/wazo10; bot@example.com)"
+    ),
+    "Accept-Encoding": "gzip",
+}
+
+
+def send_debug_webhook(title, description, url):
+    if not WEBHOOK_ESPORTS:
+        print("[DEBUG] NO WEBHOOK_ESPORTS SECRET FOUND IN ENVIRONMENT!")
+        return False
+
+    payload = {
+        "username": "EsportsBot-Debug",
+        "embeds": [{
+            "title": title,
+            "description": description,
+            "url": url,
+            "color": 10181046,
+        }],
+    }
+    headers = {"Content-Type": "application/json"}
+    resp = requests.post(WEBHOOK_ESPORTS, json=payload, headers=headers)
+    print(f"[DEBUG DISCORD POST] Status Code: {resp.status_code}")
+    return resp.status_code in [200, 204]
+
+
+def test_esports_pipeline():
+    print("==================================================")
+    print("      ESPORTS BOT MULTI-METHOD DIAGNOSTIC         ")
+    print("==================================================")
+
+    wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
+
+    # ------------------------------------------------------------------
+    # METHOD 1: Liquipedia Cargo SQL Query (No Date Restrictions)
+    # ------------------------------------------------------------------
+    print("\n[METHOD 1] Testing Liquipedia Cargo SQL (Broad Query)...")
+    for wiki in wikis:
+        api_url = f"https://liquipedia.net/{wiki}/api.php"
+        params = {
+            "action": "cargoquery",
+            "tables": "Match2=m, Match2opponent=m2o1, Match2opponent=m2o2",
+            "join_on": (
+                "m.match2id=m2o1.match2id AND m2o1.match2opponentid='1',"
+                " m.match2id=m2o2.match2id AND m2o2.match2opponentid='2'"
+            ),
+            "fields": (
+                "m.match2id, m.page, m.tournament, m2o1.name=team1,"
+                " m2o1.score=score1, m2o2.name=team2, m2o2.score=score2"
+            ),
+            "limit": "10",
+            "format": "json",
+        }
+        try:
+            time.sleep(2.5)
+            r = requests.get(
+                api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10
+            )
+            print(f" -> {wiki} Cargo Status: {r.status_code}")
+            if r.status_code == 200:
+                data = r.json().get("cargoquery", [])
+                print(f"    Found {len(data)} raw rows.")
+                for entry in data:
+                    item = entry.get("title", {})
+                    t1 = str(item.get("team1", "")).lower().strip()
+                    t2 = str(item.get("team2", "")).lower().strip()
+                    s1 = str(item.get("score1", "0"))
+                    s2 = str(item.get("score2", "0"))
+                    page = item.get("page", "")
+
+                    if t1 and t2 and (s1 != "0" or s2 != "0"):
+                        title = f"🎮 {t1} {s1} - {s2} {t2}"
+                        desc = (
+                            f"{item.get('tournament', wiki.capitalize())}\nFinal"
+                            " Score (Cargo)"
+                        )
+                        url = f"https://liquipedia.net/{wiki}/{page}"
+                        print(f" SUCCESS (Cargo): {title}")
+                        send_debug_webhook(title, desc, url)
+                        return
+        except Exception as e:
+            print(f"    Cargo Error on {wiki}: {e}")
+
+    # ------------------------------------------------------------------
+    # METHOD 2: Liquipedia Atom Feed regex scan for finished scores
+    # ------------------------------------------------------------------
+    print("\n[METHOD 2] Testing Liquipedia Atom Feed Parsing...")
+    for wiki in wikis:
+        feed_url = f"https://liquipedia.net/{wiki}/index.php?title=Special:RecentChanges&feed=atom"
+        try:
+            feed = feedparser.parse(feed_url)
+            print(f" -> {wiki} Atom Feed Entries: {len(feed.entries)}")
+            for entry in feed.entries:
+                text = f"{entry.get('title', '')} {entry.get('summary', '')}"
+                # Pattern: "TeamA 2 - 1 TeamB" or "TeamA 1:2 TeamB"
+                match = re.search(
+                    r"([A-Za-z0-9\s]{2,15})\s+([0-4])\s*[-:]\s*([0-4])\s+([A-Za-z0-9\s]{2,15})",
+                    text,
+                )
+                if match:
+                    t1 = match.group(1).strip().lower()
+                    s1 = match.group(2)
+                    s2 = match.group(3)
+                    t2 = match.group(4).strip().lower()
+                    if not any(
+                        x in t1 or x in t2 for x in ["user", "template", "talk"]
+                    ):
+                        title = f"🎮 {t1} {s1} - {s2} {t2}"
+                        desc = (
+                            f"{wiki.capitalize()} Match Result\nFinal Score"
+                            " (Atom)"
+                        )
+                        url = entry.get(
+                            "link", f"https://liquipedia.net/{wiki}/"
+                        )
+                        print(f" SUCCESS (Atom): {title}")
+                        send_debug_webhook(title, desc, url)
+                        return
+        except Exception as e:
+            print(f"    Atom Error on {wiki}: {e}")
+
+    # ------------------------------------------------------------------
+    # METHOD 3: Strafe / Open Esports Community Endpoint Fallback
+    # ------------------------------------------------------------------
+    print("\n[METHOD 3] Testing Open Esports REST Mirrors...")
+    public_endpoints = [
+        "https://api.stratz.com/api/v1/match",
+        "https://vlrggapi.vercel.app/match?q=results",
+    ]
+
+    for ep in public_endpoints:
+        try:
+            r = requests.get(ep, timeout=10)
+            print(f" -> Endpoint {ep} Status: {r.status_code}")
+            if r.status_code == 200:
+                data = r.json()
+                segments = data.get("data", {}).get("segments", [])
+                if segments:
+                    item = segments[0]
+                    t1 = item.get("teams", [{}])[0].get("name", "Team A")
+                    t2 = item.get("teams", [{}])[1].get("name", "Team B")
+                    s1 = item.get("teams", [{}])[0].get("score", "0")
+                    s2 = item.get("teams", [{}])[1].get("score", "0")
+                    title = f"🎮 {t1.lower()} {s1} - {s2} {t2.lower()}"
+                    desc = "Valorant Champions Tour\nFinal Score (VLR Endpoint)"
+                    url = item.get("url", "https://vlr.gg")
+                    print(f" SUCCESS (VLR Endpoint): {title}")
+                    send_debug_webhook(title, desc, url)
+                    return
+        except Exception as e:
+            print(f"    REST Endpoint Error: {e}")
+
+    print(
+        "\n[DIAGNOSTIC COMPLETE] All direct attempts logged above. Check"
+        " output."
+    )
+
 # ---------------------------------------------------------------------------
 # Main Execution Loop
 # ---------------------------------------------------------------------------
@@ -620,3 +779,4 @@ if __name__ == "__main__":
     send_discord_webhooks(
         WEBHOOKS["space"], fetch_space_updates(), "SpaceBot", seen_urls
     )
+    test_esports_pipeline()
