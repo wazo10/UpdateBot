@@ -165,7 +165,7 @@ def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls):
 
 
 # ---------------------------------------------------------------------------
-# 1. Tech Bot
+# 1. Tech Bot (Strict Consumer Hardware Filtering)
 # ---------------------------------------------------------------------------
 TECH_FEEDS = [
     "https://newsroom.apple.com/rss-feed.rss",
@@ -187,6 +187,8 @@ TECH_FEEDS = [
 
 def is_consumer_hardware(title, summary):
     text = html.unescape(f"{title} {summary}").lower()
+    
+    # Strict Hardware Product Terms
     hardware_targets = [
         "macbook",
         "core ultra",
@@ -195,48 +197,27 @@ def is_consumer_hardware(title, summary):
         "snapdragon",
         "geforce rtx",
         "geforce gtx",
-        "rtx",
+        "rtx 50",
+        "rtx 40",
         "razer blade",
-        "titan",
-        "stealth",
-        "raider",
-        "crosshair",
-        "cyborg",
-        "vector",
-        "pulse",
-        "katana",
-        "prestige",
-        "rog",
-        "zephyrus",
-        "strix",
-        "tuf",
-        "zenbook",
-        "vivobook",
-        "proart",
-        "legion",
-        "loq",
+        "rog zephyrus",
+        "rog strix",
+        "tuf gaming",
         "thinkpad",
-        "yoga",
         "alienware",
-        "xps",
-        "inspiron",
-        "latitude",
-        "omen",
-        "omnibook",
-        "victus",
-        "envy",
-        "surface",
-        "galaxy book",
-        "acer predator",
-        "swift",
-        "nitro",
-        "framework",
-        "laptop",
-        "robot",
-        "robotics",
+        "xps 13",
+        "xps 14",
+        "xps 16",
+        "framework laptop",
+        "gaming laptop",
     ]
 
+    # Exclude IT, Enterprise, Security, and Firmware Blog Spam
     exclude_terms = [
+        "firmware",
+        "cybersecurity",
+        "endpoint resilience",
+        "security threat",
         "geforce now",
         "stock offering",
         "public offering",
@@ -253,27 +234,23 @@ def is_consumer_hardware(title, summary):
         "driver",
         "drivers",
         "game ready",
-        "browser support",
         "patch",
         "update",
         "beta",
         "podcast",
-        "leaders",
         "survey",
         "daas",
         "truscale",
         "certification",
-        "calm tech",
         "sustainability",
         "partner",
-        "red dot",
         "award",
         "awards",
-        "deep dive",
         "repairable",
         "services",
         "growth",
-        "ecosystem",
+        "cloud",
+        "datacenter",
     ]
 
     if any(term in text for term in exclude_terms):
@@ -315,7 +292,7 @@ def process_tech_feeds():
 
 
 # ---------------------------------------------------------------------------
-# 2. Sports Bot (No Emojis Title + Clean League Name Line 2)
+# 2. Sports Bot (No Title Emojis + Clean Official League Name Line 2)
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     matches = []
@@ -405,60 +382,54 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (LiquipediaDB Native LPDB API Query)
+# 3. Esports Bot (Liquipedia Match Ticker HTML DOM Parser)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
     wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
     for wiki in wikis:
-        api_url = f"https://liquipedia.net/{wiki}/api.php"
-
-        # LPDB (LiquipediaDB) Direct API Query for finished matches
-        params = {
-            "action": "lpdb",
-            "query": "match",
-            "conditions": "[[finished::1]]",
-            "order": "date desc",
-            "limit": "20",
-            "format": "json"
-        }
+        # Fetch rendered HTML directly from main Liquipedia page for active match scores
+        url = f"https://liquipedia.net/{wiki}/Main_Page"
 
         try:
-            time.sleep(2.5)  # Enforce 2.5s rate limit per wiki
-            resp = requests.get(api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10)
-
+            time.sleep(2.5)  # Enforce Liquipedia rate limit
+            resp = requests.get(url, headers=LIQUIPEDIA_HEADERS, timeout=10)
             if resp.status_code == 200:
-                data = resp.json()
+                soup = BeautifulSoup(resp.text, "html.parser")
+                
+                # Target all active and completed match rows
+                match_rows = soup.find_all(["tr", "div"], class_=re.compile("match-filler|match-row|infobox_matches_content|brkts-matchbox"))
 
-                # Handle dict or array return schema
-                match_records = data.get("return", []) if isinstance(data, dict) else data
+                for row in match_rows:
+                    t1_elem = row.find(class_=re.compile("team-left|team-1|brkts-opponent-entry-left"))
+                    t2_elem = row.find(class_=re.compile("team-right|team-2|brkts-opponent-entry-right"))
+                    score_elem = row.find(class_=re.compile("versus|score|brkts-matchbox-score"))
 
-                for item in match_records:
-                    if not isinstance(item, dict):
-                        continue
+                    if t1_elem and t2_elem and score_elem:
+                        t1 = t1_elem.get_text(strip=True).lower()
+                        t2 = t2_elem.get_text(strip=True).lower()
+                        score = score_elem.get_text(strip=True).replace(":", " - ").replace("(", "").replace(")", "")
 
-                    t1 = str(item.get("opponent1", "")).lower().strip()
-                    t2 = str(item.get("opponent2", "")).lower().strip()
-                    s1 = str(item.get("opponent1score", "0"))
-                    s2 = str(item.get("opponent2score", "0"))
-                    tournament = item.get("tournament", wiki.capitalize())
-                    page = item.get("pagename", "")
-                    match_id = item.get("match2id", "000")
+                        # Exclude unplayed games ("vs")
+                        if "vs" in score.lower() or not t1 or not t2:
+                            continue
 
-                    if t1 and t2 and (s1 != "0" or s2 != "0"):
-                        match_url = f"https://liquipedia.net/{wiki}/{page}#match-{match_id}"
+                        link_elem = row.find("a", href=True)
+                        match_url = (
+                            f"https://liquipedia.net{link_elem['href']}"
+                            if link_elem
+                            else f"https://liquipedia.net/{wiki}/Main_Page#{t1}-{t2}"
+                        )
 
                         matches.append({
-                            "title": f"🎮 {t1} {s1} - {s2} {t2}",
-                            "description": f"{tournament}\nFinal Score",
+                            "title": f"🎮 {t1} {score} {t2}",
+                            "description": f"Liquipedia {wiki.capitalize()} Match Result",
                             "url": match_url,
                             "color": 10181046,
                         })
-            else:
-                print(f"[EsportsBot] LiquipediaDB returned HTTP {resp.status_code} for {wiki}")
         except Exception as e:
-            print(f"[EsportsBot] Error querying LPDB for {wiki}: {e}")
+            print(f"[EsportsBot] Error parsing Liquipedia Main_Page for {wiki}: {e}")
 
     return matches
 
