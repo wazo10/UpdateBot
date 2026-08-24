@@ -399,55 +399,67 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (PandaScore Direct JSON Scores Engine)
+# 3. Esports Bot (Liquipedia Match Ticker RSS/Atom Engine)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
-    # Free Public PandaScore Token & API Configuration
-    headers = {
-        "Authorization": "Bearer c8x_Z12xP-7d2G5L9Q8m3K4j1N6v0P5R8T2u4V7w9X1y3Z5",
-        "User-Agent": "MultiBotAutomation/1.0"
-    }
-    
-    videogames = ["cs-go", "vlr", "lol", "rl"]
+    wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
-    for game in videogames:
-        url = f"https://api.pandascore.co/{game}/matches/past?page[size]=10"
+    for wiki in wikis:
+        # Liquipedia's public match ticker RSS feed
+        feed_url = (
+            f"https://liquipedia.net/{wiki}/index.php?title=Special:RecentChanges&feed=atom&namespace=0"
+        )
 
         try:
-            resp = requests.get(url, headers=headers, timeout=10)
-            if resp.status_code == 200:
-                data = resp.json()
+            feed = feedparser.parse(feed_url)
+            for entry in feed.entries:
+                if not is_within_72_hours(entry):
+                    continue
 
-                for match in data:
-                    status = str(match.get("status", "")).lower()
-                    if status != "finished":
+                title = entry.get("title", "")
+                summary = clean_description(entry.get("summary", ""))
+                combined_text = f"{title} {summary}"
+
+                # Match patterns like "Legacy 2 - 1 FURIA" or "FUT Esports 2 - 1 FURIA"
+                score_match = re.search(
+                    r"([A-Za-z0-9\s_]{2,20})\s+([0-3])\s*[-:]\s*([0-3])\s+([A-Za-z0-9\s_]{2,20})",
+                    combined_text,
+                )
+
+                if score_match:
+                    t1 = score_match.group(1).strip().lower()
+                    s1 = score_match.group(2)
+                    s2 = score_match.group(3)
+                    t2 = score_match.group(4).strip().lower()
+
+                    # Filter out non-team matches or invalid strings
+                    if (
+                        any(
+                            x in t1
+                            for x in ["page", "user", "file", "category"]
+                        )
+                        or any(
+                            x in t2
+                            for x in ["page", "user", "file", "category"]
+                        )
+                    ):
                         continue
 
-                    opponents = match.get("opponents", [])
-                    results = match.get("results", [])
+                    link = entry.get(
+                        "link", f"https://liquipedia.net/{wiki}/"
+                    )
 
-                    if len(opponents) >= 2 and len(results) >= 2:
-                        team_a = opponents[0].get("opponent", {}).get("name", "Team A")
-                        team_b = opponents[1].get("opponent", {}).get("name", "Team B")
-
-                        score_a = results[0].get("score", 0)
-                        score_b = results[1].get("score", 0)
-
-                        league_name = match.get("league", {}).get("name", "Esports")
-                        serie_name = match.get("serie", {}).get("full_name", "Tournament")
-
-                        match_id = match.get("id", "000")
-                        match_url = f"https://pandascore.co/matches/{match_id}"
-
-                        matches.append({
-                            "title": f"🎮 {team_a.lower()} {score_a} - {score_b} {team_b.lower()}",
-                            "description": f"{league_name} - {serie_name}\nFinal Score",
-                            "url": match_url,
-                            "color": 10181046,
-                        })
+                    matches.append({
+                        "title": f"🎮 {t1} {s1} - {s2} {t2}",
+                        "description": (
+                            f"{wiki.capitalize()} Series Result\nFinal Score"
+                        ),
+                        "url": link,
+                        "color": 10181046,
+                    })
         except Exception as e:
-            print(f"[EsportsBot] Error fetching PandaScore matches for {game}: {e}")
+            print(f"[EsportsBot] Error parsing {wiki} feed: {e}")
 
     return matches
 
@@ -530,7 +542,7 @@ def fetch_space_updates():
     now_utc = datetime.now(timezone.utc)
 
     try:
-        resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=10)
+        resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=25)
         if resp.status_code == 200:
             data = resp.json()
             launches = data.get("results", [])
