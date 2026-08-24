@@ -43,3 +43,5 @@
 2026-08-24|https://www.rocketlaunch.live/launch/nancy-grace-roman-sp
 2026-08-24|https://www.espn.com/soccer/match/_/gameId/401874927/lazio-bologna
 2026-08-24|https://cdss.berkeley.edu/news/uc-berkeley-announces-new-professional-graduate-degree-ai-and-machine-learning
+2026-08-24|https://www.espn.com/soccer/match/_/gameId/401882909/levante-osasuna
+2026-08-24|https://news.mit.edu/2026/meteorite-dust-holds-records-magnetism-may-have-helped-form-sun-0824
