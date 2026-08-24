@@ -48,3 +48,4 @@
 2026-08-24|https://news.mit.edu/2026/brain-keeps-tabs-what-just-happened-to-aid-judgment-whats-happening-now-0824
 2026-08-24|https://www.espn.com/soccer/match/_/gameId/401879318/chelsea-fulham
 2026-08-24|https://www.espn.com/soccer/match/_/gameId/401874928/fiorentina-as-roma
+2026-08-24|https://www.espn.com/soccer/match/_/gameId/401882910/deportivo-malaga
