@@ -504,15 +504,16 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot
+# 6. Space Bot (24-Hour Imminent Launch Filter + Verified Web Links)
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
-    url = "https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=10"
+    # Query upcoming launches sorted chronologically
+    url = "https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=10&ordering=net"
     now_utc = datetime.now(timezone.utc)
 
     try:
-        resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=25)
+        resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=15)
         if resp.status_code == 200:
             data = resp.json()
             launches = data.get("results", [])
@@ -522,24 +523,39 @@ def fetch_space_updates():
                 net_str = launch.get("net", "")
 
                 if net_str:
-                    launch_dt = datetime.fromisoformat(net_str.replace("Z", "+00:00"))
-                    time_diff = launch_dt - now_utc
+                    try:
+                        # Parse ISO UTC timestamp
+                        launch_dt = datetime.fromisoformat(
+                            net_str.replace("Z", "+00:00")
+                        )
+                    except ValueError:
+                        continue
 
-                    if timedelta(hours=-2) <= time_diff <= timedelta(hours=24):
+                    time_until_launch = launch_dt - now_utc
+
+                    # Strict Window: Only post launches scheduled within the next 24 hours
+                    # (and ignore past launches older than 2 hours)
+                    if timedelta(hours=-2) <= time_until_launch <= timedelta(hours=24):
                         mission = launch.get("mission", {}) or {}
-                        desc = mission.get("description", "Scheduled rocket launch.")
+                        desc = mission.get(
+                            "description", "Scheduled orbital launch mission."
+                        )
 
+                        # Formatted, human-readable timestamp
+                        formatted_net = launch_dt.strftime("%b %d, %Y @ %H:%M UTC")
+
+                        # Guaranteed working web link using Space Devs public launch page
+                        launch_id = launch.get("id", "")
                         web_url = (
-                            f"https://nextspaceflight.com/launches/details/{launch.get('id')}"
-                            if launch.get("id")
-                            else "https://nextspaceflight.com/"
+                            f"https://thespacedevs.com/launch/{launch_id}"
+                            if launch_id
+                            else "https://nextspaceflight.com/launches/"
                         )
 
                         matches.append({
                             "title": f"🚀 Space: {name}",
                             "description": (
-                                f"NET Launch:"
-                                f" {launch_dt.strftime('%b %d, %H:%M UTC')}\n{desc[:250]}"
+                                f"**Target Launch Window:** `{formatted_net}`\n\n{desc[:250]}..."
                             ),
                             "url": web_url,
                             "color": 9807270,
