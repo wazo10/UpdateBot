@@ -315,7 +315,7 @@ def process_tech_feeds():
 
 
 # ---------------------------------------------------------------------------
-# 2. Sports Bot (No Title Emojis + League Line 2)
+# 2. Sports Bot (No Emojis Title + Clean League Name Line 2)
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     matches = []
@@ -403,8 +403,9 @@ def fetch_sports_updates():
 
     return matches
 
+
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia Cargo Schema Join Engine)
+# 3. Esports Bot (LiquipediaDB Native LPDB API Query)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
@@ -413,52 +414,40 @@ def fetch_esports_updates():
     for wiki in wikis:
         api_url = f"https://liquipedia.net/{wiki}/api.php"
 
-        # Query Liquipedia Cargo database for completed match records
+        # LPDB (LiquipediaDB) Direct API Query for finished matches
         params = {
-            "action": "cargoquery",
-            "tables": "Match2=m, Match2opponent=m2o1, Match2opponent=m2o2",
-            "join_on": (
-                "m.match2id=m2o1.match2id AND m2o1.match2opponentid='1',"
-                " m.match2id=m2o2.match2id AND m2o2.match2opponentid='2'"
-            ),
-            "fields": (
-                "m.match2id, m.page, m.tournament, m2o1.name=team1,"
-                " m2o1.score=score1, m2o2.name=team2, m2o2.score=score2,"
-                " m.winner"
-            ),
-            "where": "m.winner != '' AND m.winner IS NOT NULL",
-            "order_by": "m.date DESC",
-            "limit": "15",
-            "format": "json",
+            "action": "lpdb",
+            "query": "match",
+            "conditions": "[[finished::1]]",
+            "order": "date desc",
+            "limit": "20",
+            "format": "json"
         }
 
         try:
-            # Enforce 2.5 second rate limit per wiki to avoid HTTP 429
-            time.sleep(2.5)
+            time.sleep(2.5)  # Enforce 2.5s rate limit per wiki
+            resp = requests.get(api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10)
 
-            resp = requests.get(
-                api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10
-            )
             if resp.status_code == 200:
                 data = resp.json()
-                results = data.get("cargoquery", [])
 
-                for entry in results:
-                    item = entry.get("title", {})
+                # Handle dict or array return schema
+                match_records = data.get("return", []) if isinstance(data, dict) else data
 
-                    t1 = str(item.get("team1", "")).lower().strip()
-                    t2 = str(item.get("team2", "")).lower().strip()
-                    s1 = str(item.get("score1", "0"))
-                    s2 = str(item.get("score2", "0"))
-                    tournament = item.get("tournament", "Esports Match")
-                    page_clean = item.get("page", "")
+                for item in match_records:
+                    if not isinstance(item, dict):
+                        continue
+
+                    t1 = str(item.get("opponent1", "")).lower().strip()
+                    t2 = str(item.get("opponent2", "")).lower().strip()
+                    s1 = str(item.get("opponent1score", "0"))
+                    s2 = str(item.get("opponent2score", "0"))
+                    tournament = item.get("tournament", wiki.capitalize())
+                    page = item.get("pagename", "")
                     match_id = item.get("match2id", "000")
 
-                    # Verify both team names exist and at least one map was played
                     if t1 and t2 and (s1 != "0" or s2 != "0"):
-                        match_url = (
-                            f"https://liquipedia.net/{wiki}/{page_clean}#match-{match_id}"
-                        )
+                        match_url = f"https://liquipedia.net/{wiki}/{page}#match-{match_id}"
 
                         matches.append({
                             "title": f"🎮 {t1} {s1} - {s2} {t2}",
@@ -467,12 +456,9 @@ def fetch_esports_updates():
                             "color": 10181046,
                         })
             else:
-                print(
-                    f"[EsportsBot] Liquipedia returned HTTP {resp.status_code}"
-                    f" for {wiki}"
-                )
+                print(f"[EsportsBot] LiquipediaDB returned HTTP {resp.status_code} for {wiki}")
         except Exception as e:
-            print(f"[EsportsBot] Error querying Cargo for {wiki}: {e}")
+            print(f"[EsportsBot] Error querying LPDB for {wiki}: {e}")
 
     return matches
 
@@ -555,7 +541,6 @@ def fetch_space_updates():
     now_utc = datetime.now(timezone.utc)
 
     try:
-        # Extended timeout to 25s for Space Devs API
         resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=25)
         if resp.status_code == 200:
             data = resp.json()
@@ -594,165 +579,6 @@ def fetch_space_updates():
     return matches
 
 
-LIQUIPEDIA_HEADERS = {
-    "User-Agent": (
-        "MultiBotAutomation/1.0 (https://github.com/wazo10; bot@example.com)"
-    ),
-    "Accept-Encoding": "gzip",
-}
-
-
-def send_debug_webhook(title, description, url):
-    if not WEBHOOK_ESPORTS:
-        print("[DEBUG] NO WEBHOOK_ESPORTS SECRET FOUND IN ENVIRONMENT!")
-        return False
-
-    payload = {
-        "username": "EsportsBot-Debug",
-        "embeds": [{
-            "title": title,
-            "description": description,
-            "url": url,
-            "color": 10181046,
-        }],
-    }
-    headers = {"Content-Type": "application/json"}
-    resp = requests.post(WEBHOOK_ESPORTS, json=payload, headers=headers)
-    print(f"[DEBUG DISCORD POST] Status Code: {resp.status_code}")
-    return resp.status_code in [200, 204]
-
-
-def test_esports_pipeline():
-    print("==================================================")
-    print("      ESPORTS BOT MULTI-METHOD DIAGNOSTIC         ")
-    print("==================================================")
-
-    wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
-
-    # ------------------------------------------------------------------
-    # METHOD 1: Liquipedia Cargo SQL Query (No Date Restrictions)
-    # ------------------------------------------------------------------
-    print("\n[METHOD 1] Testing Liquipedia Cargo SQL (Broad Query)...")
-    for wiki in wikis:
-        api_url = f"https://liquipedia.net/{wiki}/api.php"
-        params = {
-            "action": "cargoquery",
-            "tables": "Match2=m, Match2opponent=m2o1, Match2opponent=m2o2",
-            "join_on": (
-                "m.match2id=m2o1.match2id AND m2o1.match2opponentid='1',"
-                " m.match2id=m2o2.match2id AND m2o2.match2opponentid='2'"
-            ),
-            "fields": (
-                "m.match2id, m.page, m.tournament, m2o1.name=team1,"
-                " m2o1.score=score1, m2o2.name=team2, m2o2.score=score2"
-            ),
-            "limit": "10",
-            "format": "json",
-        }
-        try:
-            time.sleep(2.5)
-            r = requests.get(
-                api_url, params=params, headers=LIQUIPEDIA_HEADERS, timeout=10
-            )
-            print(f" -> {wiki} Cargo Status: {r.status_code}")
-            if r.status_code == 200:
-                data = r.json().get("cargoquery", [])
-                print(f"    Found {len(data)} raw rows.")
-                for entry in data:
-                    item = entry.get("title", {})
-                    t1 = str(item.get("team1", "")).lower().strip()
-                    t2 = str(item.get("team2", "")).lower().strip()
-                    s1 = str(item.get("score1", "0"))
-                    s2 = str(item.get("score2", "0"))
-                    page = item.get("page", "")
-
-                    if t1 and t2 and (s1 != "0" or s2 != "0"):
-                        title = f"🎮 {t1} {s1} - {s2} {t2}"
-                        desc = (
-                            f"{item.get('tournament', wiki.capitalize())}\nFinal"
-                            " Score (Cargo)"
-                        )
-                        url = f"https://liquipedia.net/{wiki}/{page}"
-                        print(f" SUCCESS (Cargo): {title}")
-                        send_debug_webhook(title, desc, url)
-                        return
-        except Exception as e:
-            print(f"    Cargo Error on {wiki}: {e}")
-
-    # ------------------------------------------------------------------
-    # METHOD 2: Liquipedia Atom Feed regex scan for finished scores
-    # ------------------------------------------------------------------
-    print("\n[METHOD 2] Testing Liquipedia Atom Feed Parsing...")
-    for wiki in wikis:
-        feed_url = f"https://liquipedia.net/{wiki}/index.php?title=Special:RecentChanges&feed=atom"
-        try:
-            feed = feedparser.parse(feed_url)
-            print(f" -> {wiki} Atom Feed Entries: {len(feed.entries)}")
-            for entry in feed.entries:
-                text = f"{entry.get('title', '')} {entry.get('summary', '')}"
-                # Pattern: "TeamA 2 - 1 TeamB" or "TeamA 1:2 TeamB"
-                match = re.search(
-                    r"([A-Za-z0-9\s]{2,15})\s+([0-4])\s*[-:]\s*([0-4])\s+([A-Za-z0-9\s]{2,15})",
-                    text,
-                )
-                if match:
-                    t1 = match.group(1).strip().lower()
-                    s1 = match.group(2)
-                    s2 = match.group(3)
-                    t2 = match.group(4).strip().lower()
-                    if not any(
-                        x in t1 or x in t2 for x in ["user", "template", "talk"]
-                    ):
-                        title = f"🎮 {t1} {s1} - {s2} {t2}"
-                        desc = (
-                            f"{wiki.capitalize()} Match Result\nFinal Score"
-                            " (Atom)"
-                        )
-                        url = entry.get(
-                            "link", f"https://liquipedia.net/{wiki}/"
-                        )
-                        print(f" SUCCESS (Atom): {title}")
-                        send_debug_webhook(title, desc, url)
-                        return
-        except Exception as e:
-            print(f"    Atom Error on {wiki}: {e}")
-
-    # ------------------------------------------------------------------
-    # METHOD 3: Strafe / Open Esports Community Endpoint Fallback
-    # ------------------------------------------------------------------
-    print("\n[METHOD 3] Testing Open Esports REST Mirrors...")
-    public_endpoints = [
-        "https://api.stratz.com/api/v1/match",
-        "https://vlrggapi.vercel.app/match?q=results",
-    ]
-
-    for ep in public_endpoints:
-        try:
-            r = requests.get(ep, timeout=10)
-            print(f" -> Endpoint {ep} Status: {r.status_code}")
-            if r.status_code == 200:
-                data = r.json()
-                segments = data.get("data", {}).get("segments", [])
-                if segments:
-                    item = segments[0]
-                    t1 = item.get("teams", [{}])[0].get("name", "Team A")
-                    t2 = item.get("teams", [{}])[1].get("name", "Team B")
-                    s1 = item.get("teams", [{}])[0].get("score", "0")
-                    s2 = item.get("teams", [{}])[1].get("score", "0")
-                    title = f"🎮 {t1.lower()} {s1} - {s2} {t2.lower()}"
-                    desc = "Valorant Champions Tour\nFinal Score (VLR Endpoint)"
-                    url = item.get("url", "https://vlr.gg")
-                    print(f" SUCCESS (VLR Endpoint): {title}")
-                    send_debug_webhook(title, desc, url)
-                    return
-        except Exception as e:
-            print(f"    REST Endpoint Error: {e}")
-
-    print(
-        "\n[DIAGNOSTIC COMPLETE] All direct attempts logged above. Check"
-        " output."
-    )
-
 # ---------------------------------------------------------------------------
 # Main Execution Loop
 # ---------------------------------------------------------------------------
@@ -779,4 +605,3 @@ if __name__ == "__main__":
     send_discord_webhooks(
         WEBHOOKS["space"], fetch_space_updates(), "SpaceBot", seen_urls
     )
-    test_esports_pipeline()
