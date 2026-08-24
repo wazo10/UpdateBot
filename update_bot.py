@@ -405,125 +405,85 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (PandaScore API + Liquipedia Fallback for Rocket League)
+# 3. Esports Bot (Liquipedia Bracket Box Engine)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
-    token = os.getenv("PANDASCORE_TOKEN")
+    wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
 
-    if not token:
-        print("[EsportsBot] Missing PANDASCORE_TOKEN secret. Skipping.")
-        return matches
+    for wiki in wikis:
+        api_url = f"https://liquipedia.net/{wiki}/api.php"
 
-    headers = {
-        "Authorization": f"Bearer {token}",
-        "Accept": "application/json",
-        "User-Agent": "MultiBotAutomation/1.0",
-    }
-
-    # 1. Fetch CS2, Valorant, and LoL via PandaScore
-    pandascore_games = ["cs-go", "vlr", "lol"]
-
-    for game in pandascore_games:
-        url = f"https://api.pandascore.co/{game}/matches/past?page[size]=15"
+        # Query recent article changes to find active tournament pages
+        params_rc = {
+            "action": "query",
+            "list": "recentchanges",
+            "rcnamespace": "0",
+            "rclimit": "25",
+            "format": "json"
+        }
 
         try:
-            resp = requests.get(url, headers=headers, timeout=10)
+            time.sleep(2.5)  # Enforce Liquipedia rate limit (1 req / 2.5s)
+            resp = requests.get(api_url, params=params_rc, headers=LIQUIPEDIA_HEADERS, timeout=10)
             if resp.status_code == 200:
-                data = resp.json()
+                rc_data = resp.json()
+                changes = rc_data.get("query", {}).get("recentchanges", [])
 
-                for match in data:
-                    status = str(match.get("status", "")).lower()
-                    if status != "finished":
-                        continue
+                page_titles = set()
+                for c in changes:
+                    title = c.get("title", "")
+                    title_lower = title.lower()
+                    # Filter for active tournaments, majors, cups, or EWC
+                    if any(k in title_lower for k in ["esports_world_cup", "ewc", "major", "vct", "rlcs", "worlds", "masters", "cup", "2026"]):
+                        page_titles.add(title)
 
-                    opponents = match.get("opponents", [])
-                    results = match.get("results", [])
+                # Parse the bracket boxes on active tournament pages
+                for page_title in list(page_titles)[:2]:
+                    time.sleep(2.5)
+                    parse_params = {
+                        "action": "parse",
+                        "page": page_title,
+                        "prop": "text",
+                        "format": "json"
+                    }
 
-                    if len(opponents) >= 2 and len(results) >= 2:
-                        team_a = (
-                            opponents[0]
-                            .get("opponent", {})
-                            .get("name", "Team A")
-                        )
-                        team_b = (
-                            opponents[1]
-                            .get("opponent", {})
-                            .get("name", "Team B")
-                        )
+                    p_resp = requests.get(api_url, params=parse_params, headers=LIQUIPEDIA_HEADERS, timeout=10)
+                    if p_resp.status_code == 200:
+                        p_data = p_resp.json()
+                        raw_html = p_data.get("parse", {}).get("text", {}).get("*", "")
 
-                        score_a = results[0].get("score", 0)
-                        score_b = results[1].get("score", 0)
+                        if not raw_html:
+                            continue
 
-                        league_name = match.get("league", {}).get(
-                            "name", "Esports"
-                        )
-                        serie_name = match.get("serie", {}).get(
-                            "full_name", "Tournament"
-                        )
+                        soup = BeautifulSoup(raw_html, "html.parser")
+                        # Find all completed bracket match popups/cells
+                        match_boxes = soup.find_all(["div", "tr"], class_=re.compile("brkts-matchbox|match-row|bracket-game"))
 
-                        match_id = match.get("id", "000")
-                        match_url = f"https://pandascore.co/matches/{match_id}"
+                        for box in match_boxes:
+                            t1_elem = box.find(class_=re.compile("team-left|team-1|brkts-opponent-entry-left|brkts-matchbox-opponent-name"))
+                            t2_elem = box.find(class_=re.compile("team-right|team-2|brkts-opponent-entry-right|brkts-matchbox-opponent-name"))
+                            score_elem = box.find(class_=re.compile("versus|score|brkts-matchbox-score"))
 
-                        matches.append({
-                            "title": (
-                                f"🎮 {team_a.lower()} {score_a} - {score_b}"
-                                f" {team_b.lower()}"
-                            ),
-                            "description": (
-                                f"{league_name} - {serie_name}\nFinal Score"
-                            ),
-                            "url": match_url,
-                            "color": 10181046,
-                        })
-            else:
-                print(
-                    f"[EsportsBot] PandaScore returned HTTP"
-                    f" {resp.status_code} for {game}"
-                )
+                            if t1_elem and t2_elem and score_elem:
+                                t1 = t1_elem.get_text(strip=True).lower()
+                                t2 = t2_elem.get_text(strip=True).lower()
+                                score = score_elem.get_text(strip=True).replace(":", " - ").replace("(", "").replace(")", "")
+
+                                # Ignore unplayed matches ("vs") or invalid entries
+                                if "vs" in score.lower() or not t1 or not t2:
+                                    continue
+
+                                match_url = f"https://liquipedia.net/{wiki}/{page_title.replace(' ', '_')}#{t1}-{t2}-{score}"
+
+                                matches.append({
+                                    "title": f"🎮 {t1} {score} {t2}",
+                                    "description": f"{page_title}\nFinal Score",
+                                    "url": match_url,
+                                    "color": 10181046,
+                                })
         except Exception as e:
-            print(
-                f"[EsportsBot] Error fetching PandaScore matches for {game}: {e}"
-            )
-
-    # 2. Fetch Rocket League via Liquipedia RL Feed Fallback
-    rl_feed_url = "https://liquipedia.net/rocketleague/index.php?title=Special:RecentChanges&feed=atom"
-    try:
-        feed = feedparser.parse(rl_feed_url)
-        for entry in feed.entries:
-            if not is_within_72_hours(entry):
-                continue
-
-            title = entry.get("title", "")
-            summary = clean_description(entry.get("summary", ""))
-            combined = f"{title} {summary}"
-
-            # Match series scores (e.g. "G2 Esports 4 - 2 Karmine Corp")
-            rl_match = re.search(
-                r"([A-Za-z0-9\s_]{2,20})\s+([0-4])\s*[-:]\s*([0-4])\s+([A-Za-z0-9\s_]{2,20})",
-                combined,
-            )
-
-            if rl_match:
-                t1 = rl_match.group(1).strip().lower()
-                s1 = rl_match.group(2)
-                s2 = rl_match.group(3)
-                t2 = rl_match.group(4).strip().lower()
-
-                if not any(
-                    x in t1 or x in t2
-                    for x in ["user", "template", "module", "category"]
-                ):
-                    matches.append({
-                        "title": f"🎮 {t1} {s1} - {s2} {t2}",
-                        "description": "RLCS Rocket League\nFinal Score",
-                        "url": entry.get(
-                            "link", "https://liquipedia.net/rocketleague/"
-                        ),
-                        "color": 10181046,
-                    })
-    except Exception as e:
-        print(f"[EsportsBot] Error fetching Rocket League fallback feed: {e}")
+            print(f"[EsportsBot] Error parsing Liquipedia for {wiki}: {e}")
 
     return matches
 
