@@ -504,7 +504,7 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot (RocketLaunch.Live Next 5 API + Time Countdown)
+# 6. Space Bot (RocketLaunch.Live API + Safe Timestamp & Countdown)
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
@@ -522,16 +522,21 @@ def fetch_space_updates():
                 sort_date = launch.get("sort_date")
 
                 if sort_date:
-                    launch_dt = datetime.fromtimestamp(
-                        sort_date, tz=timezone.utc
-                    )
-                    diff = launch_dt - now_utc
+                    try:
+                        # Safely cast sort_date to float before passing to fromtimestamp
+                        ts = float(sort_date)
+                        launch_dt = datetime.fromtimestamp(ts, tz=timezone.utc)
+                    except (ValueError, TypeError):
+                        continue
 
-                    # Format human-readable countdown string
-                    if diff.total_seconds() > 0:
-                        days, remainder = divmod(int(diff.total_seconds()), 86400)
-                        hours, minutes = divmod(remainder, 3600)
-                        minutes = minutes // 60
+                    diff = launch_dt - now_utc
+                    total_seconds = int(diff.total_seconds())
+
+                    # Format human-readable countdown string safely using integers
+                    if total_seconds > 0:
+                        days, remainder = divmod(total_seconds, 86400)
+                        hours, remainder = divmod(remainder, 3600)
+                        minutes = remainder // 60
 
                         parts = []
                         if days > 0:
@@ -546,11 +551,13 @@ def fetch_space_updates():
 
                     formatted_time = launch_dt.strftime("%b %d, %Y @ %H:%M UTC")
 
-                    desc = launch.get(
-                        "launch_description"
-                    ) or launch.get("quicktext", "Scheduled orbital rocket launch.")
+                    desc = (
+                        launch.get("launch_description")
+                        or launch.get("quicktext")
+                        or "Scheduled orbital rocket launch."
+                    )
 
-                    # Canonical slug that routes directly to working webpage
+                    # Direct working canonical slug link
                     slug = launch.get("slug", "")
                     web_url = (
                         f"https://www.rocketlaunch.live/launch/{slug}"
