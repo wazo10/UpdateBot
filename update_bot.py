@@ -405,7 +405,7 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (PandaScore Direct REST API Engine)
+# 3. Esports Bot (PandaScore API + Liquipedia Fallback for Rocket League)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
@@ -421,10 +421,10 @@ def fetch_esports_updates():
         "User-Agent": "MultiBotAutomation/1.0",
     }
 
-    # Games: CS2, Valorant, LoL, Rocket League
-    videogames = ["cs-go", "vlr", "lol", "rl"]
+    # 1. Fetch CS2, Valorant, and LoL via PandaScore
+    pandascore_games = ["cs-go", "vlr", "lol"]
 
-    for game in videogames:
+    for game in pandascore_games:
         url = f"https://api.pandascore.co/{game}/matches/past?page[size]=15"
 
         try:
@@ -470,7 +470,9 @@ def fetch_esports_updates():
                                 f"🎮 {team_a.lower()} {score_a} - {score_b}"
                                 f" {team_b.lower()}"
                             ),
-                            "description": f"{league_name} - {serie_name}\nFinal Score",
+                            "description": (
+                                f"{league_name} - {serie_name}\nFinal Score"
+                            ),
                             "url": match_url,
                             "color": 10181046,
                         })
@@ -483,6 +485,45 @@ def fetch_esports_updates():
             print(
                 f"[EsportsBot] Error fetching PandaScore matches for {game}: {e}"
             )
+
+    # 2. Fetch Rocket League via Liquipedia RL Feed Fallback
+    rl_feed_url = "https://liquipedia.net/rocketleague/index.php?title=Special:RecentChanges&feed=atom"
+    try:
+        feed = feedparser.parse(rl_feed_url)
+        for entry in feed.entries:
+            if not is_within_72_hours(entry):
+                continue
+
+            title = entry.get("title", "")
+            summary = clean_description(entry.get("summary", ""))
+            combined = f"{title} {summary}"
+
+            # Match series scores (e.g. "G2 Esports 4 - 2 Karmine Corp")
+            rl_match = re.search(
+                r"([A-Za-z0-9\s_]{2,20})\s+([0-4])\s*[-:]\s*([0-4])\s+([A-Za-z0-9\s_]{2,20})",
+                combined,
+            )
+
+            if rl_match:
+                t1 = rl_match.group(1).strip().lower()
+                s1 = rl_match.group(2)
+                s2 = rl_match.group(3)
+                t2 = rl_match.group(4).strip().lower()
+
+                if not any(
+                    x in t1 or x in t2
+                    for x in ["user", "template", "module", "category"]
+                ):
+                    matches.append({
+                        "title": f"🎮 {t1} {s1} - {s2} {t2}",
+                        "description": "RLCS Rocket League\nFinal Score",
+                        "url": entry.get(
+                            "link", "https://liquipedia.net/rocketleague/"
+                        ),
+                        "color": 10181046,
+                    })
+    except Exception as e:
+        print(f"[EsportsBot] Error fetching Rocket League fallback feed: {e}")
 
     return matches
 
