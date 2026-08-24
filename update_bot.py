@@ -2,14 +2,13 @@ from datetime import datetime, timedelta, timezone
 import html
 import os
 import re
+import time
 from bs4 import BeautifulSoup
 import feedparser
 import requests
-import json
-import time
 
 # ---------------------------------------------------------------------------
-# Environment Variables & Configurations
+# Discord Webhook Environment Variables
 # ---------------------------------------------------------------------------
 WEBHOOKS = {
     "general": os.getenv("WEBHOOK_GENERAL"),
@@ -23,6 +22,13 @@ WEBHOOKS = {
 
 SEEN_FILE = "seen_posts.txt"
 
+LIQUIPEDIA_HEADERS = {
+    "User-Agent": (
+        "MultiBotAutomation/1.0 (https://github.com/wazo10; bot@example.com)"
+    ),
+    "Accept-Encoding": "gzip",
+}
+
 SCRAPER_HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,"
@@ -32,7 +38,7 @@ SCRAPER_HEADERS = {
 
 
 # ---------------------------------------------------------------------------
-# General Bot & Utility Logic
+# Helper & Deduplication Functions
 # ---------------------------------------------------------------------------
 def send_general_heartbeat():
     webhook_url = WEBHOOKS["general"]
@@ -118,12 +124,12 @@ def clean_description(raw_html):
     return re.sub(r"\s+", " ", text)
 
 
-def is_recent(entry):
+def is_within_72_hours(entry):
     now = datetime.now(timezone.utc)
     pub_date = entry.get("published_parsed") or entry.get("updated_parsed")
     if pub_date:
         entry_dt = datetime(*pub_date[:6], tzinfo=timezone.utc)
-        return (now - entry_dt) <= timedelta(hours=72)
+        return (now - timedelta(hours=36)) <= entry_dt <= (now + timedelta(hours=36))
     return True
 
 
@@ -285,7 +291,7 @@ def process_tech_feeds():
         try:
             feed = feedparser.parse(url)
             for entry in feed.entries:
-                if not is_recent(entry):
+                if not is_within_72_hours(entry):
                     continue
 
                 raw_title = entry.get("title", "")
@@ -309,7 +315,7 @@ def process_tech_feeds():
 
 
 # ---------------------------------------------------------------------------
-# 2. Sports Bot (No Title Emojis + Clean League Description)
+# 2. Sports Bot (No Title Emojis + League Line 2)
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     matches = []
@@ -398,10 +404,8 @@ def fetch_sports_updates():
     return matches
 
 
-import time
-
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia DOM Scorebox Engine via RecentChanges)
+# 3. Esports Bot (Liquipedia Official Ticker Page Parser)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
@@ -409,77 +413,60 @@ def fetch_esports_updates():
 
     for wiki in wikis:
         api_url = f"https://liquipedia.net/{wiki}/api.php"
-
-        # 1. Fetch recently updated tournament pages
-        params_rc = {
-            "action": "query",
-            "list": "recentchanges",
-            "rcnamespace": "0",
-            "rclimit": "20",
+        
+        # Parse the official Liquipedia:Matches main ticker page
+        parse_params = {
+            "action": "parse",
+            "page": "Liquipedia:Matches",
+            "prop": "text",
             "format": "json"
         }
 
         try:
-            time.sleep(2.5)  # Enforce Liquipedia 2-second rate limit
-            resp = requests.get(api_url, params=params_rc, headers=LIQUIPEDIA_HEADERS, timeout=10)
-            
+            time.sleep(2.5)  # Enforce Liquipedia 2.5-second rate limit
+            resp = requests.get(api_url, params=parse_params, headers=LIQUIPEDIA_HEADERS, timeout=10)
+
             if resp.status_code == 200:
-                rc_data = resp.json()
-                changes = rc_data.get("query", {}).get("recentchanges", [])
+                data = resp.json()
+                raw_html = data.get("parse", {}).get("text", {}).get("*", "")
 
-                page_titles = set()
-                for c in changes:
-                    title = c.get("title", "")
-                    # Filter out user pages, modules, or templates
-                    if not any(title.startswith(p) for p in ["User:", "Template:", "Module:", "Liquipedia:", "User talk:"]):
-                        page_titles.add(title)
+                if not raw_html:
+                    continue
 
-                # 2. Parse Wikitext for the active updated tournament pages
-                for page_title in list(page_titles)[:3]:
-                    time.sleep(2.5)
-                    parse_params = {
-                        "action": "parse",
-                        "page": page_title,
-                        "prop": "text",
-                        "format": "json"
-                    }
+                soup = BeautifulSoup(raw_html, "html.parser")
+                # Locate all ticker match blocks
+                match_tables = soup.find_all("table", class_=re.compile("wikitable|match-row|infobox_matches_content"))
 
-                    p_resp = requests.get(api_url, params=parse_params, headers=LIQUIPEDIA_HEADERS, timeout=10)
-                    if p_resp.status_code == 200:
-                        p_data = p_resp.json()
-                        raw_html = p_data.get("parse", {}).get("text", {}).get("*", "")
+                for table in match_tables:
+                    # Find team containers and scores
+                    t1_elem = table.find(class_=re.compile("team-left|team-1"))
+                    t2_elem = table.find(class_=re.compile("team-right|team-2"))
+                    score_elem = table.find(class_=re.compile("versus|score"))
 
-                        if not raw_html:
+                    if t1_elem and t2_elem and score_elem:
+                        t1 = t1_elem.get_text(strip=True).lower()
+                        t2 = t2_elem.get_text(strip=True).lower()
+                        score = score_elem.get_text(strip=True).replace(":", " - ").replace("(", "").replace(")", "")
+
+                        # Skip unplayed matches
+                        if "vs" in score.lower() or not t1 or not t2:
                             continue
 
-                        soup = BeautifulSoup(raw_html, "html.parser")
-                        # Target all bracket game cells and score boxes
-                        match_cells = soup.find_all(["div", "tr"], class_=re.compile("brkts-matchbox|match-row|wikitable"))
+                        link_elem = table.find("a", href=True)
+                        match_url = (
+                            f"https://liquipedia.net{link_elem['href']}"
+                            if link_elem
+                            else f"https://liquipedia.net/{wiki}/#{t1}-{t2}-{score}"
+                        )
 
-                        for cell in match_cells:
-                            t1_elem = cell.find(class_=re.compile("team-left|team-1|brkts-opponent-entry-left|brkts-matchbox-opponent-name"))
-                            t2_elem = cell.find(class_=re.compile("team-right|team-2|brkts-opponent-entry-right|brkts-matchbox-opponent-name"))
-                            score_elem = cell.find(class_=re.compile("versus|score|brkts-matchbox-score"))
-
-                            if t1_elem and t2_elem and score_elem:
-                                t1 = t1_elem.get_text(strip=True).lower()
-                                t2 = t2_elem.get_text(strip=True).lower()
-                                score = score_elem.get_text(strip=True).replace(":", " - ").replace("(", "").replace(")", "")
-
-                                # Skip unplayed matches ("vs") or blank entries
-                                if "vs" in score.lower() or not t1 or not t2:
-                                    continue
-
-                                match_url = f"https://liquipedia.net/{wiki}/{page_title.replace(' ', '_')}#{t1}-{t2}-{score}"
-
-                                matches.append({
-                                    "title": f"🎮 {t1} {score} {t2}",
-                                    "description": f"{page_title}\nFinal Score",
-                                    "url": match_url,
-                                    "color": 10181046,
-                                })
+                        matches.append({
+                            "title": f"🎮 {t1} {score} {t2}",
+                            "description": f"Liquipedia {wiki.capitalize()} Match Result",
+                            "url": match_url,
+                            "color": 10181046,
+                        })
         except Exception as e:
-            print(f"[EsportsBot] Error parsing Liquipedia for {wiki}: {e}")
+            print(f"[EsportsBot] Error parsing Liquipedia ticker for {wiki}: {e}")
 
     return matches
 
@@ -539,7 +526,7 @@ def fetch_research_updates():
         try:
             feed = feedparser.parse(url)
             for entry in feed.entries:
-                if not is_recent(entry):
+                if not is_within_72_hours(entry):
                     continue
 
                 matches.append({
@@ -554,7 +541,7 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot (24-Hour Strict Launch Window + Human Web Links)
+# 6. Space Bot
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
@@ -562,6 +549,7 @@ def fetch_space_updates():
     now_utc = datetime.now(timezone.utc)
 
     try:
+        # Extended timeout to 25s for Space Devs API
         resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=25)
         if resp.status_code == 200:
             data = resp.json()
@@ -572,21 +560,13 @@ def fetch_space_updates():
                 net_str = launch.get("net", "")
 
                 if net_str:
-                    # Parse ISO timestamp and calculate time until launch
-                    launch_dt = datetime.fromisoformat(
-                        net_str.replace("Z", "+00:00")
-                    )
+                    launch_dt = datetime.fromisoformat(net_str.replace("Z", "+00:00"))
                     time_diff = launch_dt - now_utc
 
-                    # Strict Filter: Only launches within the next 24 hours (or past 2 hours)
                     if timedelta(hours=-2) <= time_diff <= timedelta(hours=24):
                         mission = launch.get("mission", {}) or {}
-                        desc = mission.get(
-                            "description", "Scheduled orbital rocket launch."
-                        )
+                        desc = mission.get("description", "Scheduled rocket launch.")
 
-                        # Clean web link instead of raw API URL
-                        launch_slug = launch.get("slug", "")
                         web_url = (
                             f"https://nextspaceflight.com/launches/details/{launch.get('id')}"
                             if launch.get("id")
@@ -607,82 +587,9 @@ def fetch_space_updates():
 
     return matches
 
-LIQUIPEDIA_HEADERS = {
-    "User-Agent": (
-        "MultiBotAutomation/1.0 (https://github.com/wazo10; bot@example.com)"
-    ),
-    "Accept-Encoding": "gzip",
-}
-
-def debug_liquipedia():
-    print("=== 1. DEBUGGING CARGO MATCH2 TABLE ===")
-    api_url = "https://liquipedia.net/counterstrike/api.php"
-    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-
-    # Raw Query on Match2
-    params_cargo = {
-        "action": "cargoquery",
-        "tables": "Match2",
-        "fields": "match2id, opponent1, opponent2, opponent1score, opponent2score, tournament, page, winner, date",
-        "limit": "5",
-        "format": "json"
-    }
-
-    try:
-        r = requests.get(api_url, params=params_cargo, headers=LIQUIPEDIA_HEADERS, timeout=10)
-        print("Cargo Raw Response Status:", r.status_code)
-        if r.status_code == 200:
-            data = r.json()
-            print("Cargo Results Count:", len(data.get("cargoquery", [])))
-            print("Cargo First 2 Sample Entries:")
-            print(json.dumps(data.get("cargoquery", [])[:2], indent=2))
-    except Exception as e:
-        print("Cargo Query Failed:", e)
-
-    print("\n=== 2. DEBUGGING MATCH2OPPONENT JOIN ===")
-    params_join = {
-        "action": "cargoquery",
-        "tables": "Match2=m, Match2opponent=m2o1, Match2opponent=m2o2",
-        "join_on": "m.match2id=m2o1.match2id AND m2o1.match2opponentid='1', m.match2id=m2o2.match2id AND m2o2.match2opponentid='2'",
-        "fields": "m.match2id, m.page, m.tournament, m2o1.name=team1, m2o1.score=score1, m2o2.name=team2, m2o2.score=score2",
-        "limit": "5",
-        "format": "json"
-    }
-
-    try:
-        r = requests.get(api_url, params=params_join, headers=LIQUIPEDIA_HEADERS, timeout=10)
-        print("JOIN Response Status:", r.status_code)
-        if r.status_code == 200:
-            data = r.json()
-            print("JOIN Results Count:", len(data.get("cargoquery", [])))
-            print("JOIN First 2 Sample Entries:")
-            print(json.dumps(data.get("cargoquery", [])[:2], indent=2))
-    except Exception as e:
-        print("JOIN Query Failed:", e)
-
-    print("\n=== 3. DEBUGGING RECENT CHANGES API ===")
-    params_rc = {
-        "action": "query",
-        "list": "recentchanges",
-        "rcnamespace": "0",
-        "rclimit": "10",
-        "format": "json"
-    }
-
-    try:
-        r = requests.get(api_url, params=params_rc, headers=LIQUIPEDIA_HEADERS, timeout=10)
-        print("RecentChanges Response Status:", r.status_code)
-        if r.status_code == 200:
-            data = r.json()
-            changes = data.get("query", {}).get("recentchanges", [])
-            print("RecentChanges Count:", len(changes))
-            for c in changes[:5]:
-                print(f" - Title: {c.get('title')}")
-    except Exception as e:
-        print("RecentChanges Failed:", e)
 
 # ---------------------------------------------------------------------------
-# Main Workflow Execution Loop
+# Main Execution Loop
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
     send_general_heartbeat()
@@ -707,4 +614,3 @@ if __name__ == "__main__":
     send_discord_webhooks(
         WEBHOOKS["space"], fetch_space_updates(), "SpaceBot", seen_urls
     )
-    debug_liquipedia()
