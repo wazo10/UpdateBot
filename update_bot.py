@@ -405,68 +405,84 @@ def fetch_sports_updates():
 
 
 # ---------------------------------------------------------------------------
-# 3. Esports Bot (Liquipedia Official Ticker Page Parser)
+# 3. Esports Bot (PandaScore Direct REST API Engine)
 # ---------------------------------------------------------------------------
 def fetch_esports_updates():
     matches = []
-    wikis = ["counterstrike", "valorant", "leagueoflegends", "rocketleague"]
+    token = os.getenv("PANDASCORE_TOKEN")
 
-    for wiki in wikis:
-        api_url = f"https://liquipedia.net/{wiki}/api.php"
-        
-        # Parse the official Liquipedia:Matches main ticker page
-        parse_params = {
-            "action": "parse",
-            "page": "Liquipedia:Matches",
-            "prop": "text",
-            "format": "json"
-        }
+    if not token:
+        print("[EsportsBot] Missing PANDASCORE_TOKEN secret. Skipping.")
+        return matches
+
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/json",
+        "User-Agent": "MultiBotAutomation/1.0",
+    }
+
+    # Games: CS2, Valorant, LoL, Rocket League
+    videogames = ["cs-go", "vlr", "lol", "rl"]
+
+    for game in videogames:
+        url = f"https://api.pandascore.co/{game}/matches/past?page[size]=15"
 
         try:
-            time.sleep(2.5)  # Enforce Liquipedia 2.5-second rate limit
-            resp = requests.get(api_url, params=parse_params, headers=LIQUIPEDIA_HEADERS, timeout=10)
-
+            resp = requests.get(url, headers=headers, timeout=10)
             if resp.status_code == 200:
                 data = resp.json()
-                raw_html = data.get("parse", {}).get("text", {}).get("*", "")
 
-                if not raw_html:
-                    continue
+                for match in data:
+                    status = str(match.get("status", "")).lower()
+                    if status != "finished":
+                        continue
 
-                soup = BeautifulSoup(raw_html, "html.parser")
-                # Locate all ticker match blocks
-                match_tables = soup.find_all("table", class_=re.compile("wikitable|match-row|infobox_matches_content"))
+                    opponents = match.get("opponents", [])
+                    results = match.get("results", [])
 
-                for table in match_tables:
-                    # Find team containers and scores
-                    t1_elem = table.find(class_=re.compile("team-left|team-1"))
-                    t2_elem = table.find(class_=re.compile("team-right|team-2"))
-                    score_elem = table.find(class_=re.compile("versus|score"))
-
-                    if t1_elem and t2_elem and score_elem:
-                        t1 = t1_elem.get_text(strip=True).lower()
-                        t2 = t2_elem.get_text(strip=True).lower()
-                        score = score_elem.get_text(strip=True).replace(":", " - ").replace("(", "").replace(")", "")
-
-                        # Skip unplayed matches
-                        if "vs" in score.lower() or not t1 or not t2:
-                            continue
-
-                        link_elem = table.find("a", href=True)
-                        match_url = (
-                            f"https://liquipedia.net{link_elem['href']}"
-                            if link_elem
-                            else f"https://liquipedia.net/{wiki}/#{t1}-{t2}-{score}"
+                    if len(opponents) >= 2 and len(results) >= 2:
+                        team_a = (
+                            opponents[0]
+                            .get("opponent", {})
+                            .get("name", "Team A")
+                        )
+                        team_b = (
+                            opponents[1]
+                            .get("opponent", {})
+                            .get("name", "Team B")
                         )
 
+                        score_a = results[0].get("score", 0)
+                        score_b = results[1].get("score", 0)
+
+                        league_name = match.get("league", {}).get(
+                            "name", "Esports"
+                        )
+                        serie_name = match.get("serie", {}).get(
+                            "full_name", "Tournament"
+                        )
+
+                        match_id = match.get("id", "000")
+                        match_url = f"https://pandascore.co/matches/{match_id}"
+
                         matches.append({
-                            "title": f"🎮 {t1} {score} {t2}",
-                            "description": f"Liquipedia {wiki.capitalize()} Match Result",
+                            "title": (
+                                f"🎮 {team_a.lower()} {score_a} - {score_b}"
+                                f" {team_b.lower()}"
+                            ),
+                            "description": f"{league_name} - {serie_name}\nFinal Score",
                             "url": match_url,
                             "color": 10181046,
                         })
+            else:
+                print(
+                    f"[EsportsBot] PandaScore returned HTTP"
+                    f" {resp.status_code} for {game}"
+                )
         except Exception as e:
-            print(f"[EsportsBot] Error parsing Liquipedia ticker for {wiki}: {e}")
+            print(
+                f"[EsportsBot] Error fetching PandaScore matches for {game}: {e}"
+            )
 
     return matches
 
