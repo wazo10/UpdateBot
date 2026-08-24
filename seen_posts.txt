@@ -116,3 +116,5 @@
 2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816651/cubs-mariners
 2026-08-23|https://www.espn.com/mlb/game/_/gameId/401816652/reds-diamondbacks
 2026-08-24|https://www.espn.com/mlb/game/_/gameId/401816647/braves-brewers
+2026-08-24|https://www.espn.com/nfl/game/_/gameId/401873297/seahawks-titans
+2026-08-24|https://nextspaceflight.com/launches/details/48c449c2-3c09-4d36-9c2a-d853b3a39289
