@@ -504,64 +504,72 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot (24-Hour Imminent Launch Filter + Verified Web Links)
+# 6. Space Bot (RocketLaunch.Live Next 5 API + Time Countdown)
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
-    # Query upcoming launches sorted chronologically
-    url = "https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=10&ordering=net"
+    url = "https://fdo.rocketlaunch.live/json/launches/next/5"
     now_utc = datetime.now(timezone.utc)
 
     try:
-        resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=15)
+        resp = requests.get(url, headers=SCRAPER_HEADERS, timeout=10)
         if resp.status_code == 200:
             data = resp.json()
-            launches = data.get("results", [])
+            launches = data.get("result", [])
 
             for launch in launches:
                 name = launch.get("name", "Space Launch")
-                net_str = launch.get("net", "")
+                sort_date = launch.get("sort_date")
 
-                if net_str:
-                    try:
-                        # Parse ISO UTC timestamp
-                        launch_dt = datetime.fromisoformat(
-                            net_str.replace("Z", "+00:00")
-                        )
-                    except ValueError:
-                        continue
+                if sort_date:
+                    launch_dt = datetime.fromtimestamp(
+                        sort_date, tz=timezone.utc
+                    )
+                    diff = launch_dt - now_utc
 
-                    time_until_launch = launch_dt - now_utc
+                    # Format human-readable countdown string
+                    if diff.total_seconds() > 0:
+                        days, remainder = divmod(int(diff.total_seconds()), 86400)
+                        hours, minutes = divmod(remainder, 3600)
+                        minutes = minutes // 60
 
-                    # Strict Window: Only post launches scheduled within the next 24 hours
-                    # (and ignore past launches older than 2 hours)
-                    if timedelta(hours=-2) <= time_until_launch <= timedelta(hours=24):
-                        mission = launch.get("mission", {}) or {}
-                        desc = mission.get(
-                            "description", "Scheduled orbital launch mission."
-                        )
+                        parts = []
+                        if days > 0:
+                            parts.append(f"{days}d")
+                        if hours > 0:
+                            parts.append(f"{hours}h")
+                        parts.append(f"{minutes}m")
 
-                        # Formatted, human-readable timestamp
-                        formatted_net = launch_dt.strftime("%b %d, %Y @ %H:%M UTC")
+                        countdown_str = f"In {' '.join(parts)}"
+                    else:
+                        countdown_str = "Launching Now / Recently Launched"
 
-                        # Guaranteed working web link using Space Devs public launch page
-                        launch_id = launch.get("id", "")
-                        web_url = (
-                            f"https://thespacedevs.com/launch/{launch_id}"
-                            if launch_id
-                            else "https://nextspaceflight.com/launches/"
-                        )
+                    formatted_time = launch_dt.strftime("%b %d, %Y @ %H:%M UTC")
 
-                        matches.append({
-                            "title": f"🚀 Space: {name}",
-                            "description": (
-                                f"**Target Launch Window:** `{formatted_net}`\n\n{desc[:250]}..."
-                            ),
-                            "url": web_url,
-                            "color": 9807270,
-                        })
+                    desc = launch.get(
+                        "launch_description"
+                    ) or launch.get("quicktext", "Scheduled orbital rocket launch.")
+
+                    # Canonical slug that routes directly to working webpage
+                    slug = launch.get("slug", "")
+                    web_url = (
+                        f"https://www.rocketlaunch.live/launch/{slug}"
+                        if slug
+                        else "https://www.rocketlaunch.live/"
+                    )
+
+                    matches.append({
+                        "title": f"🚀 Space: {name}",
+                        "description": (
+                            f"**Time Until Launch:** `{countdown_str}`\n"
+                            f"**Scheduled:** `{formatted_time}`\n\n"
+                            f"{desc[:250]}"
+                        ),
+                        "url": web_url,
+                        "color": 9807270,
+                    })
     except Exception as e:
-        print(f"[SpaceBot] Error querying Launch Library API: {e}")
+        print(f"[SpaceBot] Error querying RocketLaunch.Live API: {e}")
 
     return matches
 
