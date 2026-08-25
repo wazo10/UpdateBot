@@ -500,12 +500,14 @@ def fetch_aviation_updates():
 
 
 # ---------------------------------------------------------------------------
-# 5. Research Bot (School Attribution + Working Stanford Engineering Feed)
+# 5. Research Bot (All Engineering Feeds: Columbia, UIUC, MIT, Stanford, Cal)
 # ---------------------------------------------------------------------------
 UNI_FEEDS = [
-    ("MIT", "https://news.mit.edu/rss/feed"),
-    ("UC Berkeley", "https://news.berkeley.edu/feed/"),
-    ("Stanford", "https://engineering.stanford.edu/news/rss.xml"),
+    ("Columbia Engineering", "https://engineering.columbia.edu/news/rss.xml"),
+    ("UIUC Engineering", "https://news.illinois.edu/feed/category/16834/rss.xml"),
+    ("MIT Engineering", "https://news.mit.edu/rss/school/engineering"),
+    ("Stanford Engineering", "https://engineering.stanford.edu/news/rss.xml"),
+    ("UC Berkeley Engineering", "https://engineering.berkeley.edu/feed/"),
 ]
 
 
