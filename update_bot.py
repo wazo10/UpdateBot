@@ -133,7 +133,7 @@ def is_within_72_hours(entry):
     return True
 
 
-def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls):
+def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls, save_to_seen=True):
     if not webhook_url:
         print(f"[{bot_name}] No webhook URL configured. Skipping.")
         return
@@ -145,7 +145,8 @@ def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls):
     headers = {"Content-Type": "application/json"}
     for payload in payloads:
         url = payload.get("url")
-        if url in seen_urls:
+        # If save_to_seen is True, enforce deduplication check
+        if save_to_seen and url in seen_urls:
             continue
 
         data = {"username": bot_name, "embeds": [payload]}
@@ -153,8 +154,9 @@ def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls):
             response = requests.post(webhook_url, json=data, headers=headers)
             if response.status_code in [200, 204]:
                 print(f"[{bot_name}] Sent update: {payload.get('title')}")
-                save_seen_url(url)
-                seen_urls.add(url)
+                if save_to_seen:
+                    save_seen_url(url)
+                    seen_urls.add(url)
             else:
                 print(
                     f"[{bot_name}] Webhook error: {response.status_code} -"
@@ -589,21 +591,11 @@ if __name__ == "__main__":
 
     seen_urls = load_seen_urls()
 
-    send_discord_webhooks(
-        WEBHOOKS["tech"], process_tech_feeds(), "TechBot", seen_urls
-    )
-    send_discord_webhooks(
-        WEBHOOKS["sports"], fetch_sports_updates(), "SportsBot", seen_urls
-    )
-    send_discord_webhooks(
-        WEBHOOKS["esports"], fetch_esports_updates(), "EsportsBot", seen_urls
-    )
-    send_discord_webhooks(
-        WEBHOOKS["aviation"], fetch_aviation_updates(), "AeroBot", seen_urls
-    )
-    send_discord_webhooks(
-        WEBHOOKS["research"], fetch_research_updates(), "ResearchBot", seen_urls
-    )
-    send_discord_webhooks(
-        WEBHOOKS["space"], fetch_space_updates(), "SpaceBot", seen_urls
-    )
+# Standard bots write to seen_posts.txt
+    send_discord_webhooks(WEBHOOKS["tech"], process_tech_feeds(), "TechBot", seen_urls)
+    send_discord_webhooks(WEBHOOKS["sports"], fetch_sports_updates(), "SportsBot", seen_urls)
+    send_discord_webhooks(WEBHOOKS["aviation"], fetch_aviation_updates(), "AeroBot", seen_urls)
+    send_discord_webhooks(WEBHOOKS["research"], fetch_research_updates(), "ResearchBot", seen_urls)
+
+    # SpaceBot bypasses seen_posts.txt to keep launch countdowns updating live
+    send_discord_webhooks(WEBHOOKS["space"], fetch_space_updates(), "SpaceBot", seen_urls, save_to_seen=False)
