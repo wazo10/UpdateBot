@@ -500,32 +500,38 @@ def fetch_aviation_updates():
 
 
 # ---------------------------------------------------------------------------
-# 5. Research Bot
+# 5. Research Bot (School Attribution + Working Stanford Engineering Feed)
 # ---------------------------------------------------------------------------
 UNI_FEEDS = [
-    "https://news.stanford.edu/feed/",
-    "https://news.mit.edu/rss/feed",
-    "https://news.berkeley.edu/feed/",
+    ("MIT", "https://news.mit.edu/rss/feed"),
+    ("UC Berkeley", "https://news.berkeley.edu/feed/"),
+    ("Stanford", "https://engineering.stanford.edu/news/rss.xml"),
 ]
 
 
 def fetch_research_updates():
     matches = []
-    for url in UNI_FEEDS:
+    for school_name, url in UNI_FEEDS:
         try:
             feed = feedparser.parse(url)
             for entry in feed.entries:
                 if not is_within_72_hours(entry):
                     continue
 
+                raw_title = html.unescape(entry.get("title", ""))
+                summary = clean_description(entry.get("summary", ""))
+
                 matches.append({
-                    "title": f"🔬 Research: {html.unescape(entry.get('title', ''))}",
-                    "description": clean_description(entry.get("summary", ""))[:280],
+                    "title": f"🔬 {school_name}: {raw_title}",
+                    "description": (
+                        summary[:280] + "..." if len(summary) > 280 else summary
+                    ),
                     "url": entry.get("link", ""),
                     "color": 15844367,
                 })
         except Exception as e:
-            print(f"[ResearchBot] Error: {e}")
+            print(f"[ResearchBot] Error parsing {school_name} feed ({url}): {e}")
+
     return matches
 
 
