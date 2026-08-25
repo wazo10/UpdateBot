@@ -567,7 +567,7 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot (RocketLaunch.Live API + Safe Timestamp & Countdown)
+# 6. Space Bot (RocketLaunch.Live API + Full Detailed Location Title)
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
@@ -581,12 +581,52 @@ def fetch_space_updates():
             launches = data.get("result", [])
 
             for launch in launches:
-                name = launch.get("name", "Space Launch")
+                raw_name = launch.get("name", "Space Launch")
                 sort_date = launch.get("sort_date")
+
+                # Extract Provider / Company
+                provider_info = launch.get("provider", {}) or {}
+                provider_name = provider_info.get("name", "Space")
+
+                # Extract Vehicle Name (e.g. "Falcon 9")
+                vehicle_info = launch.get("vehicle", {}) or {}
+                vehicle_name = vehicle_info.get("name", "")
+
+                # Extract Pad & Location Information
+                pad_info = launch.get("pad", {}) or {}
+                pad_name = pad_info.get("name", "")
+                
+                location_info = pad_info.get("location", {}) or {}
+                location_name = location_info.get("name", "")
+                state_name = location_info.get("statename", "")
+                country_name = location_info.get("country", {}).get("name", "")
+
+                # Construct dynamic title components: Provider: Vehicle | Mission | Location | State | Country
+                title_parts = [f"🚀 {provider_name}"]
+                
+                # Combine Vehicle and Mission Name if distinct
+                if vehicle_name and vehicle_name.lower() not in raw_name.lower():
+                    title_parts.append(f"{vehicle_name} | {raw_name}")
+                else:
+                    title_parts.append(raw_name)
+
+                # Append Pad / Facility Location
+                facility = pad_name or location_name
+                if facility:
+                    title_parts.append(facility)
+
+                # Append State if available (e.g. California, Florida)
+                if state_name:
+                    title_parts.append(state_name)
+
+                # Append Country if available
+                if country_name:
+                    title_parts.append(country_name)
+
+                full_title = " | ".join(title_parts)
 
                 if sort_date:
                     try:
-                        # Safely cast sort_date to float before passing to fromtimestamp
                         ts = float(sort_date)
                         launch_dt = datetime.fromtimestamp(ts, tz=timezone.utc)
                     except (ValueError, TypeError):
@@ -595,7 +635,6 @@ def fetch_space_updates():
                     diff = launch_dt - now_utc
                     total_seconds = int(diff.total_seconds())
 
-                    # Format human-readable countdown string safely using integers
                     if total_seconds > 0:
                         days, remainder = divmod(total_seconds, 86400)
                         hours, remainder = divmod(remainder, 3600)
@@ -620,7 +659,6 @@ def fetch_space_updates():
                         or "Scheduled orbital rocket launch."
                     )
 
-                    # Direct working canonical slug link
                     slug = launch.get("slug", "")
                     web_url = (
                         f"https://www.rocketlaunch.live/launch/{slug}"
@@ -629,7 +667,7 @@ def fetch_space_updates():
                     )
 
                     matches.append({
-                        "title": f"🚀 {name}",
+                        "title": full_title,
                         "description": (
                             f"**Time Until Launch:** `{countdown_str}`\n"
                             f"**Scheduled:** `{formatted_time}`\n\n"
