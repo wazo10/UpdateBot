@@ -294,7 +294,7 @@ def process_tech_feeds():
 
 
 # ---------------------------------------------------------------------------
-# 2. Sports Bot (No Title Emojis + Clean Official League Name Line 2)
+# 2. Sports Bot (Title Scores + League & Game Type Line 2)
 # ---------------------------------------------------------------------------
 def fetch_sports_updates():
     matches = []
@@ -324,6 +324,14 @@ def fetch_sports_updates():
         ("soccer", "uefa.super_cup"),
     ]
 
+    # Map ESPN integer season types to clean labels
+    SEASON_TYPE_MAP = {
+        1: "Preseason",
+        2: "Regular Season",
+        3: "Playoffs",
+        4: "All-Star / Offseason",
+    }
+
     for date_str in dates_to_check:
         for sport, league in espn_endpoints:
             url = f"https://site.api.espn.com/apis/site/v2/sports/{sport}/{league}/scoreboard?dates={date_str}"
@@ -343,6 +351,22 @@ def fetch_sports_updates():
                             comp = event["competitions"][0]
                             competitors = comp.get("competitors", [])
 
+                            # Extract game type (Playoffs, Regular Season, Preseason, etc.)
+                            season_type_id = (
+                                event.get("season", {}).get("type")
+                                or comp.get("season", {}).get("type")
+                            )
+                            game_type = SEASON_TYPE_MAP.get(season_type_id, "Regular Season")
+
+                            # Fallback check for special headline notes (e.g., "NBA Finals", "Wild Card Round")
+                            notes = comp.get("notes", [])
+                            if notes and isinstance(notes, list):
+                                headline = notes[0].get("headline", "")
+                                if headline and len(headline) < 30:
+                                    game_type = headline
+
+                            line_2_desc = f"{league_display_name} • {game_type}"
+
                             if sport == "racing":
                                 drivers = sorted(
                                     competitors,
@@ -355,7 +379,7 @@ def fetch_sports_updates():
 
                                     matches.append({
                                         "title": f"F1: 1. {p1} | 2. {p2} | 3. {p3}",
-                                        "description": league_display_name,
+                                        "description": line_2_desc,
                                         "url": event.get("links", [{}])[0].get("href", "https://espn.com/f1/"),
                                         "color": 15105570,
                                     })
@@ -373,7 +397,7 @@ def fetch_sports_updates():
 
                                 matches.append({
                                     "title": f"{team_a} {score_a} - {score_b} {team_b}",
-                                    "description": league_display_name,
+                                    "description": line_2_desc,
                                     "url": game_link,
                                     "color": 15105570,
                                 })
