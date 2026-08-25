@@ -311,6 +311,7 @@ def fetch_sports_updates():
         ("baseball", "mlb"),
         ("football", "nfl"),
         ("racing", "f1"),
+        ("soccer", "usa.1"),  # Major League Soccer (MLS)
         ("soccer", "ger.1"),
         ("soccer", "eng.1"),
         ("soccer", "esp.1"),
@@ -324,7 +325,6 @@ def fetch_sports_updates():
         ("soccer", "uefa.super_cup"),
     ]
 
-    # Map ESPN integer season types to clean labels
     SEASON_TYPE_MAP = {
         1: "Preseason",
         2: "Regular Season",
@@ -351,14 +351,12 @@ def fetch_sports_updates():
                             comp = event["competitions"][0]
                             competitors = comp.get("competitors", [])
 
-                            # Extract game type (Playoffs, Regular Season, Preseason, etc.)
                             season_type_id = (
                                 event.get("season", {}).get("type")
                                 or comp.get("season", {}).get("type")
                             )
                             game_type = SEASON_TYPE_MAP.get(season_type_id, "Regular Season")
 
-                            # Fallback check for special headline notes (e.g., "NBA Finals", "Wild Card Round")
                             notes = comp.get("notes", [])
                             if notes and isinstance(notes, list):
                                 headline = notes[0].get("headline", "")
