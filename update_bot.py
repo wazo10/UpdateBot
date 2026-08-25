@@ -80,7 +80,8 @@ def send_general_heartbeat():
 
 
 def load_seen_urls():
-    current_year = datetime.now(timezone.utc).strftime("%Y")
+    # Format: "YYYY-MM" (e.g., "2026-08")
+    current_month_str = datetime.now(timezone.utc).strftime("%Y-%m")
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     valid_urls = set()
     updated_lines = []
@@ -94,14 +95,19 @@ def load_seen_urls():
 
                 if "|" in line:
                     entry_date, url = line.split("|", 1)
-                    entry_year = entry_date.split("-")[0]
-                    if entry_year == current_year:
+                    # Extract "YYYY-MM" prefix from date string
+                    entry_month = entry_date[:7]
+                    
+                    # Only retain URLs matching the current calendar month
+                    if entry_month == current_month_str:
                         valid_urls.add(url)
                         updated_lines.append(f"{entry_date}|{url}\n")
                 else:
+                    # Legacy unformatted lines default to today's date
                     valid_urls.add(line)
                     updated_lines.append(f"{today_str}|{line}\n")
 
+        # Overwrite file with current month's URLs only
         with open(SEEN_FILE, "w", encoding="utf-8") as f:
             f.writelines(updated_lines)
 
