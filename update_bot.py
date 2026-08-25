@@ -167,29 +167,29 @@ def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls, save_to_se
 
 
 # ---------------------------------------------------------------------------
-# 1. Tech Bot (Strict Consumer Hardware Filtering)
+# 1. Tech Bot (Company Attribution + Strict Consumer Hardware Filtering)
 # ---------------------------------------------------------------------------
 TECH_FEEDS = [
-    "https://newsroom.apple.com/rss-feed.rss",
-    "https://nvidianews.nvidia.com/rss.xml",
-    "https://newsroom.intel.com/feed/",
-    "https://www.qualcomm.com/news/rss",
-    "https://ir.amd.com/rss/news-releases.xml",
-    "https://press.razer.com/feed/",
-    "https://press.asus.com/feed/",
-    "https://news.lenovo.com/feed/",
-    "https://www.dell.com/en-us/blog/feed/",
-    "https://press.hp.com/us/en/news.rss",
-    "https://news.microsoft.com/feed/",
-    "https://news.samsung.com/global/feed",
-    "https://news.acer.com/rss.xml",
-    "https://frame.work/blog.rss",
+    ("Apple", "https://newsroom.apple.com/rss-feed.rss"),
+    ("NVIDIA", "https://nvidianews.nvidia.com/rss.xml"),
+    ("Intel", "https://newsroom.intel.com/feed/"),
+    ("Qualcomm", "https://www.qualcomm.com/news/rss"),
+    ("AMD", "https://ir.amd.com/rss/news-releases.xml"),
+    ("Razer", "https://press.razer.com/feed/"),
+    ("ASUS", "https://press.asus.com/feed/"),
+    ("Lenovo", "https://news.lenovo.com/feed/"),
+    ("Dell", "https://www.dell.com/en-us/blog/feed/"),
+    ("HP", "https://press.hp.com/us/en/news.rss"),
+    ("Microsoft", "https://news.microsoft.com/feed/"),
+    ("Samsung", "https://news.samsung.com/global/feed"),
+    ("Acer", "https://news.acer.com/rss.xml"),
+    ("Framework", "https://frame.work/blog.rss"),
 ]
 
 
 def is_consumer_hardware(title, summary):
     text = html.unescape(f"{title} {summary}").lower()
-    
+
     # Strict Hardware Product Terms
     hardware_targets = [
         "macbook",
@@ -262,6 +262,35 @@ def is_consumer_hardware(title, summary):
         if re.search(r"\b" + re.escape(hw) + r"\b", text):
             return True
     return False
+
+
+def process_tech_feeds():
+    matches = []
+    for company_name, url in TECH_FEEDS:
+        try:
+            feed = feedparser.parse(url)
+            for entry in feed.entries:
+                if not is_within_72_hours(entry):
+                    continue
+
+                raw_title = entry.get("title", "")
+                summary = entry.get("summary", entry.get("description", ""))
+                if is_consumer_hardware(raw_title, summary):
+                    cleaned_title = html.unescape(raw_title)
+                    cleaned_summary = clean_description(summary)
+                    matches.append({
+                        "title": f"💻 {company_name}: {cleaned_title}",
+                        "description": (
+                            cleaned_summary[:280] + "..."
+                            if len(cleaned_summary) > 280
+                            else cleaned_summary
+                        ),
+                        "url": entry.get("link", ""),
+                        "color": 3447003,
+                    })
+        except Exception as e:
+            print(f"[TechBot] Error parsing {company_name} feed ({url}): {e}")
+    return matches
 
 
 def process_tech_feeds():
@@ -600,7 +629,7 @@ def fetch_space_updates():
                     )
 
                     matches.append({
-                        "title": f"🚀 Space: {name}",
+                        "title": f"🚀 {name}",
                         "description": (
                             f"**Time Until Launch:** `{countdown_str}`\n"
                             f"**Scheduled:** `{formatted_time}`\n\n"
