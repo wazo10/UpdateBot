@@ -11,3 +11,5 @@
 2026-08-25|https://www.espn.com/soccer/match/_/gameId/401874927/lazio-bologna
 2026-08-25|https://www.espn.com/soccer/match/_/gameId/401874928/fiorentina-as-roma
 2026-08-25|https://news.mit.edu/2026/generating-scenarios-extreme-events-without-extreme-data-0824
+2026-08-25|https://www.espn.com/mlb/game/_/gameId/401816662/twins-athletics
+2026-08-25|https://www.espn.com/mlb/game/_/gameId/401816663/phillies-mariners
