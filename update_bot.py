@@ -268,7 +268,7 @@ def process_tech_feeds():
     matches = []
     for company_name, url in TECH_FEEDS:
         try:
-            feed = feedparser.parse(url)
+            feed = feedparser.parse(url)  # Pass the URL string, not the tuple
             for entry in feed.entries:
                 if not is_within_72_hours(entry):
                     continue
@@ -290,35 +290,6 @@ def process_tech_feeds():
                     })
         except Exception as e:
             print(f"[TechBot] Error parsing {company_name} feed ({url}): {e}")
-    return matches
-
-
-def process_tech_feeds():
-    matches = []
-    for url in TECH_FEEDS:
-        try:
-            feed = feedparser.parse(url)
-            for entry in feed.entries:
-                if not is_within_72_hours(entry):
-                    continue
-
-                raw_title = entry.get("title", "")
-                summary = entry.get("summary", entry.get("description", ""))
-                if is_consumer_hardware(raw_title, summary):
-                    cleaned_title = html.unescape(raw_title)
-                    cleaned_summary = clean_description(summary)
-                    matches.append({
-                        "title": f"💻 Tech: {cleaned_title}",
-                        "description": (
-                            cleaned_summary[:280] + "..."
-                            if len(cleaned_summary) > 280
-                            else cleaned_summary
-                        ),
-                        "url": entry.get("link", ""),
-                        "color": 3447003,
-                    })
-        except Exception as e:
-            print(f"[TechBot] Error parsing {url}: {e}")
     return matches
 
 
@@ -567,7 +538,7 @@ def fetch_research_updates():
 
 
 # ---------------------------------------------------------------------------
-# 6. Space Bot (RocketLaunch.Live API + Full Detailed Location Title)
+# 6. Space Bot (RocketLaunch.Live API + Safe Multi-Level Location Title)
 # ---------------------------------------------------------------------------
 def fetch_space_updates():
     matches = []
@@ -584,42 +555,56 @@ def fetch_space_updates():
                 raw_name = launch.get("name", "Space Launch")
                 sort_date = launch.get("sort_date")
 
-                # Extract Provider / Company
-                provider_info = launch.get("provider", {}) or {}
-                provider_name = provider_info.get("name", "Space")
+                # Safely extract Provider / Company
+                provider_info = launch.get("provider")
+                provider_name = (
+                    provider_info.get("name")
+                    if isinstance(provider_info, dict)
+                    else "Space"
+                )
 
-                # Extract Vehicle Name (e.g. "Falcon 9")
-                vehicle_info = launch.get("vehicle", {}) or {}
-                vehicle_name = vehicle_info.get("name", "")
+                # Safely extract Vehicle
+                vehicle_info = launch.get("vehicle")
+                vehicle_name = (
+                    vehicle_info.get("name")
+                    if isinstance(vehicle_info, dict)
+                    else ""
+                )
 
-                # Extract Pad & Location Information
-                pad_info = launch.get("pad", {}) or {}
+                # Safely extract Pad & Location Information
+                pad_info = launch.get("pad") if isinstance(launch.get("pad"), dict) else {}
                 pad_name = pad_info.get("name", "")
-                
-                location_info = pad_info.get("location", {}) or {}
+
+                location_info = (
+                    pad_info.get("location")
+                    if isinstance(pad_info.get("location"), dict)
+                    else {}
+                )
                 location_name = location_info.get("name", "")
                 state_name = location_info.get("statename", "")
-                country_name = location_info.get("country", {}).get("name", "")
 
-                # Construct dynamic title components: Provider: Vehicle | Mission | Location | State | Country
+                # Handle country field whether it is a dict or string
+                country_data = location_info.get("country")
+                if isinstance(country_data, dict):
+                    country_name = country_data.get("name", "")
+                elif isinstance(country_data, str):
+                    country_name = country_data
+                else:
+                    country_name = ""
+
+                # Construct dynamic title: Provider: Rocket | Mission | Pad | State | Country
                 title_parts = [f"🚀 {provider_name}"]
-                
-                # Combine Vehicle and Mission Name if distinct
+
                 if vehicle_name and vehicle_name.lower() not in raw_name.lower():
                     title_parts.append(f"{vehicle_name} | {raw_name}")
                 else:
                     title_parts.append(raw_name)
 
-                # Append Pad / Facility Location
                 facility = pad_name or location_name
                 if facility:
                     title_parts.append(facility)
-
-                # Append State if available (e.g. California, Florida)
                 if state_name:
                     title_parts.append(state_name)
-
-                # Append Country if available
                 if country_name:
                     title_parts.append(country_name)
 
