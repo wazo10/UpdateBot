@@ -173,7 +173,7 @@ def send_discord_webhooks(webhook_url, payloads, bot_name, seen_urls, save_to_se
 
 
 # ---------------------------------------------------------------------------
-# 1. Tech Bot (Company Attribution + Strict Consumer Hardware Filtering)
+# 1. Tech Bot (Company Attribution + Strict Consumer Hardware & Autonomous Filtering)
 # ---------------------------------------------------------------------------
 TECH_FEEDS = [
     ("Apple", "https://newsroom.apple.com/rss-feed.rss"),
@@ -190,15 +190,15 @@ TECH_FEEDS = [
     ("Samsung", "https://news.samsung.com/global/feed"),
     ("Acer", "https://news.acer.com/rss.xml"),
     ("Framework", "https://frame.work/blog.rss"),
-    ("Waymo", "https://medium.com/feed/waymo"),
-    ("Zoox", "https://zoox.com/feed/"),
+    ("Waymo", "https://waymo.com/blog/rss.xml"),
+    ("Zoox", "https://zoox.com/press-room/rss.xml"),
 ]
 
 
 def is_consumer_hardware(title, summary):
     text = html.unescape(f"{title} {summary}").lower()
 
-    # Strict Hardware Product Terms
+    # Hardware Product Terms & Autonomous Driving Targets
     hardware_targets = [
         "macbook",
         "core ultra",
@@ -227,7 +227,7 @@ def is_consumer_hardware(title, summary):
         "driverless",
     ]
 
-    # Exclude IT, Enterprise, Security, and Firmware Blog Spam
+    # Exclude IT, Corporate, Enterprise, and Stock Filing Spam
     exclude_terms = [
         "firmware",
         "cybersecurity",
@@ -246,11 +246,9 @@ def is_consumer_hardware(title, summary):
         "hands-on",
         "opinion",
         "preview",
-        "driver",
-        "drivers",
+        "driver update",
         "game ready",
         "patch",
-        "update",
         "beta",
         "podcast",
         "survey",
@@ -281,7 +279,7 @@ def process_tech_feeds():
     matches = []
     for company_name, url in TECH_FEEDS:
         try:
-            feed = feedparser.parse(url)  # Pass the URL string, not the tuple
+            feed = feedparser.parse(url)
             for entry in feed.entries:
                 if not is_within_72_hours(entry):
                     continue
@@ -292,7 +290,7 @@ def process_tech_feeds():
                     cleaned_title = html.unescape(raw_title)
                     cleaned_summary = clean_description(summary)
                     matches.append({
-                        "title": f"💻 {company_name}: {cleaned_title}",
+                        "title": f"🎛️ {company_name}: {cleaned_title}",
                         "description": (
                             cleaned_summary[:280] + "..."
                             if len(cleaned_summary) > 280
