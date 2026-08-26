@@ -36,3 +36,9 @@
 2026-08-26|https://news.mit.edu/2026/ai-helps-design-new-materials-that-work-in-real-world-0826
 2026-08-26|https://waymo.com/blog/2026/08/10ailessons
 2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816686/rays-tigers
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816689/cubs-diamondbacks
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816690/reds-giants
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816691/guardians-angels
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816693/phillies-mariners
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816694/pirates-padres
+2026-08-26|https://www.espn.com/soccer/match/_/gameId/401882919/real-sociedad-real-madrid
