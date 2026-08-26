@@ -19,3 +19,10 @@
 2026-08-25|https://www.espn.com/soccer/match/_/gameId/401882917/real-betis-valencia
 2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816671/rays-tigers
 2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816666/rockies-nationals
+2026-08-26|https://waymo.com/blog/2026/08/waymo-in-munich
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816665/red-sox-marlins
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816667/astros-yankees
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816668/royals-blue-jays
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816670/brewers-mets
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816669/dodgers-braves
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816672/orioles-cardinals
