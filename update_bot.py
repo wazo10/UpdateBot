@@ -190,6 +190,8 @@ TECH_FEEDS = [
     ("Samsung", "https://news.samsung.com/global/feed"),
     ("Acer", "https://news.acer.com/rss.xml"),
     ("Framework", "https://frame.work/blog.rss"),
+    ("Waymo", "https://medium.com/feed/waymo"),
+    ("Zoox", "https://zoox.com/feed/"),
 ]
 
 
@@ -218,6 +220,11 @@ def is_consumer_hardware(title, summary):
         "xps 16",
         "framework laptop",
         "gaming laptop",
+        "waymo",
+        "zoox",
+        "robotaxi",
+        "autonomous vehicle",
+        "driverless",
     ]
 
     # Exclude IT, Enterprise, Security, and Firmware Blog Spam
