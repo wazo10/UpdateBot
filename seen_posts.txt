@@ -27,3 +27,8 @@
 2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816669/dodgers-braves
 2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816672/orioles-cardinals
 2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816673/rangers-white-sox
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816674/cubs-diamondbacks
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816677/twins-athletics
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816678/phillies-mariners
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816679/pirates-padres
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816675/reds-giants
