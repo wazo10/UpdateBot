@@ -26,3 +26,4 @@
 2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816670/brewers-mets
 2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816669/dodgers-braves
 2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816672/orioles-cardinals
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816673/rangers-white-sox
