@@ -35,3 +35,4 @@
 2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816676/guardians-angels
 2026-08-26|https://news.mit.edu/2026/ai-helps-design-new-materials-that-work-in-real-world-0826
 2026-08-26|https://waymo.com/blog/2026/08/10ailessons
+2026-08-26|https://www.espn.com/mlb/game/_/gameId/401816686/rays-tigers
