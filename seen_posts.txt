@@ -58,3 +58,12 @@
 2026-08-28|https://www.espn.com/soccer/match/_/gameId/401882921/athletic-club-barcelona
 2026-08-28|https://news.mit.edu/2026/looking-beyond-natural-sequences-0827
 2026-08-28|https://news.mit.edu/2026/new-type-of-attack-can-slip-past-computer-processor-defenses-0827
+2026-08-28|https://www.espn.com/mlb/game/_/gameId/401816696/astros-yankees
+2026-08-28|https://www.espn.com/mlb/game/_/gameId/401816697/royals-blue-jays
+2026-08-28|https://www.espn.com/mlb/game/_/gameId/401816699/brewers-mets
+2026-08-28|https://www.espn.com/mlb/game/_/gameId/401816698/dodgers-braves
+2026-08-28|https://www.espn.com/mlb/game/_/gameId/401816701/diamondbacks-giants
+2026-08-28|https://www.espn.com/nfl/game/_/gameId/401873298/steelers-bills
+2026-08-28|https://www.espn.com/nfl/game/_/gameId/401873299/patriots-browns
+2026-08-28|https://www.espn.com/nfl/game/_/gameId/401873641/49ers-raiders
+2026-08-28|https://www.espn.com/nfl/game/_/gameId/401873300/rams-chargers
