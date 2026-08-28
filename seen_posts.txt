@@ -52,3 +52,9 @@
 2026-08-27|https://www.espn.com/mlb/game/_/gameId/401816687/orioles-cardinals
 2026-08-27|https://www.espn.com/mlb/game/_/gameId/401816692/twins-athletics
 2026-08-27|https://news.mit.edu/2026/mit-engineers-create-system-for-building-shape-changing-smart-devices-0827
+2026-08-28|https://www.espn.com/mlb/game/_/gameId/401816695/rockies-nationals
+2026-08-28|https://www.espn.com/mlb/game/_/gameId/401816700/orioles-cardinals
+2026-08-28|https://www.espn.com/soccer/match/_/gameId/401882924/osasuna-celta-vigo
+2026-08-28|https://www.espn.com/soccer/match/_/gameId/401882921/athletic-club-barcelona
+2026-08-28|https://news.mit.edu/2026/looking-beyond-natural-sequences-0827
+2026-08-28|https://news.mit.edu/2026/new-type-of-attack-can-slip-past-computer-processor-defenses-0827
