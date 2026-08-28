@@ -67,3 +67,11 @@
 2026-08-28|https://www.espn.com/nfl/game/_/gameId/401873299/patriots-browns
 2026-08-28|https://www.espn.com/nfl/game/_/gameId/401873641/49ers-raiders
 2026-08-28|https://www.espn.com/nfl/game/_/gameId/401873300/rams-chargers
+2026-08-28|https://www.espn.com/mlb/game/_/gameId/401816711/reds-cubs
+2026-08-28|https://www.espn.com/soccer/match/_/gameId/401884817/vfb-stuttgart-bayern-munich
+2026-08-28|https://www.espn.com/soccer/match/_/gameId/401879294/manchester-city-crystal-palace
+2026-08-28|https://www.espn.com/soccer/match/_/gameId/401882900/elche-racing-santander
+2026-08-28|https://www.espn.com/soccer/match/_/gameId/401882906/villarreal-alaves
+2026-08-28|https://www.espn.com/soccer/match/_/gameId/401874758/venezia-ac-milan
+2026-08-28|https://www.espn.com/soccer/match/_/gameId/401876476/paris-saint-germain-lille
+2026-08-28|https://news.mit.edu/2026/how-mit-sandbox-turned-student-ideas-into-global-impact-0828
