@@ -86,3 +86,16 @@
 2026-08-29|https://www.espn.com/mlb/game/_/gameId/401816712/pirates-cardinals
 2026-08-29|https://www.espn.com/nfl/game/_/gameId/401873307/texans-panthers
 2026-08-29|https://www.espn.com/nfl/game/_/gameId/401874102/cardinals-packers
+2026-08-29|https://www.espn.com/mlb/game/_/gameId/401816713/rangers-brewers
+2026-08-29|https://www.espn.com/mlb/game/_/gameId/401816710/white-sox-twins
+2026-08-29|https://www.espn.com/mlb/game/_/gameId/401816716/phillies-angels
+2026-08-29|https://www.espn.com/mlb/game/_/gameId/401816715/orioles-athletics
+2026-08-29|https://www.espn.com/mlb/game/_/gameId/401816714/diamondbacks-giants
+2026-08-29|https://www.espn.com/nfl/game/_/gameId/401873302/commanders-ravens
+2026-08-29|https://www.espn.com/nfl/game/_/gameId/401873304/falcons-dolphins
+2026-08-29|https://www.espn.com/nfl/game/_/gameId/401873303/giants-jets
+2026-08-29|https://www.espn.com/nfl/game/_/gameId/401873306/buccaneers-jaguars
+2026-08-29|https://www.espn.com/nfl/game/_/gameId/401874048/saints-cowboys
+2026-08-29|https://www.espn.com/nfl/game/_/gameId/401873305/seahawks-chiefs
+2026-08-29|https://www.espn.com/nfl/game/_/gameId/401873301/bengals-eagles
+2026-08-29|https://www.espn.com/nfl/game/_/gameId/401873614/vikings-broncos
