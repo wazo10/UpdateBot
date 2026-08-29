@@ -99,3 +99,4 @@
 2026-08-29|https://www.espn.com/nfl/game/_/gameId/401873305/seahawks-chiefs
 2026-08-29|https://www.espn.com/nfl/game/_/gameId/401873301/bengals-eagles
 2026-08-29|https://www.espn.com/nfl/game/_/gameId/401873614/vikings-broncos
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401879314/nottingham-forest-liverpool
