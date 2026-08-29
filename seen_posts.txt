@@ -100,3 +100,14 @@
 2026-08-29|https://www.espn.com/nfl/game/_/gameId/401873301/bengals-eagles
 2026-08-29|https://www.espn.com/nfl/game/_/gameId/401873614/vikings-broncos
 2026-08-29|https://www.espn.com/soccer/match/_/gameId/401879314/nottingham-forest-liverpool
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401884811/eintracht-frankfurt-1-fc-union-berlin
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401884810/tsg-hoffenheim-fc-cologne
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401884812/sc-paderborn-07-mainz
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401884815/borussia-monchengladbach-rb-leipzig
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401884809/bayer-leverkusen-sv-elversberg
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401884816/hamburg-sv-borussia-dortmund
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401879296/everton-afc-bournemouth
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401879316/hull-city-coventry-city
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401879312/newcastle-united-tottenham-hotspur
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401882902/real-betis-levante
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401876477/lens-strasbourg
