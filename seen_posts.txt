@@ -111,3 +111,16 @@
 2026-08-29|https://www.espn.com/soccer/match/_/gameId/401879312/newcastle-united-tottenham-hotspur
 2026-08-29|https://www.espn.com/soccer/match/_/gameId/401882902/real-betis-levante
 2026-08-29|https://www.espn.com/soccer/match/_/gameId/401876477/lens-strasbourg
+2026-08-29|https://www.espn.com/mlb/game/_/gameId/401874913/red-sox-yankees
+2026-08-29|https://www.espn.com/mlb/game/_/gameId/401816721/dodgers-tigers
+2026-08-29|https://www.espn.com/mlb/game/_/gameId/401816725/white-sox-twins
+2026-08-29|https://www.espn.com/nfl/game/_/gameId/401873308/lions-colts
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401882898/espanyol-real-sociedad
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401874942/frosinone-fiorentina
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401874749/udinese-monza
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401874743/torino-sassuolo
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401874746/parma-juventus
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401876484/angers-aj-auxerre
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401876483/toulouse-brest
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401876482/troyes-lorient
+2026-08-29|https://www.espn.com/soccer/match/_/gameId/401876481/le-havre-ac-lyon
