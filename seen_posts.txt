@@ -148,3 +148,8 @@
 2026-08-30|https://www.espn.com/soccer/match/_/gameId/761760/new-york-city-fc-toronto-fc
 2026-08-30|https://www.espn.com/soccer/match/_/gameId/761765/san-jose-earthquakes-houston-dynamo-fc
 2026-08-30|https://www.espn.com/soccer/match/_/gameId/761762/vancouver-whitecaps-sporting-kansas-city
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/761763/orlando-city-sc-minnesota-united-fc
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/761764/fc-cincinnati-nashville-sc
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/761766/real-salt-lake-colorado-rapids
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/761768/austin-fc-portland-timbers
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/761767/la-galaxy-san-diego-fc
