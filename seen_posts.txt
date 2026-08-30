@@ -158,3 +158,10 @@
 2026-08-30|https://www.espn.com/soccer/match/_/gameId/401879315/brentford-leeds-united
 2026-08-30|https://www.espn.com/soccer/match/_/gameId/401879313/fulham-sunderland
 2026-08-30|https://www.espn.com/soccer/match/_/gameId/401876479/nice-paris-fc
+2026-08-30|https://www.espn.com/mlb/game/_/gameId/401816737/marlins-nationals
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/401884813/schalke-04-fc-augsburg
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/401879293/ipswich-town-manchester-united
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/401882899/malaga-real-madrid
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/401882904/valencia-deportivo
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/401874755/como-napoli
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/401876478/le-mans-stade-rennais
