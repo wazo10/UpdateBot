@@ -153,3 +153,8 @@
 2026-08-30|https://www.espn.com/soccer/match/_/gameId/761766/real-salt-lake-colorado-rapids
 2026-08-30|https://www.espn.com/soccer/match/_/gameId/761768/austin-fc-portland-timbers
 2026-08-30|https://www.espn.com/soccer/match/_/gameId/761767/la-galaxy-san-diego-fc
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/401884814/werder-bremen-sc-freiburg
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/401879317/brighton-hove-albion-chelsea
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/401879315/brentford-leeds-united
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/401879313/fulham-sunderland
+2026-08-30|https://www.espn.com/soccer/match/_/gameId/401876479/nice-paris-fc
