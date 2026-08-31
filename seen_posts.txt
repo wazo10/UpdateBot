@@ -182,3 +182,5 @@
 2026-08-31|https://www.espn.com/mlb/game/_/gameId/401816745/orioles-athletics
 2026-08-31|https://www.espn.com/mlb/game/_/gameId/401816746/phillies-angels
 2026-08-31|https://www.espn.com/soccer/match/_/gameId/761758/new-england-revolution-columbus-crew
+2026-08-31|https://www.espn.com/mlb/game/_/gameId/401816741/reds-cubs
+2026-08-31|https://www.espn.com/soccer/match/_/gameId/761769/fc-dallas-st-louis-city-sc
