@@ -184,3 +184,10 @@
 2026-08-31|https://www.espn.com/soccer/match/_/gameId/761758/new-england-revolution-columbus-crew
 2026-08-31|https://www.espn.com/mlb/game/_/gameId/401816741/reds-cubs
 2026-08-31|https://www.espn.com/soccer/match/_/gameId/761769/fc-dallas-st-louis-city-sc
+2026-08-31|https://www.espn.com/soccer/match/_/gameId/401879295/arsenal-aston-villa
+2026-08-31|https://www.espn.com/soccer/match/_/gameId/401882901/getafe-osasuna
+2026-08-31|https://www.espn.com/soccer/match/_/gameId/401882903/rayo-vallecano-barcelona
+2026-08-31|https://www.espn.com/soccer/match/_/gameId/401874945/as-roma-lecce
+2026-08-31|https://www.espn.com/soccer/match/_/gameId/401874970/bologna-atalanta
+2026-08-31|https://news.mit.edu/2026/mit-quantum-initiative-launches-postdoctoral-fellowship-0831
+2026-08-31|https://news.mit.edu/2026/study-peptides-can-form-well-defined-structures-harsh-venus-conditions-0831
