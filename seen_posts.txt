@@ -178,3 +178,7 @@
 2026-08-30|https://www.espn.com/soccer/match/_/gameId/401874938/internazionale-cagliari
 2026-08-30|https://www.espn.com/soccer/match/_/gameId/401874742/genoa-lazio
 2026-08-30|https://www.espn.com/soccer/match/_/gameId/401876480/marseille-as-monaco
+2026-08-31|https://www.espn.com/mlb/game/_/gameId/401816734/astros-mets
+2026-08-31|https://www.espn.com/mlb/game/_/gameId/401816745/orioles-athletics
+2026-08-31|https://www.espn.com/mlb/game/_/gameId/401816746/phillies-angels
+2026-08-31|https://www.espn.com/soccer/match/_/gameId/761758/new-england-revolution-columbus-crew
