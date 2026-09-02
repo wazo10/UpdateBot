@@ -20,3 +20,13 @@
 2026-09-01|https://news.mit.edu/2026/brains-striatum-atlas-could-guide-researchers-new-drug-treatments-0901
 2026-09-01|https://news.mit.edu/2026/walter-torous-named-executive-director-mit-center-real-estate-0901
 2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816759/mets-rays
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816760/padres-reds
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816762/giants-pirates
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816763/blue-jays-guardians
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816758/braves-nationals
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816761/mariners-red-sox
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816766/tigers-twins
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816767/marlins-royals
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816768/brewers-cubs
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816764/athletics-rangers
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816770/yankees-angels
