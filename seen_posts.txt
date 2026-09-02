@@ -36,3 +36,8 @@
 2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816772/cardinals-dodgers
 2026-09-02|https://news.mit.edu/2026/system-helps-humans-predict-when-self-driving-cars-will-make-mistakes-0902
 2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816775/padres-reds
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816773/braves-nationals
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816779/athletics-rangers
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816786/phillies-diamondbacks
+2026-09-02|https://news.mit.edu/2026/building-foundations-that-last-iwnetim-abate-0902
+2026-09-02|https://news.mit.edu/2026/from-mit-to-ibm-expediting-ai-and-quantum-deployment-0902
