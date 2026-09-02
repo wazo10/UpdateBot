@@ -30,3 +30,7 @@
 2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816768/brewers-cubs
 2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816764/athletics-rangers
 2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816770/yankees-angels
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816765/white-sox-astros
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816769/orioles-rockies
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816771/phillies-diamondbacks
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816772/cardinals-dodgers
