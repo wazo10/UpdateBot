@@ -35,3 +35,4 @@
 2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816771/phillies-diamondbacks
 2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816772/cardinals-dodgers
 2026-09-02|https://news.mit.edu/2026/system-helps-humans-predict-when-self-driving-cars-will-make-mistakes-0902
+2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816775/padres-reds
