@@ -57,3 +57,5 @@
 2026-09-03|https://www.espn.com/mlb/game/_/gameId/401816787/cardinals-dodgers
 2026-09-03|https://news.mit.edu/2026/mit-associate-professor-thomas-rose-archaeometallurgy-expert-dies-0903
 2026-09-03|https://news.mit.edu/2026/fabrication-platform-could-enable-flexible-transparent-next-generation-photonic-chips-0903
+2026-09-03|https://www.espn.com/mlb/game/_/gameId/401816789/giants-pirates
+2026-09-03|https://news.mit.edu/2026/mit-assistant-professor-thomas-rose-archaeometallurgy-expert-dies-0903
