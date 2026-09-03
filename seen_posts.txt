@@ -41,3 +41,5 @@
 2026-09-02|https://www.espn.com/mlb/game/_/gameId/401816786/phillies-diamondbacks
 2026-09-02|https://news.mit.edu/2026/building-foundations-that-last-iwnetim-abate-0902
 2026-09-02|https://news.mit.edu/2026/from-mit-to-ibm-expediting-ai-and-quantum-deployment-0902
+2026-09-03|https://www.espn.com/mlb/game/_/gameId/401816784/orioles-rockies
+2026-09-03|https://www.espn.com/mlb/game/_/gameId/401816776/mariners-red-sox
