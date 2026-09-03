@@ -59,3 +59,8 @@
 2026-09-03|https://news.mit.edu/2026/fabrication-platform-could-enable-flexible-transparent-next-generation-photonic-chips-0903
 2026-09-03|https://www.espn.com/mlb/game/_/gameId/401816789/giants-pirates
 2026-09-03|https://news.mit.edu/2026/mit-assistant-professor-thomas-rose-archaeometallurgy-expert-dies-0903
+2026-09-03|https://www.espn.com/mlb/game/_/gameId/401816790/blue-jays-guardians
+2026-09-03|https://www.espn.com/mlb/game/_/gameId/401816791/white-sox-astros
+2026-09-03|https://www.espn.com/soccer/match/_/gameId/401882867/celta-vigo-real-sociedad
+2026-09-03|https://www.espn.com/soccer/match/_/gameId/401876468/lille-toulouse
+2026-09-03|https://news.mit.edu/2026/faculty-receive-promotions-school-architecture-and-planning-0903
