@@ -75,3 +75,7 @@
 2026-09-04|https://www.espn.com/soccer/match/_/gameId/401884808/fc-cologne-vfb-stuttgart
 2026-09-04|https://www.espn.com/soccer/match/_/gameId/401874744/como-genoa
 2026-09-04|https://www.espn.com/soccer/match/_/gameId/401876472/aj-auxerre-lyon
+2026-09-04|https://www.espn.com/mlb/game/_/gameId/401877193/tigers-guardians
+2026-09-04|https://www.espn.com/soccer/match/_/gameId/401879288/liverpool-ipswich-town
+2026-09-04|https://www.espn.com/soccer/match/_/gameId/401882894/real-madrid-real-betis
+2026-09-04|https://www.espn.com/soccer/match/_/gameId/401876469/as-monaco-paris-saint-germain
