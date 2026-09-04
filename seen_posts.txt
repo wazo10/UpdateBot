@@ -72,3 +72,6 @@
 2026-09-04|https://www.espn.com/mlb/game/_/gameId/401816796/cardinals-dodgers
 2026-09-04|https://news.mit.edu/2026/new-method-allows-following-gene-activity-over-time-same-cells-0904
 2026-09-04|https://www.espn.com/f1/race/_/id/600057442
+2026-09-04|https://www.espn.com/soccer/match/_/gameId/401884808/fc-cologne-vfb-stuttgart
+2026-09-04|https://www.espn.com/soccer/match/_/gameId/401874744/como-genoa
+2026-09-04|https://www.espn.com/soccer/match/_/gameId/401876472/aj-auxerre-lyon
