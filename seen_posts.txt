@@ -64,3 +64,10 @@
 2026-09-03|https://www.espn.com/soccer/match/_/gameId/401882867/celta-vigo-real-sociedad
 2026-09-03|https://www.espn.com/soccer/match/_/gameId/401876468/lille-toulouse
 2026-09-03|https://news.mit.edu/2026/faculty-receive-promotions-school-architecture-and-planning-0903
+2026-09-04|https://www.espn.com/mlb/game/_/gameId/401816788/red-sox-orioles
+2026-09-04|https://www.espn.com/mlb/game/_/gameId/401816793/brewers-cubs
+2026-09-04|https://www.espn.com/mlb/game/_/gameId/401816792/marlins-royals
+2026-09-04|https://www.espn.com/mlb/game/_/gameId/401816794/rays-rangers
+2026-09-04|https://www.espn.com/mlb/game/_/gameId/401816795/athletics-mariners
+2026-09-04|https://www.espn.com/mlb/game/_/gameId/401816796/cardinals-dodgers
+2026-09-04|https://news.mit.edu/2026/new-method-allows-following-gene-activity-over-time-same-cells-0904
