@@ -108,3 +108,8 @@
 2026-09-05|https://www.espn.com/soccer/match/_/gameId/401878780/tottenham-hotspur-nottingham-forest
 2026-09-05|https://www.espn.com/soccer/match/_/gameId/401882895/atletico-madrid-athletic-club
 2026-09-05|https://www.espn.com/soccer/match/_/gameId/401874939/torino-fiorentina
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401884801/bayern-munich-schalke-04
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401878781/aston-villa-hull-city
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401882889/racing-santander-rayo-vallecano
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401874937/napoli-internazionale
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401876473/lorient-lens
