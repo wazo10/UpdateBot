@@ -95,3 +95,4 @@
 2026-09-05|https://www.espn.com/soccer/match/_/gameId/761770/nashville-sc-new-york-city-fc
 2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816809/athletics-mariners
 2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816811/nationals-dodgers
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401879286/afc-bournemouth-newcastle-united
