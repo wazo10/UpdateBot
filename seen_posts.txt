@@ -79,3 +79,17 @@
 2026-09-04|https://www.espn.com/soccer/match/_/gameId/401879288/liverpool-ipswich-town
 2026-09-04|https://www.espn.com/soccer/match/_/gameId/401882894/real-madrid-real-betis
 2026-09-04|https://www.espn.com/soccer/match/_/gameId/401876469/as-monaco-paris-saint-germain
+2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816802/brewers-reds
+2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816797/angels-pirates
+2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816798/braves-phillies
+2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816799/red-sox-orioles
+2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816800/cubs-marlins
+2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816803/giants-mets
+2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816805/twins-white-sox
+2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816801/tigers-guardians
+2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816806/rays-rangers
+2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816804/diamondbacks-astros
+2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816807/blue-jays-royals
+2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816808/cardinals-rockies
+2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816810/yankees-padres
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/761770/nashville-sc-new-york-city-fc
