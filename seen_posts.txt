@@ -113,3 +113,5 @@
 2026-09-05|https://www.espn.com/soccer/match/_/gameId/401882889/racing-santander-rayo-vallecano
 2026-09-05|https://www.espn.com/soccer/match/_/gameId/401874937/napoli-internazionale
 2026-09-05|https://www.espn.com/soccer/match/_/gameId/401876473/lorient-lens
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401874781/atalanta-as-roma
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401876470/le-mans-nice
