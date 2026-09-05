@@ -96,3 +96,15 @@
 2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816809/athletics-mariners
 2026-09-05|https://www.espn.com/mlb/game/_/gameId/401816811/nationals-dodgers
 2026-09-05|https://www.espn.com/soccer/match/_/gameId/401879286/afc-bournemouth-newcastle-united
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401884806/1-fc-union-berlin-bayer-leverkusen
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401884804/sv-elversberg-borussia-monchengladbach
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401884800/sc-freiburg-sc-paderborn-07
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401884807/borussia-dortmund-tsg-hoffenheim
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401884802/rb-leipzig-werder-bremen
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401879311/sunderland-brentford
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401879290/leeds-united-brighton-hove-albion
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401879289/crystal-palace-fulham
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401879287/coventry-city-manchester-city
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401878780/tottenham-hotspur-nottingham-forest
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401882895/atletico-madrid-athletic-club
+2026-09-05|https://www.espn.com/soccer/match/_/gameId/401874939/torino-fiorentina
