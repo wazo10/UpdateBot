@@ -170,3 +170,7 @@
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/401882892/sevilla-espanyol
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/401874954/ac-milan-juventus
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/401876471/paris-fc-marseille
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816836/rays-rangers
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816838/cardinals-rockies
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816839/athletics-mariners
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816840/yankees-padres
