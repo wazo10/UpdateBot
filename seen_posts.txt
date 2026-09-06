@@ -155,3 +155,6 @@
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/401879292/chelsea-arsenal
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/401882888/barcelona-valencia
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/401876475/stade-rennais-angers
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401882896/osasuna-alaves
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401882890/levante-malaga
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401874751/sassuolo-bologna
