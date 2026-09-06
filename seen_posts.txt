@@ -158,3 +158,15 @@
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/401882896/osasuna-alaves
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/401882890/levante-malaga
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/401874751/sassuolo-bologna
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816832/brewers-reds
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816828/braves-phillies
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816827/angels-pirates
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816829/red-sox-orioles
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816830/cubs-marlins
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816831/tigers-guardians
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816833/giants-mets
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816834/diamondbacks-astros
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816837/blue-jays-royals
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401882892/sevilla-espanyol
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401874954/ac-milan-juventus
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401876471/paris-fc-marseille
