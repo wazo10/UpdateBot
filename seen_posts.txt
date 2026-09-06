@@ -151,3 +151,7 @@
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/401874768/venezia-frosinone
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/401874987/monza-parma
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/401876467/strasbourg-troyes
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401884805/fc-augsburg-eintracht-frankfurt
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401879292/chelsea-arsenal
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401882888/barcelona-valencia
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401876475/stade-rennais-angers
