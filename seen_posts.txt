@@ -139,3 +139,10 @@
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/761780/red-bull-new-york-seattle-sounders-fc
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/761777/atlanta-united-fc-inter-miami-cf
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/761773/dc-united-fc-cincinnati
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816817/brewers-reds
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816826/nationals-dodgers
+2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816824/athletics-mariners
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/761782/new-england-revolution-la-galaxy
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/761781/lafc-real-salt-lake
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/761783/minnesota-united-fc-portland-timbers
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/761784/st-louis-city-sc-vancouver-whitecaps
