@@ -146,3 +146,8 @@
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/761781/lafc-real-salt-lake
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/761783/minnesota-united-fc-portland-timbers
 2026-09-06|https://www.espn.com/soccer/match/_/gameId/761784/st-louis-city-sc-vancouver-whitecaps
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401884803/mainz-hamburg-sv
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401879291/manchester-united-everton
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401874768/venezia-frosinone
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401874987/monza-parma
+2026-09-06|https://www.espn.com/soccer/match/_/gameId/401876467/strasbourg-troyes
