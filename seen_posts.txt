@@ -174,3 +174,5 @@
 2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816838/cardinals-rockies
 2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816839/athletics-mariners
 2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816840/yankees-padres
+2026-09-07|https://www.espn.com/mlb/game/_/gameId/401816835/twins-white-sox
+2026-09-07|https://www.espn.com/mlb/game/_/gameId/401816841/nationals-dodgers
