@@ -176,3 +176,6 @@
 2026-09-06|https://www.espn.com/mlb/game/_/gameId/401816840/yankees-padres
 2026-09-07|https://www.espn.com/mlb/game/_/gameId/401816835/twins-white-sox
 2026-09-07|https://www.espn.com/mlb/game/_/gameId/401816841/nationals-dodgers
+2026-09-07|https://www.espn.com/mlb/game/_/gameId/401816843/braves-phillies
+2026-09-07|https://www.espn.com/soccer/match/_/gameId/401882891/celta-vigo-getafe
+2026-09-07|https://www.espn.com/soccer/match/_/gameId/401874943/lecce-cagliari
