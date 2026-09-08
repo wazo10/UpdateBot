@@ -188,3 +188,5 @@
 2026-09-07|https://www.espn.com/soccer/match/_/gameId/401882893/real-sociedad-elche
 2026-09-07|https://www.espn.com/soccer/match/_/gameId/401874962/lazio-udinese
 2026-09-08|https://www.espn.com/mlb/game/_/gameId/401816852/nationals-padres
+2026-09-08|https://www.espn.com/mlb/game/_/gameId/401816850/cardinals-giants
+2026-09-08|https://www.espn.com/mlb/game/_/gameId/401816849/reds-dodgers
