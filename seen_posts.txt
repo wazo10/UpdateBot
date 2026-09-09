@@ -216,3 +216,10 @@
 2026-09-09|https://www.espn.com/soccer/match/_/gameId/401915424/feyenoord-rotterdam-barcelona
 2026-09-09|https://www.espn.com/soccer/match/_/gameId/401915448/viking-fk-vfb-stuttgart
 2026-09-09|https://news.mit.edu/2026/pink-noise-burst-may-mean-more-restorative-sleep-0909
+2026-09-09|https://www.espn.com/mlb/game/_/gameId/401816872/twins-tigers
+2026-09-09|https://www.espn.com/mlb/game/_/gameId/401816881/blue-jays-athletics
+2026-09-09|https://www.espn.com/soccer/match/_/gameId/401915446/atletico-madrid-liverpool
+2026-09-09|https://www.espn.com/soccer/match/_/gameId/401915423/arsenal-napoli
+2026-09-09|https://www.espn.com/soccer/match/_/gameId/401915445/slovan-bratislava-paris-saint-germain
+2026-09-09|https://www.espn.com/soccer/match/_/gameId/401915447/galatasaray-sporting-cp
+2026-09-09|https://news.mit.edu/2026/mit-schwarzman-college-computing-launches-pilot-help-educators-teach-ai-across-disciplines-0909
