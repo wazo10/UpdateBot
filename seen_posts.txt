@@ -213,3 +213,6 @@
 2026-09-09|https://www.espn.com/mlb/game/_/gameId/401816864/cardinals-giants
 2026-09-09|https://www.espn.com/mlb/game/_/gameId/401816863/reds-dodgers
 2026-09-09|https://news.mit.edu/2026/electrochemical-approach-turns-ammonia-into-pure-hydrogen-0909
+2026-09-09|https://www.espn.com/soccer/match/_/gameId/401915424/feyenoord-rotterdam-barcelona
+2026-09-09|https://www.espn.com/soccer/match/_/gameId/401915448/viking-fk-vfb-stuttgart
+2026-09-09|https://news.mit.edu/2026/pink-noise-burst-may-mean-more-restorative-sleep-0909
