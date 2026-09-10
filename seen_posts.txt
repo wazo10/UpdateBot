@@ -244,3 +244,10 @@
 2026-09-10|https://www.espn.com/soccer/match/_/gameId/761794/colorado-rapids-austin-fc
 2026-09-10|https://www.espn.com/soccer/match/_/gameId/761791/real-salt-lake-houston-dynamo-fc
 2026-09-10|https://www.espn.com/soccer/match/_/gameId/761793/fc-dallas-minnesota-united-fc
+2026-09-10|https://www.espn.com/mlb/game/_/gameId/401816878/reds-dodgers
+2026-09-10|https://www.espn.com/soccer/match/_/gameId/761788/new-england-revolution-new-york-city-fc
+2026-09-10|https://www.espn.com/soccer/match/_/gameId/761792/inter-miami-cf-chicago-fire-fc
+2026-09-10|https://www.espn.com/soccer/match/_/gameId/761795/red-bull-new-york-lafc
+2026-09-10|https://www.espn.com/soccer/match/_/gameId/761796/st-louis-city-sc-portland-timbers
+2026-09-10|https://www.espn.com/soccer/match/_/gameId/761797/san-jose-earthquakes-san-diego-fc
+2026-09-10|https://www.espn.com/soccer/match/_/gameId/761799/la-galaxy-vancouver-whitecaps
