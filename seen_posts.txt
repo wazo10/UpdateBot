@@ -223,3 +223,6 @@
 2026-09-09|https://www.espn.com/soccer/match/_/gameId/401915445/slovan-bratislava-paris-saint-germain
 2026-09-09|https://www.espn.com/soccer/match/_/gameId/401915447/galatasaray-sporting-cp
 2026-09-09|https://news.mit.edu/2026/mit-schwarzman-college-computing-launches-pilot-help-educators-teach-ai-across-disciplines-0909
+2026-09-10|https://www.espn.com/mlb/game/_/gameId/401816879/cardinals-giants
+2026-09-10|https://www.espn.com/mlb/game/_/gameId/401816880/rangers-mariners
+2026-09-10|https://www.espn.com/mlb/game/_/gameId/401816882/nationals-padres
