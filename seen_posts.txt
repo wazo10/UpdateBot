@@ -268,3 +268,5 @@
 2026-09-11|https://www.espn.com/soccer/match/_/gameId/401884793/schalke-04-1-fc-union-berlin
 2026-09-11|https://www.espn.com/soccer/match/_/gameId/401874759/fiorentina-venezia
 2026-09-11|https://www.espn.com/soccer/match/_/gameId/401876459/marseille-stade-rennais
+2026-09-11|https://www.espn.com/mlb/game/_/gameId/401816899/pirates-cubs
+2026-09-11|https://www.espn.com/soccer/match/_/gameId/401882878/valencia-sevilla
