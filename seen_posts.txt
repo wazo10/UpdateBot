@@ -261,3 +261,6 @@
 2026-09-10|https://www.espn.com/soccer/match/_/gameId/401915442/sabah-fk-manchester-united
 2026-09-10|https://www.espn.com/soccer/match/_/gameId/401915440/lens-slavia-prague
 2026-09-10|https://www.espn.com/mlb/game/_/gameId/401816887/rangers-mariners
+2026-09-11|https://www.espn.com/mlb/game/_/gameId/401816883/rockies-yankees
+2026-09-11|https://www.espn.com/mlb/game/_/gameId/401816886/pirates-white-sox
+2026-09-11|https://www.espn.com/nfl/game/_/gameId/401872657/49ers-rams
