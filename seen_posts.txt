@@ -265,3 +265,6 @@
 2026-09-11|https://www.espn.com/mlb/game/_/gameId/401816886/pirates-white-sox
 2026-09-11|https://www.espn.com/nfl/game/_/gameId/401872657/49ers-rams
 2026-09-11|https://www.espn.com/f1/race/_/id/600057443
+2026-09-11|https://www.espn.com/soccer/match/_/gameId/401884793/schalke-04-1-fc-union-berlin
+2026-09-11|https://www.espn.com/soccer/match/_/gameId/401874759/fiorentina-venezia
+2026-09-11|https://www.espn.com/soccer/match/_/gameId/401876459/marseille-stade-rennais
