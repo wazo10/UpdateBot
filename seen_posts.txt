@@ -312,3 +312,9 @@
 2026-09-12|https://www.espn.com/soccer/match/_/gameId/401876464/angers-le-havre-ac
 2026-09-12|https://www.espn.com/soccer/match/_/gameId/401876461/toulouse-lorient
 2026-09-12|https://www.espn.com/soccer/match/_/gameId/401876460/lyon-paris-fc
+2026-09-12|https://www.espn.com/mlb/game/_/gameId/401816904/orioles-blue-jays
+2026-09-12|https://www.espn.com/mlb/game/_/gameId/401816903/angels-nationals
+2026-09-12|https://www.espn.com/mlb/game/_/gameId/401816915/padres-giants
+2026-09-12|https://www.espn.com/mlb/game/_/gameId/401816907/royals-red-sox
+2026-09-12|https://www.espn.com/mlb/game/_/gameId/401816908/dodgers-marlins
+2026-09-12|https://www.espn.com/mlb/game/_/gameId/401816913/guardians-twins
