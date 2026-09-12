@@ -292,3 +292,9 @@
 2026-09-12|https://www.espn.com/soccer/match/_/gameId/401879279/fulham-liverpool
 2026-09-12|https://www.espn.com/soccer/match/_/gameId/401882881/alaves-racing-santander
 2026-09-12|https://www.espn.com/soccer/match/_/gameId/401874991/frosinone-genoa
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401879285/brentford-afc-bournemouth
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401879284/nottingham-forest-aston-villa
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401879283/hull-city-chelsea
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401879281/ipswich-town-crystal-palace
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401882882/espanyol-osasuna
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401876458/as-monaco-strasbourg
