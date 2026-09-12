@@ -283,3 +283,4 @@
 2026-09-12|https://www.espn.com/mlb/game/_/gameId/401816896/white-sox-cardinals
 2026-09-12|https://www.espn.com/mlb/game/_/gameId/401816901/mariners-athletics
 2026-09-12|https://www.espn.com/mlb/game/_/gameId/401816902/rangers-diamondbacks
+2026-09-12|https://www.espn.com/mlb/game/_/gameId/401816900/padres-giants
