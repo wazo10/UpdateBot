@@ -284,3 +284,11 @@
 2026-09-12|https://www.espn.com/mlb/game/_/gameId/401816901/mariners-athletics
 2026-09-12|https://www.espn.com/mlb/game/_/gameId/401816902/rangers-diamondbacks
 2026-09-12|https://www.espn.com/mlb/game/_/gameId/401816900/padres-giants
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401884799/sc-paderborn-07-borussia-dortmund
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401884795/bayer-leverkusen-fc-augsburg
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401884794/eintracht-frankfurt-mainz
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401884796/borussia-monchengladbach-sc-freiburg
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401884797/vfb-stuttgart-tsg-hoffenheim
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401879279/fulham-liverpool
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401882881/alaves-racing-santander
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401874991/frosinone-genoa
