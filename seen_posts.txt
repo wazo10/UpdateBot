@@ -298,3 +298,7 @@
 2026-09-12|https://www.espn.com/soccer/match/_/gameId/401879281/ipswich-town-crystal-palace
 2026-09-12|https://www.espn.com/soccer/match/_/gameId/401882882/espanyol-osasuna
 2026-09-12|https://www.espn.com/soccer/match/_/gameId/401876458/as-monaco-strasbourg
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401884792/werder-bremen-fc-cologne
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401879277/everton-tottenham-hotspur
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401882886/elche-athletic-club
+2026-09-12|https://www.espn.com/soccer/match/_/gameId/401874941/ac-milan-lazio
