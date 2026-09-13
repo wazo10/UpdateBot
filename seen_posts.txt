@@ -362,3 +362,10 @@
 2026-09-13|https://www.espn.com/soccer/match/_/gameId/401882884/deportivo-getafe
 2026-09-13|https://www.espn.com/soccer/match/_/gameId/401874750/juventus-sassuolo
 2026-09-13|https://www.espn.com/soccer/match/_/gameId/401876465/paris-saint-germain-brest
+2026-09-13|https://www.espn.com/mlb/game/_/gameId/401816923/dodgers-marlins
+2026-09-13|https://www.espn.com/mlb/game/_/gameId/401816927/reds-brewers
+2026-09-13|https://www.espn.com/mlb/game/_/gameId/401816928/guardians-twins
+2026-09-13|https://www.espn.com/mlb/game/_/gameId/401816926/white-sox-cardinals
+2026-09-13|https://www.espn.com/mlb/game/_/gameId/401816929/pirates-cubs
+2026-09-13|https://www.espn.com/nfl/game/_/gameId/401872923/saints-lions
+2026-09-13|https://www.espn.com/soccer/match/_/gameId/401882879/atletico-madrid-real-sociedad
