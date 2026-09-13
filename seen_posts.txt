@@ -340,3 +340,9 @@
 2026-09-13|https://www.espn.com/soccer/match/_/gameId/401882885/malaga-celta-vigo
 2026-09-13|https://www.espn.com/soccer/match/_/gameId/401874936/monza-lecce
 2026-09-13|https://www.espn.com/soccer/match/_/gameId/401876462/troyes-lille
+2026-09-13|https://www.espn.com/soccer/match/_/gameId/401884798/hamburg-sv-rb-leipzig
+2026-09-13|https://www.espn.com/soccer/match/_/gameId/401884791/bayern-munich-sv-elversberg
+2026-09-13|https://www.espn.com/soccer/match/_/gameId/401879278/manchester-city-manchester-united
+2026-09-13|https://www.espn.com/soccer/match/_/gameId/401882883/barcelona-levante
+2026-09-13|https://www.espn.com/soccer/match/_/gameId/401874792/bologna-napoli
+2026-09-13|https://www.espn.com/soccer/match/_/gameId/401876463/lens-le-mans
