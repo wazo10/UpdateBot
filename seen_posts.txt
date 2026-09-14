@@ -384,3 +384,5 @@
 2026-09-14|https://news.mit.edu/2026/new-method-enables-ai-safety-critical-situations-0914
 2026-09-14|https://news.mit.edu/2026/mit-spinout-turns-plastic-waste-into-resilient-building-materials-0914
 2026-09-14|https://waymo.com/blog/2026/09/ride-in-las-vegas
+2026-09-14|https://www.espn.com/soccer/match/_/gameId/401874933/parma-como
+2026-09-14|https://www.espn.com/soccer/match/_/gameId/401874950/as-roma-torino
