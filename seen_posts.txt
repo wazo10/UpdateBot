@@ -404,3 +404,5 @@
 2026-09-15|https://www.espn.com/nfl/game/_/gameId/401872931/broncos-chiefs
 2026-09-15|https://www.espn.com/soccer/match/_/gameId/401882868/espanyol-rayo-vallecano
 2026-09-15|https://news.mit.edu/2026/3-questions-putting-nuclear-waste-into-perspective-0915
+2026-09-15|https://www.espn.com/soccer/match/_/gameId/401882876/valencia-alaves
+2026-09-15|https://www.espn.com/soccer/match/_/gameId/401882872/real-madrid-elche
