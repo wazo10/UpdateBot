@@ -424,3 +424,8 @@
 2026-09-16|https://www.espn.com/mlb/game/_/gameId/401816956/marlins-diamondbacks
 2026-09-16|https://news.mit.edu/2026/nanoscale-mechanics-could-enable-brain-inspired-computing-0916
 2026-09-16|https://news.mit.edu/2026/new-ai-technique-could-make-minimally-invasive-surgeries-safer-more-precise-0916
+2026-09-16|https://www.espn.com/mlb/game/_/gameId/401816960/white-sox-guardians
+2026-09-16|https://www.espn.com/mlb/game/_/gameId/401816969/giants-cardinals
+2026-09-16|https://www.espn.com/soccer/match/_/gameId/401882875/osasuna-atletico-madrid
+2026-09-16|https://www.espn.com/soccer/match/_/gameId/401882873/sevilla-deportivo
+2026-09-16|https://www.espn.com/soccer/match/_/gameId/401882870/athletic-club-levante
