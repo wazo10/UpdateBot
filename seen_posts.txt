@@ -422,3 +422,5 @@
 2026-09-16|https://www.espn.com/mlb/game/_/gameId/401816957/mariners-angels
 2026-09-16|https://news.mit.edu/2026/mit-startups-inspire-with-impressive-presentations-demo-day-0916
 2026-09-16|https://www.espn.com/mlb/game/_/gameId/401816956/marlins-diamondbacks
+2026-09-16|https://news.mit.edu/2026/nanoscale-mechanics-could-enable-brain-inspired-computing-0916
+2026-09-16|https://news.mit.edu/2026/new-ai-technique-could-make-minimally-invasive-surgeries-safer-more-precise-0916
