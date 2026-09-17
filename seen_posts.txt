@@ -443,3 +443,6 @@
 2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816970/padres-rockies
 2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816972/mariners-angels
 2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816971/marlins-diamondbacks
+2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816975/brewers-pirates
+2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816974/dodgers-reds
+2026-09-17|https://www.espn.com/soccer/match/_/gameId/401882874/getafe-real-betis
