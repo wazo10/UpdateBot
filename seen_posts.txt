@@ -434,3 +434,12 @@
 2026-09-16|https://www.espn.com/soccer/match/_/gameId/401882871/racing-santander-barcelona
 2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816958/athletics-rays
 2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816964/phillies-nationals
+2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816962/dodgers-reds
+2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816963/brewers-pirates
+2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816959/orioles-mets
+2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816965/braves-cubs
+2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816966/red-sox-rangers
+2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816967/royals-astros
+2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816970/padres-rockies
+2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816972/mariners-angels
+2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816971/marlins-diamondbacks
