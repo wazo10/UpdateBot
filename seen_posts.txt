@@ -432,3 +432,5 @@
 2026-09-16|https://www.espn.com/mlb/game/_/gameId/401816968/yankees-twins
 2026-09-16|https://www.espn.com/mlb/game/_/gameId/401816961/tigers-blue-jays
 2026-09-16|https://www.espn.com/soccer/match/_/gameId/401882871/racing-santander-barcelona
+2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816958/athletics-rays
+2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816964/phillies-nationals
