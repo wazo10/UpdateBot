@@ -450,3 +450,10 @@
 2026-09-17|https://www.espn.com/mlb/game/_/gameId/401816980/padres-rockies
 2026-09-17|https://www.espn.com/soccer/match/_/gameId/401882869/villarreal-malaga
 2026-09-17|https://news.mit.edu/2026/mit-engineering-faculty-staff-receive-awards-0917
+2026-09-18|https://www.espn.com/mlb/game/_/gameId/401816976/phillies-mets
+2026-09-18|https://www.espn.com/mlb/game/_/gameId/401816979/royals-astros
+2026-09-18|https://www.espn.com/mlb/game/_/gameId/401816978/tigers-white-sox
+2026-09-18|https://www.espn.com/mlb/game/_/gameId/401816977/red-sox-rangers
+2026-09-18|https://www.espn.com/mlb/game/_/gameId/401816981/twins-angels
+2026-09-18|https://www.espn.com/nfl/game/_/gameId/401872932/lions-bills
+2026-09-18|https://news.mit.edu/2026/fueling-return-journey-from-mars-lanie-mckinney-0918
