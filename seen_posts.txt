@@ -457,3 +457,5 @@
 2026-09-18|https://www.espn.com/mlb/game/_/gameId/401816981/twins-angels
 2026-09-18|https://www.espn.com/nfl/game/_/gameId/401872932/lions-bills
 2026-09-18|https://news.mit.edu/2026/fueling-return-journey-from-mars-lanie-mckinney-0918
+2026-09-18|https://news.mit.edu/2026/mit-researchers-mapping-extreme-weather-risks-building-tools-to-act-0918
+2026-09-18|https://news.mit.edu/2026/how-enzymes-influence-bacterial-protein-production-0918
