@@ -459,3 +459,8 @@
 2026-09-18|https://news.mit.edu/2026/fueling-return-journey-from-mars-lanie-mckinney-0918
 2026-09-18|https://news.mit.edu/2026/mit-researchers-mapping-extreme-weather-risks-building-tools-to-act-0918
 2026-09-18|https://news.mit.edu/2026/how-enzymes-influence-bacterial-protein-production-0918
+2026-09-18|https://www.espn.com/soccer/match/_/gameId/401884790/1-fc-union-berlin-bayern-munich
+2026-09-18|https://www.espn.com/soccer/match/_/gameId/401879275/chelsea-brentford
+2026-09-18|https://www.espn.com/soccer/match/_/gameId/401882862/elche-espanyol
+2026-09-18|https://www.espn.com/soccer/match/_/gameId/401874756/sassuolo-monza
+2026-09-18|https://www.espn.com/soccer/match/_/gameId/401876453/lens-as-monaco
