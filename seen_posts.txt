@@ -464,3 +464,5 @@
 2026-09-18|https://www.espn.com/soccer/match/_/gameId/401882862/elche-espanyol
 2026-09-18|https://www.espn.com/soccer/match/_/gameId/401874756/sassuolo-monza
 2026-09-18|https://www.espn.com/soccer/match/_/gameId/401876453/lens-as-monaco
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816984/cubs-reds
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816985/royals-pirates
