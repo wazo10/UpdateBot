@@ -466,3 +466,17 @@
 2026-09-18|https://www.espn.com/soccer/match/_/gameId/401876453/lens-as-monaco
 2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816984/cubs-reds
 2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816985/royals-pirates
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816986/brewers-orioles
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816982/athletics-guardians
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816983/red-sox-rays
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816987/phillies-mets
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816989/tigers-white-sox
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816990/blue-jays-rangers
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816988/braves-astros
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816992/mariners-rockies
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816991/nationals-cardinals
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816994/twins-angels
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816993/marlins-padres
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816995/yankees-diamondbacks
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816996/giants-dodgers
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/761815/red-bull-new-york-new-york-city-fc
