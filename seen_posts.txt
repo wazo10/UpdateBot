@@ -480,3 +480,5 @@
 2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816995/yankees-diamondbacks
 2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816996/giants-dodgers
 2026-09-19|https://www.espn.com/soccer/match/_/gameId/761815/red-bull-new-york-new-york-city-fc
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401879269/aston-villa-tottenham-hotspur
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401882860/rayo-vallecano-osasuna
