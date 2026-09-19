@@ -482,3 +482,14 @@
 2026-09-19|https://www.espn.com/soccer/match/_/gameId/761815/red-bull-new-york-new-york-city-fc
 2026-09-19|https://www.espn.com/soccer/match/_/gameId/401879269/aston-villa-tottenham-hotspur
 2026-09-19|https://www.espn.com/soccer/match/_/gameId/401882860/rayo-vallecano-osasuna
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401884786/mainz-borussia-monchengladbach
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401884787/sc-freiburg-eintracht-frankfurt
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401884785/fc-cologne-hamburg-sv
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401884784/fc-augsburg-werder-bremen
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401879274/arsenal-brighton-hove-albion
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401878778/ipswich-town-everton
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401879271/hull-city-newcastle-united
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401882866/alaves-athletic-club
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401874767/torino-bologna
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401874964/cagliari-udinese
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401876451/strasbourg-paris-fc
