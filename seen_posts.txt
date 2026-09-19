@@ -497,3 +497,10 @@
 2026-09-19|https://www.espn.com/soccer/match/_/gameId/401879270/coventry-city-nottingham-forest
 2026-09-19|https://www.espn.com/soccer/match/_/gameId/401882864/racing-santander-celta-vigo
 2026-09-19|https://www.espn.com/soccer/match/_/gameId/401874753/internazionale-as-roma
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401817004/tigers-white-sox
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401882859/barcelona-sevilla
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401874956/lazio-venezia
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401876457/troyes-angers
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401876455/lorient-le-mans
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401876454/stade-rennais-lyon
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401876450/le-havre-ac-toulouse
