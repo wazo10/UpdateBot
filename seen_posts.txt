@@ -504,3 +504,5 @@
 2026-09-19|https://www.espn.com/soccer/match/_/gameId/401876455/lorient-le-mans
 2026-09-19|https://www.espn.com/soccer/match/_/gameId/401876454/stade-rennais-lyon
 2026-09-19|https://www.espn.com/soccer/match/_/gameId/401876450/le-havre-ac-toulouse
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401817001/brewers-orioles
+2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816998/red-sox-rays
