@@ -493,3 +493,7 @@
 2026-09-19|https://www.espn.com/soccer/match/_/gameId/401874767/torino-bologna
 2026-09-19|https://www.espn.com/soccer/match/_/gameId/401874964/cagliari-udinese
 2026-09-19|https://www.espn.com/soccer/match/_/gameId/401876451/strasbourg-paris-fc
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401884789/borussia-dortmund-vfb-stuttgart
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401879270/coventry-city-nottingham-forest
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401882864/racing-santander-celta-vigo
+2026-09-19|https://www.espn.com/soccer/match/_/gameId/401874753/internazionale-as-roma
