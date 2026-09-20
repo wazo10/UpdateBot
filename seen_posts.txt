@@ -540,3 +540,13 @@
 2026-09-20|https://www.espn.com/soccer/match/_/gameId/761825/vancouver-whitecaps-real-salt-lake
 2026-09-20|https://www.espn.com/soccer/match/_/gameId/401882861/malaga-getafe
 2026-09-20|https://www.espn.com/soccer/match/_/gameId/401874934/napoli-fiorentina
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401884788/rb-leipzig-bayer-leverkusen
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401884783/sv-elversberg-schalke-04
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401879276/liverpool-afc-bournemouth
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401879273/crystal-palace-leeds-united
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401879272/sunderland-manchester-city
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401878777/manchester-united-fulham
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401882865/real-madrid-atletico-madrid
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401874752/como-frosinone
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401874801/genoa-parma
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401876452/lille-nice
