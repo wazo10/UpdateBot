@@ -538,3 +538,5 @@
 2026-09-20|https://www.espn.com/soccer/match/_/gameId/761819/charlotte-fc-dc-united
 2026-09-20|https://www.espn.com/soccer/match/_/gameId/761826/seattle-sounders-fc-colorado-rapids
 2026-09-20|https://www.espn.com/soccer/match/_/gameId/761825/vancouver-whitecaps-real-salt-lake
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401882861/malaga-getafe
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401874934/napoli-fiorentina
