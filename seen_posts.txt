@@ -506,3 +506,6 @@
 2026-09-19|https://www.espn.com/soccer/match/_/gameId/401876450/le-havre-ac-toulouse
 2026-09-19|https://www.espn.com/mlb/game/_/gameId/401817001/brewers-orioles
 2026-09-19|https://www.espn.com/mlb/game/_/gameId/401816998/red-sox-rays
+2026-09-20|https://www.espn.com/mlb/game/_/gameId/401817002/phillies-mets
+2026-09-20|https://www.espn.com/mlb/game/_/gameId/401816997/athletics-guardians
+2026-09-20|https://www.espn.com/mlb/game/_/gameId/401816999/cubs-reds
