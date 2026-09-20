@@ -550,3 +550,9 @@
 2026-09-20|https://www.espn.com/soccer/match/_/gameId/401874752/como-frosinone
 2026-09-20|https://www.espn.com/soccer/match/_/gameId/401874801/genoa-parma
 2026-09-20|https://www.espn.com/soccer/match/_/gameId/401876452/lille-nice
+2026-09-20|https://www.espn.com/nhl/game/_/gameId/401879644/islanders-devils
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401884782/tsg-hoffenheim-sc-paderborn-07
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401882863/real-betis-deportivo
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401882857/levante-villarreal
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401874757/atalanta-juventus
+2026-09-20|https://www.espn.com/soccer/match/_/gameId/401876456/brest-aj-auxerre
