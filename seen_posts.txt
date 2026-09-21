@@ -596,3 +596,4 @@
 2026-09-21|https://www.espn.com/mlb/game/_/gameId/401817016/brewers-orioles
 2026-09-21|https://www.espn.com/nfl/game/_/gameId/401872945/colts-chiefs
 2026-09-21|https://news.mit.edu/2026/unmasking-zombie-cells-aging-tissue-ai-powered-barcode-0921
+2026-09-21|https://news.mit.edu/2026/batteries-safely-break-down-in-gi-tract-could-improve-ingestible-devices-0921
