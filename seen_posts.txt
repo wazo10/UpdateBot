@@ -613,3 +613,17 @@
 2026-09-22|https://waymo.com/blog/2026/09/transit-rewards
 2026-09-22|https://www.espn.com/mlb/game/_/gameId/401817035/blue-jays-orioles
 2026-09-22|https://www.espn.com/mlb/game/_/gameId/401873648/rays-yankees
+2026-09-23|https://www.espn.com/nhl/game/_/gameId/401879362/flyers-bruins
+2026-09-23|https://www.espn.com/nhl/game/_/gameId/401879451/red-wings-penguins
+2026-09-23|https://www.espn.com/nhl/game/_/gameId/401879454/blue-jackets-sabres
+2026-09-23|https://www.espn.com/nhl/game/_/gameId/401879648/islanders-rangers
+2026-09-23|https://www.espn.com/nhl/game/_/gameId/401879933/panthers-hurricanes
+2026-09-23|https://www.espn.com/nhl/game/_/gameId/401878101/oilers-jets
+2026-09-23|https://www.espn.com/nhl/game/_/gameId/401881132/lightning-predators
+2026-09-23|https://www.espn.com/nhl/game/_/gameId/401879310/canucks-flames
+2026-09-23|https://www.espn.com/mlb/game/_/gameId/401817032/brewers-phillies
+2026-09-23|https://www.espn.com/mlb/game/_/gameId/401817033/cardinals-pirates
+2026-09-23|https://www.espn.com/mlb/game/_/gameId/401817034/rays-yankees
+2026-09-23|https://www.espn.com/mlb/game/_/gameId/401817030/reds-braves
+2026-09-23|https://www.espn.com/mlb/game/_/gameId/401817039/mets-rangers
+2026-09-23|https://news.mit.edu/2026/fundamentals-precision-design-alex-slocum-0923
