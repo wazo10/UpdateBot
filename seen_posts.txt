@@ -663,3 +663,7 @@
 2026-09-24|https://waymo.com/blog/2026/09/visionforlondon
 2026-09-24|https://news.mit.edu/2026/new-cell-collection-device-could-improve-early-cancer-detection-0924
 2026-09-24|https://www.espn.com/mlb/game/_/gameId/401817063/cardinals-pirates
+2026-09-24|https://www.espn.com/mlb/game/_/gameId/401817065/white-sox-royals
+2026-09-24|https://www.espn.com/mlb/game/_/gameId/401817066/marlins-cubs
+2026-09-24|https://www.espn.com/mlb/game/_/gameId/401817067/mets-rangers
+2026-09-24|https://www.espn.com/mlb/game/_/gameId/401817068/diamondbacks-rockies
