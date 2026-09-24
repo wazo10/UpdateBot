@@ -660,3 +660,5 @@
 2026-09-24|https://www.espn.com/mlb/game/_/gameId/401817059/padres-dodgers
 2026-09-24|https://www.espn.com/soccer/match/_/gameId/761543/real-salt-lake-seattle-sounders-fc
 2026-09-24|https://www.espn.com/f1/race/_/id/600057444
+2026-09-24|https://waymo.com/blog/2026/09/visionforlondon
+2026-09-24|https://news.mit.edu/2026/new-cell-collection-device-could-improve-early-cancer-detection-0924
