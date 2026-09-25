@@ -685,3 +685,4 @@
 2026-09-25|https://www.espn.com/mlb/game/_/gameId/401817069/angels-mariners
 2026-09-25|https://www.espn.com/mlb/game/_/gameId/401817070/astros-athletics
 2026-09-25|https://www.espn.com/nfl/game/_/gameId/401872948/falcons-packers
+2026-09-25|https://www.espn.com/mlb/game/_/gameId/401817071/padres-dodgers
