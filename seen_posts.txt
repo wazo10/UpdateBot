@@ -673,3 +673,15 @@
 2026-09-25|https://www.espn.com/nhl/game/_/gameId/401881133/panthers-lightning
 2026-09-25|https://www.espn.com/mlb/game/_/gameId/401817062/brewers-phillies
 2026-09-25|https://www.espn.com/mlb/game/_/gameId/401817061/guardians-red-sox
+2026-09-25|https://www.espn.com/nhl/game/_/gameId/401879452/sabres-red-wings
+2026-09-25|https://www.espn.com/nhl/game/_/gameId/401879646/devils-rangers
+2026-09-25|https://www.espn.com/nhl/game/_/gameId/401886260/blackhawks-blues
+2026-09-25|https://www.espn.com/nhl/game/_/gameId/401878103/oilers-canucks
+2026-09-25|https://www.espn.com/nhl/game/_/gameId/401879332/flames-kraken
+2026-09-25|https://www.espn.com/nhl/game/_/gameId/401879367/mammoth-golden-knights
+2026-09-25|https://www.espn.com/nhl/game/_/gameId/401879370/ducks-sharks
+2026-09-25|https://www.espn.com/mlb/game/_/gameId/401817064/rays-yankees
+2026-09-25|https://www.espn.com/mlb/game/_/gameId/401817060/reds-braves
+2026-09-25|https://www.espn.com/mlb/game/_/gameId/401817069/angels-mariners
+2026-09-25|https://www.espn.com/mlb/game/_/gameId/401817070/astros-athletics
+2026-09-25|https://www.espn.com/nfl/game/_/gameId/401872948/falcons-packers
