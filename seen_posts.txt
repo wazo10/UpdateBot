@@ -667,3 +667,9 @@
 2026-09-24|https://www.espn.com/mlb/game/_/gameId/401817066/marlins-cubs
 2026-09-24|https://www.espn.com/mlb/game/_/gameId/401817067/mets-rangers
 2026-09-24|https://www.espn.com/mlb/game/_/gameId/401817068/diamondbacks-rockies
+2026-09-25|https://www.espn.com/nhl/game/_/gameId/401879363/bruins-flyers
+2026-09-25|https://www.espn.com/nhl/game/_/gameId/401879455/penguins-blue-jackets
+2026-09-25|https://www.espn.com/nhl/game/_/gameId/401879934/predators-hurricanes
+2026-09-25|https://www.espn.com/nhl/game/_/gameId/401881133/panthers-lightning
+2026-09-25|https://www.espn.com/mlb/game/_/gameId/401817062/brewers-phillies
+2026-09-25|https://www.espn.com/mlb/game/_/gameId/401817061/guardians-red-sox
