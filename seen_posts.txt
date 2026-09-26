@@ -708,3 +708,6 @@
 2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817086/dodgers-giants
 2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817082/rangers-twins
 2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817083/angels-mariners
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817091/mets-nationals
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817092/pirates-tigers
+2026-09-26|https://www.espn.com/soccer/match/_/gameId/761833/st-louis-city-sc-red-bull-new-york
