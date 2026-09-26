@@ -689,3 +689,6 @@
 2026-09-25|https://www.espn.com/mlb/game/_/gameId/401817104/cubs-red-sox
 2026-09-25|https://news.mit.edu/2026/new-technique-could-accelerate-development-rna-therapies-0925
 2026-09-25|https://www.espn.com/mlb/game/_/gameId/401817088/orioles-yankees
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817074/cubs-red-sox
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817078/rays-phillies
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817072/braves-marlins
