@@ -711,3 +711,10 @@
 2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817091/mets-nationals
 2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817092/pirates-tigers
 2026-09-26|https://www.espn.com/soccer/match/_/gameId/761833/st-louis-city-sc-red-bull-new-york
+2026-09-26|https://www.espn.com/nhl/game/_/gameId/401879457/penguins-sabres
+2026-09-26|https://www.espn.com/nhl/game/_/gameId/401879935/hurricanes-predators
+2026-09-26|https://www.espn.com/nhl/game/_/gameId/401879371/ducks-kings
+2026-09-26|https://www.espn.com/nhl/game/_/gameId/401879361/capitals-flyers
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817090/reds-blue-jays
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817101/dodgers-giants
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817087/braves-marlins
