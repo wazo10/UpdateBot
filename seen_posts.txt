@@ -692,3 +692,17 @@
 2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817074/cubs-red-sox
 2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817078/rays-phillies
 2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817072/braves-marlins
+2026-09-26|https://www.espn.com/nhl/game/_/gameId/401879360/bruins-capitals
+2026-09-26|https://www.espn.com/nhl/game/_/gameId/401879649/rangers-islanders
+2026-09-26|https://www.espn.com/nhl/game/_/gameId/401886430/stars-wild
+2026-09-26|https://www.espn.com/nhl/game/_/gameId/401878108/jets-avalanche
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817077/pirates-tigers
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817076/mets-nationals
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817075/reds-blue-jays
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817073/orioles-yankees
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817079/guardians-royals
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817080/rockies-white-sox
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817081/cardinals-brewers
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817084/diamondbacks-padres
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817085/astros-athletics
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817086/dodgers-giants
