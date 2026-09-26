@@ -706,3 +706,5 @@
 2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817084/diamondbacks-padres
 2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817085/astros-athletics
 2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817086/dodgers-giants
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817082/rangers-twins
+2026-09-26|https://www.espn.com/mlb/game/_/gameId/401817083/angels-mariners
