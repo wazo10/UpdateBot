@@ -785,3 +785,4 @@
 2026-09-29|https://www.espn.com/nfl/game/_/gameId/401872963/eagles-bears
 2026-09-29|https://news.mit.edu/2026/powered-by-muscle-cells-paper-thin-robot-swims-through-watery-maze-0929
 2026-09-29|https://news.mit.edu/2026/algorithmic-monoculture-effects-depend-on-details-0929
+2026-09-29|https://www.espn.com/mlb/game/_/gameId/401907965/phillies-braves
