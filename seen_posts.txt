@@ -782,3 +782,6 @@
 2026-09-28|https://news.lenovo.com/pressroom/press-releases/first-googlebook-premium-ai-experiences-sleek-lightweight-design/
 2026-09-28|https://news.mit.edu/2026/pressurized-experiments-could-help-wind-farms-generate-more-power-0928
 2026-09-28|https://news.mit.edu/2026/new-formulation-helps-rna-vaccines-withstand-high-temperatures-0928
+2026-09-29|https://www.espn.com/nfl/game/_/gameId/401872963/eagles-bears
+2026-09-29|https://news.mit.edu/2026/powered-by-muscle-cells-paper-thin-robot-swims-through-watery-maze-0929
+2026-09-29|https://news.mit.edu/2026/algorithmic-monoculture-effects-depend-on-details-0929
