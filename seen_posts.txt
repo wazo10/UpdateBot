@@ -795,3 +795,4 @@
 2026-09-30|https://www.espn.com/mlb/game/_/gameId/401907924/red-sox-yankees
 2026-09-30|https://www.espn.com/mlb/game/_/gameId/401907974/cubs-padres
 2026-09-30|https://news.mit.edu/2026/game-playing-ai-stratego-new-champ-0930
+2026-09-30|https://www.espn.com/mlb/game/_/gameId/401907972/phillies-braves
