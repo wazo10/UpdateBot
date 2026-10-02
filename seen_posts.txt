@@ -8,3 +8,6 @@
 2026-10-01|https://www.espn.com/mlb/game/_/gameId/401907975/cubs-padres
 2026-10-01|https://www.espn.com/soccer/match/_/gameId/761833/st-louis-city-sc-red-bull-new-york
 2026-10-01|https://news.mit.edu/2026/instructmesh-tool-lets-users-repair-ai-3d-models-then-fabricate-them-1001
+2026-10-02|https://www.espn.com/nhl/game/_/gameId/401891781/sabres-blue-jackets
+2026-10-02|https://www.espn.com/nhl/game/_/gameId/401891817/flyers-devils
+2026-10-02|https://www.espn.com/nhl/game/_/gameId/401891819/lightning-rangers
