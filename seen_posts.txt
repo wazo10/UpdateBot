@@ -28,3 +28,4 @@
 2026-10-03|https://www.espn.com/nhl/game/_/gameId/401891831/bruins-jets
 2026-10-03|https://www.espn.com/nhl/game/_/gameId/401891782/blues-stars
 2026-10-03|https://www.espn.com/nhl/game/_/gameId/401892433/ducks-golden-knights
+2026-10-03|https://www.espn.com/mlb/game/_/gameId/401907990/white-sox-guardians
