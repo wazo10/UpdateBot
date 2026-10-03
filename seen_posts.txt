@@ -25,3 +25,6 @@
 2026-10-02|https://news.mit.edu/2026/computational-tools-for-societys-most-complex-challenges-cathy-wu-1002
 2026-10-03|https://www.espn.com/nhl/game/_/gameId/401891803/rangers-red-wings
 2026-10-03|https://www.espn.com/nhl/game/_/gameId/401892432/capitals-hurricanes
+2026-10-03|https://www.espn.com/nhl/game/_/gameId/401891831/bruins-jets
+2026-10-03|https://www.espn.com/nhl/game/_/gameId/401891782/blues-stars
+2026-10-03|https://www.espn.com/nhl/game/_/gameId/401892433/ducks-golden-knights
