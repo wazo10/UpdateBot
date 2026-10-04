@@ -55,3 +55,6 @@
 2026-10-04|https://www.espn.com/nfl/game/_/gameId/401872966/cardinals-giants
 2026-10-04|https://www.espn.com/nfl/game/_/gameId/401872968/packers-buccaneers
 2026-10-04|https://www.espn.com/nfl/game/_/gameId/401872967/cowboys-texans
+2026-10-04|https://www.espn.com/mlb/game/_/gameId/401908003/padres-brewers
+2026-10-04|https://www.espn.com/nfl/game/_/gameId/401872973/titans-ravens
+2026-10-04|https://www.espn.com/nfl/game/_/gameId/401872974/dolphins-vikings
