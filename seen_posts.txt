@@ -46,3 +46,4 @@
 2026-10-04|https://www.espn.com/nhl/game/_/gameId/401892440/flames-canucks
 2026-10-04|https://www.espn.com/nhl/game/_/gameId/401892441/kings-sharks
 2026-10-04|https://www.espn.com/mlb/game/_/gameId/401908002/padres-brewers
+2026-10-04|https://www.espn.com/nfl/game/_/gameId/401872965/colts-commanders
