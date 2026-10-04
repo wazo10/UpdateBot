@@ -29,3 +29,12 @@
 2026-10-03|https://www.espn.com/nhl/game/_/gameId/401891782/blues-stars
 2026-10-03|https://www.espn.com/nhl/game/_/gameId/401892433/ducks-golden-knights
 2026-10-03|https://www.espn.com/mlb/game/_/gameId/401907990/white-sox-guardians
+2026-10-04|https://www.espn.com/nba/game/_/gameId/401902644/heat-raptors
+2026-10-04|https://www.espn.com/nhl/game/_/gameId/401891776/blackhawks-sabres
+2026-10-04|https://www.espn.com/nhl/game/_/gameId/401891826/capitals-lightning
+2026-10-04|https://www.espn.com/nhl/game/_/gameId/401892434/senators-maple-leafs
+2026-10-04|https://www.espn.com/nhl/game/_/gameId/401892435/hurricanes-flyers
+2026-10-04|https://www.espn.com/nhl/game/_/gameId/401892436/mammoth-blue-jackets
+2026-10-04|https://www.espn.com/nhl/game/_/gameId/401892437/kraken-oilers
+2026-10-04|https://www.espn.com/mlb/game/_/gameId/401908007/braves-dodgers
+2026-10-04|https://www.espn.com/mlb/game/_/gameId/401907985/yankees-rays
