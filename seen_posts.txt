@@ -64,3 +64,8 @@
 2026-10-05|https://www.espn.com/nfl/game/_/gameId/401872976/chiefs-raiders
 2026-10-05|https://www.espn.com/nfl/game/_/gameId/401872975/broncos-49ers
 2026-10-05|https://www.espn.com/nfl/game/_/gameId/401872977/chargers-seahawks
+2026-10-05|https://www.espn.com/nhl/game/_/gameId/401891778/panthers-ducks
+2026-10-05|https://www.espn.com/nhl/game/_/gameId/401891824/flames-kraken
+2026-10-05|https://www.espn.com/nhl/game/_/gameId/401892444/golden-knights-canucks
+2026-10-05|https://www.espn.com/mlb/game/_/gameId/401908014/braves-dodgers
+2026-10-05|https://www.espn.com/nfl/game/_/gameId/401872978/lions-panthers
