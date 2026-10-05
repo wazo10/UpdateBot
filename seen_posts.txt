@@ -58,3 +58,9 @@
 2026-10-04|https://www.espn.com/mlb/game/_/gameId/401908003/padres-brewers
 2026-10-04|https://www.espn.com/nfl/game/_/gameId/401872973/titans-ravens
 2026-10-04|https://www.espn.com/nfl/game/_/gameId/401872974/dolphins-vikings
+2026-10-05|https://www.espn.com/nba/game/_/gameId/401914127/jazz-nuggets
+2026-10-05|https://www.espn.com/nba/game/_/gameId/401918010/warriors-clippers
+2026-10-05|https://www.espn.com/nhl/game/_/gameId/401892443/mammoth-rangers
+2026-10-05|https://www.espn.com/nfl/game/_/gameId/401872976/chiefs-raiders
+2026-10-05|https://www.espn.com/nfl/game/_/gameId/401872975/broncos-49ers
+2026-10-05|https://www.espn.com/nfl/game/_/gameId/401872977/chargers-seahawks
