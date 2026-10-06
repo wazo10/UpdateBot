@@ -69,3 +69,15 @@
 2026-10-05|https://www.espn.com/nhl/game/_/gameId/401892444/golden-knights-canucks
 2026-10-05|https://www.espn.com/mlb/game/_/gameId/401908014/braves-dodgers
 2026-10-05|https://www.espn.com/nfl/game/_/gameId/401872978/lions-panthers
+2026-10-06|https://www.espn.com/nba/game/_/gameId/401898388/grizzlies-hawks
+2026-10-06|https://www.espn.com/nba/game/_/gameId/401908947/suns-pistons
+2026-10-06|https://www.espn.com/nba/game/_/gameId/401914101/knicks-76ers
+2026-10-06|https://www.espn.com/nba/game/_/gameId/401914102/timberwolves-bucks
+2026-10-06|https://www.espn.com/nba/game/_/gameId/401898716/lakers-kings
+2026-10-06|https://www.espn.com/nhl/game/_/gameId/401892445/flyers-lightning
+2026-10-06|https://www.espn.com/nhl/game/_/gameId/401892446/senators-bruins
+2026-10-06|https://www.espn.com/nhl/game/_/gameId/401892447/jets-penguins
+2026-10-06|https://www.espn.com/nhl/game/_/gameId/401892448/sharks-stars
+2026-10-06|https://www.espn.com/mlb/game/_/gameId/401907991/white-sox-guardians
+2026-10-06|https://www.espn.com/mlb/game/_/gameId/401907986/yankees-rays
+2026-10-06|https://www.espn.com/nfl/game/_/gameId/401872979/falcons-saints
