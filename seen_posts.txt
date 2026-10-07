@@ -86,3 +86,15 @@
 2026-10-07|https://www.espn.com/nhl/game/_/gameId/401892450/senators-red-wings
 2026-10-07|https://www.espn.com/nhl/game/_/gameId/401892453/wild-sabres
 2026-10-07|https://www.espn.com/mlb/game/_/gameId/401908015/dodgers-braves
+2026-10-07|https://www.espn.com/nba/game/_/gameId/401898389/pelicans-thunder
+2026-10-07|https://www.espn.com/nba/game/_/gameId/401914128/nuggets-jazz
+2026-10-07|https://www.espn.com/nba/game/_/gameId/401898390/lakers-warriors
+2026-10-07|https://www.espn.com/nhl/game/_/gameId/401891815/hurricanes-canadiens
+2026-10-07|https://www.espn.com/nhl/game/_/gameId/401892451/mammoth-devils
+2026-10-07|https://www.espn.com/nhl/game/_/gameId/401892452/islanders-rangers
+2026-10-07|https://www.espn.com/nhl/game/_/gameId/401891779/blues-blackhawks
+2026-10-07|https://www.espn.com/nhl/game/_/gameId/401892454/golden-knights-kraken
+2026-10-07|https://www.espn.com/nhl/game/_/gameId/401891806/panthers-kings
+2026-10-07|https://www.espn.com/mlb/game/_/gameId/401908004/brewers-padres
+2026-10-07|https://www.espn.com/soccer/match/_/gameId/761660/vancouver-whitecaps-chicago-fire-fc
+2026-10-07|https://news.mit.edu/2026/planning-system-ensures-robots-flight-path-will-remain-collision-free-1007
