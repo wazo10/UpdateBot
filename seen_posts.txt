@@ -81,3 +81,8 @@
 2026-10-06|https://www.espn.com/mlb/game/_/gameId/401907991/white-sox-guardians
 2026-10-06|https://www.espn.com/mlb/game/_/gameId/401907986/yankees-rays
 2026-10-06|https://www.espn.com/nfl/game/_/gameId/401872979/falcons-saints
+2026-10-07|https://www.espn.com/nba/game/_/gameId/401901820/nets-hornets
+2026-10-07|https://www.espn.com/nhl/game/_/gameId/401892449/predators-maple-leafs
+2026-10-07|https://www.espn.com/nhl/game/_/gameId/401892450/senators-red-wings
+2026-10-07|https://www.espn.com/nhl/game/_/gameId/401892453/wild-sabres
+2026-10-07|https://www.espn.com/mlb/game/_/gameId/401908015/dodgers-braves
