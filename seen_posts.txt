@@ -101,3 +101,15 @@
 2026-10-07|https://news.mit.edu/2026/turning-tide-massachusetts-shellfishing-data-1007
 2026-10-08|https://www.espn.com/mlb/game/_/gameId/401907992/guardians-white-sox
 2026-10-08|https://news.mit.edu/2026/margaret-hamilton-computing-pioneer-dies-1007
+2026-10-08|https://www.espn.com/nba/game/_/gameId/401914123/timberwolves-pacers
+2026-10-08|https://www.espn.com/nba/game/_/gameId/401898391/magic-grizzlies
+2026-10-08|https://www.espn.com/nba/game/_/gameId/401908620/bucks-thunder
+2026-10-08|https://www.espn.com/nba/game/_/gameId/401908939/suns-bulls
+2026-10-08|https://www.espn.com/nba/game/_/gameId/401914129/warriors-trail-blazers
+2026-10-08|https://www.espn.com/nhl/game/_/gameId/401891830/penguins-capitals
+2026-10-08|https://www.espn.com/nhl/game/_/gameId/401892455/avalanche-jets
+2026-10-08|https://www.espn.com/nhl/game/_/gameId/401892456/oilers-ducks
+2026-10-08|https://www.espn.com/mlb/game/_/gameId/401908016/dodgers-braves
+2026-10-08|https://www.espn.com/mlb/game/_/gameId/401907987/rays-yankees
+2026-10-08|https://www.espn.com/mlb/game/_/gameId/401908005/brewers-padres
+2026-10-08|https://news.mit.edu/2026/mitigating-environmental-threat-of-data-centers-christina-delimitrou-1008
