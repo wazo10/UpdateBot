@@ -113,3 +113,5 @@
 2026-10-08|https://www.espn.com/mlb/game/_/gameId/401907987/rays-yankees
 2026-10-08|https://www.espn.com/mlb/game/_/gameId/401908005/brewers-padres
 2026-10-08|https://news.mit.edu/2026/mitigating-environmental-threat-of-data-centers-christina-delimitrou-1008
+2026-10-08|https://waymo.com/blog/2026/10/waymo-closes-5-billion-debt-financing
+2026-10-08|https://news.mit.edu/2026/shape-sensing-sheet-digitally-tracks-movement-bends-twists-1008
