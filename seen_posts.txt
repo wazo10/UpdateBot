@@ -99,3 +99,5 @@
 2026-10-07|https://www.espn.com/soccer/match/_/gameId/761660/vancouver-whitecaps-chicago-fire-fc
 2026-10-07|https://news.mit.edu/2026/planning-system-ensures-robots-flight-path-will-remain-collision-free-1007
 2026-10-07|https://news.mit.edu/2026/turning-tide-massachusetts-shellfishing-data-1007
+2026-10-08|https://www.espn.com/mlb/game/_/gameId/401907992/guardians-white-sox
+2026-10-08|https://news.mit.edu/2026/margaret-hamilton-computing-pioneer-dies-1007
