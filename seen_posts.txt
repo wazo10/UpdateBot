@@ -135,3 +135,5 @@
 2026-10-09|https://www.espn.com/nhl/game/_/gameId/401892464/maple-leafs-golden-knights
 2026-10-09|https://www.espn.com/mlb/game/_/gameId/401907993/guardians-white-sox
 2026-10-09|https://www.espn.com/nfl/game/_/gameId/401872980/buccaneers-cowboys
+2026-10-09|https://www.espn.com/nba/game/_/gameId/401898395/rockets-mavericks
+2026-10-09|https://www.espn.com/f1/race/_/id/600057445
