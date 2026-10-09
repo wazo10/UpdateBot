@@ -137,3 +137,6 @@
 2026-10-09|https://www.espn.com/nfl/game/_/gameId/401872980/buccaneers-cowboys
 2026-10-09|https://www.espn.com/nba/game/_/gameId/401898395/rockets-mavericks
 2026-10-09|https://www.espn.com/f1/race/_/id/600057445
+2026-10-09|https://www.espn.com/soccer/match/_/gameId/401884781/werder-bremen-borussia-dortmund
+2026-10-09|https://www.espn.com/soccer/match/_/gameId/401882851/espanyol-malaga
+2026-10-09|https://www.espn.com/soccer/match/_/gameId/401876447/lyon-lens
