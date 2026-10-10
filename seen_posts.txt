@@ -147,3 +147,16 @@
 2026-10-10|https://www.espn.com/nhl/game/_/gameId/401892468/ducks-jets
 2026-10-10|https://www.espn.com/soccer/match/_/gameId/401879268/leeds-united-arsenal
 2026-10-10|https://www.espn.com/soccer/match/_/gameId/401882849/athletic-club-rayo-vallecano
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401884775/sv-elversberg-1-fc-union-berlin
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401884777/bayern-munich-fc-augsburg
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401884776/bayer-leverkusen-mainz
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401884773/vfb-stuttgart-sc-paderborn-07
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401884779/hamburg-sv-tsg-hoffenheim
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401878776/brentford-aston-villa
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401878775/afc-bournemouth-chelsea
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401879265/fulham-ipswich-town
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401878772/brighton-hove-albion-sunderland
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401882856/atletico-madrid-alaves
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401874947/fiorentina-genoa
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401875021/parma-internazionale
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401876446/le-havre-ac-lille
