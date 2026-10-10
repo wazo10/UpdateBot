@@ -140,3 +140,8 @@
 2026-10-09|https://www.espn.com/soccer/match/_/gameId/401884781/werder-bremen-borussia-dortmund
 2026-10-09|https://www.espn.com/soccer/match/_/gameId/401882851/espanyol-malaga
 2026-10-09|https://www.espn.com/soccer/match/_/gameId/401876447/lyon-lens
+2026-10-10|https://www.espn.com/nba/game/_/gameId/401908940/grizzlies-bulls
+2026-10-10|https://www.espn.com/nhl/game/_/gameId/401892465/kraken-red-wings
+2026-10-10|https://www.espn.com/nhl/game/_/gameId/401892466/rangers-capitals
+2026-10-10|https://www.espn.com/nhl/game/_/gameId/401892467/penguins-blue-jackets
+2026-10-10|https://www.espn.com/nhl/game/_/gameId/401892468/ducks-jets
