@@ -160,3 +160,15 @@
 2026-10-10|https://www.espn.com/soccer/match/_/gameId/401874947/fiorentina-genoa
 2026-10-10|https://www.espn.com/soccer/match/_/gameId/401875021/parma-internazionale
 2026-10-10|https://www.espn.com/soccer/match/_/gameId/401876446/le-havre-ac-lille
+2026-10-10|https://www.espn.com/nhl/game/_/gameId/401892469/flyers-bruins
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/761845/cf-montreal-toronto-fc
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/761846/new-york-city-fc-chicago-fire-fc
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401884780/eintracht-frankfurt-rb-leipzig
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401878773/tottenham-hotspur-manchester-united
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401882853/getafe-barcelona
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401882848/villarreal-real-madrid
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401874754/frosinone-napoli
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401876444/toulouse-as-monaco
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401876448/angers-brest
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401876445/paris-fc-lorient
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401876442/le-mans-paris-saint-germain
