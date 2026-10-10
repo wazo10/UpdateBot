@@ -145,3 +145,5 @@
 2026-10-10|https://www.espn.com/nhl/game/_/gameId/401892466/rangers-capitals
 2026-10-10|https://www.espn.com/nhl/game/_/gameId/401892467/penguins-blue-jackets
 2026-10-10|https://www.espn.com/nhl/game/_/gameId/401892468/ducks-jets
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401879268/leeds-united-arsenal
+2026-10-10|https://www.espn.com/soccer/match/_/gameId/401882849/athletic-club-rayo-vallecano
