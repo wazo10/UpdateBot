@@ -205,3 +205,13 @@
 2026-10-11|https://www.espn.com/soccer/match/_/gameId/761855/portland-timbers-sporting-kansas-city
 2026-10-11|https://www.espn.com/soccer/match/_/gameId/761857/san-jose-earthquakes-colorado-rapids
 2026-10-11|https://www.espn.com/soccer/match/_/gameId/761858/vancouver-whitecaps-lafc
+2026-10-11|https://www.espn.com/nba/game/_/gameId/401898400/mavericks-rockets
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401884774/borussia-monchengladbach-fc-cologne
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401879266/nottingham-forest-crystal-palace
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401878774/everton-hull-city
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401882854/celta-vigo-elche
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401882847/deportivo-real-sociedad
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401874940/as-roma-como
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401874951/monza-lazio
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401874776/bologna-lecce
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401876443/strasbourg-nice
