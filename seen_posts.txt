@@ -215,3 +215,16 @@
 2026-10-11|https://www.espn.com/soccer/match/_/gameId/401874951/monza-lazio
 2026-10-11|https://www.espn.com/soccer/match/_/gameId/401874776/bologna-lecce
 2026-10-11|https://www.espn.com/soccer/match/_/gameId/401876443/strasbourg-nice
+2026-10-11|https://www.espn.com/nfl/game/_/gameId/401872981/eagles-jaguars
+2026-10-11|https://www.espn.com/nfl/game/_/gameId/401872990/bears-packers
+2026-10-11|https://www.espn.com/nfl/game/_/gameId/401872984/texans-titans
+2026-10-11|https://www.espn.com/nfl/game/_/gameId/401872982/bengals-dolphins
+2026-10-11|https://www.espn.com/nfl/game/_/gameId/401872986/raiders-patriots
+2026-10-11|https://www.espn.com/nfl/game/_/gameId/401872987/vikings-saints
+2026-10-11|https://www.espn.com/nfl/game/_/gameId/401872983/browns-jets
+2026-10-11|https://www.espn.com/nfl/game/_/gameId/401872985/colts-steelers
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401884778/schalke-04-sc-freiburg
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401879264/manchester-city-liverpool
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401882855/osasuna-real-betis
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401874789/ac-milan-sassuolo
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401876441/aj-auxerre-stade-rennais
