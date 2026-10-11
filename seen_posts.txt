@@ -172,3 +172,5 @@
 2026-10-10|https://www.espn.com/soccer/match/_/gameId/401876448/angers-brest
 2026-10-10|https://www.espn.com/soccer/match/_/gameId/401876445/paris-fc-lorient
 2026-10-10|https://www.espn.com/soccer/match/_/gameId/401876442/le-mans-paris-saint-germain
+2026-10-11|https://www.espn.com/nhl/game/_/gameId/401892470/canucks-devils
+2026-10-11|https://www.espn.com/nhl/game/_/gameId/401892471/oilers-sharks
