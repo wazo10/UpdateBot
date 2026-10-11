@@ -228,3 +228,11 @@
 2026-10-11|https://www.espn.com/soccer/match/_/gameId/401882855/osasuna-real-betis
 2026-10-11|https://www.espn.com/soccer/match/_/gameId/401874789/ac-milan-sassuolo
 2026-10-11|https://www.espn.com/soccer/match/_/gameId/401876441/aj-auxerre-stade-rennais
+2026-10-11|https://www.espn.com/nhl/game/_/gameId/401892482/kraken-capitals
+2026-10-11|https://www.espn.com/nfl/game/_/gameId/401872992/49ers-seahawks
+2026-10-11|https://www.espn.com/nfl/game/_/gameId/401872988/giants-commanders
+2026-10-11|https://www.espn.com/nfl/game/_/gameId/401872989/broncos-chargers
+2026-10-11|https://www.espn.com/nfl/game/_/gameId/401872991/lions-cardinals
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401882850/valencia-racing-santander
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401874764/juventus-cagliari
+2026-10-11|https://www.espn.com/soccer/match/_/gameId/401876440/marseille-troyes
