@@ -236,3 +236,11 @@
 2026-10-11|https://www.espn.com/soccer/match/_/gameId/401882850/valencia-racing-santander
 2026-10-11|https://www.espn.com/soccer/match/_/gameId/401874764/juventus-cagliari
 2026-10-11|https://www.espn.com/soccer/match/_/gameId/401876440/marseille-troyes
+2026-10-12|https://www.espn.com/nba/game/_/gameId/401898401/magic-cavaliers
+2026-10-12|https://www.espn.com/nba/game/_/gameId/401901821/bucks-hornets
+2026-10-12|https://www.espn.com/nba/game/_/gameId/401908941/bulls-nuggets
+2026-10-12|https://www.espn.com/nhl/game/_/gameId/401892483/canucks-rangers
+2026-10-12|https://www.espn.com/nhl/game/_/gameId/401892484/hurricanes-flyers
+2026-10-12|https://www.espn.com/mlb/game/_/gameId/401908030/dodgers-brewers
+2026-10-12|https://www.espn.com/nfl/game/_/gameId/401872993/ravens-falcons
+2026-10-12|https://www.espn.com/soccer/match/_/gameId/761859/la-galaxy-st-louis-city-sc
