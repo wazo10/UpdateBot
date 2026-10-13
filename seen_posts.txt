@@ -246,3 +246,12 @@
 2026-10-12|https://www.espn.com/soccer/match/_/gameId/761859/la-galaxy-st-louis-city-sc
 2026-10-12|https://www.espn.com/nhl/game/_/gameId/401892485/panthers-sabres
 2026-10-12|https://www.espn.com/soccer/match/_/gameId/401875005/venezia-atalanta
+2026-10-13|https://www.espn.com/nba/game/_/gameId/401914130/lions-trail-blazers
+2026-10-13|https://www.espn.com/nba/game/_/gameId/401898402/thunder-hawks
+2026-10-13|https://www.espn.com/nba/game/_/gameId/401901824/nets-wizards
+2026-10-13|https://www.espn.com/nba/game/_/gameId/401914124/timberwolves-knicks
+2026-10-13|https://www.espn.com/nhl/game/_/gameId/401892486/senators-devils
+2026-10-13|https://www.espn.com/mlb/game/_/gameId/401908031/dodgers-brewers
+2026-10-13|https://www.espn.com/soccer/match/_/gameId/401879267/newcastle-united-coventry-city
+2026-10-13|https://www.espn.com/soccer/match/_/gameId/401882852/sevilla-levante
+2026-10-13|https://www.espn.com/soccer/match/_/gameId/401874763/udinese-torino
