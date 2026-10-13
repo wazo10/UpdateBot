@@ -261,3 +261,12 @@
 2026-10-13|https://www.espn.com/nfl/game/_/gameId/401872994/bills-rams
 2026-10-13|https://news.mit.edu/2026/reprogrammed-nk-immune-cells-target-cancer-and-autoimmune-disorders-1013
 2026-10-13|https://news.mit.edu/2026/exploring-how-plants-thrive-david-des-marais-1013
+2026-10-13|https://www.espn.com/soccer/match/_/gameId/401915418/sporting-cp-lens
+2026-10-13|https://www.espn.com/soccer/match/_/gameId/401915436/slavia-prague-sabah-fk
+2026-10-13|https://www.espn.com/soccer/match/_/gameId/401915417/lille-arsenal
+2026-10-13|https://www.espn.com/soccer/match/_/gameId/401915412/manchester-united-atletico-madrid
+2026-10-13|https://www.espn.com/soccer/match/_/gameId/401915435/barcelona-galatasaray
+2026-10-13|https://www.espn.com/soccer/match/_/gameId/401915413/club-brugge-internazionale
+2026-10-13|https://www.espn.com/soccer/match/_/gameId/401915434/psv-eindhoven-rb-leipzig
+2026-10-13|https://www.espn.com/soccer/match/_/gameId/401915411/bayern-munich-viking-fk
+2026-10-13|https://www.espn.com/soccer/match/_/gameId/401915410/napoli-villarreal
