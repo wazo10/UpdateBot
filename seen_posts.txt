@@ -255,3 +255,9 @@
 2026-10-13|https://www.espn.com/soccer/match/_/gameId/401879267/newcastle-united-coventry-city
 2026-10-13|https://www.espn.com/soccer/match/_/gameId/401882852/sevilla-levante
 2026-10-13|https://www.espn.com/soccer/match/_/gameId/401874763/udinese-torino
+2026-10-13|https://www.espn.com/nba/game/_/gameId/401898721/spurs-jazz
+2026-10-13|https://www.espn.com/nhl/game/_/gameId/401892487/golden-knights-wild
+2026-10-13|https://www.espn.com/mlb/game/_/gameId/401908023/guardians-rays
+2026-10-13|https://www.espn.com/nfl/game/_/gameId/401872994/bills-rams
+2026-10-13|https://news.mit.edu/2026/reprogrammed-nk-immune-cells-target-cancer-and-autoimmune-disorders-1013
+2026-10-13|https://news.mit.edu/2026/exploring-how-plants-thrive-david-des-marais-1013
