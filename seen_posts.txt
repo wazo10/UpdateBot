@@ -270,3 +270,4 @@
 2026-10-13|https://www.espn.com/soccer/match/_/gameId/401915434/psv-eindhoven-rb-leipzig
 2026-10-13|https://www.espn.com/soccer/match/_/gameId/401915411/bayern-munich-viking-fk
 2026-10-13|https://www.espn.com/soccer/match/_/gameId/401915410/napoli-villarreal
+2026-10-14|https://www.espn.com/nhl/game/_/gameId/401892488/devils-red-wings
