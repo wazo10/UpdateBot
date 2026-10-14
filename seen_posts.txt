@@ -292,3 +292,7 @@
 2026-10-14|https://www.espn.com/nhl/game/_/gameId/401892502/oilers-kings
 2026-10-14|https://www.espn.com/nhl/game/_/gameId/401892503/bruins-sharks
 2026-10-14|https://www.espn.com/mlb/game/_/gameId/401908024/guardians-rays
+2026-10-14|https://www.espn.com/soccer/match/_/gameId/401915416/como-feyenoord-rotterdam
+2026-10-14|https://www.espn.com/soccer/match/_/gameId/401915415/liverpool-lask-linz
+2026-10-14|https://news.mit.edu/2026/mit-remembers-thomas-rose-1014
+2026-10-14|https://news.mit.edu/2026/researchers-improve-weather-forecasts-looking-two-six-weeks-out-1014
