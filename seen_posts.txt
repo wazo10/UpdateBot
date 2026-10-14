@@ -271,3 +271,14 @@
 2026-10-13|https://www.espn.com/soccer/match/_/gameId/401915411/bayern-munich-viking-fk
 2026-10-13|https://www.espn.com/soccer/match/_/gameId/401915410/napoli-villarreal
 2026-10-14|https://www.espn.com/nhl/game/_/gameId/401892488/devils-red-wings
+2026-10-14|https://www.espn.com/nba/game/_/gameId/401898403/cavaliers-magic
+2026-10-14|https://www.espn.com/nba/game/_/gameId/401908944/knicks-raptors
+2026-10-14|https://www.espn.com/nba/game/_/gameId/401908621/pacers-thunder
+2026-10-14|https://www.espn.com/nba/game/_/gameId/401898718/warriors-lakers
+2026-10-14|https://www.espn.com/nba/game/_/gameId/401901826/trail-blazers-kings
+2026-10-14|https://www.espn.com/nhl/game/_/gameId/401892489/panthers-blue-jackets
+2026-10-14|https://www.espn.com/nhl/game/_/gameId/401892490/sabres-canadiens
+2026-10-14|https://www.espn.com/nhl/game/_/gameId/401892491/capitals-hurricanes
+2026-10-14|https://www.espn.com/nhl/game/_/gameId/401892493/lightning-rangers
+2026-10-14|https://www.espn.com/nhl/game/_/gameId/401892497/wild-jets
+2026-10-14|https://www.espn.com/nhl/game/_/gameId/401892500/maple-leafs-mammoth
