@@ -296,3 +296,10 @@
 2026-10-14|https://www.espn.com/soccer/match/_/gameId/401915415/liverpool-lask-linz
 2026-10-14|https://news.mit.edu/2026/mit-remembers-thomas-rose-1014
 2026-10-14|https://news.mit.edu/2026/researchers-improve-weather-forecasts-looking-two-six-weeks-out-1014
+2026-10-14|https://www.espn.com/soccer/match/_/gameId/401915414/real-madrid-as-roma
+2026-10-14|https://www.espn.com/soccer/match/_/gameId/401915409/fenerbahce-aston-villa
+2026-10-14|https://www.espn.com/soccer/match/_/gameId/401915393/borussia-dortmund-bodoglimt
+2026-10-14|https://www.espn.com/soccer/match/_/gameId/401915407/paris-saint-germain-manchester-city
+2026-10-14|https://www.espn.com/soccer/match/_/gameId/401915408/fc-porto-real-betis
+2026-10-14|https://www.espn.com/soccer/match/_/gameId/401915406/aek-athens-shakhtar-donetsk
+2026-10-14|https://www.espn.com/soccer/match/_/gameId/401915405/vfb-stuttgart-slovan-bratislava
