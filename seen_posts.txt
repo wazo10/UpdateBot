@@ -328,3 +328,6 @@
 2026-10-15|https://www.espn.com/soccer/match/_/gameId/761874/portland-timbers-la-galaxy
 2026-10-15|https://www.espn.com/soccer/match/_/gameId/761873/austin-fc-lafc
 2026-10-15|https://www.espn.com/soccer/match/_/gameId/761872/houston-dynamo-fc-san-diego-fc
+2026-10-15|https://www.espn.com/mlb/game/_/gameId/401908025/rays-guardians
+2026-10-15|https://news.mit.edu/2026/qa-mit-student-leaders-asa-president-hana-sousa-1015
+2026-10-15|https://news.mit.edu/2026/state-of-supply-chain-sustainability-report-1015
