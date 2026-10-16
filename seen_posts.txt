@@ -347,3 +347,7 @@
 2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892514/blues-wild
 2026-10-16|https://www.espn.com/mlb/game/_/gameId/401908033/brewers-dodgers
 2026-10-16|https://www.espn.com/nfl/game/_/gameId/401872995/seahawks-broncos
+2026-10-16|https://www.espn.com/soccer/match/_/gameId/401884770/fc-cologne-eintracht-frankfurt
+2026-10-16|https://www.espn.com/soccer/match/_/gameId/401882844/levante-deportivo
+2026-10-16|https://www.espn.com/soccer/match/_/gameId/401874959/sassuolo-frosinone
+2026-10-16|https://www.espn.com/soccer/match/_/gameId/401876437/toulouse-le-mans
