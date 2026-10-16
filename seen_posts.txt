@@ -332,3 +332,14 @@
 2026-10-15|https://news.mit.edu/2026/qa-mit-student-leaders-asa-president-hana-sousa-1015
 2026-10-15|https://news.mit.edu/2026/state-of-supply-chain-sustainability-report-1015
 2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892511/rangers-devils
+2026-10-16|https://www.espn.com/nba/game/_/gameId/401908945/raptors-knicks
+2026-10-16|https://www.espn.com/nba/game/_/gameId/401908622/thunder-rockets
+2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892506/sabres-maple-leafs
+2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892507/islanders-senators
+2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892509/kraken-lightning
+2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892510/canucks-panthers
+2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892508/flyers-red-wings
+2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892512/jets-blackhawks
+2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892513/sharks-predators
+2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892515/mammoth-oilers
+2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892516/flames-golden-knights
