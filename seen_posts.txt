@@ -331,3 +331,4 @@
 2026-10-15|https://www.espn.com/mlb/game/_/gameId/401908025/rays-guardians
 2026-10-15|https://news.mit.edu/2026/qa-mit-student-leaders-asa-president-hana-sousa-1015
 2026-10-15|https://news.mit.edu/2026/state-of-supply-chain-sustainability-report-1015
+2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892511/rangers-devils
