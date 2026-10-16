@@ -343,3 +343,7 @@
 2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892513/sharks-predators
 2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892515/mammoth-oilers
 2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892516/flames-golden-knights
+2026-10-16|https://waymo.com/blog/2026/10/waymo-in-toronto
+2026-10-16|https://www.espn.com/nhl/game/_/gameId/401892514/blues-wild
+2026-10-16|https://www.espn.com/mlb/game/_/gameId/401908033/brewers-dodgers
+2026-10-16|https://www.espn.com/nfl/game/_/gameId/401872995/seahawks-broncos
