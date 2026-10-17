@@ -389,3 +389,6 @@
 2026-10-17|https://www.espn.com/soccer/match/_/gameId/401874935/genoa-as-roma
 2026-10-17|https://www.espn.com/soccer/match/_/gameId/401876436/brest-lille
 2026-10-17|https://www.espn.com/soccer/match/_/gameId/401876431/lens-troyes
+2026-10-17|https://www.espn.com/nhl/game/_/gameId/401892520/hurricanes-jets
+2026-10-17|https://www.espn.com/nhl/game/_/gameId/401892521/canucks-lightning
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/761876/st-louis-city-sc-minnesota-united-fc
