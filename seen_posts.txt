@@ -379,3 +379,8 @@
 2026-10-17|https://www.espn.com/soccer/match/_/gameId/401879259/ipswich-town-manchester-city
 2026-10-17|https://www.espn.com/soccer/match/_/gameId/401882837/elche-villarreal
 2026-10-17|https://www.espn.com/soccer/match/_/gameId/401876432/paris-saint-germain-strasbourg
+2026-10-17|https://www.espn.com/nhl/game/_/gameId/401892519/devils-capitals
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401884772/rb-leipzig-bayern-munich
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401879258/aston-villa-newcastle-united
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401882846/barcelona-real-betis
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401874953/internazionale-bologna
