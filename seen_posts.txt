@@ -361,3 +361,8 @@
 2026-10-17|https://www.espn.com/nba/game/_/gameId/401906509/wizards-pelicans
 2026-10-17|https://www.espn.com/nba/game/_/gameId/401908943/timberwolves-bulls
 2026-10-17|https://www.espn.com/mlb/game/_/gameId/401908026/rays-guardians
+2026-10-17|https://www.espn.com/nba/game/_/gameId/401898409/trail-blazers-warriors
+2026-10-17|https://www.espn.com/nba/game/_/gameId/401908948/jazz-suns
+2026-10-17|https://www.espn.com/nba/game/_/gameId/401898719/nuggets-lakers
+2026-10-17|https://www.espn.com/nhl/game/_/gameId/401892517/penguins-avalanche
+2026-10-17|https://www.espn.com/nhl/game/_/gameId/401892518/bruins-ducks
