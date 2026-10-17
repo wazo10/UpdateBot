@@ -351,3 +351,13 @@
 2026-10-16|https://www.espn.com/soccer/match/_/gameId/401882844/levante-deportivo
 2026-10-16|https://www.espn.com/soccer/match/_/gameId/401874959/sassuolo-frosinone
 2026-10-16|https://www.espn.com/soccer/match/_/gameId/401876437/toulouse-le-mans
+2026-10-17|https://www.espn.com/nba/game/_/gameId/401898406/heat-magic
+2026-10-17|https://www.espn.com/nba/game/_/gameId/401898407/celtics-76ers
+2026-10-17|https://www.espn.com/nba/game/_/gameId/401908946/raptors-pistons
+2026-10-17|https://www.espn.com/nba/game/_/gameId/401914126/bucks-pacers
+2026-10-17|https://www.espn.com/nba/game/_/gameId/401898408/hawks-mavericks
+2026-10-17|https://www.espn.com/nba/game/_/gameId/401898843/kings-spurs
+2026-10-17|https://www.espn.com/nba/game/_/gameId/401901822/hornets-grizzlies
+2026-10-17|https://www.espn.com/nba/game/_/gameId/401906509/wizards-pelicans
+2026-10-17|https://www.espn.com/nba/game/_/gameId/401908943/timberwolves-bulls
+2026-10-17|https://www.espn.com/mlb/game/_/gameId/401908026/rays-guardians
