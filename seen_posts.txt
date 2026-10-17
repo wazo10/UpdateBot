@@ -384,3 +384,8 @@
 2026-10-17|https://www.espn.com/soccer/match/_/gameId/401879258/aston-villa-newcastle-united
 2026-10-17|https://www.espn.com/soccer/match/_/gameId/401882846/barcelona-real-betis
 2026-10-17|https://www.espn.com/soccer/match/_/gameId/401874953/internazionale-bologna
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/761875/charlotte-fc-philadelphia-union
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401882838/athletic-club-valencia
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401874935/genoa-as-roma
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401876436/brest-lille
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401876431/lens-troyes
