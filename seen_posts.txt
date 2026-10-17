@@ -366,3 +366,10 @@
 2026-10-17|https://www.espn.com/nba/game/_/gameId/401898719/nuggets-lakers
 2026-10-17|https://www.espn.com/nhl/game/_/gameId/401892517/penguins-avalanche
 2026-10-17|https://www.espn.com/nhl/game/_/gameId/401892518/bruins-ducks
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401884769/borussia-dortmund-1-fc-union-berlin
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401884767/vfb-stuttgart-hamburg-sv
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401884765/mainz-schalke-04
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401884766/sc-paderborn-07-werder-bremen
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401878771/chelsea-everton
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401882843/atletico-madrid-espanyol
+2026-10-17|https://www.espn.com/soccer/match/_/gameId/401874760/napoli-venezia
