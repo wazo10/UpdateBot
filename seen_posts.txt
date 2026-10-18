@@ -434,3 +434,12 @@
 2026-10-18|https://www.espn.com/soccer/match/_/gameId/401878769/arsenal-nottingham-forest
 2026-10-18|https://www.espn.com/soccer/match/_/gameId/401882841/real-sociedad-malaga
 2026-10-18|https://www.espn.com/soccer/match/_/gameId/401874978/atalanta-ac-milan
+2026-10-18|https://www.espn.com/nfl/game/_/gameId/401872999/bears-falcons
+2026-10-18|https://www.espn.com/nfl/game/_/gameId/401872997/ravens-browns
+2026-10-18|https://www.espn.com/nfl/game/_/gameId/401873003/titans-colts
+2026-10-18|https://www.espn.com/nfl/game/_/gameId/401873001/jets-patriots
+2026-10-18|https://www.espn.com/nfl/game/_/gameId/401873000/saints-giants
+2026-10-18|https://www.espn.com/nfl/game/_/gameId/401872998/panthers-eagles
+2026-10-18|https://www.espn.com/nfl/game/_/gameId/401873002/steelers-buccaneers
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/401882839/sevilla-real-madrid
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/401874765/lazio-juventus
