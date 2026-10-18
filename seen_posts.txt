@@ -430,3 +430,7 @@
 2026-10-18|https://www.espn.com/soccer/match/_/gameId/401876438/aj-auxerre-le-havre-ac
 2026-10-18|https://www.espn.com/soccer/match/_/gameId/401876435/as-monaco-lorient
 2026-10-18|https://www.espn.com/soccer/match/_/gameId/401876433/stade-rennais-paris-fc
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/401884768/tsg-hoffenheim-borussia-monchengladbach
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/401878769/arsenal-nottingham-forest
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/401882841/real-sociedad-malaga
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/401874978/atalanta-ac-milan
