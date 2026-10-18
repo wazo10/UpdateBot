@@ -408,3 +408,12 @@
 2026-10-18|https://www.espn.com/soccer/match/_/gameId/761884/real-salt-lake-sporting-kansas-city
 2026-10-18|https://www.espn.com/soccer/match/_/gameId/761886/nashville-sc-san-jose-earthquakes
 2026-10-18|https://news.mit.edu/2026/giving-ai-crystal-clear-view-of-materials-world-1018
+2026-10-18|https://www.espn.com/mlb/game/_/gameId/401908027/rays-guardians
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/761880/inter-miami-cf-atlanta-united-fc
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/761877/lafc-new-york-city-fc
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/761881/dc-united-orlando-city-sc
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/761882/vancouver-whitecaps-austin-fc
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/761883/fc-dallas-houston-dynamo-fc
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/761887/san-diego-fc-la-galaxy
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/761888/colorado-rapids-portland-timbers
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/761885/cf-montreal-seattle-sounders-fc
