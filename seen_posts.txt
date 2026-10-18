@@ -417,3 +417,5 @@
 2026-10-18|https://www.espn.com/soccer/match/_/gameId/761887/san-diego-fc-la-galaxy
 2026-10-18|https://www.espn.com/soccer/match/_/gameId/761888/colorado-rapids-portland-timbers
 2026-10-18|https://www.espn.com/soccer/match/_/gameId/761885/cf-montreal-seattle-sounders-fc
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/401882840/racing-santander-osasuna
+2026-10-18|https://www.espn.com/soccer/match/_/gameId/401874771/lecce-udinese
