@@ -452,3 +452,5 @@
 2026-10-19|https://www.espn.com/mlb/game/_/gameId/401930515/rays-guardians
 2026-10-19|https://www.espn.com/nhl/game/_/gameId/401892534/hurricanes-flames
 2026-10-19|https://www.espn.com/nfl/game/_/gameId/401873007/cowboys-packers
+2026-10-19|https://www.espn.com/soccer/match/_/gameId/401874762/cagliari-monza
+2026-10-19|https://news.mit.edu/2026/teaching-ai-about-symmetry-could-make-prenatal-diagnosis-more-reliable-1019
