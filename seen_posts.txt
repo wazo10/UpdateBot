@@ -448,3 +448,5 @@
 2026-10-18|https://www.espn.com/nfl/game/_/gameId/401873005/bills-raiders
 2026-10-18|https://www.espn.com/soccer/match/_/gameId/761889/columbus-crew-fc-cincinnati
 2026-10-18|https://www.espn.com/soccer/match/_/gameId/401876434/nice-lyon
+2026-10-19|https://www.espn.com/nhl/game/_/gameId/401892533/blue-jackets-wild
+2026-10-19|https://www.espn.com/mlb/game/_/gameId/401930515/rays-guardians
