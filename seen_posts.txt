@@ -465,3 +465,4 @@
 2026-10-20|https://www.espn.com/mlb/game/_/gameId/401908028/guardians-rays
 2026-10-20|https://www.espn.com/nfl/game/_/gameId/401873008/commanders-49ers
 2026-10-20|https://news.mit.edu/2026/sanaheal-makes-surgical-stitching-more-like-applying-sticky-note-1020
+2026-10-20|https://waymo.com/blog/2026/10/waymo-in-madrid-region
