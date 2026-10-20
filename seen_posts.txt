@@ -468,3 +468,14 @@
 2026-10-20|https://waymo.com/blog/2026/10/waymo-in-madrid-region
 2026-10-20|https://www.espn.com/soccer/match/_/gameId/401915403/slavia-prague-fenerbahce
 2026-10-20|https://www.espn.com/soccer/match/_/gameId/401915404/borussia-dortmund-sabah-fk
+2026-10-20|https://www.espn.com/nba/game/_/gameId/401909088/celtics-pistons
+2026-10-20|https://www.espn.com/soccer/match/_/gameId/401915402/slovan-bratislava-as-roma
+2026-10-20|https://www.espn.com/soccer/match/_/gameId/401915398/psv-eindhoven-fc-porto
+2026-10-20|https://www.espn.com/soccer/match/_/gameId/401915397/villarreal-liverpool
+2026-10-20|https://www.espn.com/soccer/match/_/gameId/401915401/aek-athens-manchester-city
+2026-10-20|https://www.espn.com/soccer/match/_/gameId/401915400/bodoglimt-napoli
+2026-10-20|https://www.espn.com/soccer/match/_/gameId/401915399/barcelona-paris-saint-germain
+2026-10-20|https://www.espn.com/soccer/match/_/gameId/401915392/atletico-madrid-vfb-stuttgart
+2026-10-20|https://news.mit.edu/2026/mit-student-team-cerberuz-wins-nasa-lunarecycle-centennial-challenge-1020
+2026-10-20|https://news.mit.edu/2026/oceans-most-abundant-loner-microbe-has-sticky-second-life-1020
+2026-10-20|https://news.mit.edu/2026/beaver-works-summer-institute-leader-in-transformational-stem-education-1020
