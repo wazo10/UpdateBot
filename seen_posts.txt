@@ -459,3 +459,9 @@
 2026-10-19|https://www.espn.com/soccer/match/_/gameId/401874784/torino-parma
 2026-10-19|https://news.mit.edu/2026/symposium-highlights-innovations-for-aging-brain-health-1019
 2026-10-20|https://www.espn.com/nhl/game/_/gameId/401892535/ducks-rangers
+2026-10-20|https://www.espn.com/nhl/game/_/gameId/401892536/avalanche-flyers
+2026-10-20|https://www.espn.com/nhl/game/_/gameId/401892537/sharks-maple-leafs
+2026-10-20|https://www.espn.com/nhl/game/_/gameId/401892538/penguins-mammoth
+2026-10-20|https://www.espn.com/mlb/game/_/gameId/401908028/guardians-rays
+2026-10-20|https://www.espn.com/nfl/game/_/gameId/401873008/commanders-49ers
+2026-10-20|https://news.mit.edu/2026/sanaheal-makes-surgical-stitching-more-like-applying-sticky-note-1020
