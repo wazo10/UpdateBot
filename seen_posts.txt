@@ -492,3 +492,4 @@
 2026-10-21|https://www.espn.com/nhl/game/_/gameId/401892547/red-wings-kraken
 2026-10-21|https://www.espn.com/nhl/game/_/gameId/401892548/hurricanes-canucks
 2026-10-21|https://www.espn.com/nhl/game/_/gameId/401892549/lightning-golden-knights
+2026-10-21|https://nvidianews.nvidia.com/news/european-mobility-leaders-build-safe-vehicles-and-robotaxi-fleets-on-nvidia-hyperion
