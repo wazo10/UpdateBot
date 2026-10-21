@@ -479,3 +479,16 @@
 2026-10-20|https://news.mit.edu/2026/mit-student-team-cerberuz-wins-nasa-lunarecycle-centennial-challenge-1020
 2026-10-20|https://news.mit.edu/2026/oceans-most-abundant-loner-microbe-has-sticky-second-life-1020
 2026-10-20|https://news.mit.edu/2026/beaver-works-summer-institute-leader-in-transformational-stem-education-1020
+2026-10-21|https://www.espn.com/nba/game/_/gameId/401909089/76ers-knicks
+2026-10-21|https://www.espn.com/nba/game/_/gameId/401909090/thunder-spurs
+2026-10-21|https://www.espn.com/nhl/game/_/gameId/401892539/sharks-canadiens
+2026-10-21|https://www.espn.com/nhl/game/_/gameId/401892540/avalanche-devils
+2026-10-21|https://www.espn.com/nhl/game/_/gameId/401892541/ducks-islanders
+2026-10-21|https://www.espn.com/nhl/game/_/gameId/401892542/kings-capitals
+2026-10-21|https://www.espn.com/nhl/game/_/gameId/401892543/maple-leafs-blue-jackets
+2026-10-21|https://www.espn.com/nhl/game/_/gameId/401892544/jets-blues
+2026-10-21|https://www.espn.com/nhl/game/_/gameId/401892545/bruins-stars
+2026-10-21|https://www.espn.com/nhl/game/_/gameId/401892546/wild-oilers
+2026-10-21|https://www.espn.com/nhl/game/_/gameId/401892547/red-wings-kraken
+2026-10-21|https://www.espn.com/nhl/game/_/gameId/401892548/hurricanes-canucks
+2026-10-21|https://www.espn.com/nhl/game/_/gameId/401892549/lightning-golden-knights
