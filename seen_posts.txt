@@ -496,3 +496,11 @@
 2026-10-21|https://www.espn.com/soccer/match/_/gameId/401882870/athletic-club-levante
 2026-10-21|https://www.espn.com/soccer/match/_/gameId/401915395/manchester-united-como
 2026-10-21|https://www.espn.com/soccer/match/_/gameId/401915396/galatasaray-lille
+2026-10-21|https://www.espn.com/soccer/match/_/gameId/401915394/viking-fk-aston-villa
+2026-10-21|https://www.espn.com/soccer/match/_/gameId/401915312/arsenal-bayern-munich
+2026-10-21|https://www.espn.com/soccer/match/_/gameId/401915388/lens-club-brugge
+2026-10-21|https://www.espn.com/soccer/match/_/gameId/401915390/shakhtar-donetsk-internazionale
+2026-10-21|https://www.espn.com/soccer/match/_/gameId/401915389/feyenoord-rotterdam-real-betis
+2026-10-21|https://www.espn.com/soccer/match/_/gameId/401915313/rb-leipzig-real-madrid
+2026-10-21|https://www.espn.com/soccer/match/_/gameId/401915391/lask-linz-sporting-cp
+2026-10-21|https://news.mit.edu/2026/mit-doctors-without-gravity-takes-flight-1021
