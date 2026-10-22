@@ -506,3 +506,16 @@
 2026-10-21|https://news.mit.edu/2026/mit-doctors-without-gravity-takes-flight-1021
 2026-10-22|https://www.espn.com/nba/game/_/gameId/401909835/bucks-wizards
 2026-10-22|https://www.espn.com/soccer/match/_/gameId/761773/dc-united-fc-cincinnati
+2026-10-22|https://www.espn.com/nba/game/_/gameId/401909834/hawks-magic
+2026-10-22|https://www.espn.com/nba/game/_/gameId/401909091/timberwolves-heat
+2026-10-22|https://www.espn.com/nba/game/_/gameId/401909836/hornets-nets
+2026-10-22|https://www.espn.com/nba/game/_/gameId/401909837/bulls-raptors
+2026-10-22|https://www.espn.com/nba/game/_/gameId/401909838/jazz-grizzlies
+2026-10-22|https://www.espn.com/nba/game/_/gameId/401909839/pacers-pelicans
+2026-10-22|https://www.espn.com/nba/game/_/gameId/401909840/mavericks-rockets
+2026-10-22|https://www.espn.com/nba/game/_/gameId/401909092/warriors-lakers
+2026-10-22|https://www.espn.com/nba/game/_/gameId/401909841/suns-trail-blazers
+2026-10-22|https://www.espn.com/nba/game/_/gameId/401909842/kings-clippers
+2026-10-22|https://www.espn.com/nhl/game/_/gameId/401892550/flyers-sabres
+2026-10-22|https://www.espn.com/nhl/game/_/gameId/401892551/panthers-senators
+2026-10-22|https://news.mit.edu/2026/startup-rejuvenates-nuclear-power-industry-new-manufacturing-approach-1022
