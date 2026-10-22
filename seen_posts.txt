@@ -520,3 +520,4 @@
 2026-10-22|https://www.espn.com/nhl/game/_/gameId/401892551/panthers-senators
 2026-10-22|https://news.mit.edu/2026/startup-rejuvenates-nuclear-power-industry-new-manufacturing-approach-1022
 2026-10-22|https://news.mit.edu/2026/mit-kavanaugh-fellowship-from-invention-to-impact-1022
+2026-10-22|https://news.mit.edu/2026/design-software-reimagines-everyday-objects-as-self-aware-devices-1022
