@@ -504,3 +504,5 @@
 2026-10-21|https://www.espn.com/soccer/match/_/gameId/401915313/rb-leipzig-real-madrid
 2026-10-21|https://www.espn.com/soccer/match/_/gameId/401915391/lask-linz-sporting-cp
 2026-10-21|https://news.mit.edu/2026/mit-doctors-without-gravity-takes-flight-1021
+2026-10-22|https://www.espn.com/nba/game/_/gameId/401909835/bucks-wizards
+2026-10-22|https://www.espn.com/soccer/match/_/gameId/761773/dc-united-fc-cincinnati
