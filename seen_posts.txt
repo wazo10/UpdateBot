@@ -582,3 +582,5 @@
 2026-10-24|https://www.espn.com/soccer/match/_/gameId/401882834/deportivo-atletico-madrid
 2026-10-24|https://www.espn.com/soccer/match/_/gameId/401874955/parma-lazio
 2026-10-24|https://www.espn.com/soccer/match/_/gameId/401876427/paris-fc-lens
+2026-10-24|https://www.espn.com/nhl/game/_/gameId/401892567/kings-devils
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/761891/inter-miami-cf-red-bull-new-york
