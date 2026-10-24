@@ -572,3 +572,8 @@
 2026-10-24|https://www.espn.com/soccer/match/_/gameId/401882831/espanyol-racing-santander
 2026-10-24|https://www.espn.com/soccer/match/_/gameId/401874958/bologna-cagliari
 2026-10-24|https://www.espn.com/soccer/match/_/gameId/401874961/sassuolo-como
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/761903/nashville-sc-cf-montreal
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401884763/eintracht-frankfurt-borussia-dortmund
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401878767/tottenham-hotspur-chelsea
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401882827/villarreal-valencia
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401874948/as-roma-napoli
