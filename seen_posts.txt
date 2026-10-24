@@ -547,3 +547,16 @@
 2026-10-23|https://www.espn.com/soccer/match/_/gameId/401874957/monza-torino
 2026-10-23|https://www.espn.com/soccer/match/_/gameId/401876428/nice-brest
 2026-10-24|https://www.espn.com/nba/game/_/gameId/401909843/hawks-hornets
+2026-10-24|https://www.espn.com/nba/game/_/gameId/401909095/knicks-celtics
+2026-10-24|https://www.espn.com/nba/game/_/gameId/401909844/mavericks-pacers
+2026-10-24|https://www.espn.com/nba/game/_/gameId/401909845/timberwolves-magic
+2026-10-24|https://www.espn.com/nba/game/_/gameId/401909846/raptors-wizards
+2026-10-24|https://www.espn.com/nba/game/_/gameId/401909847/pistons-heat
+2026-10-24|https://www.espn.com/nba/game/_/gameId/401909096/rockets-spurs
+2026-10-24|https://www.espn.com/nba/game/_/gameId/401909849/pelicans-jazz
+2026-10-24|https://www.espn.com/nba/game/_/gameId/401909850/grizzlies-warriors
+2026-10-24|https://www.espn.com/nba/game/_/gameId/401909851/clippers-lakers
+2026-10-24|https://www.espn.com/nba/game/_/gameId/401909852/trail-blazers-kings
+2026-10-24|https://www.espn.com/nhl/game/_/gameId/401892564/canadiens-blackhawks
+2026-10-24|https://www.espn.com/nhl/game/_/gameId/401892565/lightning-avalanche
+2026-10-24|https://www.espn.com/mlb/game/_/gameId/401908042/rays-brewers
