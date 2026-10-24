@@ -562,3 +562,13 @@
 2026-10-24|https://www.espn.com/mlb/game/_/gameId/401908042/rays-brewers
 2026-10-24|https://www.espn.com/soccer/match/_/gameId/401879256/manchester-city-aston-villa
 2026-10-24|https://www.espn.com/soccer/match/_/gameId/401882830/elche-rayo-vallecano
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401884758/1-fc-union-berlin-fc-augsburg
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401884756/schalke-04-fc-cologne
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401884757/werder-bremen-mainz
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401884762/sv-elversberg-rb-leipzig
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401884755/hamburg-sv-sc-paderborn-07
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401878768/everton-arsenal
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401879255/fulham-coventry-city
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401882831/espanyol-racing-santander
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401874958/bologna-cagliari
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401874961/sassuolo-como
