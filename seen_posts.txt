@@ -560,3 +560,5 @@
 2026-10-24|https://www.espn.com/nhl/game/_/gameId/401892564/canadiens-blackhawks
 2026-10-24|https://www.espn.com/nhl/game/_/gameId/401892565/lightning-avalanche
 2026-10-24|https://www.espn.com/mlb/game/_/gameId/401908042/rays-brewers
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401879256/manchester-city-aston-villa
+2026-10-24|https://www.espn.com/soccer/match/_/gameId/401882830/elche-rayo-vallecano
