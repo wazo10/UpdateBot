@@ -634,3 +634,12 @@
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/401876426/le-havre-ac-marseille
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/401876424/strasbourg-stade-rennais
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/401876423/troyes-toulouse
+2026-10-25|https://www.espn.com/nfl/game/_/gameId/401873017/49ers-falcons
+2026-10-25|https://www.espn.com/nfl/game/_/gameId/401873013/browns-titans
+2026-10-25|https://www.espn.com/nfl/game/_/gameId/401873014/colts-vikings
+2026-10-25|https://www.espn.com/nfl/game/_/gameId/401873015/dolphins-jets
+2026-10-25|https://www.espn.com/nfl/game/_/gameId/401873018/buccaneers-panthers
+2026-10-25|https://www.espn.com/nfl/game/_/gameId/401873012/bengals-ravens
+2026-10-25|https://www.espn.com/nfl/game/_/gameId/401873016/giants-texans
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401882829/levante-real-sociedad
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401874779/ac-milan-udinese
