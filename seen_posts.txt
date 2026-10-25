@@ -623,3 +623,14 @@
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/401874972/frosinone-atalanta
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/401874952/venezia-genoa
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/401876425/lille-as-monaco
+2026-10-25|https://www.espn.com/nfl/game/_/gameId/401873011/steelers-saints
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401884760/bayer-leverkusen-tsg-hoffenheim
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401884759/bayern-munich-sc-freiburg
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401878764/leeds-united-sunderland
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401882833/real-betis-celta-vigo
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401874772/juventus-lecce
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401876429/le-mans-aj-auxerre
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401876430/lorient-angers
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401876426/le-havre-ac-marseille
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401876424/strasbourg-stade-rennais
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401876423/troyes-toulouse
