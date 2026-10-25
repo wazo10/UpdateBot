@@ -614,3 +614,12 @@
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/761896/minnesota-united-fc-houston-dynamo-fc
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/761898/st-louis-city-sc-real-salt-lake
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/761902/charlotte-fc-portland-timbers
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401879254/newcastle-united-crystal-palace
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401878766/brentford-hull-city
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401878765/brighton-hove-albion-liverpool
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401879252/afc-bournemouth-manchester-united
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401882835/getafe-athletic-club
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401875036/fiorentina-internazionale
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401874972/frosinone-atalanta
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401874952/venezia-genoa
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401876425/lille-as-monaco
