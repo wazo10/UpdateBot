@@ -643,3 +643,7 @@
 2026-10-25|https://www.espn.com/nfl/game/_/gameId/401873016/giants-texans
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/401882829/levante-real-sociedad
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/401874779/ac-milan-udinese
+2026-10-25|https://www.espn.com/nhl/game/_/gameId/401892578/panthers-blackhawks
+2026-10-25|https://www.espn.com/nfl/game/_/gameId/401873019/broncos-cardinals
+2026-10-25|https://www.espn.com/nfl/game/_/gameId/401873020/packers-lions
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/401882832/real-madrid-barcelona
