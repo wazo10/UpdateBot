@@ -609,3 +609,8 @@
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/761899/austin-fc-sporting-kansas-city
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/761897/vancouver-whitecaps-colorado-rapids
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/761901/seattle-sounders-fc-san-diego-fc
+2026-10-25|https://www.espn.com/mlb/game/_/gameId/401908043/rays-brewers
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/761900/san-jose-earthquakes-fc-dallas
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/761896/minnesota-united-fc-houston-dynamo-fc
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/761898/st-louis-city-sc-real-salt-lake
+2026-10-25|https://www.espn.com/soccer/match/_/gameId/761902/charlotte-fc-portland-timbers
