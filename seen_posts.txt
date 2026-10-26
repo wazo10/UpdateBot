@@ -647,3 +647,9 @@
 2026-10-25|https://www.espn.com/nfl/game/_/gameId/401873019/broncos-cardinals
 2026-10-25|https://www.espn.com/nfl/game/_/gameId/401873020/packers-lions
 2026-10-25|https://www.espn.com/soccer/match/_/gameId/401882832/real-madrid-barcelona
+2026-10-26|https://www.espn.com/nba/game/_/gameId/401909861/lakers-jazz
+2026-10-26|https://www.espn.com/nba/game/_/gameId/401909862/pacers-nets
+2026-10-26|https://www.espn.com/nba/game/_/gameId/401909864/raptors-timberwolves
+2026-10-26|https://www.espn.com/nba/game/_/gameId/401909865/clippers-thunder
+2026-10-26|https://www.espn.com/nhl/game/_/gameId/401892579/islanders-stars
+2026-10-26|https://www.espn.com/nfl/game/_/gameId/401873021/rams-raiders
