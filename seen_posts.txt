@@ -669,3 +669,12 @@
 2026-10-27|https://www.espn.com/nba/game/_/gameId/401909870/bulls-celtics
 2026-10-27|https://www.espn.com/nba/game/_/gameId/401909871/mavericks-heat
 2026-10-27|https://www.espn.com/nhl/game/_/gameId/401892582/kings-rangers
+2026-10-27|https://www.espn.com/nba/game/_/gameId/401909872/pacers-bucks
+2026-10-27|https://www.espn.com/nba/game/_/gameId/401909873/suns-thunder
+2026-10-27|https://www.espn.com/nba/game/_/gameId/401909874/hawks-rockets
+2026-10-27|https://www.espn.com/nba/game/_/gameId/401909875/grizzlies-jazz
+2026-10-27|https://www.espn.com/nba/game/_/gameId/401909876/warriors-nuggets
+2026-10-27|https://www.espn.com/nhl/game/_/gameId/401892583/maple-leafs-flames
+2026-10-27|https://www.espn.com/nhl/game/_/gameId/401892584/red-wings-oilers
+2026-10-27|https://www.espn.com/mlb/game/_/gameId/401908044/brewers-rays
+2026-10-27|https://www.espn.com/nfl/game/_/gameId/401873009/cowboys-eagles
