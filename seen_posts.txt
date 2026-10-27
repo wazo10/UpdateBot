@@ -678,3 +678,6 @@
 2026-10-27|https://www.espn.com/nhl/game/_/gameId/401892584/red-wings-oilers
 2026-10-27|https://www.espn.com/mlb/game/_/gameId/401908044/brewers-rays
 2026-10-27|https://www.espn.com/nfl/game/_/gameId/401873009/cowboys-eagles
+2026-10-27|https://www.espn.com/soccer/match/_/gameId/401874980/lazio-sassuolo
+2026-10-27|https://www.espn.com/soccer/match/_/gameId/401874780/cagliari-as-roma
+2026-10-27|https://www.espn.com/soccer/match/_/gameId/401874786/como-torino
