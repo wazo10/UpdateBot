@@ -664,3 +664,8 @@
 2026-10-26|https://news.mit.edu/2026/at-new-york-climate-week-mit-connects-global-network-1026
 2026-10-26|https://www.espn.com/soccer/match/_/gameId/401882828/osasuna-sevilla
 2026-10-26|https://www.espn.com/soccer/match/_/gameId/401876422/lyon-paris-saint-germain
+2026-10-27|https://www.espn.com/nba/game/_/gameId/401909868/wizards-hornets
+2026-10-27|https://www.espn.com/nba/game/_/gameId/401909869/timberwolves-cavaliers
+2026-10-27|https://www.espn.com/nba/game/_/gameId/401909870/bulls-celtics
+2026-10-27|https://www.espn.com/nba/game/_/gameId/401909871/mavericks-heat
+2026-10-27|https://www.espn.com/nhl/game/_/gameId/401892582/kings-rangers
