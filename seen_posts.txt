@@ -681,3 +681,4 @@
 2026-10-27|https://www.espn.com/soccer/match/_/gameId/401874980/lazio-sassuolo
 2026-10-27|https://www.espn.com/soccer/match/_/gameId/401874780/cagliari-as-roma
 2026-10-27|https://www.espn.com/soccer/match/_/gameId/401874786/como-torino
+2026-10-28|https://www.espn.com/nhl/game/_/gameId/401892585/blue-jackets-flyers
