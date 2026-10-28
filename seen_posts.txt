@@ -704,3 +704,5 @@
 2026-10-28|https://news.mit.edu/2026/mit-affiliates-elected-national-academy-medicine-1028
 2026-10-28|https://news.mit.edu/2026/soft-robot-could-help-doctors-diagnose-treat-small-intestine-disorders-1028
 2026-10-28|https://news.mit.edu/2026/3-questions-why-infrastructure-is-entering-defining-era-1028
+2026-10-28|https://www.espn.com/soccer/match/_/gameId/401874988/juventus-genoa
+2026-10-28|https://www.espn.com/soccer/match/_/gameId/401874799/napoli-monza
