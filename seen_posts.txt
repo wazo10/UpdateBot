@@ -698,3 +698,9 @@
 2026-10-28|https://www.espn.com/nhl/game/_/gameId/401892595/sabres-sharks
 2026-10-28|https://www.espn.com/mlb/game/_/gameId/401908045/brewers-rays
 2026-10-28|https://news.mit.edu/2026/making-machines-that-can-listen-paris-smaragdis-1028
+2026-10-28|https://www.espn.com/soccer/match/_/gameId/401874993/bologna-ac-milan
+2026-10-28|https://www.espn.com/soccer/match/_/gameId/401874965/udinese-parma
+2026-10-28|https://www.espn.com/soccer/match/_/gameId/401874773/internazionale-venezia
+2026-10-28|https://news.mit.edu/2026/mit-affiliates-elected-national-academy-medicine-1028
+2026-10-28|https://news.mit.edu/2026/soft-robot-could-help-doctors-diagnose-treat-small-intestine-disorders-1028
+2026-10-28|https://news.mit.edu/2026/3-questions-why-infrastructure-is-entering-defining-era-1028
