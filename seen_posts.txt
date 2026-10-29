@@ -726,3 +726,15 @@
 2026-10-29|https://www.espn.com/soccer/match/_/gameId/761913/sporting-kansas-city-minnesota-united-fc
 2026-10-29|https://www.espn.com/soccer/match/_/gameId/761914/philadelphia-union-nashville-sc
 2026-10-29|https://www.espn.com/soccer/match/_/gameId/761915/portland-timbers-st-louis-city-sc
+2026-10-29|https://www.espn.com/nba/game/_/gameId/401909888/warriors-timberwolves
+2026-10-29|https://www.espn.com/nba/game/_/gameId/401909890/spurs-jazz
+2026-10-29|https://www.espn.com/nba/game/_/gameId/401909891/thunder-mavericks
+2026-10-29|https://www.espn.com/nba/game/_/gameId/401909892/lakers-clippers
+2026-10-29|https://www.espn.com/nhl/game/_/gameId/401892597/flames-oilers
+2026-10-29|https://www.espn.com/nhl/game/_/gameId/401892598/devils-avalanche
+2026-10-29|https://www.espn.com/nhl/game/_/gameId/401892599/maple-leafs-kraken
+2026-10-29|https://www.espn.com/mlb/game/_/gameId/401908046/brewers-rays
+2026-10-29|https://www.espn.com/soccer/match/_/gameId/761917/colorado-rapids-san-jose-earthquakes
+2026-10-29|https://www.espn.com/soccer/match/_/gameId/761916/houston-dynamo-fc-seattle-sounders-fc
+2026-10-29|https://www.espn.com/soccer/match/_/gameId/761918/san-diego-fc-vancouver-whitecaps
+2026-10-29|https://news.mit.edu/2026/new-system-gives-users-more-control-over-online-experience-1029
