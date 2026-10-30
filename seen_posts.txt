@@ -758,3 +758,10 @@
 2026-10-30|https://news.mit.edu/2026/mit-engineers-create-nanoparticles-delivering-personalized-cancer-vaccines-1030
 2026-10-30|https://waymo.com/blog/2026/10/toyota-bz4x-partnership
 2026-10-30|https://www.dell.com/blog/the-complete-tech-gift-guide-best-dell-and-alienware-picks-for-every-setup
+2026-10-30|https://www.espn.com/f1/race/_/id/600057447
+2026-10-30|https://www.espn.com/soccer/match/_/gameId/401884746/mainz-sv-elversberg
+2026-10-30|https://www.espn.com/soccer/match/_/gameId/401882817/espanyol-villarreal
+2026-10-30|https://www.espn.com/soccer/match/_/gameId/401876421/paris-saint-germain-le-havre-ac
+2026-10-30|https://www.espn.com/soccer/match/_/gameId/401876416/stade-rennais-nice
+2026-10-30|https://www.espn.com/soccer/match/_/gameId/401876420/lens-lille
+2026-10-30|https://news.mit.edu/2026/mit-affiliates-named-schmidt-sciences-ai2050-fellows-1030
