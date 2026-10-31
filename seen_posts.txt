@@ -802,3 +802,14 @@
 2026-10-31|https://www.espn.com/soccer/match/_/gameId/761930/cf-montreal-new-york-city-fc
 2026-10-31|https://www.espn.com/soccer/match/_/gameId/401878761/crystal-palace-tottenham-hotspur
 2026-10-31|https://www.espn.com/soccer/match/_/gameId/401874990/as-roma-udinese
+2026-10-31|https://www.espn.com/nba/game/_/gameId/401909896/trail-blazers-jazz
+2026-10-31|https://www.espn.com/nhl/game/_/gameId/401892618/sabres-kings
+2026-10-31|https://www.espn.com/nhl/game/_/gameId/401892619/senators-sharks
+2026-10-31|https://www.espn.com/soccer/match/_/gameId/761928/fc-dallas-sporting-kansas-city
+2026-10-31|https://www.espn.com/soccer/match/_/gameId/761926/san-diego-fc-st-louis-city-sc
+2026-10-31|https://www.espn.com/soccer/match/_/gameId/761925/austin-fc-la-galaxy
+2026-10-31|https://www.espn.com/soccer/match/_/gameId/761929/real-salt-lake-san-jose-earthquakes
+2026-10-31|https://www.espn.com/soccer/match/_/gameId/401884754/borussia-dortmund-bayern-munich
+2026-10-31|https://www.espn.com/soccer/match/_/gameId/401879250/fulham-aston-villa
+2026-10-31|https://www.espn.com/soccer/match/_/gameId/401882825/malaga-real-betis
+2026-10-31|https://www.espn.com/soccer/match/_/gameId/401876413/le-mans-troyes
