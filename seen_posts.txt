@@ -777,3 +777,4 @@
 2026-10-31|https://www.espn.com/nba/game/_/gameId/401909285/lakers-warriors
 2026-10-31|https://www.espn.com/nba/game/_/gameId/401909286/nuggets-suns
 2026-10-31|https://www.espn.com/nhl/game/_/gameId/401892612/jets-panthers
+2026-10-31|https://www.espn.com/nhl/game/_/gameId/401892613/kraken-flames
