@@ -765,3 +765,5 @@
 2026-10-30|https://www.espn.com/soccer/match/_/gameId/401876416/stade-rennais-nice
 2026-10-30|https://www.espn.com/soccer/match/_/gameId/401876420/lens-lille
 2026-10-30|https://news.mit.edu/2026/mit-affiliates-named-schmidt-sciences-ai2050-fellows-1030
+2026-10-31|https://www.espn.com/nba/game/_/gameId/401909277/hornets-wizards
+2026-10-31|https://www.espn.com/nhl/game/_/gameId/401892611/devils-golden-knights
