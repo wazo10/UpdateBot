@@ -767,3 +767,13 @@
 2026-10-30|https://news.mit.edu/2026/mit-affiliates-named-schmidt-sciences-ai2050-fellows-1030
 2026-10-31|https://www.espn.com/nba/game/_/gameId/401909277/hornets-wizards
 2026-10-31|https://www.espn.com/nhl/game/_/gameId/401892611/devils-golden-knights
+2026-10-31|https://www.espn.com/nba/game/_/gameId/401909278/bulls-celtics
+2026-10-31|https://www.espn.com/nba/game/_/gameId/401909279/pistons-nets
+2026-10-31|https://www.espn.com/nba/game/_/gameId/401909280/knicks-76ers
+2026-10-31|https://www.espn.com/nba/game/_/gameId/401909281/magic-raptors
+2026-10-31|https://www.espn.com/nba/game/_/gameId/401909282/pacers-heat
+2026-10-31|https://www.espn.com/nba/game/_/gameId/401909283/rockets-mavericks
+2026-10-31|https://www.espn.com/nba/game/_/gameId/401909284/clippers-timberwolves
+2026-10-31|https://www.espn.com/nba/game/_/gameId/401909285/lakers-warriors
+2026-10-31|https://www.espn.com/nba/game/_/gameId/401909286/nuggets-suns
+2026-10-31|https://www.espn.com/nhl/game/_/gameId/401892612/jets-panthers
