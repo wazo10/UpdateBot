@@ -792,3 +792,13 @@
 2026-10-31|https://www.espn.com/soccer/match/_/gameId/401882820/atletico-madrid-levante
 2026-10-31|https://www.espn.com/soccer/match/_/gameId/401882818/celta-vigo-rayo-vallecano
 2026-10-31|https://www.espn.com/soccer/match/_/gameId/401874798/monza-bologna
+2026-10-31|https://www.espn.com/nhl/game/_/gameId/401892614/blackhawks-bruins
+2026-10-31|https://www.espn.com/nhl/game/_/gameId/401892615/blues-red-wings
+2026-10-31|https://www.espn.com/nhl/game/_/gameId/401892616/lightning-predators
+2026-10-31|https://www.espn.com/nhl/game/_/gameId/401892617/oilers-islanders
+2026-10-31|https://www.espn.com/soccer/match/_/gameId/761922/orlando-city-sc-charlotte-fc
+2026-10-31|https://www.espn.com/soccer/match/_/gameId/761924/dc-united-columbus-crew
+2026-10-31|https://www.espn.com/soccer/match/_/gameId/761919/philadelphia-union-fc-cincinnati
+2026-10-31|https://www.espn.com/soccer/match/_/gameId/761930/cf-montreal-new-york-city-fc
+2026-10-31|https://www.espn.com/soccer/match/_/gameId/401878761/crystal-palace-tottenham-hotspur
+2026-10-31|https://www.espn.com/soccer/match/_/gameId/401874990/as-roma-udinese
