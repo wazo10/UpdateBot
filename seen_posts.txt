@@ -36,3 +36,15 @@
 2026-11-01|https://www.espn.com/soccer/match/_/gameId/401876413/le-mans-troyes
 2026-11-01|https://www.espn.com/f1/race/_/id/600057447
 2026-11-01|https://news.mit.edu/2026/mit-affiliates-named-schmidt-sciences-ai2050-fellows-1030
+2026-11-01|https://www.espn.com/nhl/game/_/gameId/401892620/penguins-canadiens
+2026-11-01|https://www.espn.com/nhl/game/_/gameId/401892622/blue-jackets-stars
+2026-11-01|https://www.espn.com/nhl/game/_/gameId/401892623/flames-avalanche
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/761924/dc-united-columbus-crew
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/761930/cf-montreal-new-york-city-fc
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/761926/san-diego-fc-st-louis-city-sc
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/761929/real-salt-lake-san-jose-earthquakes
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401884753/vfb-stuttgart-bayer-leverkusen
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401884749/sc-paderborn-07-borussia-monchengladbach
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401884748/tsg-hoffenheim-werder-bremen
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401879248/manchester-united-chelsea
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401879251/leeds-united-afc-bournemouth
