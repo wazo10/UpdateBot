@@ -54,3 +54,12 @@
 2026-11-01|https://www.espn.com/soccer/match/_/gameId/401874782/torino-frosinone
 2026-11-01|https://www.espn.com/soccer/match/_/gameId/401874983/cagliari-lazio
 2026-11-01|https://www.espn.com/soccer/match/_/gameId/401876414/aj-auxerre-strasbourg
+2026-11-01|https://www.espn.com/nhl/game/_/gameId/401892624/jets-hurricanes
+2026-11-01|https://www.espn.com/nfl/game/_/gameId/401873025/falcons-buccaneers
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401884752/hamburg-sv-eintracht-frankfurt
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401879246/arsenal-liverpool
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401882819/real-madrid-racing-santander
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401882823/valencia-elche
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401874968/genoa-lecce
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401876418/angers-lyon
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401876415/as-monaco-paris-fc
