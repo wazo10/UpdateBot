@@ -48,3 +48,9 @@
 2026-11-01|https://www.espn.com/soccer/match/_/gameId/401884748/tsg-hoffenheim-werder-bremen
 2026-11-01|https://www.espn.com/soccer/match/_/gameId/401879248/manchester-united-chelsea
 2026-11-01|https://www.espn.com/soccer/match/_/gameId/401879251/leeds-united-afc-bournemouth
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401884750/fc-cologne-1-fc-union-berlin
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401882821/sevilla-getafe
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401875002/venezia-como
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401874782/torino-frosinone
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401874983/cagliari-lazio
+2026-11-01|https://www.espn.com/soccer/match/_/gameId/401876414/aj-auxerre-strasbourg
