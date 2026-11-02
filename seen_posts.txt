@@ -91,3 +91,5 @@
 2026-11-02|https://www.espn.com/soccer/match/_/gameId/761921/minnesota-united-fc-lafc
 2026-11-02|https://www.espn.com/soccer/match/_/gameId/761933/houston-dynamo-fc-portland-timbers
 2026-11-02|https://www.espn.com/soccer/match/_/gameId/401874949/napoli-juventus
+2026-11-02|https://news.mit.edu/2026/flexible-new-route-designer-materials-from-nanoparticles-1102
+2026-11-02|https://news.mit.edu/2026/mit-engineers-design-safer-more-efficient-vaccination-system-farmed-fish-1102
