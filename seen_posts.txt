@@ -93,3 +93,11 @@
 2026-11-02|https://www.espn.com/soccer/match/_/gameId/401874949/napoli-juventus
 2026-11-02|https://news.mit.edu/2026/flexible-new-route-designer-materials-from-nanoparticles-1102
 2026-11-02|https://news.mit.edu/2026/mit-engineers-design-safer-more-efficient-vaccination-system-farmed-fish-1102
+2026-11-02|https://www.espn.com/soccer/match/_/gameId/401878762/everton-newcastle-united
+2026-11-02|https://www.espn.com/soccer/match/_/gameId/401882824/osasuna-deportivo
+2026-11-02|https://www.espn.com/soccer/match/_/gameId/401874963/fiorentina-sassuolo
+2026-11-02|https://www.espn.com/soccer/match/_/gameId/401874971/parma-atalanta
+2026-11-02|https://www.espn.com/soccer/match/_/gameId/401876419/brest-lorient
+2026-11-02|https://news.mit.edu/2026/lemelson-mit-brings-invention-education-classrooms-kindergarten-college-1102
+2026-11-02|https://news.mit.edu/2026/powering-up-for-pivotal-moment-1102
+2026-11-02|https://news.mit.edu/2026/regina-barzilay-jim-collins-win-pritzker-prize-ai-and-science-research-excellence-1102
