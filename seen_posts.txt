@@ -101,3 +101,13 @@
 2026-11-02|https://news.mit.edu/2026/lemelson-mit-brings-invention-education-classrooms-kindergarten-college-1102
 2026-11-02|https://news.mit.edu/2026/powering-up-for-pivotal-moment-1102
 2026-11-02|https://news.mit.edu/2026/regina-barzilay-jim-collins-win-pritzker-prize-ai-and-science-research-excellence-1102
+2026-11-03|https://www.espn.com/nba/game/_/gameId/401909907/thunder-cavaliers
+2026-11-03|https://www.espn.com/nba/game/_/gameId/401909908/pistons-hornets
+2026-11-03|https://www.espn.com/nba/game/_/gameId/401909909/hawks-pacers
+2026-11-03|https://www.espn.com/nba/game/_/gameId/401909910/nets-knicks
+2026-11-03|https://www.espn.com/nba/game/_/gameId/401909911/wizards-magic
+2026-11-03|https://www.espn.com/nba/game/_/gameId/401909912/bulls-76ers
+2026-11-03|https://www.espn.com/nba/game/_/gameId/401909913/kings-mavericks
+2026-11-03|https://www.espn.com/nba/game/_/gameId/401909915/bucks-timberwolves
+2026-11-03|https://www.espn.com/nhl/game/_/gameId/401892629/golden-knights-bruins
+2026-11-03|https://www.espn.com/nhl/game/_/gameId/401892630/red-wings-panthers
