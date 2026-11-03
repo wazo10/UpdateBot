@@ -121,3 +121,14 @@
 2026-11-03|https://www.espn.com/nhl/game/_/gameId/401892631/avalanche-blackhawks
 2026-11-03|https://www.espn.com/nhl/game/_/gameId/401892632/flames-sharks
 2026-11-03|https://www.espn.com/nfl/game/_/gameId/401873036/bears-seahawks
+2026-11-03|https://www.espn.com/soccer/match/_/gameId/401915311/vfb-stuttgart-galatasaray
+2026-11-03|https://www.espn.com/soccer/match/_/gameId/401915310/sporting-cp-shakhtar-donetsk
+2026-11-03|https://www.espn.com/soccer/match/_/gameId/401915386/bayern-munich-atletico-madrid
+2026-11-03|https://www.espn.com/soccer/match/_/gameId/401915387/aston-villa-barcelona
+2026-11-03|https://www.espn.com/soccer/match/_/gameId/401915384/lille-bodoglimt
+2026-11-03|https://www.espn.com/soccer/match/_/gameId/401915307/internazionale-feyenoord-rotterdam
+2026-11-03|https://www.espn.com/soccer/match/_/gameId/401915385/slovan-bratislava-lask-linz
+2026-11-03|https://www.espn.com/soccer/match/_/gameId/401915308/as-roma-manchester-united
+2026-11-03|https://www.espn.com/soccer/match/_/gameId/401915309/paris-saint-germain-villarreal
+2026-11-03|https://news.mit.edu/2026/3-questions-building-more-resilient-minerals-supply-chains-1103
+2026-11-03|https://news.mit.edu/2026/featured-video-changing-conversation-about-endometriosis-1103
