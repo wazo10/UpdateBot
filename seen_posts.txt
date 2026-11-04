@@ -132,3 +132,10 @@
 2026-11-03|https://www.espn.com/soccer/match/_/gameId/401915309/paris-saint-germain-villarreal
 2026-11-03|https://news.mit.edu/2026/3-questions-building-more-resilient-minerals-supply-chains-1103
 2026-11-03|https://news.mit.edu/2026/featured-video-changing-conversation-about-endometriosis-1103
+2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892633/mammoth-maple-leafs
+2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892635/red-wings-lightning
+2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892637/blues-rangers
+2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892638/wild-flyers
+2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892639/golden-knights-penguins
+2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892640/stars-capitals
+2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892641/avalanche-blue-jackets
