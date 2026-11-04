@@ -139,3 +139,9 @@
 2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892639/golden-knights-penguins
 2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892640/stars-capitals
 2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892641/avalanche-blue-jackets
+2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892634/jets-canadiens
+2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892636/oilers-devils
+2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892642/hurricanes-predators
+2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892643/ducks-canucks
+2026-11-04|https://news.mit.edu/2026/mit-led-team-receives-funding-for-early-disease-detection-wearable-monitor-1104
+2026-11-04|https://news.mit.edu/2026/dream-build-destroy-repeat-combat-robotics-club-1104
