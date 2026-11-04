@@ -145,3 +145,12 @@
 2026-11-04|https://www.espn.com/nhl/game/_/gameId/401892643/ducks-canucks
 2026-11-04|https://news.mit.edu/2026/mit-led-team-receives-funding-for-early-disease-detection-wearable-monitor-1104
 2026-11-04|https://news.mit.edu/2026/dream-build-destroy-repeat-combat-robotics-club-1104
+2026-11-04|https://www.espn.com/soccer/match/_/gameId/401915383/real-madrid-aek-athens
+2026-11-04|https://www.espn.com/soccer/match/_/gameId/401915382/liverpool-fenerbahce
+2026-11-04|https://www.espn.com/soccer/match/_/gameId/401915304/real-betis-borussia-dortmund
+2026-11-04|https://www.espn.com/soccer/match/_/gameId/401915301/napoli-fc-porto
+2026-11-04|https://www.espn.com/soccer/match/_/gameId/401915305/como-lens
+2026-11-04|https://www.espn.com/soccer/match/_/gameId/401915303/club-brugge-psv-eindhoven
+2026-11-04|https://www.espn.com/soccer/match/_/gameId/401915306/manchester-city-rb-leipzig
+2026-11-04|https://www.espn.com/soccer/match/_/gameId/401915381/arsenal-slavia-prague
+2026-11-04|https://www.espn.com/soccer/match/_/gameId/401915302/sabah-fk-viking-fk
