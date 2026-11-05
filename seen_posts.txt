@@ -163,3 +163,13 @@
 2026-11-05|https://www.espn.com/nba/game/_/gameId/401909929/cavaliers-thunder
 2026-11-05|https://www.espn.com/nhl/game/_/gameId/401892644/senators-sabres
 2026-11-05|https://www.espn.com/nhl/game/_/gameId/401892645/blackhawks-panthers
+2026-11-05|https://www.espn.com/nba/game/_/gameId/401909928/jazz-pelicans
+2026-11-05|https://www.espn.com/nba/game/_/gameId/401909930/timberwolves-rockets
+2026-11-05|https://www.espn.com/nba/game/_/gameId/401909931/raptors-nuggets
+2026-11-05|https://www.espn.com/nba/game/_/gameId/401909932/trail-blazers-suns
+2026-11-05|https://www.espn.com/nba/game/_/gameId/401909933/mavericks-spurs
+2026-11-05|https://www.espn.com/nba/game/_/gameId/401909934/lakers-kings
+2026-11-05|https://www.espn.com/nba/game/_/gameId/401909935/heat-clippers
+2026-11-05|https://www.espn.com/nhl/game/_/gameId/401892646/sharks-kings
+2026-11-05|https://www.espn.com/nhl/game/_/gameId/401892647/flames-kraken
+2026-11-05|https://news.mit.edu/2026/clearing-up-robot-fuzzy-memory-1105
