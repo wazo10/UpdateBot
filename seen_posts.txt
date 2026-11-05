@@ -173,3 +173,4 @@
 2026-11-05|https://www.espn.com/nhl/game/_/gameId/401892646/sharks-kings
 2026-11-05|https://www.espn.com/nhl/game/_/gameId/401892647/flames-kraken
 2026-11-05|https://news.mit.edu/2026/clearing-up-robot-fuzzy-memory-1105
+2026-11-05|https://waymo.com/blog/2026/11/winter-weather-preparedness
