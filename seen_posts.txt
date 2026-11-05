@@ -154,3 +154,12 @@
 2026-11-04|https://www.espn.com/soccer/match/_/gameId/401915306/manchester-city-rb-leipzig
 2026-11-04|https://www.espn.com/soccer/match/_/gameId/401915381/arsenal-slavia-prague
 2026-11-04|https://www.espn.com/soccer/match/_/gameId/401915302/sabah-fk-viking-fk
+2026-11-05|https://www.espn.com/nba/game/_/gameId/401909922/76ers-pistons
+2026-11-05|https://www.espn.com/nba/game/_/gameId/401909923/hawks-wizards
+2026-11-05|https://www.espn.com/nba/game/_/gameId/401909924/bucks-celtics
+2026-11-05|https://www.espn.com/nba/game/_/gameId/401909925/hornets-nets
+2026-11-05|https://www.espn.com/nba/game/_/gameId/401909926/bulls-knicks
+2026-11-05|https://www.espn.com/nba/game/_/gameId/401909927/pacers-grizzlies
+2026-11-05|https://www.espn.com/nba/game/_/gameId/401909929/cavaliers-thunder
+2026-11-05|https://www.espn.com/nhl/game/_/gameId/401892644/senators-sabres
+2026-11-05|https://www.espn.com/nhl/game/_/gameId/401892645/blackhawks-panthers
