@@ -188,3 +188,5 @@
 2026-11-06|https://www.espn.com/nhl/game/_/gameId/401892657/ducks-oilers
 2026-11-06|https://www.espn.com/nhl/game/_/gameId/401892658/predators-avalanche
 2026-11-06|https://www.espn.com/nfl/game/_/gameId/401873037/jaguars-ravens
+2026-11-06|https://www.espn.com/f1/race/_/id/600057448
+2026-11-06|https://news.mit.edu/2026/scene-mit-beautiful-intricate-creative-quilts-1106
