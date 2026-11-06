@@ -190,3 +190,10 @@
 2026-11-06|https://www.espn.com/nfl/game/_/gameId/401873037/jaguars-ravens
 2026-11-06|https://www.espn.com/f1/race/_/id/600057448
 2026-11-06|https://news.mit.edu/2026/scene-mit-beautiful-intricate-creative-quilts-1106
+2026-11-06|https://www.espn.com/soccer/match/_/gameId/401884739/borussia-monchengladbach-hamburg-sv
+2026-11-06|https://www.espn.com/soccer/match/_/gameId/401879242/coventry-city-everton
+2026-11-06|https://www.espn.com/soccer/match/_/gameId/401882809/alaves-sevilla
+2026-11-06|https://www.espn.com/soccer/match/_/gameId/401874815/udinese-venezia
+2026-11-06|https://www.espn.com/soccer/match/_/gameId/401876405/strasbourg-toulouse
+2026-11-06|https://news.mit.edu/2026/fabric-molds-could-bring-material-saving-concrete-beams-within-reach-1106
+2026-11-06|https://news.mit.edu/2026/how-to-predict-molecule-behavior-with-scant-data-1106
