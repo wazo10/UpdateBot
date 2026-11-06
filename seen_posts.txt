@@ -174,3 +174,12 @@
 2026-11-05|https://www.espn.com/nhl/game/_/gameId/401892647/flames-kraken
 2026-11-05|https://news.mit.edu/2026/clearing-up-robot-fuzzy-memory-1105
 2026-11-05|https://waymo.com/blog/2026/11/winter-weather-preparedness
+2026-11-06|https://www.espn.com/nhl/game/_/gameId/401892648/mammoth-canadiens
+2026-11-06|https://www.espn.com/nhl/game/_/gameId/401892649/golden-knights-red-wings
+2026-11-06|https://www.espn.com/nhl/game/_/gameId/401892650/blackhawks-lightning
+2026-11-06|https://www.espn.com/nhl/game/_/gameId/401892651/blues-devils
+2026-11-06|https://www.espn.com/nhl/game/_/gameId/401892652/hurricanes-islanders
+2026-11-06|https://www.espn.com/nhl/game/_/gameId/401892653/flyers-rangers
+2026-11-06|https://www.espn.com/nhl/game/_/gameId/401892654/bruins-penguins
+2026-11-06|https://www.espn.com/nhl/game/_/gameId/401892655/stars-blue-jackets
+2026-11-06|https://www.espn.com/nhl/game/_/gameId/401892656/canucks-jets
