@@ -211,3 +211,16 @@
 2026-11-07|https://www.espn.com/nhl/game/_/gameId/401892661/ducks-flames
 2026-11-07|https://www.espn.com/soccer/match/_/gameId/401878758/tottenham-hotspur-leeds-united
 2026-11-07|https://www.espn.com/soccer/match/_/gameId/401882812/racing-santander-malaga
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401884745/sv-elversberg-borussia-dortmund
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401884740/bayern-munich-mainz
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401884744/fc-augsburg-rb-leipzig
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401884737/eintracht-frankfurt-sc-paderborn-07
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401884743/werder-bremen-vfb-stuttgart
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401878760/hull-city-arsenal
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401879241/newcastle-united-fulham
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401878757/manchester-city-nottingham-forest
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401882813/deportivo-espanyol
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401882811/athletic-club-osasuna
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401874791/frosinone-cagliari
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401874811/lecce-torino
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401874974/bologna-parma
