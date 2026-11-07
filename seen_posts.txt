@@ -209,3 +209,5 @@
 2026-11-07|https://www.espn.com/nba/game/_/gameId/401909295/spurs-kings
 2026-11-07|https://www.espn.com/nhl/game/_/gameId/401892660/sharks-wild
 2026-11-07|https://www.espn.com/nhl/game/_/gameId/401892661/ducks-flames
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401878758/tottenham-hotspur-leeds-united
+2026-11-07|https://www.espn.com/soccer/match/_/gameId/401882812/racing-santander-malaga
