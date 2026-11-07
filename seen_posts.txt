@@ -200,3 +200,12 @@
 2026-11-07|https://www.espn.com/nba/game/_/gameId/401909287/wizards-hawks
 2026-11-07|https://www.espn.com/nba/game/_/gameId/401909288/celtics-hornets
 2026-11-07|https://www.espn.com/nhl/game/_/gameId/401892659/blue-jackets-sabres
+2026-11-07|https://www.espn.com/nba/game/_/gameId/401909289/76ers-cavaliers
+2026-11-07|https://www.espn.com/nba/game/_/gameId/401909290/jazz-mavericks
+2026-11-07|https://www.espn.com/nba/game/_/gameId/401909291/thunder-grizzlies
+2026-11-07|https://www.espn.com/nba/game/_/gameId/401909292/raptors-bucks
+2026-11-07|https://www.espn.com/nba/game/_/gameId/401909293/timberwolves-pelicans
+2026-11-07|https://www.espn.com/nba/game/_/gameId/401909294/trail-blazers-lakers
+2026-11-07|https://www.espn.com/nba/game/_/gameId/401909295/spurs-kings
+2026-11-07|https://www.espn.com/nhl/game/_/gameId/401892660/sharks-wild
+2026-11-07|https://www.espn.com/nhl/game/_/gameId/401892661/ducks-flames
