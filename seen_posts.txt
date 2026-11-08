@@ -230,3 +230,13 @@
 2026-11-07|https://www.espn.com/soccer/match/_/gameId/401874803/sassuolo-as-roma
 2026-11-07|https://www.espn.com/soccer/match/_/gameId/401876411/paris-fc-aj-auxerre
 2026-11-07|https://www.espn.com/soccer/match/_/gameId/401876407/troyes-paris-saint-germain
+2026-11-08|https://www.espn.com/nba/game/_/gameId/401909938/nuggets-pacers
+2026-11-08|https://www.espn.com/nhl/game/_/gameId/401892664/rangers-kraken
+2026-11-08|https://www.espn.com/soccer/match/_/gameId/761934/vancouver-whitecaps-cf-montreal
+2026-11-08|https://www.espn.com/soccer/match/_/gameId/761935/columbus-crew-chicago-fire-fc
+2026-11-08|https://www.espn.com/soccer/match/_/gameId/761936/new-york-city-fc-dc-united
+2026-11-08|https://www.espn.com/soccer/match/_/gameId/761937/nashville-sc-fc-cincinnati
+2026-11-08|https://www.espn.com/soccer/match/_/gameId/761938/charlotte-fc-inter-miami-cf
+2026-11-08|https://www.espn.com/soccer/match/_/gameId/761940/new-england-revolution-orlando-city-sc
+2026-11-08|https://www.espn.com/soccer/match/_/gameId/761941/toronto-fc-philadelphia-union
+2026-11-08|https://www.espn.com/soccer/match/_/gameId/761939/atlanta-united-fc-red-bull-new-york
