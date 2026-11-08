@@ -257,3 +257,10 @@
 2026-11-08|https://www.espn.com/soccer/match/_/gameId/761943/colorado-rapids-fc-dallas
 2026-11-08|https://www.espn.com/soccer/match/_/gameId/761945/san-jose-earthquakes-minnesota-united-fc
 2026-11-08|https://www.espn.com/soccer/match/_/gameId/761947/sporting-kansas-city-san-diego-fc
+2026-11-08|https://www.espn.com/nhl/game/_/gameId/401892672/penguins-kings
+2026-11-08|https://www.espn.com/soccer/match/_/gameId/761942/portland-timbers-austin-fc
+2026-11-08|https://www.espn.com/soccer/match/_/gameId/761944/st-louis-city-sc-houston-dynamo-fc
+2026-11-08|https://www.espn.com/soccer/match/_/gameId/761946/la-galaxy-real-salt-lake
+2026-11-08|https://www.espn.com/soccer/match/_/gameId/761948/lafc-seattle-sounders-fc
+2026-11-08|https://www.espn.com/soccer/match/_/gameId/401882814/real-betis-elche
+2026-11-08|https://www.espn.com/soccer/match/_/gameId/401874810/lazio-napoli
