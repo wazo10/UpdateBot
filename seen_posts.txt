@@ -296,3 +296,11 @@
 2026-11-08|https://www.espn.com/soccer/match/_/gameId/401875003/juventus-fiorentina
 2026-11-08|https://www.espn.com/soccer/match/_/gameId/401876410/lyon-brest
 2026-11-08|https://www.espn.com/soccer/match/_/gameId/401876404/marseille-lens
+2026-11-09|https://www.espn.com/nba/game/_/gameId/401909946/lakers-pistons
+2026-11-09|https://www.espn.com/nba/game/_/gameId/401909947/jazz-timberwolves
+2026-11-09|https://www.espn.com/nhl/game/_/gameId/401892677/lightning-jets
+2026-11-09|https://www.espn.com/nfl/game/_/gameId/401873046/texans-chargers
+2026-11-09|https://www.espn.com/nfl/game/_/gameId/401873049/packers-patriots
+2026-11-09|https://www.espn.com/nfl/game/_/gameId/401873047/raiders-49ers
+2026-11-09|https://www.espn.com/nfl/game/_/gameId/401873048/cardinals-seahawks
+2026-11-09|https://www.espn.com/soccer/match/_/gameId/401876409/lorient-le-havre-ac
