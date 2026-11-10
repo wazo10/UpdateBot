@@ -317,3 +317,15 @@
 2026-11-10|https://www.espn.com/nba/game/_/gameId/401909953/cavaliers-hornets
 2026-11-10|https://www.espn.com/nba/game/_/gameId/401909954/wizards-pistons
 2026-11-10|https://www.espn.com/nba/game/_/gameId/401909955/grizzlies-raptors
+2026-11-10|https://waymo.com/blog/2026/11/uk-accessibility-network
+2026-11-10|https://www.espn.com/nba/game/_/gameId/401909956/pacers-mavericks
+2026-11-10|https://www.espn.com/nba/game/_/gameId/401909957/nuggets-rockets
+2026-11-10|https://www.espn.com/nba/game/_/gameId/401909958/spurs-suns
+2026-11-10|https://www.espn.com/nba/game/_/gameId/401909959/pelicans-warriors
+2026-11-10|https://www.espn.com/nhl/game/_/gameId/401892680/rangers-oilers
+2026-11-10|https://www.espn.com/nhl/game/_/gameId/401892681/flyers-canucks
+2026-11-10|https://www.espn.com/nhl/game/_/gameId/401892682/islanders-sharks
+2026-11-10|https://www.espn.com/nfl/game/_/gameId/401873051/bills-vikings
+2026-11-10|https://news.mit.edu/2026/mit-led-team-receives-funding-next-generation-alternatives-modern-weed-killers-1110
+2026-11-10|https://news.mit.edu/2026/streamlining-metal-parts-production-revitalize-american-industry-fabri-1110
+2026-11-10|https://news.mit.edu/2026/somebodys-got-to-do-it-why-not-me-andrew-voelsing-1110
