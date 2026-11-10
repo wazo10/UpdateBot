@@ -313,3 +313,7 @@
 2026-11-09|https://www.espn.com/nhl/game/_/gameId/401892679/penguins-ducks
 2026-11-09|https://www.espn.com/nfl/game/_/gameId/401873050/buccaneers-bears
 2026-11-09|https://news.mit.edu/2026/ai-assisted-learning-platform-helps-robots-reason-beyond-literal-commands-1109
+2026-11-10|https://www.espn.com/nba/game/_/gameId/401909952/lakers-hawks
+2026-11-10|https://www.espn.com/nba/game/_/gameId/401909953/cavaliers-hornets
+2026-11-10|https://www.espn.com/nba/game/_/gameId/401909954/wizards-pistons
+2026-11-10|https://www.espn.com/nba/game/_/gameId/401909955/grizzlies-raptors
