@@ -335,3 +335,12 @@
 2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892683/avalanche-maple-leafs
 2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892685/capitals-senators
 2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892688/devils-jets
+2026-11-11|https://www.espn.com/nba/game/_/gameId/401909961/celtics-76ers
+2026-11-11|https://www.espn.com/nba/game/_/gameId/401909962/clippers-suns
+2026-11-11|https://www.espn.com/nba/game/_/gameId/401909963/heat-jazz
+2026-11-11|https://www.espn.com/nba/game/_/gameId/401909964/magic-kings
+2026-11-11|https://www.espn.com/nba/game/_/gameId/401909965/thunder-trail-blazers
+2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892684/wild-canadiens
+2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892686/panthers-blue-jackets
+2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892687/red-wings-blues
+2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892689/predators-kings
