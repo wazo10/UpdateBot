@@ -344,3 +344,4 @@
 2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892686/panthers-blue-jackets
 2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892687/red-wings-blues
 2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892689/predators-kings
+2026-11-11|https://news.mit.edu/2026/engineers-design-stronger-resilient-nature-inspired-metamaterials-1111
