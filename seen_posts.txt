@@ -331,3 +331,7 @@
 2026-11-10|https://news.mit.edu/2026/somebodys-got-to-do-it-why-not-me-andrew-voelsing-1110
 2026-11-10|https://news.mit.edu/2026/mit-schwarzman-college-computing-welcomes-new-faculty-1110
 2026-11-10|https://news.mit.edu/2026/school-engineering-welcomes-new-faculty-1110
+2026-11-11|https://www.espn.com/nba/game/_/gameId/401909960/bucks-knicks
+2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892683/avalanche-maple-leafs
+2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892685/capitals-senators
+2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892688/devils-jets
