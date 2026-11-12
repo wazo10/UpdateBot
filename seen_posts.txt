@@ -361,3 +361,4 @@
 2026-11-12|https://www.espn.com/nhl/game/_/gameId/401892693/mammoth-golden-knights
 2026-11-12|https://www.espn.com/nhl/game/_/gameId/401892694/predators-ducks
 2026-11-12|https://www.espn.com/nhl/game/_/gameId/401892695/penguins-sharks
+2026-11-12|https://www.espn.com/nhl/game/_/gameId/401891808/hurricanes-kraken
