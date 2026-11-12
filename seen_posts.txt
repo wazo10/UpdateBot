@@ -345,3 +345,12 @@
 2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892687/red-wings-blues
 2026-11-11|https://www.espn.com/nhl/game/_/gameId/401892689/predators-kings
 2026-11-11|https://news.mit.edu/2026/engineers-design-stronger-resilient-nature-inspired-metamaterials-1111
+2026-11-12|https://www.espn.com/nba/game/_/gameId/401909966/wizards-pacers
+2026-11-12|https://www.espn.com/nba/game/_/gameId/401909967/cavaliers-knicks
+2026-11-12|https://www.espn.com/nba/game/_/gameId/401909968/celtics-raptors
+2026-11-12|https://www.espn.com/nba/game/_/gameId/401909969/spurs-bulls
+2026-11-12|https://www.espn.com/nba/game/_/gameId/401909970/nuggets-grizzlies
+2026-11-12|https://www.espn.com/nba/game/_/gameId/401909971/lakers-bucks
+2026-11-12|https://www.espn.com/nba/game/_/gameId/401909972/nets-pelicans
+2026-11-12|https://www.espn.com/nhl/game/_/gameId/401892690/lightning-sabres
+2026-11-12|https://www.espn.com/nhl/game/_/gameId/401892691/rangers-flames
