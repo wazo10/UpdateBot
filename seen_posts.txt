@@ -354,3 +354,10 @@
 2026-11-12|https://www.espn.com/nba/game/_/gameId/401909972/nets-pelicans
 2026-11-12|https://www.espn.com/nhl/game/_/gameId/401892690/lightning-sabres
 2026-11-12|https://www.espn.com/nhl/game/_/gameId/401892691/rangers-flames
+2026-11-12|https://www.espn.com/nba/game/_/gameId/401909973/magic-jazz
+2026-11-12|https://www.espn.com/nba/game/_/gameId/401909974/warriors-rockets
+2026-11-12|https://www.espn.com/nba/game/_/gameId/401909975/thunder-trail-blazers
+2026-11-12|https://www.espn.com/nhl/game/_/gameId/401892692/flyers-oilers
+2026-11-12|https://www.espn.com/nhl/game/_/gameId/401892693/mammoth-golden-knights
+2026-11-12|https://www.espn.com/nhl/game/_/gameId/401892694/predators-ducks
+2026-11-12|https://www.espn.com/nhl/game/_/gameId/401892695/penguins-sharks
