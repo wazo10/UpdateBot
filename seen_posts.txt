@@ -362,3 +362,4 @@
 2026-11-12|https://www.espn.com/nhl/game/_/gameId/401892694/predators-ducks
 2026-11-12|https://www.espn.com/nhl/game/_/gameId/401892695/penguins-sharks
 2026-11-12|https://www.espn.com/nhl/game/_/gameId/401891808/hurricanes-kraken
+2026-11-13|https://news.mit.edu/2026/addressing-nuclear-challenges-jake-hecla-1112
