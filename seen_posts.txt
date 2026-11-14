@@ -381,3 +381,13 @@
 2026-11-13|https://news.mit.edu/2026/helping-robots-fit-into-human-workplace-1113
 2026-11-13|https://www.espn.com/nhl/game/_/gameId/401892705/islanders-kings
 2026-11-13|https://news.mit.edu/2026/waste-clearing-waves-in-brain-during-sleep-are-impaired-in-older-adults-1113
+2026-11-14|https://www.espn.com/nba/game/_/gameId/401909296/knicks-pacers
+2026-11-14|https://www.espn.com/nba/game/_/gameId/401909297/bucks-magic
+2026-11-14|https://www.espn.com/nba/game/_/gameId/401909298/cavaliers-heat
+2026-11-14|https://www.espn.com/nba/game/_/gameId/401909299/hawks-bulls
+2026-11-14|https://www.espn.com/nba/game/_/gameId/401909300/grizzlies-pelicans
+2026-11-14|https://www.espn.com/nba/game/_/gameId/401909301/jazz-rockets
+2026-11-14|https://www.espn.com/nba/game/_/gameId/401909302/warriors-spurs
+2026-11-14|https://www.espn.com/nba/game/_/gameId/401909303/trail-blazers-kings
+2026-11-14|https://www.espn.com/nba/game/_/gameId/401909304/thunder-clippers
+2026-11-14|https://www.espn.com/nhl/game/_/gameId/401892706/rangers-canucks
