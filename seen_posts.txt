@@ -391,3 +391,4 @@
 2026-11-14|https://www.espn.com/nba/game/_/gameId/401909303/trail-blazers-kings
 2026-11-14|https://www.espn.com/nba/game/_/gameId/401909304/thunder-clippers
 2026-11-14|https://www.espn.com/nhl/game/_/gameId/401892706/rangers-canucks
+2026-11-14|https://www.espn.com/nhl/game/_/gameId/401892707/predators-golden-knights
