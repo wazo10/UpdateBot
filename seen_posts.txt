@@ -405,3 +405,10 @@
 2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892715/flyers-blue-jackets
 2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892716/panthers-blues
 2026-11-15|https://news.mit.edu/2026/arianna-doss-named-2027-rhodes-scholar-1114
+2026-11-15|https://www.espn.com/nba/game/_/gameId/401909982/pistons-heat
+2026-11-15|https://www.espn.com/nba/game/_/gameId/401909983/nets-grizzlies
+2026-11-15|https://www.espn.com/nba/game/_/gameId/401909984/bulls-timberwolves
+2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892717/sabres-stars
+2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892718/sharks-mammoth
+2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892719/islanders-ducks
+2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892720/flames-kings
