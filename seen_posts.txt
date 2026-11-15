@@ -394,3 +394,14 @@
 2026-11-14|https://www.espn.com/nhl/game/_/gameId/401892707/predators-golden-knights
 2026-11-14|https://www.espn.com/nhl/game/_/gameId/401891809/kraken-hurricanes
 2026-11-14|https://www.espn.com/nhl/game/_/gameId/401892708/jets-blackhawks
+2026-11-15|https://www.espn.com/nba/game/_/gameId/401909980/nuggets-pelicans
+2026-11-15|https://www.espn.com/nba/game/_/gameId/401909981/mavericks-cavaliers
+2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892709/wild-bruins
+2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892710/oilers-maple-leafs
+2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892711/avalanche-canadiens
+2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892712/red-wings-lightning
+2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892713/senators-penguins
+2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892714/devils-capitals
+2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892715/flyers-blue-jackets
+2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892716/panthers-blues
+2026-11-15|https://news.mit.edu/2026/arianna-doss-named-2027-rhodes-scholar-1114
