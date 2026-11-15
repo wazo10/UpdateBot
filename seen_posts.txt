@@ -412,3 +412,12 @@
 2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892718/sharks-mammoth
 2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892719/islanders-ducks
 2026-11-15|https://www.espn.com/nhl/game/_/gameId/401892720/flames-kings
+2026-11-15|https://www.espn.com/nba/game/_/gameId/401909985/pacers-76ers
+2026-11-15|https://www.espn.com/nfl/game/_/gameId/401873053/patriots-lions
+2026-11-15|https://www.espn.com/nfl/game/_/gameId/401873058/chiefs-falcons
+2026-11-15|https://www.espn.com/nfl/game/_/gameId/401873056/texans-browns
+2026-11-15|https://www.espn.com/nfl/game/_/gameId/401873060/vikings-packers
+2026-11-15|https://www.espn.com/nfl/game/_/gameId/401873057/jaguars-titans
+2026-11-15|https://www.espn.com/nfl/game/_/gameId/401873059/dolphins-colts
+2026-11-15|https://www.espn.com/nfl/game/_/gameId/401873055/panthers-saints
+2026-11-15|https://www.espn.com/nfl/game/_/gameId/401873054/bills-jets
