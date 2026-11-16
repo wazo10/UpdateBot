@@ -428,3 +428,12 @@
 2026-11-16|https://www.espn.com/nfl/game/_/gameId/401873062/seahawks-raiders
 2026-11-16|https://www.espn.com/nfl/game/_/gameId/401873061/rams-cardinals
 2026-11-16|https://www.espn.com/nfl/game/_/gameId/401873063/49ers-cowboys
+2026-11-16|https://www.espn.com/nba/game/_/gameId/401909990/knicks-raptors
+2026-11-16|https://www.espn.com/nba/game/_/gameId/401909991/rockets-wizards
+2026-11-16|https://www.espn.com/nba/game/_/gameId/401909992/hawks-bucks
+2026-11-16|https://www.espn.com/nba/game/_/gameId/401909993/thunder-kings
+2026-11-16|https://www.espn.com/nhl/game/_/gameId/401892721/oilers-flyers
+2026-11-16|https://www.espn.com/nhl/game/_/gameId/401892722/panthers-stars
+2026-11-16|https://www.espn.com/nhl/game/_/gameId/401892723/flames-ducks
+2026-11-16|https://www.espn.com/nhl/game/_/gameId/401892724/canucks-golden-knights
+2026-11-16|https://www.espn.com/nhl/game/_/gameId/401892725/predators-sharks
