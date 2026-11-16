@@ -421,3 +421,10 @@
 2026-11-15|https://www.espn.com/nfl/game/_/gameId/401873059/dolphins-colts
 2026-11-15|https://www.espn.com/nfl/game/_/gameId/401873055/panthers-saints
 2026-11-15|https://www.espn.com/nfl/game/_/gameId/401873054/bills-jets
+2026-11-16|https://www.espn.com/nba/game/_/gameId/401909986/lakers-suns
+2026-11-16|https://www.espn.com/nba/game/_/gameId/401909987/hornets-clippers
+2026-11-16|https://www.espn.com/nba/game/_/gameId/401909988/spurs-jazz
+2026-11-16|https://www.espn.com/nba/game/_/gameId/401909989/mavericks-celtics
+2026-11-16|https://www.espn.com/nfl/game/_/gameId/401873062/seahawks-raiders
+2026-11-16|https://www.espn.com/nfl/game/_/gameId/401873061/rams-cardinals
+2026-11-16|https://www.espn.com/nfl/game/_/gameId/401873063/49ers-cowboys
