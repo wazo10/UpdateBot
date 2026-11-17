@@ -439,3 +439,15 @@
 2026-11-16|https://www.espn.com/nhl/game/_/gameId/401892725/predators-sharks
 2026-11-16|https://www.espn.com/nfl/game/_/gameId/401873064/steelers-bengals
 2026-11-17|https://news.mit.edu/2026/mit-engineering-faculty-staff-receive-awards-summer-2026-1116
+2026-11-17|https://www.espn.com/nba/game/_/gameId/401909994/magic-celtics
+2026-11-17|https://www.espn.com/nba/game/_/gameId/401909995/bulls-cavaliers
+2026-11-17|https://www.espn.com/nba/game/_/gameId/401909996/grizzlies-wizards
+2026-11-17|https://www.espn.com/nba/game/_/gameId/401909997/76ers-nets
+2026-11-17|https://www.espn.com/nba/game/_/gameId/401909998/rockets-heat
+2026-11-17|https://www.espn.com/nba/game/_/gameId/401909999/trail-blazers-timberwolves
+2026-11-17|https://www.espn.com/nba/game/_/gameId/401910000/warriors-pelicans
+2026-11-17|https://www.espn.com/nba/game/_/gameId/401910001/suns-nuggets
+2026-11-17|https://www.espn.com/nhl/game/_/gameId/401892726/canadiens-rangers
+2026-11-17|https://www.espn.com/nhl/game/_/gameId/401892727/canucks-mammoth
+2026-11-17|https://www.espn.com/nfl/game/_/gameId/401873065/chargers-ravens
+2026-11-17|https://news.mit.edu/2026/learning-language-of-machine-learning-jacob-andreas-1117
