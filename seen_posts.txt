@@ -438,3 +438,4 @@
 2026-11-16|https://www.espn.com/nhl/game/_/gameId/401892724/canucks-golden-knights
 2026-11-16|https://www.espn.com/nhl/game/_/gameId/401892725/predators-sharks
 2026-11-16|https://www.espn.com/nfl/game/_/gameId/401873064/steelers-bengals
+2026-11-17|https://news.mit.edu/2026/mit-engineering-faculty-staff-receive-awards-summer-2026-1116
