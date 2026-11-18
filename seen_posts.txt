@@ -469,3 +469,5 @@
 2026-11-18|https://www.espn.com/nhl/game/_/gameId/401892738/flames-sharks
 2026-11-18|https://news.mit.edu/2026/helping-ai-text-detectors-keep-up-with-changing-conditions-1118
 2026-11-18|https://news.mit.edu/2026/building-blocks-for-greener-skyline-miana-smith-1118
+2026-11-18|https://www.espn.com/nhl/game/_/gameId/401892737/stars-golden-knights
+2026-11-18|https://news.mit.edu/2026/joe-higgins-to-step-down-vp-campus-services-stewardship-1118
