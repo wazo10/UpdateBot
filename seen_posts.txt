@@ -451,3 +451,4 @@
 2026-11-17|https://www.espn.com/nhl/game/_/gameId/401892727/canucks-mammoth
 2026-11-17|https://www.espn.com/nfl/game/_/gameId/401873065/chargers-ravens
 2026-11-17|https://news.mit.edu/2026/learning-language-of-machine-learning-jacob-andreas-1117
+2026-11-18|https://news.mit.edu/2026/putting-spotlight-ai-society-humanity-1117
