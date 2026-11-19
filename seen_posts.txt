@@ -482,3 +482,8 @@
 2026-11-19|https://www.espn.com/nba/game/_/gameId/401910014/hawks-thunder
 2026-11-19|https://www.espn.com/nba/game/_/gameId/401910016/warriors-mavericks
 2026-11-19|https://www.espn.com/nhl/game/_/gameId/401892739/bruins-red-wings
+2026-11-19|https://www.espn.com/nba/game/_/gameId/401910015/celtics-nuggets
+2026-11-19|https://www.espn.com/nba/game/_/gameId/401910017/jazz-lakers
+2026-11-19|https://www.espn.com/nba/game/_/gameId/401910018/suns-kings
+2026-11-19|https://www.espn.com/nhl/game/_/gameId/401892740/canadiens-devils
+2026-11-19|https://www.espn.com/nhl/game/_/gameId/401892741/avalanche-mammoth
