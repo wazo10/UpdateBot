@@ -487,3 +487,4 @@
 2026-11-19|https://www.espn.com/nba/game/_/gameId/401910018/suns-kings
 2026-11-19|https://www.espn.com/nhl/game/_/gameId/401892740/canadiens-devils
 2026-11-19|https://www.espn.com/nhl/game/_/gameId/401892741/avalanche-mammoth
+2026-11-19|https://news.mit.edu/2026/ultrasound-imaging-without-gel-1119
