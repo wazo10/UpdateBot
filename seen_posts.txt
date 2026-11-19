@@ -472,3 +472,13 @@
 2026-11-18|https://www.espn.com/nhl/game/_/gameId/401892737/stars-golden-knights
 2026-11-18|https://news.mit.edu/2026/joe-higgins-to-step-down-vp-campus-services-stewardship-1118
 2026-11-18|https://news.mit.edu/2026/featherweight-flying-robot-carries-its-own-sensors-and-computers-1118
+2026-11-19|https://www.espn.com/nba/game/_/gameId/401910007/grizzlies-cavaliers
+2026-11-19|https://www.espn.com/nba/game/_/gameId/401910008/rockets-pacers
+2026-11-19|https://www.espn.com/nba/game/_/gameId/401910009/bucks-heat
+2026-11-19|https://www.espn.com/nba/game/_/gameId/401910010/76ers-magic
+2026-11-19|https://www.espn.com/nba/game/_/gameId/401910011/bulls-nets
+2026-11-19|https://www.espn.com/nba/game/_/gameId/401910012/wizards-raptors
+2026-11-19|https://www.espn.com/nba/game/_/gameId/401910013/pistons-pelicans
+2026-11-19|https://www.espn.com/nba/game/_/gameId/401910014/hawks-thunder
+2026-11-19|https://www.espn.com/nba/game/_/gameId/401910016/warriors-mavericks
+2026-11-19|https://www.espn.com/nhl/game/_/gameId/401892739/bruins-red-wings
