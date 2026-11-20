@@ -492,3 +492,14 @@
 2026-11-20|https://www.espn.com/f1/race/_/id/600057449
 2026-11-20|https://www.espn.com/soccer/match/_/gameId/401933535/fc-cincinnati-orlando-city-sc
 2026-11-20|https://news.mit.edu/2026/ai-helps-researchers-investigate-how-medical-studies-share-code-1119
+2026-11-20|https://www.espn.com/nba/game/_/gameId/401910019/warriors-grizzlies
+2026-11-20|https://www.espn.com/nba/game/_/gameId/401910020/trail-blazers-bucks
+2026-11-20|https://www.espn.com/nba/game/_/gameId/401910021/knicks-timberwolves
+2026-11-20|https://www.espn.com/nba/game/_/gameId/401910022/clippers-spurs
+2026-11-20|https://www.espn.com/nhl/game/_/gameId/401892742/kings-maple-leafs
+2026-11-20|https://www.espn.com/nhl/game/_/gameId/401892743/flyers-senators
+2026-11-20|https://www.espn.com/nhl/game/_/gameId/401892745/blues-penguins
+2026-11-20|https://www.espn.com/nhl/game/_/gameId/401892746/sabres-capitals
+2026-11-20|https://www.espn.com/nhl/game/_/gameId/401892747/canadiens-hurricanes
+2026-11-20|https://www.espn.com/nhl/game/_/gameId/401892748/blue-jackets-blackhawks
+2026-11-20|https://www.espn.com/nhl/game/_/gameId/401892753/stars-golden-knights
