@@ -488,3 +488,7 @@
 2026-11-19|https://www.espn.com/nhl/game/_/gameId/401892740/canadiens-devils
 2026-11-19|https://www.espn.com/nhl/game/_/gameId/401892741/avalanche-mammoth
 2026-11-19|https://news.mit.edu/2026/ultrasound-imaging-without-gel-1119
+2026-11-20|https://www.espn.com/nhl/game/_/gameId/401892749/islanders-jets
+2026-11-20|https://www.espn.com/f1/race/_/id/600057449
+2026-11-20|https://www.espn.com/soccer/match/_/gameId/401933535/fc-cincinnati-orlando-city-sc
+2026-11-20|https://news.mit.edu/2026/ai-helps-researchers-investigate-how-medical-studies-share-code-1119
