@@ -513,3 +513,11 @@
 2026-11-21|https://www.espn.com/soccer/match/_/gameId/401882805/espanyol-athletic-club
 2026-11-21|https://www.espn.com/soccer/match/_/gameId/401876395/le-havre-ac-troyes
 2026-11-21|https://news.mit.edu/new-approach-enables-physically-consistent-ai-models-chaotic-systems-1120
+2026-11-21|https://www.espn.com/nba/game/_/gameId/401909305/hornets-hawks
+2026-11-21|https://www.espn.com/nba/game/_/gameId/401909306/magic-nets
+2026-11-21|https://www.espn.com/nba/game/_/gameId/401909307/pacers-cavaliers
+2026-11-21|https://www.espn.com/nba/game/_/gameId/401909308/raptors-pistons
+2026-11-21|https://www.espn.com/nba/game/_/gameId/401909309/wizards-bulls
+2026-11-21|https://www.espn.com/nba/game/_/gameId/401909310/pelicans-thunder
+2026-11-21|https://www.espn.com/nba/game/_/gameId/401909311/suns-jazz
+2026-11-21|https://www.espn.com/nba/game/_/gameId/401909312/rockets-nuggets
