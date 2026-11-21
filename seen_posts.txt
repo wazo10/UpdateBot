@@ -521,3 +521,6 @@
 2026-11-21|https://www.espn.com/nba/game/_/gameId/401909310/pelicans-thunder
 2026-11-21|https://www.espn.com/nba/game/_/gameId/401909311/suns-jazz
 2026-11-21|https://www.espn.com/nba/game/_/gameId/401909312/rockets-nuggets
+2026-11-21|https://www.espn.com/nba/game/_/gameId/401909313/kings-lakers
+2026-11-21|https://www.espn.com/soccer/match/_/gameId/401879233/fulham-manchester-city
+2026-11-21|https://www.espn.com/soccer/match/_/gameId/401882806/deportivo-alaves
