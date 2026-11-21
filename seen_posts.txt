@@ -509,3 +509,7 @@
 2026-11-20|https://www.espn.com/nhl/game/_/gameId/401892752/canucks-kraken
 2026-11-20|https://www.espn.com/nfl/game/_/gameId/401873066/colts-texans
 2026-11-20|https://www.espn.com/soccer/match/_/gameId/401933555/real-salt-lake-seattle-sounders-fc
+2026-11-21|https://www.espn.com/soccer/match/_/gameId/401884736/fc-cologne-bayern-munich
+2026-11-21|https://www.espn.com/soccer/match/_/gameId/401882805/espanyol-athletic-club
+2026-11-21|https://www.espn.com/soccer/match/_/gameId/401876395/le-havre-ac-troyes
+2026-11-21|https://news.mit.edu/new-approach-enables-physically-consistent-ai-models-chaotic-systems-1120
