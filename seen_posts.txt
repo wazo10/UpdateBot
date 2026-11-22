@@ -566,3 +566,10 @@
 2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892762/islanders-red-wings
 2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892764/golden-knights-jets
 2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892767/kraken-sharks
+2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892761/kings-senators
+2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892763/devils-blues
+2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892765/ducks-mammoth
+2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892766/wild-canucks
+2026-11-22|https://www.espn.com/soccer/match/_/gameId/401933739/columbus-crew-inter-miami-cf
+2026-11-22|https://www.espn.com/soccer/match/_/gameId/401882804/villarreal-barcelona
+2026-11-22|https://www.espn.com/soccer/match/_/gameId/401875008/venezia-juventus
