@@ -553,3 +553,16 @@
 2026-11-22|https://www.espn.com/soccer/match/_/gameId/401876403/toulouse-lens
 2026-11-22|https://www.espn.com/soccer/match/_/gameId/401876402/lyon-lille
 2026-11-22|https://www.espn.com/soccer/match/_/gameId/401876396/brest-strasbourg
+2026-11-22|https://www.espn.com/nba/game/_/gameId/401910024/trail-blazers-knicks
+2026-11-22|https://www.espn.com/nba/game/_/gameId/401910025/clippers-mavericks
+2026-11-22|https://www.espn.com/nba/game/_/gameId/401910026/grizzlies-timberwolves
+2026-11-22|https://www.espn.com/nba/game/_/gameId/401910027/pelicans-spurs
+2026-11-22|https://www.espn.com/nba/game/_/gameId/401910028/celtics-kings
+2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892756/sabres-panthers
+2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892757/penguins-predators
+2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892758/capitals-bruins
+2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892759/blue-jackets-maple-leafs
+2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892760/flyers-canadiens
+2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892762/islanders-red-wings
+2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892764/golden-knights-jets
+2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892767/kraken-sharks
