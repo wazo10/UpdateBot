@@ -544,3 +544,12 @@
 2026-11-21|https://www.espn.com/soccer/match/_/gameId/401874981/lecce-lazio
 2026-11-21|https://www.espn.com/soccer/match/_/gameId/401874967/as-roma-parma
 2026-11-21|https://www.espn.com/soccer/match/_/gameId/401876398/paris-saint-germain-nice
+2026-11-22|https://www.espn.com/nhl/game/_/gameId/401892755/blackhawks-flames
+2026-11-22|https://www.espn.com/soccer/match/_/gameId/401933733/philadelphia-union-new-england-revolution
+2026-11-22|https://www.espn.com/soccer/match/_/gameId/401933732/portland-timbers-fc-dallas
+2026-11-22|https://www.espn.com/soccer/match/_/gameId/401882798/celta-vigo-real-madrid
+2026-11-22|https://www.espn.com/soccer/match/_/gameId/401875067/torino-napoli
+2026-11-22|https://www.espn.com/soccer/match/_/gameId/401876399/aj-auxerre-as-monaco
+2026-11-22|https://www.espn.com/soccer/match/_/gameId/401876403/toulouse-lens
+2026-11-22|https://www.espn.com/soccer/match/_/gameId/401876402/lyon-lille
+2026-11-22|https://www.espn.com/soccer/match/_/gameId/401876396/brest-strasbourg
