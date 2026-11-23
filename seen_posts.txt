@@ -611,3 +611,7 @@
 2026-11-23|https://www.espn.com/nhl/game/_/gameId/401892770/oilers-blues
 2026-11-23|https://www.espn.com/nhl/game/_/gameId/401892771/penguins-stars
 2026-11-23|https://news.mit.edu/2026/ai-driven-technique-could-help-engineers-design-analog-chips-faster-and-less-expensive-1123
+2026-11-23|https://www.espn.com/nhl/game/_/gameId/401892772/blackhawks-canucks
+2026-11-23|https://www.espn.com/nfl/game/_/gameId/401873077/vikings-49ers
+2026-11-23|https://www.espn.com/soccer/match/_/gameId/401933729/real-salt-lake-vancouver-whitecaps
+2026-11-23|https://www.espn.com/soccer/match/_/gameId/401875009/fiorentina-monza
