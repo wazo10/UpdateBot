@@ -603,3 +603,11 @@
 2026-11-23|https://www.espn.com/soccer/match/_/gameId/401882803/atletico-madrid-getafe
 2026-11-23|https://www.espn.com/soccer/match/_/gameId/401875001/internazionale-atalanta
 2026-11-23|https://www.espn.com/soccer/match/_/gameId/401876400/le-mans-marseille
+2026-11-23|https://www.espn.com/nba/game/_/gameId/401910031/magic-wizards
+2026-11-23|https://www.espn.com/nba/game/_/gameId/401910032/nuggets-bulls
+2026-11-23|https://www.espn.com/nba/game/_/gameId/401910033/mavericks-jazz
+2026-11-23|https://www.espn.com/nba/game/_/gameId/401910034/pacers-knicks
+2026-11-23|https://www.espn.com/nba/game/_/gameId/401910035/celtics-warriors
+2026-11-23|https://www.espn.com/nhl/game/_/gameId/401892770/oilers-blues
+2026-11-23|https://www.espn.com/nhl/game/_/gameId/401892771/penguins-stars
+2026-11-23|https://news.mit.edu/2026/ai-driven-technique-could-help-engineers-design-analog-chips-faster-and-less-expensive-1123
