@@ -633,3 +633,8 @@
 2026-11-24|https://www.espn.com/soccer/match/_/gameId/401879237/everton-brentford
 2026-11-24|https://news.mit.edu/2026/arianna-doss-prescribes-change-1124
 2026-11-24|https://news.mit.edu/2026/mit-student-leaders-qa-peer-advisor-stephanie-han-1123
+2026-11-24|https://www.espn.com/nba/game/_/gameId/401910044/jazz-lakers
+2026-11-24|https://www.espn.com/nhl/game/_/gameId/401892777/mammoth-jets
+2026-11-24|https://www.espn.com/nhl/game/_/gameId/401892779/wild-sharks
+2026-11-24|https://www.espn.com/soccer/match/_/gameId/401933728/lafc-st-louis-city-sc
+2026-11-24|https://www.espn.com/soccer/match/_/gameId/401882802/elche-levante
