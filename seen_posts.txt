@@ -655,3 +655,4 @@
 2026-11-25|https://www.espn.com/nhl/game/_/gameId/401892780/golden-knights-oilers
 2026-11-25|https://www.espn.com/soccer/match/_/gameId/401933738/houston-dynamo-fc-san-jose-earthquakes
 2026-11-25|https://news.mit.edu/2026/electric-seaglider-from-mit-alumni-takes-flight-1125
+2026-11-25|https://news.mit.edu/2026/draining-peatlands-leaves-long-warming-legacy-1125
