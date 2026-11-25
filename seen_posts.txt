@@ -638,3 +638,14 @@
 2026-11-24|https://www.espn.com/nhl/game/_/gameId/401892779/wild-sharks
 2026-11-24|https://www.espn.com/soccer/match/_/gameId/401933728/lafc-st-louis-city-sc
 2026-11-24|https://www.espn.com/soccer/match/_/gameId/401882802/elche-levante
+2026-11-25|https://www.espn.com/soccer/match/_/gameId/401915380/lask-linz-bodoglimt
+2026-11-25|https://www.espn.com/soccer/match/_/gameId/401915300/aston-villa-galatasaray
+2026-11-25|https://www.espn.com/soccer/match/_/gameId/401915295/borussia-dortmund-arsenal
+2026-11-25|https://www.espn.com/soccer/match/_/gameId/401915296/aek-athens-como
+2026-11-25|https://www.espn.com/soccer/match/_/gameId/401915294/fc-porto-feyenoord-rotterdam
+2026-11-25|https://www.espn.com/soccer/match/_/gameId/401915379/napoli-manchester-city
+2026-11-25|https://www.espn.com/soccer/match/_/gameId/401915299/lens-rb-leipzig
+2026-11-25|https://www.espn.com/soccer/match/_/gameId/401915298/psv-eindhoven-real-madrid
+2026-11-25|https://www.espn.com/soccer/match/_/gameId/401915297/real-betis-slovan-bratislava
+2026-11-25|https://news.mit.edu/2026/tangimap-agentic-system-personalizes-physical-controls-help-users-dj-their-art-1124
+2026-11-25|https://news.mit.edu/2026/excess-renewable-energy-could-power-new-industrial-processes-1124
