@@ -649,3 +649,9 @@
 2026-11-25|https://www.espn.com/soccer/match/_/gameId/401915297/real-betis-slovan-bratislava
 2026-11-25|https://news.mit.edu/2026/tangimap-agentic-system-personalizes-physical-controls-help-users-dj-their-art-1124
 2026-11-25|https://news.mit.edu/2026/excess-renewable-energy-could-power-new-industrial-processes-1124
+2026-11-25|https://www.espn.com/nba/game/_/gameId/401909314/pistons-magic
+2026-11-25|https://www.espn.com/nba/game/_/gameId/401909315/celtics-wizards
+2026-11-25|https://www.espn.com/nba/game/_/gameId/401909316/mavericks-nuggets
+2026-11-25|https://www.espn.com/nhl/game/_/gameId/401892780/golden-knights-oilers
+2026-11-25|https://www.espn.com/soccer/match/_/gameId/401933738/houston-dynamo-fc-san-jose-earthquakes
+2026-11-25|https://news.mit.edu/2026/electric-seaglider-from-mit-alumni-takes-flight-1125
