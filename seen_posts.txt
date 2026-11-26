@@ -685,3 +685,7 @@
 2026-11-26|https://www.espn.com/nhl/game/_/gameId/401892791/mammoth-wild
 2026-11-26|https://www.espn.com/nhl/game/_/gameId/401892793/sharks-ducks
 2026-11-26|https://www.espn.com/nfl/game/_/gameId/401873079/packers-rams
+2026-11-26|https://www.espn.com/nhl/game/_/gameId/401892784/senators-panthers
+2026-11-26|https://www.espn.com/nhl/game/_/gameId/401892786/flames-penguins
+2026-11-26|https://www.espn.com/nhl/game/_/gameId/401892792/canadiens-avalanche
+2026-11-26|https://www.espn.com/nhl/game/_/gameId/401892794/blackhawks-kraken
