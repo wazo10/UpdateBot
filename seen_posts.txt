@@ -656,3 +656,13 @@
 2026-11-25|https://www.espn.com/soccer/match/_/gameId/401933738/houston-dynamo-fc-san-jose-earthquakes
 2026-11-25|https://news.mit.edu/2026/electric-seaglider-from-mit-alumni-takes-flight-1125
 2026-11-25|https://news.mit.edu/2026/draining-peatlands-leaves-long-warming-legacy-1125
+2026-11-26|https://www.espn.com/nba/game/_/gameId/401909317/heat-76ers
+2026-11-26|https://www.espn.com/soccer/match/_/gameId/401915378/barcelona-sabah-fk
+2026-11-26|https://www.espn.com/soccer/match/_/gameId/401915293/villarreal-slavia-prague
+2026-11-26|https://www.espn.com/soccer/match/_/gameId/401915291/viking-fk-atletico-madrid
+2026-11-26|https://www.espn.com/soccer/match/_/gameId/401915292/liverpool-club-brugge
+2026-11-26|https://www.espn.com/soccer/match/_/gameId/401915376/vfb-stuttgart-internazionale
+2026-11-26|https://www.espn.com/soccer/match/_/gameId/401915377/bayern-munich-lille
+2026-11-26|https://www.espn.com/soccer/match/_/gameId/401915374/as-roma-paris-saint-germain
+2026-11-26|https://www.espn.com/soccer/match/_/gameId/401915375/fenerbahce-shakhtar-donetsk
+2026-11-26|https://www.espn.com/soccer/match/_/gameId/401915373/manchester-united-sporting-cp
