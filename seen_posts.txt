@@ -689,3 +689,5 @@
 2026-11-26|https://www.espn.com/nhl/game/_/gameId/401892786/flames-penguins
 2026-11-26|https://www.espn.com/nhl/game/_/gameId/401892792/canadiens-avalanche
 2026-11-26|https://www.espn.com/nhl/game/_/gameId/401892794/blackhawks-kraken
+2026-11-27|https://www.espn.com/nfl/game/_/gameId/401873081/bears-lions
+2026-11-27|https://www.espn.com/nfl/game/_/gameId/401873080/eagles-cowboys
