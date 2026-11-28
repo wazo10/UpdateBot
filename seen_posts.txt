@@ -708,3 +708,15 @@
 2026-11-28|https://www.espn.com/soccer/match/_/gameId/401884720/borussia-monchengladbach-werder-bremen
 2026-11-28|https://www.espn.com/soccer/match/_/gameId/401882791/racing-santander-levante
 2026-11-28|https://www.espn.com/soccer/match/_/gameId/401876392/paris-fc-brest
+2026-11-28|https://www.espn.com/nba/game/_/gameId/401909326/heat-knicks
+2026-11-28|https://www.espn.com/nba/game/_/gameId/401909327/bucks-pistons
+2026-11-28|https://www.espn.com/nba/game/_/gameId/401909328/76ers-pacers
+2026-11-28|https://www.espn.com/nba/game/_/gameId/401909329/nets-raptors
+2026-11-28|https://www.espn.com/nba/game/_/gameId/401909330/hawks-celtics
+2026-11-28|https://www.espn.com/nba/game/_/gameId/401909331/grizzlies-timberwolves
+2026-11-28|https://www.espn.com/nba/game/_/gameId/401909332/mavericks-suns
+2026-11-28|https://www.espn.com/nba/game/_/gameId/401909333/lakers-spurs
+2026-11-28|https://www.espn.com/nba/game/_/gameId/401909334/nuggets-jazz
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892807/jets-islanders
+2026-11-28|https://www.espn.com/nfl/game/_/gameId/401873083/broncos-steelers
+2026-11-28|https://www.espn.com/soccer/match/_/gameId/401933727/inter-miami-cf-columbus-crew
