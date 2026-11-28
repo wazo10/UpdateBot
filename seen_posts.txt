@@ -720,3 +720,14 @@
 2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892807/jets-islanders
 2026-11-28|https://www.espn.com/nfl/game/_/gameId/401873083/broncos-steelers
 2026-11-28|https://www.espn.com/soccer/match/_/gameId/401933727/inter-miami-cf-columbus-crew
+2026-11-28|https://www.espn.com/nba/game/_/gameId/401909335/pelicans-clippers
+2026-11-28|https://www.espn.com/nba/game/_/gameId/401909336/warriors-trail-blazers
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892806/rangers-blackhawks
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892808/penguins-sabres
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892809/kraken-oilers
+2026-11-28|https://www.espn.com/soccer/match/_/gameId/401933725/vancouver-whitecaps-real-salt-lake
+2026-11-28|https://www.espn.com/soccer/match/_/gameId/401879225/chelsea-nottingham-forest
+2026-11-28|https://www.espn.com/soccer/match/_/gameId/401875004/bologna-venezia
+2026-11-28|https://www.espn.com/soccer/match/_/gameId/401884722/bayern-munich-hamburg-sv
+2026-11-28|https://www.espn.com/soccer/match/_/gameId/401879227/coventry-city-leeds-united
+2026-11-28|https://www.espn.com/soccer/match/_/gameId/401875081/parma-frosinone
