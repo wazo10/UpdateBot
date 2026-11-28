@@ -694,3 +694,17 @@
 2026-11-27|https://www.espn.com/nfl/game/_/gameId/401873082/chiefs-bills
 2026-11-27|https://news.mit.edu/2026/engineering-antibiotics-could-expand-new-drug-candidates-pool-1127
 2026-11-27|https://www.espn.com/f1/race/_/id/600057450
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892795/maple-leafs-bruins
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892796/flames-devils
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892797/mammoth-predators
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892798/stars-blues
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892799/senators-lightning
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892800/canucks-flyers
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892801/panthers-capitals
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892802/red-wings-blue-jackets
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892803/avalanche-wild
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892804/kings-ducks
+2026-11-28|https://www.espn.com/nhl/game/_/gameId/401892805/golden-knights-sharks
+2026-11-28|https://www.espn.com/soccer/match/_/gameId/401884720/borussia-monchengladbach-werder-bremen
+2026-11-28|https://www.espn.com/soccer/match/_/gameId/401882791/racing-santander-levante
+2026-11-28|https://www.espn.com/soccer/match/_/gameId/401876392/paris-fc-brest
